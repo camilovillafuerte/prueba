@@ -18,7 +18,7 @@ class CreateBecasNivelsTable extends Migration
             $table->string('nombre');
             $table->string('tipo');
             $table->string('estado');
-            $table->string('fecha_creacion');
+            $table->timestamp('fecha_creacion')->currentDate();
         });
     }
 
