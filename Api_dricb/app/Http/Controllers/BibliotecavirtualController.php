@@ -3,19 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\contenido;
+use App\Models\bibliotecavirtual;
 
-class ContenidoController extends Controller
+class BibliotecavirtualController extends Controller
 {
-  /**
+     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $contenido = contenido::all();
-        return $contenido;
+        $bvirtual = bibliotecavirtual::all();
+        return $bvirtual;
     }
 
     /**
@@ -36,10 +36,11 @@ class ContenidoController extends Controller
      */
     public function store(Request $request)
     {
-        $contenido = new contenido();
-        $contenido->des_cont= $request->des_cont;
-        $contenido->tipo= $request->tipo;
-        $contenido->save();
+        $bvirtual = new bibliotecavirtual();
+        $bvirtual->nombre_uni= $request->nombre_uni;
+        $bvirtual->url_biblioteca= $request->url_biblioteca;
+        $bvirtual->url_pprincipal= $request->url_pprincipal;
+        $bvirtual->save();
     }
 
     /**
@@ -73,11 +74,12 @@ class ContenidoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $contenido=contenido::findOrFail($request->id);
-        $contenido->des_cont= $request->des_cont;
-        $contenido->tipo= $request->tipo;
-        $contenido->save();
-        return $contenido;
+        $bvirtual=bibliotecavirtual::findOrFail($request->id);
+        $bvirtual->nombre_uni= $request->nombre_uni;
+        $bvirtual->url_biblioteca= $request->url_biblioteca;
+        $bvirtual->url_pprincipal= $request->url_pprincipal;
+        $bvirtual->save();
+        return $bvirtual;
     }
 
     /**
@@ -88,43 +90,43 @@ class ContenidoController extends Controller
      */
     public function destroy(Request $request)
     {
-        $contenido=contenido::destroy($request->id);
-        return $contenido;
+        $bvirtual=bibliotecavirtual::destroy($request->id);
+        return $bvirtual;
+    }
+    
+    //metodo con json para probar si funciona con postman
+    public function getBvirtual(){
+        return response()->json(bibliotecavirtual::all(),200);
     }
 
-     //metodo con json para probar si funciona con postman
-     public function getContenido(){
-        return response()->json(contenido::all(),200);
-    }
-
-    public function getContenidoxid($id){
-        $contenido = contenido::find($id);
-        if(is_null($contenido)){
+    public function getBvirtualxid($id){
+        $bvirtual = bibliotecavirtual::find($id);
+        if(is_null($bvirtual)){
             return response () -> json(['Mensaje'=>'Registro no encontrado'],404);
         } 
-        return response ()->json($contenido::find($id),200);
+        return response ()->json($bvirtual::find($id),200);
     }
 
-    public function insertContenido(Request $request){
-        $contenido = contenido::create ($request->all());
-        return response($contenido,200);
+    public function insertBvirtual(Request $request){
+        $bvirtual = bibliotecavirtual::create ($request->all());
+        return response($bvirtual,200);
     }
 
-    public function updateContenido(Request $request,$id){
-        $contenido=contenido::find($id);
-        if (is_null($contenido)){
+    public function updateBvirtual(Request $request,$id){
+        $bvirtual=bibliotecavirtual::find($id);
+        if (is_null($bvirtual)){
             return response()->json(['Mensaje'=>'Registro no encontrado'],404);
          }
-        $contenido->update($request->all());
-        return response($contenido,200);
+        $bvirtual->update($request->all());
+        return response($bvirtual,200);
     }
 
-    public function deleteContenido($id){
-        $contenido=contenido::find($id);
-        if (is_null($contenido)){
+    public function deleteBvirtual($id){
+        $bvirtual=bibliotecavirtual::find($id);
+        if (is_null($bvirtual)){
             return response()->json(['Mensaje'=>'Registro no encontrado'],404);
          }
-         $contenido->delete();
+         $bvirtual->delete();
          return response()->json(['Mensaje'=>'Registro Eliminado'],200);
     }
 }

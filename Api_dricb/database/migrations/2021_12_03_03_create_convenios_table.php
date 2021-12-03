@@ -15,7 +15,12 @@ class CreateConveniosTable extends Migration
     {
         Schema::create('convenios', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('cedula_usuario');
+            $table->string('titulo_convenio');
+            $table->string('f_creaciondoc');
+            $table->string('estado');
+            $table->longText('tipo_documento');
+            $table->longText('PDF')->nullable();
         });
     }
 
@@ -29,3 +34,4 @@ class CreateConveniosTable extends Migration
         Schema::dropIfExists('convenios');
     }
 }
+

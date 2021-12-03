@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateClausulasTable extends Migration
+class CreateBecasNivelsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreateClausulasTable extends Migration
      */
     public function up()
     {
-        Schema::create('clausulas', function (Blueprint $table) {
+        Schema::create('becas_nivels', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('nombre');
+            $table->string('tipo');
+            $table->string('estado');
+            $table->string('fecha_creacion');
         });
     }
 
@@ -26,6 +29,6 @@ class CreateClausulasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clausulas');
+        Schema::dropIfExists('becas_nivels');
     }
 }

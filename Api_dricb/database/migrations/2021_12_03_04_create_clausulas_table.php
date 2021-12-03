@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBecasNivelBodiesTable extends Migration
+class CreateClausulasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateBecasNivelBodiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('becas_nivel_bodies', function (Blueprint $table) {
+        Schema::create('clausulas', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('nombre_clau');
         });
     }
 
@@ -26,6 +26,6 @@ class CreateBecasNivelBodiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('becas_nivel_bodies');
+        Schema::dropIfExists('clausulas');
     }
 }

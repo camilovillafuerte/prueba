@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContenidoArticulosTable extends Migration
+class CreateConveniosEspecificosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateContenidoArticulosTable extends Migration
      */
     public function up()
     {
-        Schema::create('contenido_articulos', function (Blueprint $table) {
+        Schema::create('convenios_especificos', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('descripcion_ce')->nullable();
         });
     }
 
@@ -26,6 +26,7 @@ class CreateContenidoArticulosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contenido_articulos');
+        Schema::dropIfExists('convenios_especificos');
     }
 }
+
