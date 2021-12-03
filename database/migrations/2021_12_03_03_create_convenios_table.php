@@ -17,7 +17,7 @@ class CreateConveniosTable extends Migration
             $table->id();
             $table->string('cedula_usuario');
             $table->string('titulo_convenio');
-            $table->timestamp('f_creaciondoc')->currentDate();
+            $table->current_timestamp('f_creaciondoc')->default();
             $table->string('estado');
             $table->longText('tipo_documento');
             $table->longText('PDF')->nullable();
