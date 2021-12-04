@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\convenios;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,8 +18,11 @@ class CreateConveniosTable extends Migration
             $table->id();
             $table->string('cedula_usuario');
             $table->string('titulo_convenio');
-            $table->current_timestamp('f_creaciondoc')->default();
-            $table->string('estado');
+            //$table->current_timestamp('f_creaciondoc')->default();
+            // $table->timestamp('f_creaciondoc')->useCurrent();
+            $table->timestamp('f_creaciondoc')->default(convenios::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+           
+            $table->enum('estado',['A','D']);
             $table->longText('tipo_documento');
             $table->longText('PDF')->nullable();
         });

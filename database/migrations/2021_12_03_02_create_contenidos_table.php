@@ -15,8 +15,8 @@ class CreateContenidosTable extends Migration
     {
         Schema::create('contenidos', function (Blueprint $table) {
             $table->id();
-            $table->string('des_cont');
-            $table->string('tipo');
+            $table->longText('des_cont');
+            $table->enum('tipo',['P','L','V'])->nullable();
         });
 
     

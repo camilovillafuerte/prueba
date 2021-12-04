@@ -17,14 +17,16 @@ class CreateBecasNivelBodiesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('id_becas_nivels');
             $table->foreign('id_becas_nivels')->references('id')->on('becas_nivels')->onDelete('cascade');
-            $table->string('nombre');
-            $table->string('pais');
-            $table->string('idioma');
-            $table->string('area_estudio');
-            $table->string('fecha_postulacion');
-            $table->string('modalidad');
-            $table->longText('requisitos'); 
-            $table->longText('pdf');
+            $table->longText('nombre')->nullable();
+            $table->string('pais')->nullable();
+            $table->string('idioma')->nullable();
+            $table->longText('area_estudio')->nullable();
+            $table->string('fecha_postulacion')->nullable();
+            $table->longText('modalidad')->nullable();
+            $table->longText('requisitos')->nullable(); 
+            $table->longtext('reconocimiento_titulo')->nullable();
+            $table->longText('pdf')->nullable();
+            $table->enum('estado',['A','D']);
         });
     }
 

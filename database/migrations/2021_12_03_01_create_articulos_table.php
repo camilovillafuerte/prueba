@@ -16,7 +16,7 @@ class CreateArticulosTable extends Migration
         Schema::create('articulos', function (Blueprint $table) {
             $table->id();
             $table->string('des_art')->nullable();
-            $table->string('subtipo')->nullable();
+            $table->enum('subtipo',['P','L','V'])->nullable();
         });
     }
 

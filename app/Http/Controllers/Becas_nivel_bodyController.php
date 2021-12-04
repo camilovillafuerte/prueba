@@ -45,7 +45,9 @@ class Becas_nivel_bodyController extends Controller
         $becas_body->fecha_postulacion = $request->fecha_postulacion;
         $becas_body->modalidad = $request->modalidad;
         $becas_body->requisitos = $request->requisitos;
+        $becas_body->reconocimiento_titulo = $request->reconocimiento_titulo;
         $becas_body->pdf = $request->pdf;
+        $becas_body->estado = $request ->estado;
 
         $becas_body->save();
     }
@@ -90,7 +92,9 @@ class Becas_nivel_bodyController extends Controller
         $becas_body->fecha_postulacion = $request->fecha_postulacion;
         $becas_body->modalidad = $request->modalidad;
         $becas_body->requisitos = $request->requisitos;
+        $becas_body->reconocimiento_titulo = $request->reconocimiento_titulo;
         $becas_body->pdf = $request->pdf;
+        $becas_body->estado = $request ->estado;
         $becas_body->save();
         return $becas_body;
 

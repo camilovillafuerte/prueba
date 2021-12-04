@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\becas_nivel;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,10 +17,12 @@ class CreateBecasNivelsTable extends Migration
         Schema::create('becas_nivels', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('tipo');
-            $table->string('estado');
-           // $table->timestamp('fecha_creacion')->currentDate();
-            $table->current->date_time_set('fecha_creacion')->default();
+            $table->enum('tipo',['C','P','I','M','D']);
+            $table->enum('estado',['A','D']);
+           // $table->timestamp('fecha_creacion')->useCurrent();
+            $table->timestamp('fecha_creacion')->default(becas_nivel::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+           
+            
         });
     }
 
