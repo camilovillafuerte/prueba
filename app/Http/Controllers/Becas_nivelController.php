@@ -12,6 +12,12 @@ class Becas_nivelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
+    public function consulta()
+    { $consulta = becas_nivel::all();
+    return $consulta;
+    }
+
     public function index()
     {
        $becas = becas_nivel::all();
