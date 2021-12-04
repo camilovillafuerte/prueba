@@ -24,7 +24,7 @@ class Becas_nivelController extends Controller
     {
        $becas = becas_nivel::all();
        $becas = becas_nivel::where('tipo','C')->get();
-       return $becas;
+       //return $becas;
     }
 
     /**
