@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\becas_nivel;
 use Database\Seeders\Becas_nivelSeeder;
+use Illuminate\Support\Facades\DB;
 
 class Becas_nivelController extends Controller
 {
@@ -14,7 +15,7 @@ class Becas_nivelController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-   /* public function consulta()
+   /*public function consulta()
     { 
         $becas = becas_nivel::all();
         $becas = becas_nivel::where('tipo','C')->get();
@@ -23,8 +24,11 @@ class Becas_nivelController extends Controller
 
     public function index()
     {
-       //$becas = becas_nivel::all();
-       $becas = Becas_nivel::where('tipo','C')->get();
+       $sql = 'SELECT id FROM becas_nivels WHERE tipo="C"' ;
+       $becas = DB::select($sql);
+       
+        //$becas = becas_nivel::all();
+       //$becas = Becas_nivel::where('tipo','C')->get();
        return $becas;
     }
 
