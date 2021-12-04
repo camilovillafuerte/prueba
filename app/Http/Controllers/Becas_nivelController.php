@@ -15,6 +15,7 @@ class Becas_nivelController extends Controller
     
     public function consulta()
     { $consulta = becas_nivel::all();
+        $consulta = becas_nivel::where('estado','A')->get();
     return $consulta;
     }
 
