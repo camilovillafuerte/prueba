@@ -24,7 +24,7 @@ class Becas_nivelController extends Controller
     public function index()
     {
        //$becas = becas_nivel::all();
-       $becas = Becas_nivelSeeder::where('tipo','C')->get();
+       $becas = Becas_nivel::where('tipo','C')->get();
        return $becas;
     }
 

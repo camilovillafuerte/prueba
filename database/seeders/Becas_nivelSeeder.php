@@ -14,7 +14,7 @@ class Becas_nivelSeeder extends Seeder
      */
     public function run()
     {
-       $becas_nivel = becas_nivel::select('SELECT id FROM becas_nivel WHERE tipo = "C" ');
+       $becas_nivel = becas_nivel::select('SELECT id FROM becas_nivels WHERE tipo = "C" ');
         dd($becas_nivel);
 
     }
