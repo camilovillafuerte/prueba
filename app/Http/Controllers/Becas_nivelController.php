@@ -22,9 +22,9 @@ class Becas_nivelController extends Controller
 
     public function index()
     {
-       $becas = becas_nivel::all();
+       //$becas = becas_nivel::all();
        $becas = becas_nivel::where('tipo','C')->get();
-       //return $becas;
+       return $becas;
     }
 
     /**
