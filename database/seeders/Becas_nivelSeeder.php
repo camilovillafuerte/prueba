@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\becas_nivel;
 use Illuminate\Database\Seeder;
 
 class Becas_nivelSeeder extends Seeder
@@ -13,6 +14,8 @@ class Becas_nivelSeeder extends Seeder
      */
     public function run()
     {
-        //
+       $becas_nivel = becas_nivel::select('SELECT id FROM becas_nivel WHERE estado = "A" ');
+        dd($becas_nivel);
+
     }
 }
