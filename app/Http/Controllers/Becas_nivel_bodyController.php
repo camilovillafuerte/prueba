@@ -43,6 +43,7 @@ class Becas_nivel_bodyController extends Controller
         $becas_body->idioma = $request->idioma;
         $becas_body->area_estudio = $request->area_estudio;
         $becas_body->fecha_postulacion = $request->fecha_postulacion;
+        $becas_body->url = $request -> url;
         $becas_body->modalidad = $request->modalidad;
         $becas_body->requisitos = $request->requisitos;
         $becas_body->reconocimiento_titulo = $request->reconocimiento_titulo;
@@ -90,6 +91,7 @@ class Becas_nivel_bodyController extends Controller
         $becas_body->idioma = $request->idioma;
         $becas_body->area_estudio = $request->area_estudio;
         $becas_body->fecha_postulacion = $request->fecha_postulacion;
+        $becas_body->url = $request -> url;
         $becas_body->modalidad = $request->modalidad;
         $becas_body->requisitos = $request->requisitos;
         $becas_body->reconocimiento_titulo = $request->reconocimiento_titulo;

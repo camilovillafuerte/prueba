@@ -10,5 +10,5 @@ class becas_nivel_body extends Model
     use HasFactory;
     public $timestamps = false;
     protected $fillable = ['id','id_becas_nivels','nombre','pais','idioma','area_estudio',
-    'fecha_postulacion','modalidad','requisitos','reconocimiento_titulo','pdf','estado'];
+    'fecha_postulacion','url','modalidad','requisitos','reconocimiento_titulo','pdf','estado'];
 }

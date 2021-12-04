@@ -22,6 +22,7 @@ class CreateBecasNivelBodiesTable extends Migration
             $table->string('idioma')->nullable();
             $table->longText('area_estudio')->nullable();
             $table->longText('fecha_postulacion')->nullable();
+            $table->longText('url')->nullable();
             $table->longText('modalidad')->nullable();
             $table->longText('requisitos')->nullable(); 
             $table->longtext('reconocimiento_titulo')->nullable();
