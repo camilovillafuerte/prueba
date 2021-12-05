@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/leer', function ()
+{
+    $resultados=DB::select("SELECT * FROM becas_nivels WHERE ID=?",[1] );
+    foreach ($resultados as $becas_nivel){
+        return $becas_nivel->nombre;
+        
+    }
 });
