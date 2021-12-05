@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\becas_nivel_body;
+use Illuminate\Support\Facades\DB;
 
 class Becas_nivel_bodyController extends Controller
 {
@@ -14,7 +15,9 @@ class Becas_nivel_bodyController extends Controller
      */
     public function index()
     {
-       $becas_body = becas_nivel_body::all();
+        $sql = 'SELECT * FROM becas_nivel_bodies WHERE estado="A"';
+        $becas_body = DB::select($sql);
+        //$becas_body = becas_nivel_body::all();
        return $becas_body;
     }
 
