@@ -7,6 +7,7 @@ use App\Models\becas_nivel;
 use Database\Seeders\Becas_nivelSeeder;
 use Illuminate\Support\Facades\DB;
 
+
 class Becas_nivelController extends Controller
 {
    /**
@@ -24,8 +25,8 @@ class Becas_nivelController extends Controller
 
     public function index()
     {
-       $sql = 'SELECT nombre FROM becas_nivels WHERE tipo="C"' ;
-       $becas = becas_nivel::select($sql);
+       $becas = DB::select('SELECT nombre FROM becas_nivels WHERE tipo="C"') ;
+       //$becas = DB::select($sql);
        
         //$becas = becas_nivel::all();
        //$becas = Becas_nivel::where('tipo','C')->get();
