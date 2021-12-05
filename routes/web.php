@@ -20,9 +20,9 @@ Route::get('/', function () {
 
 Route::get('/leer', function ()
 {
-    $resultados=DB::select("SELECT * FROM becas_nivels WHERE estado=?",["A"] );
+    $resultados=DB::select("SELECT * FROM becas_nivels WHERE estado='A'",["A"] );
     foreach ($resultados as $becas_nivel){
-        return $becas_nivel;
+        return $becas_nivel->nombre;
         
     }
 });
