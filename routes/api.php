@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -101,6 +102,15 @@ Route::delete('/deleteCon_clau/{id}','App\Http\Controllers\Convenios_clausulasCo
 //Ruta para tabla becas_nivel
 //Route::get('/becas','App\Http\Controllers\Becas_nivelController@consulta');
 Route::get('/becas','App\Http\Controllers\Becas_nivelController@index');//mostrar todos los registros
+
+Route::get('/leer', function ()
+{
+    $resultados=DB::select("SELECT * FROM becas_nivels WHERE tipo=?",["C"]);
+    foreach ($resultados as $becas_nivel){
+        return $becas_nivel->Nombre_becas;
+        
+    }
+});
 Route::get('/becas/{id}','App\Http\Controllers\Becas_nivelController@getBecas_nivelxid');//mostrar  los registros por id
 Route::post('/becas','App\Http\Controllers\Becas_nivelController@store');//crear un registro
 Route::post('/addBecas','App\Http\Controllers\Becas_nivelController@insertBecas_nivel');//crear un registro
