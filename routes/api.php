@@ -105,9 +105,9 @@ Route::get('/becas','App\Http\Controllers\Becas_nivelController@index');//mostra
 
 Route::get('/leer', function ()
 {
-    $resultados=DB::select("SELECT * FROM becas_nivels WHERE tipo=?",["C"]);
+    $resultados=DB::select("SELECT * FROM becas_nivels WHERE tipo='C'");
     foreach ($resultados as $becas_nivel){
-        return $becas_nivel->Nombre_becas;
+        return $becas_nivel;
         
     }
 });
