@@ -25,7 +25,8 @@ class Becas_nivelController extends Controller
 
     public function index()
     {
-       $sql = DB::select('SELECT * FROM becas_nivels WHERE tipo="C"') ;
+       $sql = DB::select('SELECT * FROM becas_nivels WHERE tipo="C"');
+       var_dump($sql);
        //$becas = DB::select($sql);
        
         //$becas = becas_nivel::all();
