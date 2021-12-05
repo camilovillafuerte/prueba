@@ -25,13 +25,12 @@ class Becas_nivelController extends Controller
 
     public function index()
     {
-       $sql = pruebaconvenios::select('SELECT * FROM becas_nivels WHERE tipo="C"');
-       var_dump($sql);
-       //$becas = DB::select($sql);
+       $sql = DB::select('SELECT * FROM becas_nivels WHERE tipo="C"');
+      $becas = DB::select($sql);
        
         //$becas = becas_nivel::all();
        //$becas = Becas_nivel::where('tipo','C')->get();
-       return $sql;
+       return $becas;
     }
 
     /**
