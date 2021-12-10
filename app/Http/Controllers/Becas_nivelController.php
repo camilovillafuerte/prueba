@@ -114,7 +114,7 @@ class Becas_nivelController extends Controller
         return response()->json(becas_nivel::all(),200);
     }*/
 
-    public function getBecas_json(){
+    public function getBecasnivel_json(){
     return response() -> json(becas_nivel::raw('SELECT * FROM becas_nivels WHERE estado="A"'));
     }
 
