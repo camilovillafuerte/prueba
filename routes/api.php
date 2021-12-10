@@ -100,7 +100,7 @@ Route::delete('/con_clau/{id}','App\Http\Controllers\Convenios_clausulasControll
 Route::delete('/deleteCon_clau/{id}','App\Http\Controllers\Convenios_clausulasController@deleteCon_clau');//eliminar un registro
 
 //Ruta para tabla becas_nivel
-//Route::get('/becas','App\Http\Controllers\Becas_nivelController@consulta');//mostrar todos los registros
+Route::get('/becas','App\Http\Controllers\Becas_nivelController@consulta');//mostrar todos los registros
 Route::get('/becas','App\Http\Controllers\Becas_nivelController@getBecasnivel_json');
 Route::get('/becas/{id}','App\Http\Controllers\Becas_nivelController@getBecas_nivelxid');//mostrar  los registros por id
 Route::post('/becas','App\Http\Controllers\Becas_nivelController@store');//crear un registro
@@ -113,7 +113,7 @@ Route::delete('/deleteBecas/{id}','App\Http\Controllers\Becas_nivelController@de
 //Ruta para tabla becas_nivel_body
 
 Route::get('/becas_body','App\Http\Controllers\Becas_nivel_bodyController@consulta');//mostrar todos los registros
-//Route::get('/becas_body','App\Http\Controllers\Becas_nivel_bodyController@getBecasnivelb_json');
+Route::get('/becas_body','App\Http\Controllers\Becas_nivel_bodyController@getBecasnivelb_json');
 Route::get('/becas_body/{id}','App\Http\Controllers\Becas_nivel_bodyController@getBecas_nivelbxid');//mostrar  los registros por id
 Route::post('/becas_body','App\Http\Controllers\Becas_nivel_bodyController@store');//crear un registro
 Route::post('/addBecas_body','App\Http\Controllers\Becas_nivel_bodyController@insertBecas_nivelb');//crear un registro
