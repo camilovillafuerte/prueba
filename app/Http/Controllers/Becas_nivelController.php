@@ -115,7 +115,12 @@ class Becas_nivelController extends Controller
     }*/
 
     public function getBecasnivel_json(){
-    return response() -> json(becas_nivel::raw('SELECT * FROM becas_nivels WHERE estado="A"'));
+        $becas = DB::table('becas_nivels')
+        ->SELECT(
+            'id','nombre','tipo','estado','fecha_creacion', DB::raw('json_extract(params, "$.A")'),
+            
+            ) ->get() ;
+ 
     }
 
     public function getBecas_nivelxid($id){
