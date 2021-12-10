@@ -120,6 +120,7 @@ class Becas_nivelController extends Controller
             'id','nombre','tipo','estado','fecha_creacion', DB::raw('json_extract(estado, "$.A")'),
             
             ) ->get() ;
+            return response()->json($becas->toArray());
  
     }
 
