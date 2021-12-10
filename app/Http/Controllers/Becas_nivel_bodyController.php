@@ -121,13 +121,13 @@ class Becas_nivel_bodyController extends Controller
 
     }
 //metodo con json para probar si funciona con postman
-   /* public function getBecas_nivelb(){
+   public function getBecas_nivelb(){
         return response()->json(becas_nivel_body::all(),200);
     }
-    */
-    public function getBecasnivelb_json(){
+    
+  /*  public function getBecasnivelb_json(){
         return response() -> json(becas_nivel_body::raw('SELECT * FROM becas_nivel_bodies WHERE estado="A"'));
-        }
+        }*/
 
     public function getBecas_nivelbxid($id){
         $becas_body = becas_nivel_body::find($id);
