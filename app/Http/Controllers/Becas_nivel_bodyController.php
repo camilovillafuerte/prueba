@@ -13,7 +13,7 @@ class Becas_nivel_bodyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function consulta()
     {
         $sql = 'SELECT * FROM becas_nivel_bodies WHERE estado="A"';
         $becas_body = DB::select($sql);
