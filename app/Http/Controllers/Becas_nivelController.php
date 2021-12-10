@@ -116,7 +116,7 @@ class Becas_nivelController extends Controller
 
     public function getBecasnivel_json(){
         $becas = becas_nivel::select('id','nombre','tipo','estado','fecha_creacion', 
-        becas_nivel::raw('json_extract(estado, "$.A"'))
+        becas_nivel::raw('json_extract(estado, "$.A")'))
         ->get()
         -> toJson();
         return $becas->toArray();
