@@ -16,14 +16,7 @@ class Becas_nivelController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-   /*public function consulta()
-    { 
-        $becas = becas_nivel::all();
-        $becas = becas_nivel::where('tipo','C')->get();
-        return $becas;
-    }*/
-
-    public function index()
+    public function consulta()
     {
     $sql = 'SELECT * FROM becas_nivels WHERE estado="A"';
       $becas = DB::select($sql);
@@ -119,6 +112,12 @@ class Becas_nivelController extends Controller
 //metodo con json para probar si funciona con postman
     public function getBecas_nivel(){
         return response()->json(becas_nivel::all(),200);
+    }
+
+    public function getBecas_json(){
+    $sql = 'SELECT * FROM becas_nivels WHERE estado="A"';
+    $becas = DB::select($sql);
+    return response() ->json($becas);
     }
 
     public function getBecas_nivelxid($id){
