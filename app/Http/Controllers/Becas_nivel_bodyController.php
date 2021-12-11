@@ -131,14 +131,14 @@ class Becas_nivel_bodyController extends Controller
 
     public function getBecas_nivelbdes(){
             $becas_body2 = DB::table('becas_nivel_bodies')
-            ->select('id', 'nombre', 'pais', 'idioma','area_estudio','fecha_postulacion',
+            -> select('id', 'nombre', 'pais', 'idioma','area_estudio','fecha_postulacion',
             'url','modalidad','requisitos','reconocimiento_titulo','pdf','estado')
             -> where('estado','A') 
-           ->orderBy('id', 'DESC')
-            ->get()
-            ->toJson();
-        
-          return $becas_body2;
+            -> orderBy('id', 'DESC')
+            -> get()
+            -> toJson();
+            return response() -> json ($becas_body2);
+         // return $becas_body2;
     
         }
 
