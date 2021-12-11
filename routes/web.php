@@ -22,7 +22,7 @@ Route::get('/leerbecas', function ()
 {
     $resultados=DB::table('becas_nivels')
     ->select("SELECT * FROM becas_nivels WHERE estado=?",['A'] )
-    ->order('id','DESC');
+    ->orderByDesc('id');
     return response() -> json ($resultados);
    /* foreach ($resultados as $becas_nivel){
        //return $becas_nivel;
