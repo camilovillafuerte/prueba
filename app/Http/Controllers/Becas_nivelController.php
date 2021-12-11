@@ -127,6 +127,18 @@ class Becas_nivelController extends Controller
             return $becas;
     }*/
 
+    public function getBecas_niveldes(){
+        $becas2 = DB::table('becas_nivels')
+        ->select('id', 'nombre', 'tipo', 'estado','fecha_creacion')
+        ->orderBy('id', 'DESC')
+        ->get()
+        ->toJson();
+    
+      return $becas2;
+
+    }
+
+
     public function getBecas_nivelxid($id){
         $becas = becas_nivel::find($id);
         if(is_null($becas)){

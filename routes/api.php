@@ -102,6 +102,7 @@ Route::delete('/deleteCon_clau/{id}','App\Http\Controllers\Convenios_clausulasCo
 //Ruta para tabla becas_nivel
 //Route::get('/becas','App\Http\Controllers\Becas_nivelController@consulta');//mostrar todos los registros
 Route::get('/becas','App\Http\Controllers\Becas_nivelController@getBecas_nivel');
+Route::get('/becas2','App\Http\Controllers\Becas_nivelController@getBecas_niveldes');
 //Route::get('/becas','App\Http\Controllers\Becas_nivelController@getBecasnivel_json');
 Route::get('/becas/{id}','App\Http\Controllers\Becas_nivelController@getBecas_nivelxid');//mostrar  los registros por id
 Route::post('/becas','App\Http\Controllers\Becas_nivelController@store');//crear un registro
