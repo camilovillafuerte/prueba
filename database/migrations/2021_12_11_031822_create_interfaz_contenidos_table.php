@@ -18,8 +18,8 @@ class CreateInterfazContenidosTable extends Migration
             $table->unsignedBigInteger('id_interfazs');
             $table->foreign('id_interfazs')->references('id')->on('interfazs')->onDelete('cascade');
             $table->string('nombre');
-            $table->string('descripcion')->nullable();
             $table->longText('descripcion')->nullable();
+            $table->longText('urlimagen')->nullable();
             $table->enum('estado',['A','D']);
 
         });
