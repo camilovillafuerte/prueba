@@ -14,12 +14,13 @@ class CreateInterfazContenidosTable extends Migration
     public function up()
     {
         Schema::create('interfaz_contenidos', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('id_interfaz');
+            $table->id();
+            $table->unsignedBigInteger('id_interfazs');
+            $table->foreign('id_interfazs')->references('id')->on('interfazs')->onDelete('cascade');
             $table->string('nombre');
             $table->string('descripcion')->nullable();
             $table->longText('descripcion')->nullable();
-            $table->foreign('id_interfaz')->references('id')->on('interfazs')->onDelete('cascade');
+
         });
     }
 
@@ -32,8 +33,8 @@ class CreateInterfazContenidosTable extends Migration
     {
         Schema::dropIfExists('interfaz_contenidos');
         Schema::table('interfaz_contenidos',function(Blueprint $table){
-        $table->dropForeign(['id_interfaz']);
-        $table->dropColumn('id_interfaz');
+        $table->dropForeign(['id_interfazs']);
+        $table->dropColumn('id_interfazs');
     });
     }
 }
