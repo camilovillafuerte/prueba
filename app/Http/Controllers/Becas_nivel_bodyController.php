@@ -133,7 +133,7 @@ class Becas_nivel_bodyController extends Controller
             $becas_body2 = DB::table('becas_nivel_bodies')
             ->select('id', 'nombre', 'pais', 'idioma','area_estudio','fecha_postulacion',
             'url','modalidad','requisitos','reconocimiento_titulo','pdf','estado')
-            ->where ("estado=?",['A']) 
+            ->where ("estado=A") 
             ->orderBy('id', 'DESC')
             ->get()
             ->toJson();
