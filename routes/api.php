@@ -135,3 +135,18 @@ Route::put('/bvirtual/{id}','App\Http\Controllers\BibliotecavirtualController@up
 Route::put('/updateBvirtual/{id}','App\Http\Controllers\BibliotecavirtualController@updateBvirtual');//actualizar un registro
 Route::delete('/bvirtual/{id}','App\Http\Controllers\BibliotecavirtualController@destroy');//eliminar un registro
 Route::delete('/deleteBvirtual/{id}','App\Http\Controllers\BibliotecavirtualController@deleteBvirtual');//eliminar un registro
+
+//Ruta para tabla interfaz
+Route::get('/interfaz','App\Http\Controllers\InterfazController@getInterfaz');
+Route::get('/interfaz/{id}','App\Http\Controllers\InterfazController@getInterfazxid');
+Route::get('/addInterfaz','App\Http\Controllers\InterfazController@insertInterfaz');
+Route::get('/updateInterfaz/{id}','App\Http\Controllers\InterfazController@updateInterfaz');
+Route::get('/deleteInterfaz/{id}','App\Http\Controllers\InterfazController@deleteInterfaz');
+
+
+//Ruta para tabla interfaz_contenido
+Route::get('/interfazcon','App\Http\Controllers\InterfazController@getInterfazcon');
+Route::get('/interfazcon/{id}','App\Http\Controllers\InterfazController@getInterfazconxid');
+Route::get('/addInterfazcon','App\Http\Controllers\InterfazController@insertInterfazcon');
+Route::get('/updateInterfazcon/{id}','App\Http\Controllers\InterfazController@updateInterfazcon');
+Route::get('/deleteInterfazcon/{id}','App\Http\Controllers\InterfazController@deleteInterfazcon');
