@@ -36,7 +36,7 @@ Route::get('/leerbecas', function ()
 
 Route::get('/leerbecasbody', function ()
 {
-    $becasbody=DB::table('becas_nivels')
+    $becasbody=DB::table('becas_nivels_bodies')
     ->orderByDesc('id')
     ->get();
     return response() -> json ($becasbody);
