@@ -22,7 +22,7 @@ Route::get('/leerbecas', function ()
 {
 
     $becas=DB::table('becas_nivels')
-    ->where('estado="A"')
+    ->where('estado','A')
     ->orderByDesc('id')
     ->get();
     return response() -> json ($becas);
@@ -38,7 +38,7 @@ Route::get('/leerbecas', function ()
 Route::get('/leerbecasbody', function ()
 {
     $becasbody=DB::table('becas_nivel_bodies')
-    ->where('estado="A"')
+    ->where('estado','A')
     ->orderByDesc('id')
     ->get();
     return response() -> json ($becasbody);
