@@ -134,7 +134,7 @@ class Becas_nivel_bodyController extends Controller
             ->select('id', 'nombre', 'pais', 'idioma','area_estudio','fecha_postulacion',
             'url','modalidad','requisitos','reconocimiento_titulo','pdf','estado')
             -> where('estado="?"',['A'] ) 
-            ->orderBy('id', 'DESC')
+           // ->orderBy('id', 'DESC')
             ->get()
             ->toJson();
         
