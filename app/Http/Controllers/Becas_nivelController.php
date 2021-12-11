@@ -131,7 +131,7 @@ class Becas_nivelController extends Controller
         $becas2 = DB::table('becas_nivels')
         ->select('id', 'nombre', 'tipo', 'estado','fecha_creacion')
         ->where ('estado="A"') 
-        ->orderBy('id', 'DESC')
+        //->orderBy('id', 'DESC')
         ->get()
         ->toJson();
     
