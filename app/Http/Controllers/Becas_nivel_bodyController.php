@@ -135,8 +135,8 @@ class Becas_nivel_bodyController extends Controller
             'url','modalidad','requisitos','reconocimiento_titulo','pdf','estado')
             -> where('estado','A') 
             -> orderBy('id', 'DESC')
-            -> get()
-            -> toJson();
+            -> get();
+            //-> toJson();
             return response() -> json ($becas_body2);
          // return $becas_body2;
     

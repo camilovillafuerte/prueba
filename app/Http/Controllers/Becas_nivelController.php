@@ -132,8 +132,8 @@ class Becas_nivelController extends Controller
         -> select('id', 'nombre', 'tipo', 'estado','fecha_creacion')
         -> where('estado','A') 
         -> orderBy('id', 'DESC')
-        -> get()
-        -> toJson();
+        -> get();
+        //-> toJson();
         return response() -> json ($becas2);
      // return $becas2;
 
