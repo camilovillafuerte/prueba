@@ -23,7 +23,7 @@ Route::get('/leerbecas', function ()
     $resultados=DB::select("SELECT nombre FROM becas_nivels WHERE estado=?",['A'] );
     foreach ($resultados as $becas_nivel){
        //return $becas_nivel;
-        return response() -> json ($becas_nivel -> toArray());
+        return response() -> json ($becas_nivel);
         
     }
 });
@@ -33,7 +33,7 @@ Route::get('/leerbecasbody', function ()
     $sql=DB::select("SELECT nombre FROM becas_nivel_bodies WHERE estado=?",['A'] );
     foreach ($sql as $becas_body){
        // return $becas_body;
-        return response() -> json ($becas_body -> toArray());
+        return response() -> json ($becas_body);
         
         //->nombre;
         
