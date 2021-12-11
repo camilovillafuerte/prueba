@@ -114,7 +114,7 @@ Route::delete('/deleteBecas/{id}','App\Http\Controllers\Becas_nivelController@de
 //Ruta para tabla becas_nivel_body
 
 //Route::get('/becas_body','App\Http\Controllers\Becas_nivel_bodyController@consulta');//mostrar todos los registros
-Route::get('/becas_body','App\Http\Controllers\Becas_nivel_bodyController@getBecasnivelb');
+Route::get('/becas_body','App\Http\Controllers\Becas_nivel_bodyController@getBecas_nivelb');
 //Route::get('/becas_body','App\Http\Controllers\Becas_nivel_bodyController@getBecasnivelb_json');
 Route::get('/becas_body/{id}','App\Http\Controllers\Becas_nivel_bodyController@getBecas_nivelbxid');//mostrar  los registros por id
 Route::post('/becas_body','App\Http\Controllers\Becas_nivel_bodyController@store');//crear un registro
