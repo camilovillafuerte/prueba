@@ -9,6 +9,6 @@ class interfaz_contenido extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $fillable = ['id','id_interfazs','nombre','descripcion','urlimagen'];
+    protected $fillable = ['id','id_interfazs','nombre','descripcion','urlimagen','estado'];
 
 }

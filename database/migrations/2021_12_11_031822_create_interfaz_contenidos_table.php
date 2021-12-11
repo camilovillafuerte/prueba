@@ -20,6 +20,7 @@ class CreateInterfazContenidosTable extends Migration
             $table->string('nombre');
             $table->string('descripcion')->nullable();
             $table->longText('descripcion')->nullable();
+            $table->enum('estado',['A','D']);
 
         });
     }
