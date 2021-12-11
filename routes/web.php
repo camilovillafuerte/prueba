@@ -20,7 +20,9 @@ Route::get('/', function () {
 
 Route::get('/leerbecas', function ()
 {
-    $resultados=DB::select("SELECT * FROM becas_nivels WHERE estado=?",['A'] );
+    $resultados=DB::table('becas_nivels')
+    ->select("SELECT * FROM becas_nivels WHERE estado=?",['A'] )
+    ->orderBy('id','DESC');
     return response() -> json ($resultados);
    /* foreach ($resultados as $becas_nivel){
        //return $becas_nivel;
@@ -30,7 +32,8 @@ Route::get('/leerbecas', function ()
 
 Route::get('/leerbecasbody', function ()
 {
-    $sql=DB::select("SELECT * FROM becas_nivel_bodies WHERE estado=?",['A'] );
+    $sql=DB::select("SELECT * FROM becas_nivel_bodies WHERE estado=?",['A']) 
+    ->orderBy('id', 'DESC');
     return response() -> json ($sql);
     /*foreach ($sql as $becas_body){
        // return $becas_body;
