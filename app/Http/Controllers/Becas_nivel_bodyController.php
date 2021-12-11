@@ -133,7 +133,7 @@ class Becas_nivel_bodyController extends Controller
             $becas_body2 = DB::table('becas_nivel_bodies')
             ->select('id', 'nombre', 'pais', 'idioma','area_estudio','fecha_postulacion',
             'url','modalidad','requisitos','reconocimiento_titulo','pdf','estado',
-            becas_nivel_body::raw('json_extract(estado,"$.A")') )
+            becas_nivel_body::raw('json_extract(estado=?",["A"]'))
             ->orderBy('id', 'DESC')
             ->get()
             ->toJson();
