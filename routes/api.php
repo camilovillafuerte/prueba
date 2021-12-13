@@ -138,6 +138,7 @@ Route::delete('/deleteBvirtual/{id}','App\Http\Controllers\BibliotecavirtualCont
 
 //Ruta para tabla interfaz
 Route::get('/interfaz','App\Http\Controllers\InterfazController@getInterfaz');
+Route::get('/interfaz2','App\Http\Controllers\InterfazController@getInterfazprueba');
 Route::get('/interfaz/{id}','App\Http\Controllers\InterfazController@getInterfazxid');
 Route::get('/addInterfaz','App\Http\Controllers\InterfazController@insertInterfaz');
 Route::get('/updateInterfaz/{id}','App\Http\Controllers\InterfazController@updateInterfaz');
