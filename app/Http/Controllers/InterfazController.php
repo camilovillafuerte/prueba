@@ -4,11 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\interfaz;
-
+use Illuminate\Support\Facades\DB;
 
 class InterfazController extends Controller
 {
     //método con json para probar si funciona con postman
+   public function getInterfazprueba(){
+    $interfaz2 = DB::table('interfazs')
+    ->select('nombre','pagina')
+    -> get();
+    return response() -> json ($interfaz2);
+   } 
+   
+   
     public function getInterfaz(){
         return response()->json(interfaz::all(),200);
     }

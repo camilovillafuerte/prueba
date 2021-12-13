@@ -4,10 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\interfaz_contenido;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Interfaz_contenidoController extends Controller
 {
     //método con json para probar si funciona con postman
+
+    public function getInterfazconprueba(){
+        $interfazcon2 = DB::table('interfaz_contenidos')
+        ->join('interfazs','interfazs.id','=','interfaz_contenidos.id')
+        ->select('interfasz.nombre','interfazs.pagina',
+         'interfaz_contenidos.nombre','interfaz_contenidos.descripcion','interfaz_contenidos.urlimagen','interfaz_contenidos.estado')
+        -> get();
+        return response() -> json ($interfazcon2);
+       } 
+       
+
     public function getInterfazcon(){
         return response()->json(interfaz_contenido::all(),200);
     }
