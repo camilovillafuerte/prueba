@@ -145,9 +145,9 @@ Route::get('/deleteInterfaz/{id}','App\Http\Controllers\InterfazController@delet
 
 
 //Ruta para tabla interfaz_contenido
-Route::get('/interfazcon','App\Http\Controllers\InterfazController@getInterfazcon');
-Route::get('/interfazcon2','App\Http\Controllers\InterfazController@getInterfazconprueba');
-Route::get('/interfazcon/{id}','App\Http\Controllers\InterfazController@getInterfazconxid');
-Route::get('/addInterfazcon','App\Http\Controllers\InterfazController@insertInterfazcon');
-Route::get('/updateInterfazcon/{id}','App\Http\Controllers\InterfazController@updateInterfazcon');
-Route::get('/deleteInterfazcon/{id}','App\Http\Controllers\InterfazController@deleteInterfazcon');
+Route::get('/interfazcon','App\Http\Controllers\Interfaz_contenidoController@getInterfazcon');
+Route::get('/interfazcon2','App\Http\Controllers\Interfaz_contenidoController@getInterfazconprueba');
+Route::get('/interfazcon/{id}','App\Http\Controllers\Interfaz_contenidoController@getInterfazconxid');
+Route::get('/addInterfazcon','App\Http\Controllers\Interfaz_contenidoController@insertInterfazcon');
+Route::get('/updateInterfazcon/{id}','App\Http\Controllers\Interfaz_contenidoController@updateInterfazcon');
+Route::get('/deleteInterfazcon/{id}','App\Http\Controllers\Interfaz_contenidoController@deleteInterfazcon');
