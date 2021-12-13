@@ -131,7 +131,7 @@ class Becas_nivel_bodyController extends Controller
 
     public function getBecas_nivelbdes(){
             $becas_body2 = DB::table('becas_nivel_bodies')
-            -> select('id', 'nombre', 'pais', 'idioma','area_estudio','fecha_postulacion',
+            -> select('id','id_becas_nivels' ,'nombre', 'pais', 'idioma','area_estudio','fecha_postulacion',
             'url','modalidad','requisitos','reconocimiento_titulo','pdf','estado')
             -> where('estado','A') 
             -> orderBy('id', 'DESC')
