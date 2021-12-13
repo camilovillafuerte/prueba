@@ -11,4 +11,9 @@ class interfaz extends Model
     public $timestamps = false;
     protected $fillable = ['id','nombre','pagina'];
 
+
+     //Relacion de uno a muchos
+public function interfaz_contenido(){
+    return $this->hasMany('App\Models\interfaz_contenido');
+}
 }

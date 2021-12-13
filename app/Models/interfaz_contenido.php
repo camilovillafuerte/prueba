@@ -11,4 +11,7 @@ class interfaz_contenido extends Model
     public $timestamps = false;
     protected $fillable = ['id','id_interfazs','nombre','descripcion','urlimagen','estado'];
 
+    public function interfaz(){
+        return $this->hasMany('App\Models\interfaz');
+    }
 }
