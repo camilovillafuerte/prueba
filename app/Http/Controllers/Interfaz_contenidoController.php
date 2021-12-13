@@ -12,7 +12,7 @@ class Interfaz_contenidoController extends Controller
 
     public function getInterfazconprueba(){
         $interfazcon2 = DB::table('interfazs')
-        ->innerjoin('interfaz_contenidos','interfaz_contenidos.id','=','interfazs.id')
+        ->join('interfaz_contenidos','interfaz.id','=','interfaz_contenidos.id_interfazs')
         ->select('interfasz.nombre','interfazs.pagina',
          'interfaz_contenidos.nombre','interfaz_contenidos.descripcion','interfaz_contenidos.urlimagen','interfaz_contenidos.estado')
         -> where('estado','A') 
