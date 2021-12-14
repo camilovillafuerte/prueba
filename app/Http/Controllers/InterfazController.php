@@ -15,11 +15,11 @@ class InterfazController extends Controller
         return response()->json(interfaz::all(),200);
     }
     
-    public function getInterfazparametro($id, $nombre){
+    public function getInterfazparametro(Request $request){
         $interfaz = Request::get('pagina');
         //$interfaz = Request::get_browser('pagina');
         //$interfaz= Request::get_browser('pagina');
-        return $id.'-' .$nombre.'-' .$interfaz;
+        return $interfaz;
        // return response ()->json($interfaz);
     }
 
