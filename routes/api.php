@@ -139,9 +139,7 @@ Route::delete('/deleteBvirtual/{id}','App\Http\Controllers\BibliotecavirtualCont
 
 //Ruta para tabla interfaz
 Route::get('/interfaz','App\Http\Controllers\InterfazController@getInterfaz');
-//Route::get('interfaz/{pagina}','App\Http\Controllers\InterfazController@getInterfazprueba', function($pagina)
-//{return $pagina; } );
-Route::get('/interfaz/{pagina}','App\Http\Controllers\InterfazController@showpagina');
+//Route::get('/interfaz/{pagina}','App\Http\Controllers\InterfazController@showpagina');
 Route::get('/interfaz/{id}','App\Http\Controllers\InterfazController@getInterfazxid');
 Route::post('/addInterfaz','App\Http\Controllers\InterfazController@insertInterfaz');
 Route::put('/updateInterfaz/{id}','App\Http\Controllers\InterfazController@updateInterfaz');
@@ -150,6 +148,7 @@ Route::delete('/deleteInterfaz/{id}','App\Http\Controllers\InterfazController@de
 
 //Ruta para tabla interfaz_contenido
 Route::get('/interfazcon','App\Http\Controllers\Interfaz_contenidoController@getInterfazcon');
+Route::get('/interfazcon2','App\Http\Controllers\Interfaz_contenidoController@getInterfazconprueba');
 Route::get('/interfazcon2','App\Http\Controllers\Interfaz_contenidoController@getInterfazconprueba');
 Route::get('/interfazcon/{id}','App\Http\Controllers\Interfaz_contenidoController@getInterfazconxid');
 Route::post('/addInterfazcon','App\Http\Controllers\Interfaz_contenidoController@insertInterfazcon');
