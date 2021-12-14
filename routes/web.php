@@ -74,7 +74,7 @@ Route::get('/interfaz/{pagina}', function ($pagina)
 
 
 Route::get('/interfazcon2/{pagina?}', function($pagina = null ) {
-    $interfaz = [DB::table('interfazs')
+    $pagina = [DB::table('interfazs')
     ->join('interfaz_contenidos','interfazs.id','=','interfaz_contenidos.id_interfazs')
     ->select('interfazs.nombre as InterfazNombre','interfazs.pagina', 'interfaz_contenidos.id_interfazs','interfaz_contenidos.nombre','interfaz_contenidos.descripcion','interfaz_contenidos.urlimagen','interfaz_contenidos.estado')
     -> where('estado','A') 
