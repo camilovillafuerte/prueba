@@ -11,4 +11,9 @@ class becas_nivel_body extends Model
     public $timestamps = false;
     protected $fillable = ['id','id_becas_nivels','nombre','pais','idioma','area_estudio',
     'fecha_postulacion','url','modalidad','requisitos','reconocimiento_titulo','pdf','estado'];
+
+    public function becas_nivel(){
+        return $this->belongsTo('App\Models\becas_nivel');
+    }
+
 }

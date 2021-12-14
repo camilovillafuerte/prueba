@@ -12,7 +12,10 @@ class tipo_convenios extends Model
     protected $fillable = ['id','nombre_tc','descripcion_tc','id_convenios','id_convenios_especificos'];
 
     //Relacion de uno a muchos inversa
-public function convenios(){
+    public function convenios(){
     return $this->hasMany('App\Models\convenios');
+}
+    public function convenios_especificos(){
+    return $this->hasMany('App\Models\convenios_especificos');    
 }
 }

@@ -14,6 +14,11 @@ class convenios extends Model
 
     //Relacion de uno a muchos
 public function tipo_convenios(){
-    return $this->hasMany('App\Models\tipo_convenios');
+    return $this->hasMany('App\Models\tipo_convenios','id_convenios');
+}
+
+//Relación muchos a muchos
+public function convenios_clausulas(){
+    return $this -> belongsToMany('App\Models\convenios_clausulas');
 }
 }
