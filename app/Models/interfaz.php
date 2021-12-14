@@ -14,6 +14,6 @@ class interfaz extends Model
 
      //Relacion de uno a muchos
 public function interfaz_contenido(){
-    return $this->hasMany('App\Models\interfaz_contenido');
+    return $this->hasMany('App\Models\interfaz_contenido','id_interfazs');
 }
 }
