@@ -91,9 +91,6 @@ class Becas_nivelController extends Controller
         $becas->fecha_creacion = $request->fecha_creacion;
         $becas->save();
         return $becas;
-
-
-
     }
 
     /**
@@ -109,23 +106,14 @@ class Becas_nivelController extends Controller
         return $becas;
 
     }
+
 //metodo con json para probar si funciona con postman
-   public function getBecas_nivel(){
+   
+    public function getBecas_nivel(){
         return response()->json(becas_nivel::all(),200);
     }
 
-  /* public function getBecasnivel_json(){
-        $becas = becas_nivel::select('id','nombre','tipo','estado','fecha_creacion', 
-        becas_nivel::raw('json_extract(estado, "$.A")')
-        )->get();
-       // return response() -> json ($becas -> toArray());
-        $becas = DB::table('becas_nivels')
-        ->select(
-            'id','nombre','tipo','estado','fecha_creacion', DB::raw('json_extract(estado, "$.A"'))
-            ) ->get() 
-            -> toJson();
-            return $becas;
-    }*/
+   
 
     public function getBecas_niveldes(){
         $becas2 = DB::table('becas_nivels')
