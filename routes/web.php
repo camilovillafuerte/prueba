@@ -60,3 +60,13 @@ Route::get('/becas', function()
     ->get();
     return response() -> json ($becas);
 });
+
+
+Route::get('/interfaz/{pagina}', function ()
+{
+    $inter=DB::table('interfazs')
+    ->where('pagina','?')
+    ->get();
+    return response() -> json ($inter);
+
+});
