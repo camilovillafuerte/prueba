@@ -148,8 +148,8 @@ Route::delete('/deleteInterfaz/{id}','App\Http\Controllers\InterfazController@de
 
 //Ruta para tabla interfaz_contenido
 Route::get('/interfazcon','App\Http\Controllers\Interfaz_contenidoController@getInterfazcon');
-//Route::get('/interfazcon2','App\Http\Controllers\Interfaz_contenidoController@getInterfazconprueba');
-Route::get('/interfazcon2/{pagina?}','App\Http\Controllers\Interfaz_contenidoController@getInterfazconprueba', function($pagina = null ) {
+Route::get('/interfazcon2','App\Http\Controllers\Interfaz_contenidoController@getInterfazconprueba');
+Route::get('/interfazcon2/{pagina?}', function($pagina = null ) {
 return $pagina;
 });
 Route::get('/interfazcon/{id}','App\Http\Controllers\Interfaz_contenidoController@getInterfazconxid');
