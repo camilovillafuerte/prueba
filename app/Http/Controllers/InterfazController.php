@@ -10,7 +10,7 @@ class InterfazController extends Controller
 {
     //método con json para probar si funciona con postman
     public function getUrl(){
-        $interfaz2 = Request::METHOD_GET('pagina');
+        $interfaz2 = Request::getUrl('pagina');
         return $interfaz2;
 
     }
