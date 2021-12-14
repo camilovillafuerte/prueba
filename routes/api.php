@@ -141,7 +141,7 @@ Route::delete('/deleteBvirtual/{id}','App\Http\Controllers\BibliotecavirtualCont
 Route::get('/interfaz','App\Http\Controllers\InterfazController@getInterfaz');
 //Route::get('interfaz/{pagina}','App\Http\Controllers\InterfazController@getInterfazprueba', function($pagina)
 //{return $pagina; } );
-Route::get('/interfaz/{pagina}','App\Http\Controllers\InterfazController@gshowpagina');
+Route::get('/interfaz/{pagina}','App\Http\Controllers\InterfazController@showpagina');
 Route::get('/interfaz/{id}','App\Http\Controllers\InterfazController@getInterfazxid');
 Route::post('/addInterfaz','App\Http\Controllers\InterfazController@insertInterfaz');
 Route::put('/updateInterfaz/{id}','App\Http\Controllers\InterfazController@updateInterfaz');
