@@ -15,8 +15,8 @@ class InterfazController extends Controller
         $nombre = $request -> get('nombre');
         $pagina = $request -> get('pagina');
 
-        $interfaz = interfaz::orderBy('id','DESC')
-        -> pagina ($pagina);
+        $interfaz = interfaz::orderBy('id','DESC');
+        //-> pagina ($pagina);
         
         return response()->json($interfaz);
     
