@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\interfaz;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
@@ -138,7 +139,11 @@ Route::delete('/deleteBvirtual/{id}','App\Http\Controllers\BibliotecavirtualCont
 
 //Ruta para tabla interfaz
 Route::get('/interfaz','App\Http\Controllers\InterfazController@getInterfaz');
-Route::get('/interfaz/{id}/{nombre}','App\Http\Controllers\InterfazController@getInterfazparametro');
+Route::get('/interfaz','App\Http\Controllers\InterfazController@getInterfazparametro');
+
+Route::get('/interfazs/{pagina}', function ($pagina){
+return 'interfazs'.$pagina;
+} );
 Route::get('/interfaz/{id}','App\Http\Controllers\InterfazController@getInterfazxid');
 Route::get('/addInterfaz','App\Http\Controllers\InterfazController@insertInterfaz');
 Route::get('/updateInterfaz/{id}','App\Http\Controllers\InterfazController@updateInterfaz');
