@@ -142,7 +142,7 @@ Route::get('/interfaz','App\Http\Controllers\InterfazController@getInterfaz');
 
 //Route::get('interfaz/{pagina}','App\Http\Controllers\InterfazController@getInterfazprueba', function($pagina)
 //{return $pagina; } );
-Route::get('/interfaz/{pagina}','App\Http\Controllers\InterfazController@getInterfazxpagina');
+Route::get('/interfaz2/{pagina}','App\Http\Controllers\InterfazController@getInterfazxpagina');
 Route::get('/interfaz/{id}','App\Http\Controllers\InterfazController@getInterfazxid');
 Route::get('/addInterfaz','App\Http\Controllers\InterfazController@insertInterfaz');
 Route::get('/updateInterfaz/{id}','App\Http\Controllers\InterfazController@updateInterfaz');
