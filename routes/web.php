@@ -65,7 +65,8 @@ Route::get('/becas', function()
 Route::get('/interfaz/{pagina}', function ()
 {
     $inter=DB::table('interfazs')
-    ->get();
+    -> where ('pagina', 'LIKE', "%pagina%" )
+    -> get();
     return response() -> json ($inter);
 
 });
