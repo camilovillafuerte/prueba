@@ -18,11 +18,8 @@ class InterfazController extends Controller
         return response()->json(interfaz::all(),200);
     }
     
-    public function getInterfazprueba(){
-        return response()->json(interfaz::get('pagina'));
-    }
     
-  
+
 
     public function getInterfazxid($id){
         $interfaz = interfaz::find($id);
