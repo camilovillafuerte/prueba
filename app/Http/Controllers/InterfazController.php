@@ -19,12 +19,9 @@ class InterfazController extends Controller
     }
     
     
-    public function getInterfazxpagina($pagina){
-        $interfaz2 = interfaz::find($pagina);
-        if(is_null($interfaz2)){
-            return response () -> json(['Mensaje'=>'Registro no encontrado'],404);
-        } 
-        return response ()->json($interfaz2::find($pagina),200);
+    public function showpagina(interfaz $pagina){
+       
+        return response ()->json($pagina);
     }
 
 
