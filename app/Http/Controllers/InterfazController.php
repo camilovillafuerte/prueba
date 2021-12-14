@@ -15,20 +15,12 @@ class InterfazController extends Controller
         return response()->json(interfaz::all(),200);
     }
     
-    /*public function getInterfazparametro($id, $nombre){
-        //$interfaz = Request::get('pagina');
-        $interfaz = Request::get_browser('pagina');
+    public function getInterfazparametro($id, $nombre){
+        $interfaz = Request::get('pagina');
+        //$interfaz = Request::get_browser('pagina');
         //$interfaz= Request::get_browser('pagina');
         return $id.'-' .$nombre.'-' .$interfaz;
        // return response ()->json($interfaz);
-    }*/
-
-    public function getInterfazxpagina($pagina){
-        $interfaz = interfaz::find($pagina);
-        if(is_null($pagina)){
-            return response () -> json(['Mensaje'=>'Registro no encontrado'],404);
-        } 
-        return response ()->json($interfaz::find($pagina),200);
     }
 
     public function getInterfazxid($id){
