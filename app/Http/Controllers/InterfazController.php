@@ -19,7 +19,7 @@ class InterfazController extends Controller
     }
     
     public function getInterfazprueba(){
-        return response()->json(interfaz::all(),200);
+        return response()->json(interfaz::get('pagina'));
     }
     
   
