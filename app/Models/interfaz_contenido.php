@@ -14,6 +14,6 @@ class interfaz_contenido extends Model
     protected $fillable = ['id','id_interfazs','nombre','descripcion','urlimagen','estado'];
 
     public function interfaz(){
-        return $this->hasMany('App\Models\interfaz', 'id_interfazs','id');
+        return $this->belongsTo('App\Models\interfaz');
     }
 }
