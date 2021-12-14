@@ -9,10 +9,9 @@ use Illuminate\Support\Facades\DB;
 class InterfazController extends Controller
 {
     //método con json para probar si funciona con postman
-    public function getUrl(){
-        $interfaz2 = Request::getUrl('pagina');
-        return $interfaz2;
-
+    public function getUrl($id,$nombre){
+        $interfaz2 = Request::get('pagina');
+        return $id.'-'.$nombre.'-'.$interfaz2;
     }
        
     public function getInterfaz(){
