@@ -85,17 +85,18 @@ Route::get('/interfazcon2/{pagina?}', function($interfaz = null ) {
 });*/
 
 Route::get('/interfaz', function () {
+    
     return interfaz::query()
         ->when(request('pagina'), function ($query, $pagina) {
             $query->select('id', 'nombre', 'pagina')
                 ->selectRaw(
                     'match(nombre,pagina) against(? with query expansion) as score',
                     [$pagina]
-                )
-                ->whereRaw(
+                );
+               /* ->whereRaw(
                     'match(nombre,pagina) against(? with query expansion) > 0.0000001',
                     [$pagina]
-                );
+                );*/
         })
         ->get();
 });
