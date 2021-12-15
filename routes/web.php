@@ -86,7 +86,7 @@ Route::get('/interfazcon2/{pagina?}', function($interfaz = null ) {
 
 Route::get('/interfaz', function () {
     return interfaz::query()
-        ->when(request('search'), function ($query, $pagina) {
+        ->when(request('pagina'), function ($query, $pagina) {
             $query->select( 'nombre', 'pagina')
                 ->selectRaw(
                     'match(nombre,pagina) against(? with query expansion) as score',
