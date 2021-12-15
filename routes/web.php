@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\interfaz;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 
@@ -72,13 +73,29 @@ Route::get('/interfaz/{pagina}', function ($pagina)
 
 });
 
-
-Route::get('/interfazcon2/{pagina?}', function($pagina = null ) {
-    $pagina = [DB::table('interfazs')
+/*
+Route::get('/interfazcon2/{pagina?}', function($interfaz = null ) {
+    $interfaz = [DB::table('interfazs')
     ->join('interfaz_contenidos','interfazs.id','=','interfaz_contenidos.id_interfazs')
     ->select('interfazs.nombre as InterfazNombre','interfazs.pagina', 'interfaz_contenidos.id_interfazs','interfaz_contenidos.nombre','interfaz_contenidos.descripcion','interfaz_contenidos.urlimagen','interfaz_contenidos.estado')
     -> where('estado','A') 
     -> get()
 ];
     return $pagina;
+});*/
+
+Route::get('/', function () {
+    return interfaz::query()
+        ->when(request('search'), function ($query, $pagina) {
+            $query->select('id', 'nombre', 'pagina')
+                ->selectRaw(
+                    'match(nombre,pagina) against(? with query expansion) as score',
+                    [$pagina]
+                )
+                ->whereRaw(
+                    'match(nombre,pagina) against(? with query expansion) > 0.0000001',
+                    [$pagina]
+                );
+        })
+        ->get();
 });
