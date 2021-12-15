@@ -84,7 +84,7 @@ Route::get('/interfazcon2/{pagina?}', function($interfaz = null ) {
     return $pagina;
 });*/
 
-Route::get('/', function () {
+Route::get('/interfaz', function () {
     return interfaz::query()
         ->when(request('search'), function ($query, $pagina) {
             $query->select( 'nombre', 'pagina')
