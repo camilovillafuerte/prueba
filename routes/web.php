@@ -90,13 +90,10 @@ Route::get('/interfaz', function () {
         ->when(request('search'), function ($query, $search) {
             $query->select('id', 'nombre', 'pagina')
                 ->selectRaw(
-                    'match(nombre,pagina) against(? with query expansion) as score',
-                    [$search]
-                )
-                ->whereRaw(
-                    'match(nombre,pagina) against(? with query expansion) > 0.0000001',
+                    'match(nombre,pagina) against(? with query expansion)',
                     [$search]
                 );
+                
         })
         ->get();
 });
