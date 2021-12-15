@@ -103,12 +103,12 @@ class Tipo_conveniosController extends Controller
 
     public function getTipoconvenio(){
         $tipo_con2 = DB::table('tipo_convenios')
-        ->join('convenios','convenios.id','=','tipo_convenios.id_convenios',
-        'convenios_especificos','convenios_especificos.id','=','tipo_convenios.id_convenios_especificos' )
+        ->join('convenios','convenios.id','=','tipo_convenios.id_convenios')
+        ->join ('convenios_especificos','convenios_especificos.id','=','tipo_convenios.id_convenios_especificos' )
         ->select('convenios.id','convenios.titulo_convenio', 'convenios.f_creaciondoc','convenios.estado','convenios.tipo_documento','convenios.PDF'
         ,'tipo_convenios.id','tipo_convenios.nombre_tc','tipo_convenios.descripcion_tc','tipo_convenios.id_convenios_especificos','convenios_especificos.descripcion_ce')
-        -> where('estado','A') 
-        -> orWhere ('tipo_documento','A')
+        -> where('convenios.estado','A') 
+        -> orWhere ('convenios.tipo_documento','A')
         -> get();
         return response() -> json ($tipo_con2);
        } 
