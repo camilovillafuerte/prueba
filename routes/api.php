@@ -83,6 +83,7 @@ Route::delete('/deleteConvenios_es/{id}','App\Http\Controllers\Convenios_especif
 //Ruta para tabla tipo_convenios
 Route::get('/tipo_con','App\Http\Controllers\Tipo_conveniosController@index');//mostrar todos los registros
 Route::get('/tipo_con/{id}','App\Http\Controllers\Tipo_conveniosController@getTipo_conxid');//mostrar  los registros por id
+Route::get('/tipocon2','App\Http\Controllers\Tipo_conveniosController@getTipoconvenio');
 Route::post('/tipo_con','App\Http\Controllers\Tipo_conveniosController@store');//crear un registro
 Route::post('/addTipo_con','App\Http\Controllers\Tipo_conveniosController@insertTipo_con');//crear un registro
 Route::put('/tipo_con/{id}','App\Http\Controllers\Tipo_conveniosController@update');//actualizar un registro

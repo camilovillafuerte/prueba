@@ -105,7 +105,8 @@ class Tipo_conveniosController extends Controller
         $tipo_con2 = DB::table('tipo_convenios')
         ->join('convenios','convenios.id','=','tipo_convenios.id_convenios',
         'convenios_especificos','convenios_especificos.id','=','tipo_convenios.id_convenios_especificos' )
-        ->select('interfazs.nombre as InterfazNombre','interfazs.pagina', 'interfaz_contenidos.id_interfazs','interfaz_contenidos.nombre','interfaz_contenidos.descripcion','interfaz_contenidos.urlimagen','interfaz_contenidos.estado')
+        ->select('convenios.id','convenios.titulo_convenio', 'convenios.f_creaciondoc','convenios.estado','convenios.tipo_documento','convenios.PDF'
+        ,'tipo_convenios.id','tipo_convenios.nombre_tc','tipo_convenios.descripcion_tc','tipo_convenios.id_convenios_especificos','convenios_especificos.descripcion_ce')
         -> where('estado','A') 
         -> And ('tipo_documento','A')
         -> get();
