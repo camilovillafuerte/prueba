@@ -86,17 +86,17 @@ Route::get('/interfazcon2/{pagina?}', function($interfaz = null ) {
 
 Route::get('/interfaz', function () {
     
-    return interfaz::query()
-        ->when(request('pagina'), function ($query, $pagina) {
+    return DB::table('interfazs')
+        ->when(request('search'), function ($query, $search) {
             $query->select('id', 'nombre', 'pagina')
                 ->selectRaw(
                     'match(nombre,pagina) against(? with query expansion) as score',
-                    [$pagina]
+                    [$search]
+                )
+                ->whereRaw(
+                    'match(nombre,pagina) against(? in boolean mode) > 0.0000001',
+                    [$search]
                 );
-               /* ->whereRaw(
-                    'match(nombre,pagina) against(? with query expansion) > 0.0000001',
-                    [$pagina]
-                );*/
         })
         ->get();
 });

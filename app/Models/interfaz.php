@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class interfaz extends Model
 {
     use HasFactory;
-    public $timestamps = false;
+    //public $timestamps = false;
     protected $fillable = ['id','nombre','pagina'];
 
 
