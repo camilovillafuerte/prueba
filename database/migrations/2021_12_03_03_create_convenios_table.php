@@ -21,7 +21,6 @@ class CreateConveniosTable extends Migration
             //$table->current_timestamp('f_creaciondoc')->default();
             // $table->timestamp('f_creaciondoc')->useCurrent();
             $table->timestamp('f_creaciondoc')->default(convenios::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
-           
             $table->enum('estado',['A','D']);
             $table->longText('tipo_documento');
             $table->longText('PDF')->nullable();
