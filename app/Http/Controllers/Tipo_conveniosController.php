@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\tipo_convenios;
+use Illuminate\Support\Facades\DB;
 
 class Tipo_conveniosController extends Controller
 {
@@ -98,6 +99,21 @@ class Tipo_conveniosController extends Controller
     }
 
     //metodo con json para probar si funciona con postman
+
+
+    public function getTipoconvenio(){
+        $tipo_con2 = DB::table('tipo_convenios')
+        ->join('convenios','convenios.id','=','tipo_convenios.id_convenios',
+        'convenios_especificos','convenios_especificos.id','=','tipo_convenios.id_convenios_especificos' )
+        ->select('interfazs.nombre as InterfazNombre','interfazs.pagina', 'interfaz_contenidos.id_interfazs','interfaz_contenidos.nombre','interfaz_contenidos.descripcion','interfaz_contenidos.urlimagen','interfaz_contenidos.estado')
+        -> where('estado','A') 
+        -> And ('tipo_documento','A')
+        -> get();
+        return response() -> json ($tipo_con2);
+       } 
+       
+
+
     public function getTipo_con(){
         return response()->json(tipo_convenios::all(),200);
     }

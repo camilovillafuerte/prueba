@@ -22,7 +22,7 @@ class CreateConveniosTable extends Migration
             // $table->timestamp('f_creaciondoc')->useCurrent();
             $table->timestamp('f_creaciondoc')->default(convenios::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->enum('estado',['A','D']);
-            $table->enum('tipo_documento',['G','P','A']); //Guardado, Plantilla, Aprobado 
+            $table->enum('tipo_documento',['P','G','A']); //Guardado, Plantilla, Aprobado 
             $table->longText('PDF')->nullable();
         });
     }
