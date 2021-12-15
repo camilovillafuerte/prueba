@@ -108,7 +108,7 @@ class Tipo_conveniosController extends Controller
         ->select('convenios.id','convenios.titulo_convenio', 'convenios.f_creaciondoc','convenios.estado','convenios.tipo_documento','convenios.PDF'
         ,'tipo_convenios.id','tipo_convenios.nombre_tc','tipo_convenios.descripcion_tc','tipo_convenios.id_convenios_especificos','convenios_especificos.descripcion_ce')
         -> where('convenios.estado','A') 
-        -> orWhere ('convenios.tipo_documento','A')
+        -> where ('convenios.tipo_documento','A')
         -> get();
         return response() -> json ($tipo_con2);
        } 
