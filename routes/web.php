@@ -94,7 +94,7 @@ Route::get('/interfaz', function () {
                     [$search]
                 )
                 ->whereRaw(
-                    'match(nombre,pagina) against(? in boolean mode) > 0.0000001',
+                    'match(nombre,pagina) against(? with query expansion) > 0.0000001',
                     [$search]
                 );
         })
