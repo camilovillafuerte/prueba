@@ -30,7 +30,7 @@ class CreateFuncionalidadUsuariosTable extends Migration
     public function down()
     {
         Schema::dropIfExists('funcionalidad_usuarios');
-        Schema::table('usuarios',function(Blueprint $table){
+        Schema::table('funcionalidad_usuarios',function(Blueprint $table){
             $table->dropForeign(['cedula']);
             $table->dropColumn('cedula');
             $table->dropForeign(['funcion_id']);

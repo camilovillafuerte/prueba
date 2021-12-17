@@ -30,7 +30,7 @@ class CreateCargoUsuariosTable extends Migration
     public function down()
     {
         Schema::dropIfExists('cargo_usuarios');
-        Schema::table('usuarios',function(Blueprint $table){
+        Schema::table('cargo_usuarios',function(Blueprint $table){
             $table->dropForeign(['cedula']);
             $table->dropColumn('cedula');
             $table->dropForeign(['cargo_id']);
