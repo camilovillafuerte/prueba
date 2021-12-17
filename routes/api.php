@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InterfazController;
 use App\Models\interfaz;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -154,3 +155,7 @@ Route::get('/interfazcon/{id}','App\Http\Controllers\Interfaz_contenidoControlle
 Route::post('/addInterfazcon','App\Http\Controllers\Interfaz_contenidoController@insertInterfazcon');
 Route::put('/updateInterfazcon/{id}','App\Http\Controllers\Interfaz_contenidoController@updateInterfazcon');
 Route::delete('/deleteInterfazcon/{id}','App\Http\Controllers\Interfaz_contenidoController@deleteInterfazcon');
+
+//Nuevas rutas
+Route::get('interfaz/contenido/{params}', [InterfazController::class, 'getInterfazContenidos']);
+

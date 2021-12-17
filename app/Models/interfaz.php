@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class interfaz extends Model
 {
     use HasFactory;
-    //public $timestamps = false;
+    public $timestamps = false;
     protected $fillable = ['id','nombre','pagina'];
 
 
      //Relacion de uno a muchos
-public function interfaz_contenido(){
-    return $this->hasMany('App\Models\interfaz_contenido','id_interfazs');
+    public function interfaz_contenido(){
+    return $this->hasMany(interfaz_contenido::class, 'id_interfazs', 'id');
 }
 }
