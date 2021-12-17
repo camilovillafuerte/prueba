@@ -158,3 +158,4 @@ Route::delete('/deleteInterfazcon/{id}','App\Http\Controllers\Interfaz_contenido
 
 //Nuevas rutas
 Route::get('interfaz/contenido/{params}', [InterfazController::class, 'getInterfazContenidos']);
+
