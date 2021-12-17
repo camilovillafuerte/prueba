@@ -16,7 +16,8 @@ class CreateConveniosTable extends Migration
     {
         Schema::create('convenios', function (Blueprint $table) {
             $table->id();
-            $table->string('cedula_usuario');
+            $table->unsignedBigInteger('cedula_usuario');
+            $table->foreign('cedula_usuario')->references('cedula')->on('usuarios')->onDelete('cascade')->onUpdate('cascade');
             $table->string('titulo_convenio');
             //$table->current_timestamp('f_creaciondoc')->default();
             // $table->timestamp('f_creaciondoc')->useCurrent();
@@ -35,6 +36,11 @@ class CreateConveniosTable extends Migration
     public function down()
     {
         Schema::dropIfExists('convenios');
+        Schema::table('convenios',function(Blueprint $table){
+            $table->dropForeign(['cedula_usuario']);
+            $table->dropColumn('cedula_usuario');
+          
+        });
     }
 }
 
