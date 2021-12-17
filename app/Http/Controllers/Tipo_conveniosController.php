@@ -109,6 +109,7 @@ class Tipo_conveniosController extends Controller
         ,'tipo_convenios.id','tipo_convenios.nombre_tc','tipo_convenios.descripcion_tc','tipo_convenios.id_convenios_especificos','convenios_especificos.descripcion_ce')
         -> where('convenios.estado','A') 
         -> where ('convenios.tipo_documento','A')
+        -> orderByDesc('convenios.id')
         -> get();
         return response() -> json ($tipo_con2);
        } 
