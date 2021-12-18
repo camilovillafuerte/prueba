@@ -60,23 +60,27 @@ class InterfazController extends Controller
         return response()->json(['Mensaje' => 'Registro Eliminado'], 200);
     }
 
-    public function getInterfazContenidos($params){
+    public function getInterfazContenidos($params)
+    {
 
-        $interfaz = interfaz::where('pagina', $params)->first();
+        $interfaz = interfaz::where('pagina', $params)->get();
         $response = false;
+        $array = [];
 
-        if($interfaz){
-            $contenidos = interfaz_contenido::where('id_interfazs', $interfaz->id)
-                ->orderBy('nombre', 'asc')->get();
+        if ($interfaz->count() > 0) {
+            foreach ($interfaz as $i) {
+                $contenidos = interfaz_contenido::where('id_interfazs', $i->id)
+                    ->orderBy('nombre', 'asc')->get();
 
-            if($contenidos){
-                foreach($contenidos as $c){
-                    $c->interfaz;
-                }
+                if ($contenidos->count() > 0)
+                    foreach ($contenidos as $c)     $array[] = $c;
             }
-            $response = $contenidos;
-        }
 
-        return response()->json($response);
+            if ($array)
+                foreach ($array as $c)  $c->interfaz;
+
+            $response = $array;
+            return response()->json($response);
+        }
     }
 }
