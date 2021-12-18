@@ -15,8 +15,8 @@ class CreateFuncionalidadUsuariosTable extends Migration
     {
         Schema::create('funcionalidad_usuarios', function (Blueprint $table) {
             $table->id('fusuarios_id');
-            $table->unsignedBigInteger('cedula');
-            $table->foreign('cedula')->references('cedula')->on('usuarios')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('usuario_id');
+            $table->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('funcion_id');
             $table->foreign('funcion_id')->references('funcion_id')->on('funcionalidads')->onDelete('cascade')->onUpdate('cascade');
         });
@@ -27,15 +27,9 @@ class CreateFuncionalidadUsuariosTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down(){
+
         Schema::dropIfExists('funcionalidad_usuarios');
-        Schema::table('funcionalidad_usuarios',function(Blueprint $table){
-            $table->dropForeign(['cedula']);
-            $table->dropColumn('cedula');
-            $table->dropForeign(['funcion_id']);
-            $table->dropColumn('funcion_id');
-        });
-       
+
     }
 }

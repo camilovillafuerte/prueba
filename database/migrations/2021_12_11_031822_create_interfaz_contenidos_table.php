@@ -21,7 +21,6 @@ class CreateInterfazContenidosTable extends Migration
             $table->longText('descripcion')->nullable();
             $table->longText('urlimagen')->nullable();
             $table->enum('estado',['A','D']);
-
         });
     }
 
@@ -30,13 +29,9 @@ class CreateInterfazContenidosTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down(){
+
         Schema::dropIfExists('interfaz_contenidos');
-        Schema::table('interfaz_contenidos',function(Blueprint $table){
-        $table->dropForeign(['id_interfazs']);
-        $table->dropColumn('id_interfazs');
-    });
     }
 }
 

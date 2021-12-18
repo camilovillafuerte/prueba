@@ -30,12 +30,12 @@ class CreateContenidoArticulosTable extends Migration
     public function down()
     {
         Schema::dropIfExists('contenido_articulos');
-        Schema::table('contenido_articulos',function(Blueprint $table){
-        $table->dropForeign(['id_contenidos']);
-        $table->dropColumn('id_contenidos');
-        $table->dropForeign(['id_articulos']);
-        $table->dropColumn('id_articulos');
-    });
-}
+        // Schema::table('contenido_articulos',function(Blueprint $table){
+        //     $table->dropForeign(['id_contenidos']);
+        //     $table->dropColumn('id_contenidos');
+        //     $table->dropForeign(['id_articulos']);
+        //     $table->dropColumn('id_articulos');
+        // });
+    }
 }
 

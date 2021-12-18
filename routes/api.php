@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\InterfazController;
+use App\Http\Controllers\UsuarioController;
 use App\Models\interfaz;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -195,3 +196,7 @@ Route::delete('/deleteCargou/{id}','App\Http\Controllers\Cargo_usuarioController
 //Nuevas rutas
 Route::get('interfaz/contenido/{params}', [InterfazController::class, 'getInterfazContenidos']);
 
+//Rutas para usuario
+Route::post('usuario/login', [UsuarioController::class, 'login']);
+Route::get('usuario/search/{cedula}', [UsuarioController::class, 'searchUser']);
+Route::get('usuario/funcionalidad/{cedula}', [UsuarioController::class, 'getFuncionalidades']);
