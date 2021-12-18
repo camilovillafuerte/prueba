@@ -32,13 +32,13 @@ class CreateConveniosClausulasTable extends Migration
     public function down()
     {
         Schema::dropIfExists('convenios_clausulas');
-      Schema::table('convenios_clausulas',function(Blueprint $table){
-        $table->dropForeign(['id_convenios']);
-        $table->dropColumn('id_convenios');
-        $table->dropForeign(['id_clausulas']);
-        $table->dropColumn('id_clausulas');
-        $table->dropForeign(['id_contenidos']);
-        $table->dropColumn('id_contenidos');
-    });
-}
+    //     Schema::table('convenios_clausulas',function(Blueprint $table){
+    //         $table->dropForeign(['id_convenios']);
+    //         $table->dropColumn('id_convenios');
+    //         $table->dropForeign(['id_clausulas']);
+    //         $table->dropColumn('id_clausulas');
+    //         $table->dropForeign(['id_contenidos']);
+    //         $table->dropColumn('id_contenidos');
+    //     });
+     }
 }

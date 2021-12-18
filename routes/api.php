@@ -198,4 +198,5 @@ Route::get('interfaz/contenido/{params}', [InterfazController::class, 'getInterf
 
 //Rutas para usuario
 Route::post('usuario/login', [UsuarioController::class, 'login']);
-Route::get('usuario/search/{cedula}', [UsuarioController::class, 'cedula']);
+Route::get('usuario/search/{cedula}', [UsuarioController::class, 'searchUser']);
+Route::get('usuario/funcionalidad/{cedula}', [UsuarioController::class, 'getFuncionalidades']);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\funcionalidad_usuario;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -49,7 +50,7 @@ class UsuarioController extends Controller{
         $response = [];
 
         if(isset($cedula)){
-            $exist = Usuario::where('cedula', $cedula)->fist();
+            $exist = Usuario::where('cedula',$cedula)->first();
 
             if($exist){
                 $response = [
@@ -69,6 +70,41 @@ class UsuarioController extends Controller{
                 'estado' => false,
                 'mensaje' => 'No hay data',
                 'usuario' => false
+            ];
+        }
+
+        return response()->json($response);
+    }
+
+    public function getFuncionalidades($cedula){
+
+        $usuario = Usuario::where('cedula', $cedula)->first();
+        $response = []; $funciones = [];
+
+        if($usuario){
+            $funcion_usuario = funcionalidad_usuario::where('usuario_id', $usuario->id)->get();
+
+            if($funcion_usuario->count() > 0){
+
+                foreach($funcion_usuario as $fu){
+                    $fu->funcionalidad;
+                }
+
+                $response = [
+                    'estado' => false,
+                    'data' => $funcion_usuario
+                ];
+
+            }else{
+                $response = [
+                    'estado' => false,
+                    'data' => []
+                ];
+            }
+        }else{
+            $response = [
+                'estado' => false,
+                'data' => []
             ];
         }
 

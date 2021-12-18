@@ -13,7 +13,7 @@ class funcionalidad extends Model
 
 
  //Relación muchos a muchos
-public function funcionalidad_usuario(){
-    return $this -> belongsToMany('App\Models\funcionalidad_usuario','funcion_id');
-}
+    public function funcionalidad_usuario(){
+        return $this->belongsToMany('App\Models\funcionalidad_usuario','funcion_id');
+    }
 }

@@ -21,8 +21,6 @@ class CreateBecasNivelsTable extends Migration
             $table->enum('estado',['A','D']);
            // $table->timestamp('fecha_creacion')->useCurrent();
             $table->timestamp('fecha_creacion')->default(becas_nivel::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
-           
-            
         });
     }
 

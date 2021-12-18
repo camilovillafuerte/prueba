@@ -13,7 +13,7 @@ class CreateTipoConveniosTable extends Migration
      */
     public function up()
     {
-     
+
         Schema::create('tipo_convenios', function (Blueprint $table) {
             $table->id();
             $table->string('nombre_tc');
@@ -34,11 +34,11 @@ class CreateTipoConveniosTable extends Migration
     public function down()
     {
         Schema::dropIfExists('tipo_convenios');
-        Schema::table('tipo_convenios',function(Blueprint $table){
-        $table->dropForeign(['id_convenios']);
-        $table->dropColumn('id_convenios');
-        $table->dropForeign(['id_convenios_especificos']);
-        $table->dropColumn('id_convenios_especificos');
-    });
-}
+        // Schema::table('tipo_convenios',function(Blueprint $table){
+        //     $table->dropForeign(['id_convenios']);
+        //     $table->dropColumn('id_convenios');
+        //     $table->dropForeign(['id_convenios_especificos']);
+        //     $table->dropColumn('id_convenios_especificos');
+        // });
+    }
 }

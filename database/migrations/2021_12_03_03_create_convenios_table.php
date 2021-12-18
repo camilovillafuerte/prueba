@@ -16,14 +16,14 @@ class CreateConveniosTable extends Migration
     {
         Schema::create('convenios', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('cedula_usuario');
-            $table->foreign('cedula_usuario')->references('cedula')->on('usuarios')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('usuario_id');
+            $table->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('cascade')->onUpdate('cascade');
             $table->string('titulo_convenio');
             //$table->current_timestamp('f_creaciondoc')->default();
             // $table->timestamp('f_creaciondoc')->useCurrent();
             $table->timestamp('f_creaciondoc')->default(convenios::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->enum('estado',['A','D']);
-            $table->enum('tipo_documento',['P','G','A']); //Guardado, Plantilla, Aprobado 
+            $table->enum('tipo_documento',['P','G','A']); //Guardado, Plantilla, Aprobado
             $table->longText('PDF')->nullable();
         });
     }
@@ -33,14 +33,9 @@ class CreateConveniosTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down(){
+
         Schema::dropIfExists('convenios');
-        Schema::table('convenios',function(Blueprint $table){
-            $table->dropForeign(['cedula_usuario']);
-            $table->dropColumn('cedula_usuario');
-          
-        });
     }
 }
 
