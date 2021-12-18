@@ -157,6 +157,42 @@ Route::post('/addInterfazcon','App\Http\Controllers\Interfaz_contenidoController
 Route::put('/updateInterfazcon/{id}','App\Http\Controllers\Interfaz_contenidoController@updateInterfazcon');
 Route::delete('/deleteInterfazcon/{id}','App\Http\Controllers\Interfaz_contenidoController@deleteInterfazcon');
 
+//Ruta para tabla usuarios
+Route::get('/usuarios','App\Http\Controllers\UsuariosController@getUsuarios');
+Route::get('/usuarios/{id}','App\Http\Controllers\UsuariosController@getUsuariosxid');
+Route::post('/addUsuarios','App\Http\Controllers\UsuariosController@insertUsuarios');
+Route::put('/updateUsuarios/{id}','App\Http\Controllers\UsuariosController@updateUsuarios');
+Route::delete('/deleteUsuarios/{id}','App\Http\Controllers\UsuariosController@deleteUsuarios');
+
+//Ruta para tabla funcionalidad
+Route::get('/funcion','App\Http\Controllers\FuncionalidadController@getFuncionalidad');
+Route::get('/funcion/{id}','App\Http\Controllers\FuncionalidadController@getFuncionalidadxid');
+Route::post('/addFuncion','App\Http\Controllers\FuncionalidadController@insertFuncionalidad');
+Route::put('/updateFuncion/{id}','App\Http\Controllers\FuncionalidadController@updateFuncionalidad');
+Route::delete('/deleteFuncion/{id}','App\Http\Controllers\FuncionalidadController@deleteFuncionalidad');
+
+//Ruta para tabla funcionalidad_usuario
+Route::get('/fusuario','App\Http\Controllers\Funcionalidad_usuarioController@getFusuario');
+Route::get('/fusuario/{id}','App\Http\Controllers\Funcionalidad_usuarioController@getFusuarioxid');
+Route::post('/addFusuario','App\Http\Controllers\Funcionalidad_usuarioController@insertFusuario');
+Route::put('/updateFusuario/{id}','App\Http\Controllers\Funcionalidad_usuarioController@updateFusuario');
+Route::delete('/deleteFusuario/{id}','App\Http\Controllers\Funcionalidad_usuarioController@deleteFusuario');
+
+//Ruta para tabla cargo
+Route::get('/cargo','App\Http\Controllers\CargoController@getCargo');
+Route::get('/cargo/{id}','App\Http\Controllers\CargoController@getCargoxid');
+Route::post('/addCargo','App\Http\Controllers\CargoController@insertCargo');
+Route::put('/updateCargo/{id}','App\Http\Controllers\CargoController@updateCargo');
+Route::delete('/deleteCargo/{id}','App\Http\Controllers\CargoController@deleteCargo');
+
+//Ruta para tabla cargo_usuario
+Route::get('/cargou','App\Http\Controllers\Cargo_usuarioController@getCusuario');
+Route::get('/cargou/{id}','App\Http\Controllers\Cargo_usuarioController@getCusuarioxid');
+Route::post('/addCargou','App\Http\Controllers\Cargo_usuarioController@insertCusuario');
+Route::put('/updateCargou/{id}','App\Http\Controllers\Cargo_usuarioController@updateCusuario');
+Route::delete('/deleteCargou/{id}','App\Http\Controllers\Cargo_usuarioController@deleteCusuario');
+
+
 //Nuevas rutas
 Route::get('interfaz/contenido/{params}', [InterfazController::class, 'getInterfazContenidos']);
 
