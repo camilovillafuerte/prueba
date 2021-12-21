@@ -9,7 +9,7 @@ class Usuario extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $filleable = ['cedula','nombres','apellidos','telefono','correo','contrasena','foto','estado'];
+    protected $filleable = ['cedula','nombres','apellidos','genero','telefono','correo','contrasena','foto','estado'];
     protected $hidden = ["contrasena"];
 
     //Relacion de uno a muchos

@@ -18,6 +18,7 @@ class CreateUsuariosTable extends Migration
             $table->string('cedula');
             $table->string('nombres');
             $table->string('apellidos');
+            $table->enum('genero',['M','F']);
             $table->string('telefono');
             $table->string('correo');
             $table->string('contrasena');
