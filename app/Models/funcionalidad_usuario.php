@@ -9,7 +9,7 @@ class funcionalidad_usuario extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $fillable = ['cargou_id','cedula','funcion_id'];
+    protected $fillable = ['cargou_id','cedula','funcion_id','posicion','estado'];
 
     //Relación muchos a muchos
     public function usuarios(){

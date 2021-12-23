@@ -19,6 +19,7 @@ class CreateFuncionalidadUsuariosTable extends Migration
             $table->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('funcion_id');
             $table->foreign('funcion_id')->references('funcion_id')->on('funcionalidads')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('posicion');
             $table->enum('estado',['A','D']);
         });
     }
