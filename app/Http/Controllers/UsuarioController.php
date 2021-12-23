@@ -2,12 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\cargo;
+use App\Models\cargo_usuario;
 use App\Models\funcionalidad_usuario;
+use App\Models\User;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UsuarioController extends Controller{
+
+    private $baseCtrl;
+
+    public function __construct(){
+        $this->baseCtrl = new BaseController();
+    }
 
     public function login(Request $request){
         $usuarioData = (object)$request->usuario;
@@ -51,12 +62,22 @@ class UsuarioController extends Controller{
 
         if(isset($cedula)){
             $exist = Usuario::where('cedula',$cedula)->first();
+            $cargosId = cargo_usuario::select('cargos_id')->where('usuario_id', $exist->id)->get();
+            $cargos = [];
+
+            if($cargosId->count() > 0){
+                foreach($cargosId as $c){
+                    $auxCargo = cargo::where('cargos_id',$c->cargos_id)->first();
+                    $cargos[] = $auxCargo;
+                }
+            }
 
             if($exist){
                 $response = [
                     'estado' => true,
                     'mensaje' => 'Usuario existe',
-                    'usuario' => $exist
+                    'usuario' => $exist,
+                    'cargos' => $cargos
                 ];
             }else{
                 $response = [
@@ -91,7 +112,7 @@ class UsuarioController extends Controller{
                 }
 
                 $response = [
-                    'estado' => false,
+                    'estado' => true,
                     'data' => $funcion_usuario
                 ];
 
@@ -105,6 +126,65 @@ class UsuarioController extends Controller{
             $response = [
                 'estado' => false,
                 'data' => []
+            ];
+        }
+
+        return response()->json($response);
+    }
+
+    public function uploadImageServer(Request $request){
+
+        if($request->hasFile('img_user')){
+            $imagen = $request->file('img_user');
+
+            $filenamewithextension = $imagen->getClientOriginalName();   //Archivo con su extension
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);                //Sin extension
+            $extension = $request->file('img_user')->getClientOriginalExtension();    //Obtener extesion de archivo
+            $filenametostore = $filename.'_'.uniqid().'.'.$extension;
+
+            Storage::disk('ftp')->put($filenametostore, fopen($request->file('img_user'), 'r+'));
+            $url = $this->baseCtrl->getUrlServer('Contenido/ImagenesPerfil/');
+
+            $response = [
+                'estado' => true,
+                'imagen' => $url.$filenametostore,
+                'mensaje' => 'La imagen se ha subido al servidor'
+            ];
+        }else{
+            $response = [
+                'estado' => false,
+                'imagen' => '',
+                'mensaje' => 'No hay un archivo para procesar'
+            ];
+        }
+
+        return response()->json($response);
+    }
+
+    public function updateUsuario(Request $request){
+
+        $user = (object)$request->usuario;
+
+        if($user){
+            $update = Usuario::find($user->id);
+
+            $update->nombres = ucfirst(trim($user->nombres));
+            $update->apellidos = ucfirst(trim($user->apellidos));
+            $update->telefono = trim($user->telefono);
+            $update->correo = trim($user->correo);
+            $update->foto = $user->foto;
+            $update->save();
+
+            $response = [
+                'estado' => true,
+                'mensaje' => 'Datos de usuario actualizado',
+                'usuario' => $update
+            ];
+        }else{
+            $response = [
+                'estado' => false,
+                'mensaje' => 'Np hay datos para procesar',
+                'usuario' => false
             ];
         }
 

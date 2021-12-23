@@ -9,7 +9,7 @@ class cargo_usuario extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $fillable = ['fusuarios_id','cedula','cargos_id'];
+    protected $fillable = ['fusuarios_id','usuario_id','cargos_id'];
 
 
     //Relación muchos a muchos
@@ -19,5 +19,5 @@ class cargo_usuario extends Model
     public function cargo(){
         return $this -> belongsToMany('App\Models\cargo');
     }
-   
+
 }

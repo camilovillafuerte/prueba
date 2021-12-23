@@ -13,7 +13,7 @@ class cargo extends Model
 
 
     //Relación muchos a muchos
-public function cargo_usuario(){
-    return $this -> belongsToMany('App\Models\cargo_usuario','cargos_id');
-}
+    public function cargo_usuario(){
+        return $this -> belongsToMany('App\Models\cargo_usuario','cargos_id');
+    }
 }
