@@ -192,7 +192,6 @@ Route::post('/addCargou','App\Http\Controllers\Cargo_usuarioController@insertCus
 Route::put('/updateCargou/{id}','App\Http\Controllers\Cargo_usuarioController@updateCusuario');
 Route::delete('/deleteCargou/{id}','App\Http\Controllers\Cargo_usuarioController@deleteCusuario');
 
-
 //Nuevas rutas
 Route::get('interfaz/contenido/{params}', [InterfazController::class, 'getInterfazContenidos']);
 
@@ -200,3 +199,5 @@ Route::get('interfaz/contenido/{params}', [InterfazController::class, 'getInterf
 Route::post('usuario/login', [UsuarioController::class, 'login']);
 Route::get('usuario/search/{cedula}', [UsuarioController::class, 'searchUser']);
 Route::get('usuario/funcionalidad/{cedula}', [UsuarioController::class, 'getFuncionalidades']);
+Route::put('usuario/update', [UsuarioController::class, 'updateUsuario']);
+Route::post('usuario/upload-image', [UsuarioController::class, 'uploadImageServer']);
