@@ -201,3 +201,4 @@ Route::get('usuario/search/{cedula}', [UsuarioController::class, 'searchUser']);
 Route::get('usuario/funcionalidad/{cedula}', [UsuarioController::class, 'getFuncionalidades']);
 Route::put('usuario/update', [UsuarioController::class, 'updateUsuario']);
 Route::post('usuario/upload-image', [UsuarioController::class, 'uploadImageServer']);
+Route::post('usuario/update-password', [UsuarioController::class, 'updatePassword']);

@@ -166,30 +166,41 @@ class UsuarioController extends Controller{
         $user = (object)$request->usuario;
 
         if($user){
-
             $exisEmail = Usuario::where('correo', trim($user->correo))->first();
 
-            //Verificar si el correo pertenece al usuario y pasa
-            if($exisEmail->id === $user->id){
-                $update = Usuario::find($user->id);
+            $update = Usuario::find($user->id);
 
-                $update->nombres = ucfirst(trim($user->nombres));
-                $update->apellidos = ucfirst(trim($user->apellidos));
-                $update->telefono = trim($user->telefono);
-                $update->correo = trim($user->correo);
-                $update->foto = $user->foto;
+            $update->nombres = ucfirst(trim($user->nombres));
+            $update->apellidos = ucfirst(trim($user->apellidos));
+            $update->telefono = trim($user->telefono);
+            $update->correo = trim($user->correo);
+            $update->foto = $user->foto;
+
+            if($exisEmail){ //Existe el correo
+                //Verificar si el correo pertenece al usuario y pasa
+                if($exisEmail->id === $user->id){
+                    $update->save();
+
+                    $response = [
+                        'estado' => true,
+                        'mensaje' => 'Datos del usuario actualizado',
+                        'usuario' => $update
+                    ];
+                } else{
+                    $response = [
+                        'estado' => false,
+                        'mensaje' => 'El correo ya se encuentra registrado',
+                        'usuario' => false
+                    ];
+                }
+            }else{  //No existe el correo
+
                 $update->save();
 
                 $response = [
                     'estado' => true,
-                    'mensaje' => 'Datos de usuario actualizado',
+                    'mensaje' => 'Datos del usuario actualizado',
                     'usuario' => $update
-                ];
-            }else{
-                $response = [
-                    'estado' => false,
-                    'mensaje' => 'El correo ya se encuentra registrado',
-                    'usuario' => false
                 ];
             }
         }else{
