@@ -41,7 +41,7 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
-        'ftp' => [
+       /* 'ftp' => [
             'driver' => 'ftp',
             'host' => '3.15.185.2',
             'username' => 'tesis',
@@ -53,16 +53,16 @@ return [
             // 'passive' => true,
             // 'ssl' => true,
             // 'timeout' => 30,
-        ],
+        ],*/
 
-       /* 'ftp' => [
+        'ftp' => [
             'driver' => 'ftp',
             'host' => env('FTP_HOST'),
             'port' => env('FTP_PORT', '21'),
             'username' => env('FTP_USERNAME'),
             'password' => env('FTP_PASSWORD'),
             'root' => 'Contenido/ImagenesPerfil', // for example: /var/www/html/dev/images
-        ],*/
+        ],
 
         's3' => [
             'driver' => 's3',
