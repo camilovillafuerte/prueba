@@ -10,7 +10,7 @@ class convenios_especificos extends Model
     use HasFactory;
     public $timestamps = false;
     protected $fillable = ['id','descripcion_ce'];
-
+    public $table = "convenios_especificos";
 
     public function tipo_convenios(){
         return $this->hasMany('App\Models\tipo_convenios','id_convenios_especificos');
