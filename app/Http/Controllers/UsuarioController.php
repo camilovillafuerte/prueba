@@ -144,7 +144,8 @@ class UsuarioController extends Controller{
             $filenametostore = $filename.'_'.uniqid().'.'.$extension;
 
             Storage::disk('ftp')->put($filenametostore, fopen($request->file('img_user'), 'r+'));
-           $url = $this->baseCtrl->getUrlServer('http://3.15.185.2/Contenido/ImagenesPerfil');
+            
+           $url = $this->baseCtrl->getUrlServer('/Contenido/ImagenesPerfil');
 
             $response = [
                 'estado' => true,
