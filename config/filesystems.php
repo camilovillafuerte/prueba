@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DRIVER', 'ftp'),
+    'default' => env('FILESYSTEM_DRIVER', 'local'),
 
     /*
     |--------------------------------------------------------------------------
@@ -41,29 +41,7 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
-       /* 'ftp' => [
-            'driver' => 'ftp',
-            'host' => '3.15.185.2',
-            'username' => 'tesis',
-            'password' => 'Camilodavid02122021',
-            'port' => 21,
-            'root' => 'Contenido/ImagenesPerfil', 
-            // Optional FTP Settings...
-            // 'root' => '',
-            // 'passive' => true,
-            // 'ssl' => true,
-            // 'timeout' => 30,
-        ],*/
-
-        'ftp' => [
-            'driver' => 'ftp',
-            'host' => env('FTP_HOST'),
-            'port' => env('FTP_PORT', '21'),
-            'username' => env('FTP_USERNAME'),
-            'password' => env('FTP_PASSWORD'),
-            'root' => 'Contenido/ImagenesPerfil', // for example: /var/www/html/dev/images
-        ],
-
+      
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
@@ -73,6 +51,16 @@ return [
             'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
+        ],
+
+        
+        'ftp' => [
+            'driver' => 'ftp',
+            'host' => env('FTP_HOST'),
+            'port' => env('FTP_PORT', '21'),
+            'username' => env('FTP_USERNAME'),
+            'password' => env('FTP_PASSWORD'),
+            'root' => 'Contenido/ImagenesPerfil'// for example: /var/www/html/dev/images
         ],
     ],
 
