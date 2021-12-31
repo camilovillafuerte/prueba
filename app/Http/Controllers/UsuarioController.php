@@ -183,14 +183,16 @@ class UsuarioController extends Controller{
 
                     $response = [
                         'estado' => true,
-                        'mensaje' => 'Datos del usuario actualizado',
-                        'usuario' => $update
+                        'mensaje' => 'El correo se ha actualizado',
+                        'usuario' => $update,
+                        'email' => true
                     ];
                 } else{
                     $response = [
                         'estado' => false,
                         'mensaje' => 'El correo ya se encuentra registrado',
-                        'usuario' => false
+                        'usuario' => false,
+                        'email' => false
                     ];
                 }
             }else{  //No existe el correo
@@ -200,14 +202,16 @@ class UsuarioController extends Controller{
                 $response = [
                     'estado' => true,
                     'mensaje' => 'Datos del usuario actualizado',
-                    'usuario' => $update
+                    'usuario' => $update,
+                    'email' => false
                 ];
             }
         }else{
             $response = [
                 'estado' => false,
                 'mensaje' => 'No hay datos para procesar',
-                'usuario' => false
+                'usuario' => false,
+                'email' => false
             ];
         }
 

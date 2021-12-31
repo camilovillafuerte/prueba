@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Convenios_especificosController;
 use App\Http\Controllers\InterfazController;
 use App\Http\Controllers\UsuarioController;
 use App\Models\interfaz;
@@ -89,9 +90,9 @@ Route::get('/tipocon2','App\Http\Controllers\Tipo_conveniosController@getTipocon
 Route::post('/tipo_con','App\Http\Controllers\Tipo_conveniosController@store');//crear un registro
 Route::post('/addTipo_con','App\Http\Controllers\Tipo_conveniosController@insertTipo_con');//crear un registro
 Route::put('/tipo_con/{id}','App\Http\Controllers\Tipo_conveniosController@update');//actualizar un registro
-Route::put('/updateTipo_con/{id}','App\Http\Controllers\Tipo_conController@updateTipo_con');//actualizar un registro
-Route::delete('/tipo_con/{id}','App\Http\Controllers\Tipo_conController@destroy');//eliminar un registro
-Route::delete('/deleteTipo_con/{id}','App\Http\Controllers\Tipo_conController@deleteTipo_con');//eliminar un registro
+// Route::put('/updateTipo_con/{id}','App\Http\Controllers\Tipo_conController@updateTipo_con');//actualizar un registro
+// Route::delete('/tipo_con/{id}','App\Http\Controllers\Tipo_conController@destroy');//eliminar un registro
+// Route::delete('/deleteTipo_con/{id}','App\Http\Controllers\Tipo_conController@deleteTipo_con');//eliminar un registro
 
 //Ruta para tabla convenios_clausulas
 Route::get('/con_clau','App\Http\Controllers\Convenios_clausulasController@index');//mostrar todos los registros
@@ -202,3 +203,7 @@ Route::get('usuario/funcionalidad/{cedula}', [UsuarioController::class, 'getFunc
 Route::put('usuario/update', [UsuarioController::class, 'updateUsuario']);
 Route::post('usuario/upload-image', [UsuarioController::class, 'uploadImageServer']);
 Route::post('usuario/update-password', [UsuarioController::class, 'updatePassword']);
+
+//Ruta para insertar convenios especificos y recuperar
+Route::get('convenio-especifico/get', [Convenios_especificosController::class, 'getConvenios']);
+Route::post('convenio-especifico/crear', [Convenios_especificosController::class, 'create']);

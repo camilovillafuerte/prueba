@@ -23,11 +23,40 @@ class Convenios_especificosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function create(Request $request){
+
+        $convenioEsp = (object)$request->convenio_especifico;
+        $response = [];
+
+        //Buscar si existe la descipcion
+        $existe = convenios_especificos::where('descripcion_ce', trim($convenioEsp->descripcion_ce))->first();
+
+        if($existe){
+            $response = [
+                'stauts' => false,
+                'mensaje' => 'La descripción ingresada ya existe',
+                'convenio_especifico' => false
+            ];
+        }else{
+            $new = new convenios_especificos();
+            $new->descripcion_ce = ucfirst(trim($convenioEsp->descripcion_ce));
+            $new->save();
+
+            $response = [
+                'stauts' => true,
+                'mensaje' => 'Se ha creado el convenio específico',
+                'convenio_especifico' => false
+            ];
+        }
+
+        return response()->json($response);
     }
 
+    public function getConvenios(){
+
+        $convenios_especificos = convenios_especificos::all();
+        return response()->json($convenios_especificos);
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -100,7 +129,7 @@ class Convenios_especificosController extends Controller
         $convenios_es = convenios_especificos::find($id);
         if(is_null($convenios_es)){
             return response () -> json(['Mensaje'=>'Registro no encontrado'],404);
-        } 
+        }
         return response ()->json($convenios_es::find($id),200);
     }
 
