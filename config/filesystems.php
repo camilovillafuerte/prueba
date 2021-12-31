@@ -60,7 +60,7 @@ return [
             'port' => env('FTP_PORT', '21'),
             'username' => env('FTP_USERNAME'),
             'password' => env('FTP_PASSWORD'),
-            'root' => 'Contenido/ImagenesPerfil'// for example: /var/www/html/dev/images
+            'root' => '/Contenido/ImagenesPerfil'// for example: /var/www/html/dev/images
         ],
     ],
 

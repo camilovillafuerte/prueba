@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use IlluminateSupportFacadesStorage;
 
 class UsuarioController extends Controller{
 
@@ -143,7 +144,7 @@ class UsuarioController extends Controller{
             $filenametostore = $filename.'_'.uniqid().'.'.$extension;
 
             Storage::disk('ftp')->put($filenametostore, fopen($request->file('img_user'), 'r+'));
-            $url = $this->baseCtrl->getUrlServer('Contenido/ImagenesPerfil/');
+            $url = $this->baseCtrl->getUrlServer('/Contenido/ImagenesPerfil');
 
             $response = [
                 'estado' => true,
