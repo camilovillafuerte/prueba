@@ -139,7 +139,7 @@ class UsuarioController extends Controller{
             $imagen = $request->file('img_user');
 
             $filenamewithextension = $imagen->getClientOriginalName();   //Archivo con su extension
-            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);                //Sin extension
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);            //Sin extension
             $extension = $request->file('img_user')->getClientOriginalExtension();    //Obtener extesion de archivo
             $filenametostore = $filename.'_'.uniqid().'.'.$extension;
 

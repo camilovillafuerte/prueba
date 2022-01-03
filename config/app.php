@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'ec2-3-15-185-2.us-east-2.compute.amazonaws.com'),
+    'url' => env('APP_URL', 'http://localhost'),
 
     'asset_url' => env('ASSET_URL', null),
 
