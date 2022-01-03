@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://utmdricb.herokuapp.com'),
+    'url' => env('APP_URL', 'https://utmdricb.herokuapp.com/api/usuario/upload-image'),
 
     'asset_url' => env('ASSET_URL', null),
 
