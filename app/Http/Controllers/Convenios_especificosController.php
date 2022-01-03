@@ -33,7 +33,7 @@ class Convenios_especificosController extends Controller
 
         if($existe){
             $response = [
-                'stauts' => false,
+                'status' => false,
                 'mensaje' => 'La descripción ingresada ya existe',
                 'convenio_especifico' => false
             ];
@@ -43,7 +43,7 @@ class Convenios_especificosController extends Controller
             $new->save();
 
             $response = [
-                'stauts' => true,
+                'status' => true,
                 'mensaje' => 'Se ha creado el convenio específico',
                 'convenio_especifico' => false
             ];
