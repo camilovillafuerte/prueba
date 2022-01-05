@@ -16,7 +16,7 @@ class CreateInterfazContenidosTable extends Migration
         Schema::create('interfaz_contenidos', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_interfazs');
-            $table->foreign('id_interfazs')->references('id')->on('interfazs')->onDelete('cascade');
+            $table->foreign('id_interfazs')->references('id')->on('interfazs')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('usuario_id');
             $table->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('cascade')->onUpdate('cascade');
             $table->string('nombre');
