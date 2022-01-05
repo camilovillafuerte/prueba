@@ -193,6 +193,22 @@ Route::post('/addCargou','App\Http\Controllers\Cargo_usuarioController@insertCus
 Route::put('/updateCargou/{id}','App\Http\Controllers\Cargo_usuarioController@updateCusuario');
 Route::delete('/deleteCargou/{id}','App\Http\Controllers\Cargo_usuarioController@deleteCusuario');
 
+//Ruta para tabla firma_emisor
+Route::get('/femisor','App\Http\Controllers\Firma_emisorController@getFirmaemi');
+Route::get('/femisor/{id}','App\Http\Controllers\Firma_emisorController@getFirmaemixid');
+Route::post('/addFemisor','App\Http\Controllers\Firma_emisorController@insertFirmaemi');
+Route::put('/updateFemisor/{id}','App\Http\Controllers\Firma_emisorController@updateFirmaemi');
+Route::delete('/deleteFemisor/{id}','App\Http\Controllers\Firma_emisorController@deleteFirmaemi');
+
+//Ruta para tabla firma_receptor
+Route::get('/freceptor','App\Http\Controllers\Firma_receptorController@getFirmarec');
+Route::get('/freceptor/{id}','App\Http\Controllers\Firma_receptorController@getFirmarecxid');
+Route::post('/addFreceptor','App\Http\Controllers\Firma_receptorController@insertFirmarec');
+Route::put('/updateFreceptor/{id}','App\Http\Controllers\Firma_receptorController@updateFirmarec');
+Route::delete('/deleteFreceptor/{id}','App\Http\Controllers\Firma_receptorController@deleteFirmarec');
+
+
+
 //Nuevas rutas
 Route::get('interfaz/contenido/{params}', [InterfazController::class, 'getInterfazContenidos']);
 
