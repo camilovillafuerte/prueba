@@ -17,6 +17,8 @@ class CreateInterfazContenidosTable extends Migration
             $table->id();
             $table->unsignedBigInteger('id_interfazs');
             $table->foreign('id_interfazs')->references('id')->on('interfazs')->onDelete('cascade');
+            $table->unsignedBigInteger('usuario_id');
+            $table->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('cascade')->onUpdate('cascade');
             $table->string('nombre');
             $table->longText('descripcion')->nullable();
             $table->longText('urlimagen')->nullable();
