@@ -142,7 +142,7 @@ class ClausulasController extends Controller
 
         $response = [];
         $clausula = (object)$request->clausula;
-        $nombre = strtolower($clausula->nombre_clau);
+        $nombre = trim(strtolower($clausula->nombre_clau));
 
         $exist = clausulas::where('nombre_clau', $nombre)->first();
 

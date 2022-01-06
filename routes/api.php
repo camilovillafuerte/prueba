@@ -3,6 +3,8 @@
 use App\Http\Controllers\ClausulasController;
 use App\Http\Controllers\Convenios_especificosController;
 use App\Http\Controllers\ConveniosController;
+use App\Http\Controllers\Firma_emisorController;
+use App\Http\Controllers\Firma_receptorController;
 use App\Http\Controllers\InterfazController;
 use App\Http\Controllers\UsuarioController;
 use App\Models\interfaz;
@@ -210,7 +212,6 @@ Route::put('/updateFreceptor/{id}','App\Http\Controllers\Firma_receptorControlle
 Route::delete('/deleteFreceptor/{id}','App\Http\Controllers\Firma_receptorController@deleteFirmarec');
 
 
-
 //Nuevas rutas
 Route::get('interfaz/contenido/{params}', [InterfazController::class, 'getInterfazContenidos']);
 
@@ -233,3 +234,10 @@ Route::get('convenio-new/{tipo_documento}', [ConveniosController::class, 'getCon
 Route::get('clausulas-new', [ClausulasController::class, 'getClausulas_v2']);
 Route::post('clausulas-new', [ClausulasController::class, 'newClausala']);
 
+//Rutas para firmas emisor
+Route::get('firma-emisor-new', [Firma_emisorController::class, 'getFirma_v2']);
+Route::post('firma-emisor-new', [Firma_emisorController::class, 'insertar_v2']);
+
+//Rutas para firma del receptor
+Route::get('firma-receptor-new', [Firma_receptorController::class, 'get_v2']);
+Route::post('firma-receptor-new', [Firma_receptorController::class, 'insertar_v2']);
