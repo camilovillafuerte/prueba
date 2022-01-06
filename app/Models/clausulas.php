@@ -8,8 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class clausulas extends Model
 {
     use HasFactory;
+
     public $timestamps = false;
     protected $fillable = ['id','nombre_clau'];
+    public $table = "clausulas";
 
 
     //Relación muchos a muchos

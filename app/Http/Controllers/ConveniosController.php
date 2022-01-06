@@ -109,7 +109,7 @@ class ConveniosController extends Controller
         $convenios = convenios::find($id);
         if(is_null($convenios)){
             return response () -> json(['Mensaje'=>'Registro no encontrado'],404);
-        } 
+        }
         return response ()->json($convenios::find($id),200);
     }
 
@@ -134,5 +134,18 @@ class ConveniosController extends Controller
          }
          $convenios->delete();
          return response()->json(['Mensaje'=>'Registro Eliminado'],200);
+    }
+
+    public function getConveniosByTipoDocumento($tipo_documento){
+
+        $tipo_documento = strtoupper($tipo_documento);
+        $response = [];
+
+        $convenios = convenios::where('tipo_documento', $tipo_documento)->orderBy('titulo_convenio')->get();
+
+        if($convenios->count() > 0)
+            $response = $convenios;
+
+        return response()->json($response);
     }
 }

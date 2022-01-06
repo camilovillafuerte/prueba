@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ClausulasController;
 use App\Http\Controllers\Convenios_especificosController;
+use App\Http\Controllers\ConveniosController;
 use App\Http\Controllers\InterfazController;
 use App\Http\Controllers\UsuarioController;
 use App\Models\interfaz;
@@ -207,3 +209,11 @@ Route::post('usuario/update-password', [UsuarioController::class, 'updatePasswor
 //Ruta para insertar convenios especificos y recuperar
 Route::get('convenio-especifico/get', [Convenios_especificosController::class, 'getConvenios']);
 Route::post('convenio-especifico/crear', [Convenios_especificosController::class, 'create']);
+
+//Rutas para convenios
+Route::get('convenio-new/{tipo_documento}', [ConveniosController::class, 'getConveniosByTipoDocumento']);
+
+//Rutas para clausalas
+Route::get('clausulas-new', [ClausulasController::class, 'getClausulas_v2']);
+Route::post('clausulas-new', [ClausulasController::class, 'newClausala']);
+
