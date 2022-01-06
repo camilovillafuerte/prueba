@@ -18,8 +18,8 @@ public function tipo_convenios(){
 }
 
 //Relacion de uno a muchos
-public function usuarios(){
-    return $this->hasMany('App\Models\usuarios','cedula');
+public function Usuario(){
+    return $this->hasMany('App\Models\Usuario');
 }
 
 //Relacion de uno a muchos

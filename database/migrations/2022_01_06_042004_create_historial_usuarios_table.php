@@ -1,11 +1,11 @@
 <?php
 
-use App\Models\becas_nivel;
+use App\Models\historial_usuario;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBecasNivelsTable extends Migration
+class CreateHistorialUsuariosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,15 +14,14 @@ class CreateBecasNivelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('becas_nivels', function (Blueprint $table) {
+        Schema::create('historial_usuarios', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('usuario_id');
             $table->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('nombre');
-            $table->enum('tipo',['C','P','I','M','D']);
-            $table->enum('estado',['A','D']);
-           // $table->timestamp('fecha_creacion')->useCurrent();
-            $table->timestamp('fecha_creacion')->default(becas_nivel::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->string('titulo');
+            $table->string('detalle');
+            $table->string('extra');
+            $table->timestamp('fecha_creacion')->default(historial_usuario::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 
@@ -33,6 +32,6 @@ class CreateBecasNivelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('becas_nivels');
+        Schema::dropIfExists('historial_usuarios');
     }
 }

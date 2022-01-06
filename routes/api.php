@@ -211,6 +211,13 @@ Route::post('/addFreceptor','App\Http\Controllers\Firma_receptorController@inser
 Route::put('/updateFreceptor/{id}','App\Http\Controllers\Firma_receptorController@updateFirmarec');
 Route::delete('/deleteFreceptor/{id}','App\Http\Controllers\Firma_receptorController@deleteFirmarec');
 
+//Ruta para tabla historial_usuario
+Route::get('/husuario','App\Http\Controllers\HistorialController@getHistorial');
+Route::get('/husuario/{id}','App\Http\Controllers\HistorialController@getHistorialxid');
+Route::post('/addHusuario','App\Http\Controllers\HistorialController@insertHistorial');
+Route::put('/updateHusuario/{id}','App\Http\Controllers\HistorialController@updateHistorial');
+Route::delete('/deleteHusuario/{id}','App\Http\Controllers\HistorialController@deleteHistorial');
+
 
 //Nuevas rutas
 Route::get('interfaz/contenido/{params}', [InterfazController::class, 'getInterfazContenidos']);
