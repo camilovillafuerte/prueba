@@ -89,7 +89,7 @@ class ClausulasController extends Controller
         $clausulas=clausulas::destroy($request->id);
         return $clausulas;
     }
-    
+
     //metodo con json para probar si funciona con postman
     public function getClausulas(){
         return response()->json(clausulas::all(),200);
@@ -99,7 +99,7 @@ class ClausulasController extends Controller
         $clausulas = clausulas::find($id);
         if(is_null($clausulas)){
             return response () -> json(['Mensaje'=>'Registro no encontrado'],404);
-        } 
+        }
         return response ()->json($clausulas::find($id),200);
     }
 
@@ -124,5 +124,44 @@ class ClausulasController extends Controller
          }
          $clausulas->delete();
          return response()->json(['Mensaje'=>'Registro Eliminado'],200);
+    }
+
+    public function getClausulas_v2(){
+
+        $response = [];
+        $clausulas = clausulas::where('id', '>=', 1)->orderBy('nombre_clau', 'asc')->get();
+
+        if($clausulas->count() > 0){
+            $response = $clausulas;
+        }
+
+        return response()->json($response);
+    }
+
+    public function newClausala(Request $request){
+
+        $response = [];
+        $clausula = (object)$request->clausula;
+        $nombre = trim(strtolower($clausula->nombre_clau));
+
+        $exist = clausulas::where('nombre_clau', $nombre)->first();
+
+        if($exist){ //Existe la clausula con ese nombre
+            $response = [
+                'estado' => false,
+                'mensaje' => 'La claúsula ya se encuentra registrada !!'
+            ];
+        }else{
+            $new = new clausulas();
+            $new->nombre_clau = $nombre;
+            $new->save();
+
+            $response = [
+                'estado' => true,
+                'mensaje' => 'Claúsula registrada !'
+            ];
+        }
+
+        return response()->json($response);
     }
 }
