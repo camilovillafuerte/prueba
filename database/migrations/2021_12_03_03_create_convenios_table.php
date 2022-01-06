@@ -18,9 +18,11 @@ class CreateConveniosTable extends Migration
             $table->id();
             $table->unsignedBigInteger('usuario_id');
             $table->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('femisor_id');
+            $table->foreign('femisor_id')->references('id')->on('firma_emisors')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('freceptor_id');
+            $table->foreign('freceptor_id')->references('id')->on('firma_receptors')->onDelete('cascade')->onUpdate('cascade');
             $table->string('titulo_convenio');
-            //$table->current_timestamp('f_creaciondoc')->default();
-            // $table->timestamp('f_creaciondoc')->useCurrent();
             $table->timestamp('f_creaciondoc')->default(convenios::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->enum('estado',['A','D']);
             $table->enum('tipo_documento',['P','G','A']); //Guardado, Plantilla, Aprobado

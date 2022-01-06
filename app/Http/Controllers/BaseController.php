@@ -13,6 +13,8 @@ class BaseController extends Controller{
     }
 
     public function getUrlServer(String $path){
-        return $this->servidor_archivos.$path;
+       
+       return $this->servidor_archivos.$path;
+     
     }
 }

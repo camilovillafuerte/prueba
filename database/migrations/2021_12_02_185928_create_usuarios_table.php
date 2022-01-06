@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -7,17 +6,15 @@ use Illuminate\Support\Facades\Schema;
 class CreateUsuariosTable extends Migration
 {
     /**
-     * Run the migrations.
-     *
      * @return void
      */
     public function up()
-    {
-        Schema::create('usuarios', function (Blueprint $table) {
+    {    Schema::create('usuarios', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('cedula');
             $table->string('nombres');
             $table->string('apellidos');
+            $table->enum('genero',['M','F']);
             $table->string('telefono');
             $table->string('correo');
             $table->string('contrasena');
@@ -25,10 +22,7 @@ class CreateUsuariosTable extends Migration
             $table->enum('estado',['A','D']);
         });
     }
-
     /**
-     * Reverse the migrations.
-     *
      * @return void
      */
     public function down()
