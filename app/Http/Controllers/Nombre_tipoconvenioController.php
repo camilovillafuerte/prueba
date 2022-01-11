@@ -42,4 +42,13 @@ class Nombre_tipoconvenioController extends Controller
          $nombretc->delete();
          return response()->json(['Mensaje'=>'Registro Eliminado'],200);
     }
+
+    public function get_nombre(){
+
+        $response = [];
+        $nombre = nombre_tipoconvenio::where('id', '>=', 1)->orderBy('nombre_tipo', 'asc')->get();
+
+        if($nombre->count() > 0)    $response = $nombre;
+        return response()->json($response);
+    }
 }

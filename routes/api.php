@@ -7,6 +7,7 @@ use App\Http\Controllers\Firma_emisorController;
 use App\Http\Controllers\Firma_receptorController;
 use App\Http\Controllers\InterfazController;
 use App\Http\Controllers\MailerController;
+use App\Http\Controllers\Nombre_tipoconvenioController;
 use App\Http\Controllers\UsuarioController;
 use App\Models\interfaz;
 use Illuminate\Http\Request;
@@ -260,3 +261,6 @@ Route::post('firma-receptor-new', [Firma_receptorController::class, 'insertar_v2
 
 //Enviar el correo
 Route::post('email/forget-password', [MailerController::class, 'forget_password']);
+
+//Ruta para obtener nombre de tipo de convenios
+Route::get('nombre-tipo-convenio', [Nombre_tipoconvenioController::class, 'get_nombre']);
