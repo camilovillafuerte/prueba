@@ -6,6 +6,7 @@ use App\Http\Controllers\ConveniosController;
 use App\Http\Controllers\Firma_emisorController;
 use App\Http\Controllers\Firma_receptorController;
 use App\Http\Controllers\InterfazController;
+use App\Http\Controllers\MailerController;
 use App\Http\Controllers\UsuarioController;
 use App\Models\interfaz;
 use Illuminate\Http\Request;
@@ -236,6 +237,7 @@ Route::get('usuario/funcionalidad/{cedula}', [UsuarioController::class, 'getFunc
 Route::put('usuario/update', [UsuarioController::class, 'updateUsuario']);
 Route::post('usuario/upload-image', [UsuarioController::class, 'uploadImageServer']);
 Route::post('usuario/update-password', [UsuarioController::class, 'updatePassword']);
+Route::put('usuario/reset-password', [UsuarioController::class, 'actualizarContrasena']);
 
 //Ruta para insertar convenios especificos y recuperar
 Route::get('convenio-especifico/get', [Convenios_especificosController::class, 'getConvenios']);
@@ -255,3 +257,6 @@ Route::post('firma-emisor-new', [Firma_emisorController::class, 'insertar_v2']);
 //Rutas para firma del receptor
 Route::get('firma-receptor-new', [Firma_receptorController::class, 'get_v2']);
 Route::post('firma-receptor-new', [Firma_receptorController::class, 'insertar_v2']);
+
+//Enviar el correo
+Route::post('email/forget-password', [MailerController::class, 'forget_password']);

@@ -144,7 +144,7 @@ class UsuarioController extends Controller{
             $filenametostore = $filename.'_'.uniqid().'.'.$extension;
 
             Storage::disk('ftp')->put($filenametostore, fopen($request->file('img_user'), 'r+'));
-            
+
            $url = $this->baseCtrl->getUrlServer('/Contenido/ImagenesPerfil');
 
             $response = [
@@ -252,6 +252,46 @@ class UsuarioController extends Controller{
             $response = [
                 'estado' => false,
                 'mensaje' => 'El usuario no existe'
+            ];
+        }
+
+        return response()->json($response);
+    }
+
+    public function actualizarContrasena(Request $request){
+
+        $response = [];
+        $data = (object)$request->credenciales;
+        $data->token = trim($data->token);
+
+        //Buscar usuario
+        $usuario = Usuario::where('token', $data->token)->fist();
+
+        if($usuario){
+            $encriptar = Hash::make($data->contrasena);
+
+            if($usuario->token){
+                $usuario->contrasena = $encriptar;
+                $usuario->token = null;
+                $usuario->save();
+
+                $response = [
+                    'estado' => true,
+                    'mensaje' => 'La contraseña ha sido actualizada !!'
+                ];
+            }else{
+                $usuario->token = null;
+                $usuario->save();
+
+                $response = [
+                    'estado' => false,
+                    'mensaje' => 'No es posible actualizar la contraseña, vuelva a intentarlo !'
+                ];
+            }
+        }else{
+            $response = [
+                'estado' => false,
+                'mensaje' => 'El usuario no tiene permiso para actualizar la contraseña !!'
             ];
         }
 

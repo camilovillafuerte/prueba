@@ -18,6 +18,7 @@ class CreateUsuariosTable extends Migration
             $table->string('telefono');
             $table->string('correo');
             $table->string('contrasena');
+            $table->string('token')->nullable();
             $table->longText('foto')->nullable();
             $table->enum('estado',['A','D']);
         });
