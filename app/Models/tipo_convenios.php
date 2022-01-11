@@ -9,7 +9,7 @@ class tipo_convenios extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $fillable = ['id','nombre_tc','descripcion_tc','id_convenios','id_convenios_especificos'];
+    protected $fillable = ['id','nombretc_id','descripcion_tc','id_convenios','id_convenios_especificos'];
 
     //Relacion de uno a muchos inversa
     public function convenios(){
@@ -17,5 +17,8 @@ class tipo_convenios extends Model
 }
     public function convenios_especificos(){
     return $this->hasMany('App\Models\convenios_especificos');    
+}
+public function nombre_tipoconvenio(){
+    return $this->hasMany('App\Models\nombre_tipoconvenio');    
 }
 }

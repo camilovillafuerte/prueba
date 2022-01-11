@@ -218,6 +218,13 @@ Route::post('/addHusuario','App\Http\Controllers\HistorialController@insertHisto
 Route::put('/updateHusuario/{id}','App\Http\Controllers\HistorialController@updateHistorial');
 Route::delete('/deleteHusuario/{id}','App\Http\Controllers\HistorialController@deleteHistorial');
 
+//Ruta para tabla nombre_tipoconvenios
+Route::get('/nombretc','App\Http\Controllers\Nombre_tipoconvenioController@getNombre_tc');
+Route::get('/nombretc/{id}','App\Http\Controllers\Nombre_tipoconvenioController@getNombre_tcxid');
+Route::post('/addNombretc','App\Http\Controllers\Nombre_tipoconvenioController@insertNombre_tc');
+Route::put('/updateNombretc/{id}','App\Http\Controllers\Nombre_tipoconvenioController@updateNombre_tc');
+Route::delete('/deleteNombretc/{id}','App\Http\Controllers\Nombre_tipoconvenioController@deleteNombre_tc');
+
 
 //Nuevas rutas
 Route::get('interfaz/contenido/{params}', [InterfazController::class, 'getInterfazContenidos']);

@@ -16,7 +16,9 @@ class CreateTipoConveniosTable extends Migration
 
         Schema::create('tipo_convenios', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_tc');
+            //$table->string('nombre_tc');
+            $table->unsignedBigInteger('nombretc_id');
+            $table->foreign('nombretc_id')->references('id')->on('nombre_tipoconvenios')->onDelete('cascade')->onUpdate('cascade');
             $table->string('descripcion_tc')->nullable();
             $table->unsignedBigInteger('id_convenios');
             $table->unsignedBigInteger('id_convenios_especificos');
