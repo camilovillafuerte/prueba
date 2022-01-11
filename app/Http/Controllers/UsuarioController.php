@@ -265,7 +265,7 @@ class UsuarioController extends Controller{
         $data->token = trim($data->token);
 
         //Buscar usuario
-        $usuario = Usuario::where('token', $data->token)->fist();
+        $usuario = Usuario::where('token', $data->token)->first();
 
         if($usuario){
             $encriptar = Hash::make($data->contrasena);
