@@ -9,7 +9,7 @@ class Usuario extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $filleable = ['cedula','nombres','apellidos','genero','telefono','correo','contrasena','foto','estado'];
+    protected $filleable = ['cedula','nombres','apellidos','genero','telefono','correo','contrasena', 'token', 'foto','estado'];
     protected $hidden = ["contrasena"];
 
     //Relacion de uno a muchos
@@ -24,7 +24,7 @@ class Usuario extends Model
     public function interfaz_contenido(){
         return $this->hasMany(interfaz_contenido::class,'usuario_id');
     }
-    
+
     public function historial_usuario(){
         return $this->hasMany(historial_usuario::class,'usuario_id');
     }
