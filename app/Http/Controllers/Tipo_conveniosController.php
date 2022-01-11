@@ -107,7 +107,7 @@ class Tipo_conveniosController extends Controller
         ->join ('convenios_especificos','convenios_especificos.id','=','tipo_convenios.id_convenios_especificos' )
         ->join ('nombre_tipoconvenios','nombre_tipoconvenios.id','=','tipo_convenios.nombretc_id') 
         ->select('convenios.id','convenios.titulo_convenio', 'convenios.f_creaciondoc','convenios.estado','convenios.tipo_documento','convenios.PDF'
-        ,'tipo_convenios.id','nombre_tipoconvenios.nombre_tipo','tipo_convenios.descripcion_tc','tipo_convenios.id_convenios_especificos','convenios_especificos.descripcion_ce')
+        ,'tipo_convenios.id','tipo_convenios.nombretc_id','nombre_tipoconvenios.nombre_tipo','tipo_convenios.descripcion_tc','tipo_convenios.id_convenios_especificos','convenios_especificos.descripcion_ce')
         -> where('convenios.estado','A') 
         -> where ('convenios.tipo_documento','A')
         -> orderBy ('convenios.id')
