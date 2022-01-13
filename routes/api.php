@@ -267,5 +267,5 @@ Route::post('email/forget-password', [MailerController::class, 'forget_password'
 Route::get('nombre-tipo-convenio', [Nombre_tipoconvenioController::class, 'get_nombre']);
 
 //Ruta para pdf
-Route::get('pdf/convenio', [PdfController::class, 'makePdfConvenios']);
+Route::post('pdf/convenio', [PdfController::class, 'makePdfConvenios']);
 
