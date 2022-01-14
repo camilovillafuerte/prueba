@@ -61,12 +61,19 @@
     <main>
 
 
-        <h4 class="justify"> {{ $data->nombre_convenio }} </h4>
+        @for($i = 0; $i < count($data->nombre_convenio); $i++)
+        <h4 class="justify"> {{ $data->nombre_convenio[$i] }} </h4>
+            @if($i > 0)
+            <br>
+            @endif
+        @endfor
 
-        <p class="justify">{{ $data->comparecientes }}</p>
-
-        <!-- <p> Ambas partes de forma libre y voluntaria convienen celebrar el presente instrumento, al tenor de las siguientes
-            CLÁUSULAS:</p> -->
+        @for($i = 0; $i < count($data->comparecientes); $i++)
+        <p class="justify">{{ $data->comparecientes[$i] }}</p>
+            @if($i > 0)
+            <br>
+            @endif
+        @endfor
 
         @for($i = 0; $i < count($data->clausulas); $i++)
         <div class="justify">
@@ -76,43 +83,48 @@
 
             @for($j = 0; $j < count($data->clausulas[$i]['articulos']); $j++)
            <div class="mb-3" class="justify">
-               <span style="margin-right: 10px; font-weight: bold;" class="justify">{{ $i + 1 }}.{{ $j + 1}}</span>
-               {{ $data->clausulas[$i]['articulos'][$j]['des_art'] }}
+               @for($k = 0; $k < count($data->clausulas[$i]['articulos'][$j]['des_art']); $k++)
+                <div class="justify" style="display: inline-block;">
+                    @if($k == 0)
+                        <span style="margin-right: 10px; font-weight: bold;" class="justify">{{ $i + 1 }}.{{ $j + 1}}</span>
+                        <p style="margin-left: 40px; margin-top: -20px">
+                            <span> {{ $data->clausulas[$i]['articulos'][$j]['des_art'][$k] }} </span>
+                        </p>
+                    @else
+                        <p style="margin-left: 30px; margin-top: 0x">
+                            <span> {{ $data->clausulas[$i]['articulos'][$j]['des_art'][$k] }} </span>
+                        </p>
+                    @endif
+                </div>
+                @if($k > 0)
+                    <br>
+                @endif
+               @endfor
            </div>
            @endfor
         </div>
         @endfor
-
-        <!-- <div>
-            <h4>2° Antecendes</h4>
-
-           <div class="mb-3">
-               <span style="margin-right: 10px; font-weight: bold;">2.1</span>
-               Hola mundo
-           </div>
-
-           <div>
-               <span style="margin-right: 10px; font-weight: bold;">2.2</span>
-               Hola mundo 2
-           </div>
-        </div> -->
 
         <!-- Firmas -->
         <!-- <div style="margin-top: 50px !important;">
             <div style="width: 100px;">1</div>
             <div style="width: 100px;">2</div>
         </div> -->
-        <table style="width: 100%; margin-top: 40px;">
+        <table style="width: 100%; margin-top: 50px;">
             <thead style="width: 100%;">
-                <tr>
-                    <th>
+                <tr style="width: 100%;">
+                    <th style="width: 50%">
                         <div>
-                            Firma 1
+                            <p style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->firmaEmisor[0]['nombre']}}</p>
+                            <p style="margin-top:5px; margin-bottom:1px">{{ $data->firmaEmisor[0]['cargo']}}</p>
+                            <p style="margin-top:5px; margin-bottom:1px">{{ $data->firmaEmisor[0]['institucion']}}</p>
                         </div>
                     </th>
-                    <th>
-                        <div>
-                            Firma 2
+                    <th style="width: 50%">
+                        <div style="">
+                            <p style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->firmaReceptor[0]['nombre']}}</p>
+                            <p style="margin-top:5px; margin-bottom:1px">{{ $data->firmaReceptor[0]['cargo']}}</p>
+                            <p style="margin-top:5px; margin-bottom:1px">{{ $data->firmaReceptor[0]['institucion']}}</p>
                         </div>
                     </th>
                 </tr>
