@@ -53,7 +53,7 @@
 <body>
     <header>
         <div style="width: 100% !important;">
-            <img src='../storage/app/files/logo_u.jpeg' alt="" width="50px"
+            <img src='http://3.15.185.2/Contenido/Imagenes/escudo.png' alt="" width="50px"
             style="margin-left: 700px;">
         </div>
     </header>
