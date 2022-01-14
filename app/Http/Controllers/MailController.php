@@ -6,11 +6,10 @@ use Illuminate\Http\Request;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-class MailController extends Controller
-{
+class MailController extends Controller{
 
-    protected $correoMatriz = 'davitrix9@gmail.com';
-    protected $llaveMatriz = 'David2/10/2018';
+    protected $correoMatriz = '';
+    protected $llaveMatriz = '';
     protected $email;
     protected $nombre;
     protected $titulo;
@@ -18,6 +17,8 @@ class MailController extends Controller
     public function __construct($email)
     {
         $this->email = $email;
+        $this->correoMatriz = env('CORREMATRIZ');
+        $this->llaveMatriz = env('LLAVEMATRIZ');
     }
 
     public function sendEmailForgetPassword($titulo, $mensaje, $enlace)

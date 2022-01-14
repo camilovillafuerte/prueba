@@ -8,6 +8,7 @@ use App\Http\Controllers\Firma_receptorController;
 use App\Http\Controllers\InterfazController;
 use App\Http\Controllers\MailerController;
 use App\Http\Controllers\Nombre_tipoconvenioController;
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\UsuarioController;
 use App\Models\interfaz;
 use Illuminate\Http\Request;
@@ -264,3 +265,7 @@ Route::post('email/forget-password', [MailerController::class, 'forget_password'
 
 //Ruta para obtener nombre de tipo de convenios
 Route::get('nombre-tipo-convenio', [Nombre_tipoconvenioController::class, 'get_nombre']);
+
+//Ruta para pdf
+Route::post('pdf/convenio', [PdfController::class, 'makePdfConvenios']);
+
