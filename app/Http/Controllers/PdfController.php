@@ -23,7 +23,7 @@ class PdfController extends Controller{
             }
         }
 
-        $image = Storage::disk('files')->get('logo_u.jpeg');
+        // $image = Storage::disk('files')->get('logo_u.jpeg');
         // return response()->json($data->clausulas);
 
         $pdf = PDF::loadView('convenio', ['data' => $data, 'logo' => $image]);
@@ -52,3 +52,4 @@ class PdfController extends Controller{
         return $pdf->stream('itsolutionstuff.pdf');
     }
 }
+
