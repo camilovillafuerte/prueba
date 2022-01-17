@@ -43,7 +43,7 @@ class FirmasController extends Controller
          return response()->json(['Mensaje'=>'Registro Eliminado'],200);
     }
 ////////////////////////////////////////////
-    public function getFirma_emi(){
+    public function getFirmas_new(){
 
         $response = [];
         $firmas = firmas::where('id', '>=', 1)->orderBy('nombres', 'asc')->get();
@@ -52,81 +52,39 @@ class FirmasController extends Controller
         return response()->json($response);
     }
 
-    public function insertar_emi(Request $request){
+    public function insertarFirmas(Request $request){
 
-        $firmaEmisor = (object)$request->firma_emisor;
+        $firmas = (object)$request->firmas;
 
-        $firmaEmisor->titulo_academico = trim(ucfirst($firmaEmisor->titulo_academico));
-        $firmaEmisor->nombres = trim(ucwords($firmaEmisor->nombres));
-        $firmaEmisor->cargo = trim(ucfirst($firmaEmisor->cargo));
-        $firmaEmisor->institucion = trim(ucfirst($firmaEmisor->institucion));
+        $firmas->titulo_academico = trim(ucfirst($firmas->titulo_academico));
+        $firmas->nombres = trim(ucwords($firmas->nombres));
+        $firmas->cargo = trim(ucfirst($firmas->cargo));
+        $firmas->institucion = trim(ucfirst($firmas->institucion));
 
-        $existe = firmas::where('nombres', $firmaEmisor->nombres)->first();
+        $existe = firmas::where('nombres', $firmas->nombres)->first();
 
         if($existe){    //Existe el nombre de la firma del emisor
             $response = [
                 'estado' => false,
-                'mensaje' => 'El emisor ya se encuentra registrado !'
+                'mensaje' => 'El firmante ya se encuentra registrado !'
             ];
         }else{
             $new = new firmas();
 
-            $new->titulo_academico = $firmaEmisor->titulo_academico;
-            $new->nombres = $firmaEmisor->nombres;
-            $new->cargo = $firmaEmisor->cargo;
-            $new->institucion= $firmaEmisor->institucion;
+            $new->titulo_academico = $firmas->titulo_academico;
+            $new->nombres = $firmas->nombres;
+            $new->cargo = $firmas->cargo;
+            $new->institucion= $firmas->institucion;
             $new->save();
 
             $response = [
                 'estado' => true,
-                'mensaje' => 'Se ha registrado la firma del emisor !'
+                'mensaje' => 'Se ha registrado la firma!'
             ];
         }
 
         return response()->json($response);
 
     }
-/////////////////////////////////////////////////////
-    public function getFirma_recep(){
 
-        $response = [];
-        $firmas = firmas::where('id', '>=', 1)->orderBy('nombres', 'asc')->get();
-
-        if($firmas->count() > 0)    $response = $firmas;
-        return response()->json($response);
-    }
-
-    public function insertar_recep(Request $request){
-
-        $response = [];
-        $firma_receptor = (object)$request->firma_receptor;
-
-        $firma_receptor->titulo_academico = trim(ucfirst($firma_receptor->titulo_academico));
-        $firma_receptor->nombres = trim(ucwords($firma_receptor->nombres));
-        $firma_receptor->cargo = trim(ucfirst($firma_receptor->cargo));
-        $firma_receptor->institucion = trim(ucfirst($firma_receptor->institucion));
-
-        $existe = firmas::where('nombres',  $firma_receptor->nombres)->first();
-
-        if($existe){
-            $response  = [
-                'estado' => false,
-                'mensaje' => 'El receptor ya se encuentra registrado !'
-            ];
-        }else{
-            $new = new firmas();
-            $new->titulo_academico = $firma_receptor->titulo_academico;
-            $new->nombres = $firma_receptor->nombres;
-            $new->cargo = $firma_receptor->cargo;
-            $new->institucion = $firma_receptor->institucion;
-            $new->save();
-
-            $response  = [
-                'estado' => true,
-                'mensaje' => 'El receptor se ha registrado !'
-            ];
-        }
-
-        return response()->json($response);
-    }
 }

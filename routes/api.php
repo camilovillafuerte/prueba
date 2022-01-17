@@ -231,12 +231,9 @@ Route::put('/updateNombretc/{id}','App\Http\Controllers\Nombre_tipoconvenioContr
 Route::delete('/deleteNombretc/{id}','App\Http\Controllers\Nombre_tipoconvenioController@deleteNombre_tc');
 
 //Ruta de firmas
-Route::get('firma-emisor', [FirmasController::class, 'getFirma_emi']);
-Route::post('firma-emisor', [FirmasController::class, 'insertar_emi']);
+Route::get('firma-new', [FirmasController::class, 'getFirmas_new']);
+Route::post('firma-new', [FirmasController::class, 'insertarFirmas']);
 
-//Rutas para firma del receptor
-Route::get('firma-receptor', [FirmasController::class, 'getFirma_recep']);
-Route::post('firma-receptor', [FirmasController::class, 'insertar_recep']);
 
 //Nuevas rutas
 Route::get('interfaz/contenido/{params}', [InterfazController::class, 'getInterfazContenidos']);
