@@ -17,7 +17,8 @@
             left: 0cm;
             right: 0cm;
             height: 2cm;
-            background-color: #eee;
+            /* background-color: #eee; */
+            background-color: #fff;
             color: black;
             text-align: center;
             line-height: 30px;
