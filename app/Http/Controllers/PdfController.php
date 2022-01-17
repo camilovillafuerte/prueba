@@ -79,7 +79,7 @@ class PdfController extends Controller{
         }else{
             $data = [
                 'estado' => false,
-                'mensaje' => 'Imagen no existe',
+                'mensaje' => 'Archivo no existe',
                 'error' => 404
             ];
         }
