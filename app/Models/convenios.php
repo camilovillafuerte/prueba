@@ -24,11 +24,11 @@ public function Usuario(){
 
 //Relacion de uno a muchos
 public function Firma_emisor(){
-    return $this->hasMany('App\Models\Firma_emisor');
+    return $this->hasMany('App\Models\firmas');
 }
 //Relacion de uno a muchos
 public function Firma_receptor(){
-    return $this->hasMany('App\Models\Firma_receptor');
+    return $this->hasMany('App\Models\firmas');
 }
 //Relación muchos a muchos
 public function convenios_clausulas(){

@@ -10,6 +10,7 @@ use App\Http\Controllers\MailerController;
 use App\Http\Controllers\Nombre_tipoconvenioController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\UsuarioController;
+use App\Models\firmas;
 use App\Models\interfaz;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -228,6 +229,13 @@ Route::post('/addNombretc','App\Http\Controllers\Nombre_tipoconvenioController@i
 Route::put('/updateNombretc/{id}','App\Http\Controllers\Nombre_tipoconvenioController@updateNombre_tc');
 Route::delete('/deleteNombretc/{id}','App\Http\Controllers\Nombre_tipoconvenioController@deleteNombre_tc');
 
+//Ruta de firmas
+Route::get('firma-emisor', [firmas::class, 'getFirma_emi']);
+Route::post('firma-emisor', [firmas::class, 'insertar_emi']);
+
+//Rutas para firma del receptor
+Route::get('firma-receptor', [firmas::class, 'getFirma_recep']);
+Route::post('firma-receptor', [firmas::class, 'insertar_recep']);
 
 //Nuevas rutas
 Route::get('interfaz/contenido/{params}', [InterfazController::class, 'getInterfazContenidos']);
@@ -252,14 +260,14 @@ Route::get('convenio-new/{tipo_documento}', [ConveniosController::class, 'getCon
 Route::get('clausulas-new', [ClausulasController::class, 'getClausulas_v2']);
 Route::post('clausulas-new', [ClausulasController::class, 'newClausala']);
 
-//Rutas para firmas emisor
+/*//Rutas para firmas emisor
 Route::get('firma-emisor-new', [Firma_emisorController::class, 'getFirma_v2']);
 Route::post('firma-emisor-new', [Firma_emisorController::class, 'insertar_v2']);
 
 //Rutas para firma del receptor
 Route::get('firma-receptor-new', [Firma_receptorController::class, 'get_v2']);
 Route::post('firma-receptor-new', [Firma_receptorController::class, 'insertar_v2']);
-
+*/
 //Enviar el correo
 Route::post('email/forget-password', [MailerController::class, 'forget_password']);
 
