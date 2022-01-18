@@ -53,15 +53,15 @@
 
 <body>
     <header>
-<<<<<<< HEAD
-        <div style="width: 100% !important; margin-top:10px;">
-            <img src='http://3.15.185.2/Contenido/Imagenes/escudo.png' alt="" width="50px"
-            style="margin-left: 700px;">
-=======
+
+        <!-- <div style="width: 100% !important; margin-top:10px;"> -->
+            <!-- <img src='http://3.15.185.2/Contenido/Imagenes/escudo.png' alt="" width="50px" -->
+            <!-- style="margin-left: 700px;"> -->
+
         <div style="width: 100% !important; margin-top:20px;">
             <img src='http://3.15.185.2/Contenido/Imagenes/escudo.png' alt="" width="100px"
             style="margin-left: 650px;">
->>>>>>> f71a0fc580657c9c3424421a8aea3a6adae8d536
+
         </div>
     </header>
 
