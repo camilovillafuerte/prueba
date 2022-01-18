@@ -252,7 +252,9 @@ Route::get('convenio-especifico/get', [Convenios_especificosController::class, '
 Route::post('convenio-especifico/crear', [Convenios_especificosController::class, 'create']);
 
 //Rutas para convenios
+Route::post('convenio-new', [ConveniosController::class, 'create']);
 Route::get('convenio-new/{tipo_documento}', [ConveniosController::class, 'getConveniosByTipoDocumento']);
+Route::get('convenio-new/get/{id}', [ConveniosController::class, 'show']);
 
 //Rutas para clausalas
 Route::get('clausulas-new', [ClausulasController::class, 'getClausulas_v2']);

@@ -16,6 +16,6 @@ class clausulas extends Model
 
     //Relación muchos a muchos
     public function convenios_clasulas(){
-        return $this -> belongsToMany('App\Models\convenios_clausulas');
+        return $this->belongsToMany('App\Models\convenios_clausulas');
     }
 }
