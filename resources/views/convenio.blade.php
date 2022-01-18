@@ -53,7 +53,7 @@
 
 <body>
     <header>
-        <div style="width: 100% !important;">
+        <div style="width: 100% !important; margin-top:10px;">
             <img src='http://3.15.185.2/Contenido/Imagenes/escudo.png' alt="" width="50px"
             style="margin-left: 700px;">
         </div>
