@@ -54,14 +54,10 @@
 <body>
     <header>
 
-        <!-- <div style="width: 100% !important; margin-top:10px;"> -->
-            <!-- <img src='http://3.15.185.2/Contenido/Imagenes/escudo.png' alt="" width="50px" -->
-            <!-- style="margin-left: 700px;"> -->
 
         <div style="width: 100% !important; margin-top:20px;">
             <img src='http://3.15.185.2/Contenido/Imagenes/escudo.png' alt="" width="100px"
             style="margin-left: 650px;">
-
         </div>
     </header>
 
@@ -86,10 +82,12 @@
         <div class="justify">
             <h4>{{ $i + 1 }}° {{ $data->clausulas[$i]['nombre'] }}</h4>
 
-            <p class="justify">{{ $data->clausulas[$i]['descripcion'] }}</p>
+            @for($s = 0; $s < count($data->clausulas[$i]['descripcion']); $s++)
+            <p class="justify">{{ $data->clausulas[$i]['descripcion'][$s]}}</p>
+            @endfor
 
             @for($j = 0; $j < count($data->clausulas[$i]['articulos']); $j++)
-           <div class="mb-3" class="justify">
+             <div class="mb-3" class="justify">
                @for($k = 0; $k < count($data->clausulas[$i]['articulos'][$j]['des_art']); $k++)
                 <div class="justify" style="display: inline-block;">
                     @if($k == 0)
@@ -117,7 +115,7 @@
             <div style="width: 100px;">1</div>
             <div style="width: 100px;">2</div>
         </div> -->
-        <table style="width: 100%; margin-top: 50px;">
+        <table style="width: 100%; margin-top: 100px;">
             <thead style="width: 100%;">
                 <tr style="width: 100%;">
                     <th style="width: 50%">

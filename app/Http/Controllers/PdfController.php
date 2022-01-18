@@ -11,14 +11,19 @@ use PDF;
 class PdfController extends Controller{
 
     public function makePdfConvenios(Request $request){
-
         $data = (object)$request->data;
         $data->nombre_convenio = $this->repleceEnter($data->nombre_convenio);
         $data->comparecientes = $this->repleceEnter($data->comparecientes);
         $namePDf = "Convenio-".date('Y-m-d-H-i-s').'.pdf';
 
+       for($k = 0;$k< count($data->clausulas);$k++)
+       {
+        $data->clausulas[$k]['descripcion']=$this->repleceEnter($data->clausulas[$k]['descripcion']);
+       }
         for($i = 0; $i < count($data->clausulas); $i++){
+
             for($j = 0; $j < count($data->clausulas[$i]['articulos']); $j++){
+
                 $data->clausulas[$i]['articulos'][$j]['des_art'] = $this->repleceEnter($data->clausulas[$i]['articulos'][$j]['des_art']);
             }
         }
@@ -43,6 +48,7 @@ class PdfController extends Controller{
         }
 
         return response()->json($response);
+       
     }
 
     private function repleceEnter($data){
