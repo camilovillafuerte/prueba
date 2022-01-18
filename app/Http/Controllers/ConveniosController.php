@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\articulos;
+use App\Models\clausulas;
+use App\Models\contenido;
+use App\Models\contenido_articulos;
 use Illuminate\Http\Request;
 use App\Models\convenios;
+use App\Models\convenios_clausulas;
+use App\Models\tipo_convenios;
 
 class ConveniosController extends Controller
 {
@@ -23,11 +29,89 @@ class ConveniosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function create(Request $request){
+
+        $data = (object)$request->data;
+        $response = [];
+
+        //Crear convenio
+        $newConvenio = new convenios();
+        $newConvenio->usuario_id = intval($data->id_usuario);
+        $newConvenio->femisor_id = intval($data->selectFirmaEmisor);
+        $newConvenio->freceptor_id = intval($data->selectFirmaReceptor);
+        $newConvenio->titulo_convenio = ucfirst($data->nombre_convenio);
+        $newConvenio->f_creaciondoc = date('Y-m-d H:i:s');
+        $newConvenio->estado  = 'A';
+        $newConvenio->tipo_documento = 'P';
+        $newConvenio->PDF = "";
+        $newConvenio->save();
+
+        //Crear tipo de convenio
+        $newTipoConvenio = new tipo_convenios();
+        $_scpCompar = str_replace('\n', "</br>",$data->comparecientes);
+
+        $newTipoConvenio->descripcion_tc = ucfirst($_scpCompar);
+        $newTipoConvenio->nombretc_id = intval($data->id_tipoconvenio);
+        $newTipoConvenio->id_convenios = $newConvenio->id;
+        $newTipoConvenio->id_convenios_especificos = intval($data->id_tipoespecifico);
+        $newTipoConvenio->save();
+
+        //Recorrer las clausulas
+        foreach($data->clausulas as $clau){
+            // //Crear el contenido de la clausula
+            $clauObj = (object)$clau;
+
+            $newContenido = new contenido();
+            $_scpContClau = str_replace('\n', "</br>", $clauObj->descripcion);
+            $newContenido->des_cont = ucfirst($_scpContClau);
+            $newContenido->tipo = 'P';
+            $newContenido->save();
+
+            $existeConvenioClau = convenios_clausulas::where('id_convenios',  $newConvenio->id)
+            ->where('id_clausulas', intval($clauObj->id))->where('id_contenidos', $newContenido->id)->first();
+
+            if($existeConvenioClau){
+                $newConvenioClau = $existeConvenioClau;
+            }else{
+                //Armar la relacion de convenios_clausulas
+                $newConvenioClau = new convenios_clausulas();
+                $newConvenioClau->id_convenios =  $newConvenio->id;
+                $newConvenioClau->id_clausulas = intval($clauObj->id);
+                $newConvenioClau->id_contenidos = $newContenido->id;
+                $newConvenioClau->save();
+            }
+
+            if(count($clauObj->articulos) > 0){
+                foreach($clauObj->articulos as $art){
+                   $artObjt = (object)$art;
+
+                   $newArt = new articulos();
+                   $_scpDetArt = str_replace('\n', "</br>", $artObjt->des_art);
+                   $newArt->des_art = ucfirst($_scpDetArt);
+                   $newArt->subtipo = strtoupper($artObjt->subtipo);
+                   $newArt->save();
+
+                   //Construir relacion contenidos-articulos
+                   $cont_art = new contenido_articulos();
+                   $cont_art->id_contenidos =  $newContenido->id;
+                   $cont_art->id_articulos = $newArt->id;
+                   $cont_art->save();
+                }
+            }
+        }
+
+        $response = [
+            'estado'  => true,
+            'mensaje' => 'Convenio guardado'
+        ];
+
+        return response()->json($response);
     }
 
+
+    public function find($id){
+
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -54,7 +138,48 @@ class ConveniosController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = convenios::find($id);
+        $tipoConvenios = tipo_convenios::where('id_convenios', $id)->first();
+        $clausulas = convenios_clausulas::where('id_convenios', $id)->get();
+
+        $newClau = [];
+        foreach($clausulas as $c){
+            $clau = clausulas::find($c->id_clausulas);
+            $retConCla = convenios_clausulas::where('id_convenios', $id)->where('id_clausulas',$c->id_clausulas )->first();
+            $contenido = contenido::find($retConCla->id_contenidos);
+            $retContArt = contenido_articulos::where('id_contenidos', $retConCla->id_contenidos)->get();
+
+            $newArt = [];
+            foreach($retContArt as $art){
+                $articulo = articulos::find($art->id_articulos);
+
+                $auxArt = [
+                   'des_art' => $articulo->des_art,
+                   'subtipo' => $articulo->subtipo
+                ];
+                $newArt[] = $auxArt;
+            }
+
+            $aux = [
+              'id' => $c->id_clausulas,
+              'nombre' => $clau->nombre_clau,
+              'descripcion' => $contenido->des_cont,
+              'tipo' => $contenido->tipo,
+              'articulos' => $newArt
+            ];
+
+            $newClau[] = $aux;
+        }
+        $newData = [
+            'id_usuario' => $data->usuario_id,
+            'id_tipoconvenio' => $tipoConvenios->nombretc_id,
+            'id_tipoespecifico' => $tipoConvenios->id_convenios_especificos,
+            'nombre_convenio' => $data->titulo_convenio,
+            'comparecientes' => $tipoConvenios->descripcion_tc,
+            'clausulas' => $newClau
+        ];
+
+        return response()->json($newData);
     }
 
     /**
