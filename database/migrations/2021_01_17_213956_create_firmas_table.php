@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFirmaEmisorsTable extends Migration
+class CreateFirmasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateFirmaEmisorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('firma_emisors', function (Blueprint $table) {
+        Schema::create('firmas', function (Blueprint $table) {
             $table->id();
             $table->String('titulo_academico');
-            $table->string('nombre_emisor');
-            $table->string('cargo_emisor');
-            $table->string('institucion_emisor');
+            $table->string('nombres');
+            $table->string('cargo');
+            $table->string('institucion');
         });
     }
 
@@ -29,6 +29,6 @@ class CreateFirmaEmisorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('firma_emisors');
+        Schema::dropIfExists('firmas');
     }
 }

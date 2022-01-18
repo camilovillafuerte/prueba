@@ -5,11 +5,13 @@ use App\Http\Controllers\Convenios_especificosController;
 use App\Http\Controllers\ConveniosController;
 use App\Http\Controllers\Firma_emisorController;
 use App\Http\Controllers\Firma_receptorController;
+use App\Http\Controllers\FirmasController;
 use App\Http\Controllers\InterfazController;
 use App\Http\Controllers\MailerController;
 use App\Http\Controllers\Nombre_tipoconvenioController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\UsuarioController;
+use App\Models\firmas;
 use App\Models\interfaz;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -228,6 +230,10 @@ Route::post('/addNombretc','App\Http\Controllers\Nombre_tipoconvenioController@i
 Route::put('/updateNombretc/{id}','App\Http\Controllers\Nombre_tipoconvenioController@updateNombre_tc');
 Route::delete('/deleteNombretc/{id}','App\Http\Controllers\Nombre_tipoconvenioController@deleteNombre_tc');
 
+//Ruta de firmas
+Route::get('firma-new', [FirmasController::class, 'getFirmas_new']);
+Route::post('firma-new', [FirmasController::class, 'insertarFirmas']);
+
 
 //Nuevas rutas
 Route::get('interfaz/contenido/{params}', [InterfazController::class, 'getInterfazContenidos']);
@@ -246,20 +252,22 @@ Route::get('convenio-especifico/get', [Convenios_especificosController::class, '
 Route::post('convenio-especifico/crear', [Convenios_especificosController::class, 'create']);
 
 //Rutas para convenios
+Route::post('convenio-new', [ConveniosController::class, 'create']);
 Route::get('convenio-new/{tipo_documento}', [ConveniosController::class, 'getConveniosByTipoDocumento']);
+Route::get('convenio-new/get/{id}', [ConveniosController::class, 'show']);
 
 //Rutas para clausalas
 Route::get('clausulas-new', [ClausulasController::class, 'getClausulas_v2']);
 Route::post('clausulas-new', [ClausulasController::class, 'newClausala']);
 
-//Rutas para firmas emisor
+/*//Rutas para firmas emisor
 Route::get('firma-emisor-new', [Firma_emisorController::class, 'getFirma_v2']);
 Route::post('firma-emisor-new', [Firma_emisorController::class, 'insertar_v2']);
 
 //Rutas para firma del receptor
 Route::get('firma-receptor-new', [Firma_receptorController::class, 'get_v2']);
 Route::post('firma-receptor-new', [Firma_receptorController::class, 'insertar_v2']);
-
+*/
 //Enviar el correo
 Route::post('email/forget-password', [MailerController::class, 'forget_password']);
 

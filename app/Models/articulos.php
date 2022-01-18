@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class articulos extends Model
 {
     use HasFactory;
+    protected $table = "articulos";
     public $timestamps = false;
     protected $fillable = ['id','des_art','subtipo'];
 }
