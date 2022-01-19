@@ -22,8 +22,8 @@ class CreateTipoConveniosTable extends Migration
             $table->longText('descripcion_tc')->nullable();
             $table->unsignedBigInteger('id_convenios');
             $table->unsignedBigInteger('id_convenios_especificos');
-            $table->foreign('id_convenios')->references('id')->on('convenios')->onDelete('cascade');
-            $table->foreign('id_convenios_especificos')->references('id')->on('convenios_especificos')->onDelete('cascade');
+            $table->foreign('id_convenios')->references('id')->on('convenios')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_convenios_especificos')->references('id')->on('convenios_especificos')->onDelete('cascade')->onUpdate('cascade');
 
         });
     }
