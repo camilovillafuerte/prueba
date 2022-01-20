@@ -255,7 +255,7 @@ Route::post('convenio-especifico/crear', [Convenios_especificosController::class
 Route::post('convenio-new', [ConveniosController::class, 'create']);
 Route::get('convenio-new/{tipo_documento}', [ConveniosController::class, 'getConveniosByTipoDocumento']);
 Route::get('convenio-new/get/{id}', [ConveniosController::class, 'show']);
-Route::post('convenio-new-guardar', [ConveniosController::class, 'guardar']);
+Route::post('convenio-new-guardado', [ConveniosController::class, 'guardar']);
 
 //Rutas para clausalas
 Route::get('clausulas-new', [ClausulasController::class, 'getClausulas_v2']);
