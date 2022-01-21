@@ -255,7 +255,9 @@ class ConveniosController extends Controller
             'id_tipoespecifico' => $tipoConvenios->id_convenios_especificos,
             'nombre_convenio' => $data->titulo_convenio,
             'comparecientes' => $tipoConvenios->descripcion_tc,
-            'clausulas' => $newClau
+            'clausulas' => $newClau,
+            'selectFirmaEmisor'=>$data->femisor_id,
+            'selectFirmaReceptor'=>$data->freceptor_id
         ];
 
         return response()->json($newData);
