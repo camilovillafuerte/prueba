@@ -390,5 +390,15 @@ class ConveniosController extends Controller
         return response()->json($response);
     }
 
+    public function findconvenio($id)
+    {
+        $data = convenios::find($id);
+        $response=[
+           'estado'=>true,
+            'convenio'=>$data
+        ];
+
+        return response()->json($response);
+    }
 
 }
