@@ -10,9 +10,15 @@ use Illuminate\Http\Request;
 use App\Models\convenios;
 use App\Models\convenios_clausulas;
 use App\Models\tipo_convenios;
+use Illuminate\Support\Facades\Storage;
 
 class ConveniosController extends Controller
 {
+    private $baseCtrl;
+
+    public function __construct(){
+        $this->baseCtrl = new BaseController();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -354,4 +360,35 @@ class ConveniosController extends Controller
 
         return response()->json($response);
     }
+    public function uploadDocumentServer(Request $request){
+
+        if($request->hasFile('document')){
+            $imagen = $request->file('document');
+
+            $filenamewithextension = $imagen->getClientOriginalName();   //Archivo con su extension
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);            //Sin extension
+            $extension = $request->file('document')->getClientOriginalExtension();    //Obtener extesion de archivo
+            $filenametostore = $filename.'_'.uniqid().'.'.$extension;
+
+            Storage::disk('ftp2')->put($filenametostore, fopen($request->file('document'), 'r+'));
+            
+           $url = $this->baseCtrl->getUrlServer('/Contenido/ConveniosGuardados/');
+
+            $response = [
+                'estado' => true,
+                'documento' => $url.$filenametostore,
+                'mensaje' => 'El documento se ha subido al servidor'
+            ];
+        }else{
+            $response = [
+                'estado' => false,
+                'documento' => '',
+                'mensaje' => 'No hay un archivo para procesar'
+            ];
+        }
+
+        return response()->json($response);
+    }
+
+
 }

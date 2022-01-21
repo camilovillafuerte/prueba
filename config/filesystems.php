@@ -76,6 +76,16 @@ return [
             'password' => env('FTP_PASSWORD'),
             'root' => '/Contenido/ImagenesPerfil'// for example: /var/www/html/dev/images
         ],
+
+        'ftp2' => [
+            'driver' => 'ftp',
+            'host' => env('FTP_HOST'),
+            'port' => env('FTP_PORT', '21'),
+            'username' => env('FTP_USERNAME'),
+            'password' => env('FTP_PASSWORD'),
+            'root' => '/Contenido/ConveniosGuardados/'// for example: /var/www/html/dev/images
+        ],
+
     ],
 
     /*

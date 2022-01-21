@@ -278,3 +278,6 @@ Route::get('nombre-tipo-convenio', [Nombre_tipoconvenioController::class, 'get_n
 //Ruta para pdf
 Route::post('pdf/convenio', [PdfController::class, 'makePdfConvenios']);
 Route::get('archivo/{folder}/{file}', [PdfController::class, 'getFile']);
+
+//Ruta para subir documento al servidor ftp
+Route::post('documento/upload-document', [ConveniosController::class, 'uploadDocumentServer']);
