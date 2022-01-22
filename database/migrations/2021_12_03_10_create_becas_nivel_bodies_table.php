@@ -16,7 +16,7 @@ class CreateBecasNivelBodiesTable extends Migration
         Schema::create('becas_nivel_bodies', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_becas_nivels');
-            $table->foreign('id_becas_nivels')->references('id')->on('becas_nivels')->onDelete('cascade');
+            $table->foreign('id_becas_nivels')->references('id')->on('becas_nivels')->onDelete('cascade')->onUpdate('cascade');
             $table->longText('nombre')->nullable();
             $table->string('pais')->nullable();
             $table->string('idioma')->nullable();

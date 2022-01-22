@@ -262,14 +262,6 @@ Route::get('convenio/get/{id}',[ConveniosController::class,'findconvenio']);
 Route::get('clausulas-new', [ClausulasController::class, 'getClausulas_v2']);
 Route::post('clausulas-new', [ClausulasController::class, 'newClausala']);
 
-/*//Rutas para firmas emisor
-Route::get('firma-emisor-new', [Firma_emisorController::class, 'getFirma_v2']);
-Route::post('firma-emisor-new', [Firma_emisorController::class, 'insertar_v2']);
-
-//Rutas para firma del receptor
-Route::get('firma-receptor-new', [Firma_receptorController::class, 'get_v2']);
-Route::post('firma-receptor-new', [Firma_receptorController::class, 'insertar_v2']);
-*/
 //Enviar el correo
 Route::post('email/forget-password', [MailerController::class, 'forget_password']);
 
