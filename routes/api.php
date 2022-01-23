@@ -278,3 +278,5 @@ Route::get('archivo/{folder}/{file}', [PdfController::class, 'getFile']);
 //Ruta para subir documento al servidor ftp
 Route::post('documento/upload-document', [ConveniosController::class, 'uploadDocumentServer']);
 
+// Eliminar los archivos del repositorio
+Route::get('eliminar-archivo',[PdfController::class,'eliminarArchivos']);
