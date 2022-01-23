@@ -18,6 +18,7 @@ class CreateConveniosClausulasTable extends Migration
             $table->unsignedBigInteger('id_convenios');
             $table->unsignedBigInteger('id_clausulas');
             $table->unsignedBigInteger('id_contenidos');
+            $table->enum('estado',['A','D']);
             $table->foreign('id_convenios')->references('id')->on('convenios')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('id_clausulas')->references('id')->on('clausulas')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('id_contenidos')->references('id')->on('contenidos')->onDelete('cascade')->onUpdate('cascade');

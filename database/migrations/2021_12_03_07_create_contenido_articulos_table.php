@@ -17,6 +17,7 @@ class CreateContenidoArticulosTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_contenidos');
             $table->unsignedBigInteger('id_articulos');
+            $table->enum('estado',['A','D']);
             $table->foreign('id_contenidos')->references('id')->on('contenidos')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('id_articulos')->references('id')->on('articulos')->onDelete('cascade')->onUpdate('cascade');
         });
