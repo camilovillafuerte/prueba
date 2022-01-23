@@ -402,7 +402,86 @@ class ConveniosController extends Controller
         return response()->json($response);
     }
 
-    public function editarConvenio(Request $request){
+   public function eliminarConvenio(Request $request){
+        $data = (object)$request->data;
 
-    }
+        $convenio = convenios::find(floatval($data->id_convenio));
+        if($convenio){
+            $convenio->estado = trim($data->estado);
+            $convenio->save();
+
+            $response = [
+                'estado' => true,
+                'mensaje' => 'El convenio ha sido eliminado !'
+            ];
+        }else{
+            $response = [
+                'estado' => false,
+                'mensaje' => 'El convenio no existe !!'
+            ];
+        }
+
+        return response()->json($response);
+   }
+
+   public function updateConveniosAprobados(Request $request){
+        $data = (object)$request->data;
+
+        $convenio = convenios::find(floatval($data->id_convenio));
+        if($convenio){
+            if($convenio->tipo_documento == 'A'){
+                $convenio->titulo_convenio = trim(ucfirst($data->nombre_convenio));
+                $convenio->PDF = trim($data->PDF);
+                $convenio->save();
+
+                $response = [
+                    'estado' => true,
+                    'mensaje' => 'El convenio se ha actualizado'
+                ];
+            }else{
+                $response = [
+                    'estado' => false,
+                    'mensaje' => 'No se puede actualizar el convenio, solo los aprobados, verifique !!'
+                ];
+            }
+        }else{
+            $response = [
+                'estado' => false,
+                'mensaje' => 'No existe el convenio !!'
+            ];
+        }
+
+        return response()->json($response);
+   }
+
+   public function updatePDFURl(Request $request){
+        $data = (object)$request->data;
+
+        $convenio = convenios::find(intval($data->id_convenio));
+        if($convenio){
+            if($convenio->estado == 'G'){
+
+                $convenio->PDF = trim($data->PDF);
+                $convenio->tipo_documento = 'A';
+                $convenio->save();
+
+                $response = [
+                    'estado' => true,
+                    'mensaje' => 'Se actualizó el pdf del convenio !!'
+                ];
+            }else{
+                $response = [
+                    'estado' => false,
+                    'mensaje' => 'Solo se pude actualizar convenios de tipo guardado'
+                ];
+            }
+        }else{
+            $response = [
+                'status' => false,
+                'mensaje' => 'El convenio no existe'
+            ];
+        }
+
+        return response()->json($response);
+   }
 }
