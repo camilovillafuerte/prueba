@@ -278,4 +278,3 @@ Route::get('archivo/{folder}/{file}', [PdfController::class, 'getFile']);
 //Ruta para subir documento al servidor ftp
 Route::post('documento/upload-document', [ConveniosController::class, 'uploadDocumentServer']);
 
-
