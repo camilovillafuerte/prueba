@@ -257,7 +257,7 @@ Route::get('convenio-new/{tipo_documento}', [ConveniosController::class, 'getCon
 Route::get('convenio-new/get/{id}', [ConveniosController::class, 'show']);
 Route::post('convenio-new-guardado', [ConveniosController::class, 'guardar']);
 Route::get('convenio/get/{id}',[ConveniosController::class,'findconvenio']);
-Route::delete('convenio/eliminar', [ConveniosController::class, 'eliminarConvenio']);
+Route::put('convenio/eliminar', [ConveniosController::class, 'eliminarConvenio']);
 Route::put('convenio/update/aprobado', [ConveniosController::class, 'updateConveniosAprobados']);
 Route::put('convenio/update/pdf', [ConveniosController::class, 'updatePDFURl']);
 
