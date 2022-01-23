@@ -239,6 +239,7 @@ class ConveniosController extends Controller
                 $articulo = articulos::find($art->id_articulos);
 
                 $auxArt = [
+                    'art_id' => $articulo->id,
                    'des_art' => $articulo->des_art,
                    'subtipo' => $articulo->subtipo
                 ];
@@ -371,7 +372,7 @@ class ConveniosController extends Controller
             $filenametostore = $filename.'_'.uniqid().'.'.$extension;
 
             Storage::disk('ftp2')->put($filenametostore, fopen($request->file('document'), 'r+'));
-            
+
            $url = $this->baseCtrl->getUrlServer('/Contenido/ConveniosGuardados/');
 
             $response = [
@@ -401,4 +402,7 @@ class ConveniosController extends Controller
         return response()->json($response);
     }
 
+    public function editarConvenio(Request $request){
+
+    }
 }
