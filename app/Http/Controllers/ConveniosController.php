@@ -49,7 +49,7 @@ class ConveniosController extends Controller
         $newConvenio->f_creaciondoc = date('Y-m-d H:i:s');
         $newConvenio->estado  = 'A';
         $newConvenio->tipo_documento = 'P';
-        $newConvenio->PDF = "";
+        $newConvenio->PDF = ucfirst($data->PDF);
         $newConvenio->save();
 
         //Crear tipo de convenio
@@ -128,7 +128,7 @@ class ConveniosController extends Controller
         $newConvenio->f_creaciondoc = date('Y-m-d H:i:s');
         $newConvenio->estado  = 'A';
         $newConvenio->tipo_documento = 'G';
-        $newConvenio->PDF = "";
+        $newConvenio->PDF = ucfirst($data->PDF);
         $newConvenio->save();
 
         //Crear tipo de convenio
