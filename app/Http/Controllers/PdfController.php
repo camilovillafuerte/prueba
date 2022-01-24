@@ -147,59 +147,5 @@ class PdfController extends Controller{
         return response()->json($data);
     }
     
-    public function eliminarArchivos()
-    {
-     $data=convenios::where('tipo_documento','G')->orWhere('tipo_documento','P')->get();
-     $newtipo=[];
-     $existe=[];
-     $files = Storage::disk('local')->Files('convenios'); // los archivos
-
-
-     foreach($files as $fil)
-     {
-         $nombre=substr($fil,10);
-         $newtipo[]=$nombre;
-       foreach ($data as $d)
-       {
-         if($d->PDF==$nombre)
-         {
-             $dato=$d->PDF;
-             $existe[]=$dato;
-         }
-       }
-     }
-
-     $files_eliminar=array_diff($newtipo,$existe);
-     $contar=0;
-
-     foreach($files_eliminar as $f)
-     {
-        $eliminar = Storage::disk('convenios')->delete($f);
-        if($eliminar){ 
-            $contar++;
-        }
-
-     }
-
-     if($contar==count($files_eliminar))
-     {
-         $response=[
-             'estado'=>true,
-             'mensaje'=>'Se elimino los archivos',
-             'archivos_eliminados'=>$contar
-         ];
-     }
-     else
-     {
-        $response=[
-            'estado'=>false,
-            'mensaje'=>'No se elimino todos los archivos',
-            'archivos_eliminados'=>$contar
-        ];
-
-     }
-     return response()->json($response);
-
-    }
 }
 
