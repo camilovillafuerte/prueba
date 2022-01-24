@@ -364,9 +364,9 @@ class ConveniosController extends Controller
     public function uploadDocumentServer(Request $request){
 
         if($request->hasFile('document')){
-            $imagen = $request->file('document');
+            $documento = $request->file('document');
 
-            $filenamewithextension = $imagen->getClientOriginalName();   //Archivo con su extension
+            $filenamewithextension = $documento->getClientOriginalName();   //Archivo con su extension
             $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);            //Sin extension
             $extension = $request->file('document')->getClientOriginalExtension();    //Obtener extesion de archivo
             $filenametostore = $filename.'_'.uniqid().'.'.$extension;
