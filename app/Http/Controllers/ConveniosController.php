@@ -458,7 +458,7 @@ class ConveniosController extends Controller
 
         $convenio = convenios::find(intval($data->id_convenio));
         if($convenio){
-            if($convenio->estado == 'G'){
+            if($convenio->tipo_documento == 'G'){
 
                 $convenio->PDF = trim($data->PDF);
                 $convenio->tipo_documento = 'A';
