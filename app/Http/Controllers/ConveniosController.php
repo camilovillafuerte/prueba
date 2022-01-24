@@ -364,9 +364,8 @@ class ConveniosController extends Controller
     public function uploadDocumentServer(Request $request){
 
         if($request->hasFile('document')){
-            $imagen = $request->file('document');
-
-            $filenamewithextension = $imagen->getClientOriginalName();   //Archivo con su extension
+            $documento = $request->file('document');
+            $filenamewithextension = $documento->getClientOriginalName();   //Archivo con su extension
             $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);            //Sin extension
             $extension = $request->file('document')->getClientOriginalExtension();    //Obtener extesion de archivo
             $filenametostore = $filename.'_'.uniqid().'.'.$extension;
@@ -459,7 +458,7 @@ class ConveniosController extends Controller
 
         $convenio = convenios::find(intval($data->id_convenio));
         if($convenio){
-            if($convenio->estado == 'G'){
+            if($convenio->tipo_documento == 'G'){
 
                 $convenio->PDF = trim($data->PDF);
                 $convenio->tipo_documento = 'A';

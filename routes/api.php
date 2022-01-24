@@ -281,3 +281,4 @@ Route::post('documento/upload-document', [ConveniosController::class, 'uploadDoc
 
 // Eliminar los archivos del repositorio
 Route::get('eliminar-archivo',[PdfController::class,'eliminarArchivos']);
+
