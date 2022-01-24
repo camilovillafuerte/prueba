@@ -365,7 +365,6 @@ class ConveniosController extends Controller
 
         if($request->hasFile('document')){
             $documento = $request->file('document');
-
             $filenamewithextension = $documento->getClientOriginalName();   //Archivo con su extension
             $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);            //Sin extension
             $extension = $request->file('document')->getClientOriginalExtension();    //Obtener extesion de archivo
