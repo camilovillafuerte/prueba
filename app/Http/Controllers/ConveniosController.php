@@ -249,6 +249,7 @@ class ConveniosController extends Controller
             $aux = [
               'id' => $c->id_clausulas,
               'nombre' => $clau->nombre_clau,
+              'id_contenido'=>$contenido->id,
               'descripcion' => $contenido->des_cont,
               'tipo' => $contenido->tipo,
               'articulos' => $newArt
