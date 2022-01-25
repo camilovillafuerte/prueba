@@ -7,11 +7,16 @@ use App\Models\interfaz;
 use App\Models\interfaz_contenido;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 
 class InterfazController extends Controller
 {
     //método con json para probar si funciona con postman
+    private $baseCtrl;
 
+    public function __construct(){
+        $this->baseCtrl = new BaseController();
+    }
 
     public function getInterfaz()
     {
