@@ -282,3 +282,6 @@ Route::post('documento/upload-document', [ConveniosController::class, 'uploadDoc
 // Eliminar los archivos del repositorio
 Route::get('eliminar-archivo',[PdfController::class,'eliminarArchivos']);
 
+//Subir imagen de carrusel
+Route::post('imagen-carrusel',[InterfazController::class, 'subirImagenServidor'] );
+
