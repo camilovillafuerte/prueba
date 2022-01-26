@@ -285,3 +285,7 @@ Route::get('eliminar-archivo',[PdfController::class,'eliminarArchivos']);
 //Subir imagen de carrusel
 Route::post('imagen-carrusel',[InterfazController::class, 'subirImagenServidor'] );
 
+
+//carrosel
+Route::post('update/carrosel',[InterfazController::class, 'updateCarrosel']);
+Route::put('delete/carrosel',[InterfazController::class, 'deleteCarrosel']);
