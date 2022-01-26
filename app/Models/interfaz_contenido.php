@@ -10,7 +10,7 @@ class interfaz_contenido extends Model
     use HasFactory;
 
     public $timestamps = false;
-    protected $fillable = ['id_interfazs','cedula_usuario','nombre','descripcion','urlimagen','estado'];
+    protected $fillable = ['id_interfazs','usuario_id','nombre','descripcion','urlimagen','estado'];
 
     public function interfaz(){
         return $this->belongsTo(interfaz::class, 'id_interfazs', 'id');
@@ -18,6 +18,6 @@ class interfaz_contenido extends Model
     
     //Relacion de uno a muchos
     public function usuarios(){
-    return $this->hasMany('App\Models\usuarios','cedula');
+    return $this->hasMany('App\Models\usuarios','usuario_id');
 }
 }
