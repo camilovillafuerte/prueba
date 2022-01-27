@@ -27,6 +27,8 @@ class CreateConveniosTable extends Migration
             $table->enum('estado',['A','D']);
             $table->enum('tipo_documento',['P','G','A']); //Guardado, Plantilla, Aprobado
             $table->longText('PDF')->nullable();
+            $table->time('fecha_firma')->nullable();
+            $table->time('fecha_fin')->nullable();
         });
     }
 
