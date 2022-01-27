@@ -11,7 +11,7 @@ class convenios extends Model
 
     public $table = "convenios";
     public $timestamps = false;
-    protected $fillable = ['id', 'usuario_id', 'femisor_id', 'freceptor_id', 'titulo_convenio', 'f_creaciondoc', 'estado', 'tipo_documento', 'PDF'];
+    protected $fillable = ['id', 'usuario_id', 'femisor_id', 'freceptor_id', 'titulo_convenio', 'f_creaciondoc', 'estado', 'tipo_documento', 'PDF','fecha_firma','fecha_fin'];
 
 
     //Relacion de uno a muchos
