@@ -273,7 +273,7 @@ Route::post('email/forget-password', [MailerController::class, 'forget_password'
 Route::get('nombre-tipo-convenio', [Nombre_tipoconvenioController::class, 'get_nombre']);
 
 //Ruta para pdf
-Route::post('pdf/convenio', [PdfController::class, 'makePdfConvenios']);
+Route::post('pdf/convenio', [PdfController::class, 'makePdfConvenios_v2']);
 Route::get('archivo/{folder}/{file}', [PdfController::class, 'getFile']);
 
 //Ruta para subir documento al servidor ftp
