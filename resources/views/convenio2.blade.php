@@ -54,13 +54,13 @@
 <body>
     <header>
         <div style="display: flex; justify-content: space-between;">
-            <div style="width: 100% !important; margin-top:20px;">
-                <img src='{{$data->urlimagen1}}' alt="" width="100px" style="margin-left: -650px;">
+            <div style="width: 100% !important; ">
+                <img src='{{$data->urlimagen1}}' alt="" width="100px" style="margin-left: -650px;margin-top:20px;">
             </div>
 
 
-            <div style="width: 100% !important; margin-top:0px;">
-                <img src='{{$data->urlimagen2}}' alt="" width="100px" style="margin-left: 650px;">
+            <div style="width: 100% !important; ">
+                <img src='{{$data->urlimagen2}}' alt="" width="100px" style="margin-left: 650px;margin-top:20px;">
             </div>
         </div>
     </header>
