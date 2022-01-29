@@ -6,6 +6,8 @@ use App\Http\Controllers\ConveniosController;
 use App\Http\Controllers\Firma_emisorController;
 use App\Http\Controllers\Firma_receptorController;
 use App\Http\Controllers\FirmasController;
+use App\Http\Controllers\Imagenes_conveniosController;
+use App\Http\Controllers\Imagenes_interfacesController;
 use App\Http\Controllers\InterfazController;
 use App\Http\Controllers\MailerController;
 use App\Http\Controllers\Nombre_tipoconvenioController;
@@ -234,6 +236,19 @@ Route::delete('/deleteNombretc/{id}','App\Http\Controllers\Nombre_tipoconvenioCo
 Route::get('firma-new', [FirmasController::class, 'getFirmas_new']);
 Route::post('firma-new', [FirmasController::class, 'insertarFirmas']);
 
+//Ruta para Imagenes_convenios
+Route::get('imagen-convenio',[Imagenes_conveniosController::class, 'getImgcon']);
+Route::get('imagen-convenio/{id}',[Imagenes_conveniosController::class, 'getImgconxid']);
+Route::post('imagen-convenio/subir',[Imagenes_conveniosController::class, 'insertImgcon']);
+Route::put('imagen-convenio/actualizar',[Imagenes_conveniosController::class, 'updateImgcon']);
+Route::delete('imagen-convenio/eliminar/{id}',[Imagenes_conveniosController::class, 'deleteImgcon']);
+
+//Ruta para Imagenes_interfaces
+Route::get('imagen-interfaces',[Imagenes_interfacesController::class, 'getImginter']);
+Route::get('imagen-interfaces/{id}',[Imagenes_interfacesController::class, 'getImginterxid']);
+Route::post('imagen-interfaces/subir',[Imagenes_interfacesController::class, 'insertImginter']);
+Route::put('imagen-interfaces/actualizar',[Imagenes_interfacesController::class, 'updateImginter']);
+Route::delete('imagen-interfaces/eliminar/{id}',[Imagenes_interfacesController::class, 'deleteImginter']);
 
 //Nuevas rutas
 Route::get('interfaz/contenido/{params}', [InterfazController::class, 'getInterfazContenidos']);
