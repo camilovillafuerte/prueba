@@ -237,6 +237,7 @@ Route::get('firma-new', [FirmasController::class, 'getFirmas_new']);
 Route::post('firma-new', [FirmasController::class, 'insertarFirmas']);
 
 //Ruta para Imagenes_convenios
+
 Route::get('imagen-convenio',[Imagenes_conveniosController::class, 'getImgcon']);
 Route::get('imagen-convenio/{id}',[Imagenes_conveniosController::class, 'getImgconxid']);
 Route::post('imagen-convenio/subir',[Imagenes_conveniosController::class, 'insertImgcon']);
@@ -244,6 +245,7 @@ Route::put('imagen-convenio/actualizar',[Imagenes_conveniosController::class, 'u
 Route::delete('imagen-convenio/eliminar/{id}',[Imagenes_conveniosController::class, 'deleteImgcon']);
 
 //Ruta para Imagenes_interfaces
+
 Route::get('imagen-interfaces',[Imagenes_interfacesController::class, 'getImginter']);
 Route::get('imagen-interfaces/{id}',[Imagenes_interfacesController::class, 'getImginterxid']);
 Route::post('imagen-interfaces/subir',[Imagenes_interfacesController::class, 'insertImginter']);
