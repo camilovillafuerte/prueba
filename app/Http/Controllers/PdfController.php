@@ -48,7 +48,37 @@ class PdfController extends Controller{
         }
 
         return response()->json($response);
-       
+
+    }
+
+    public function makePdfConvenios_v2(Request $request){
+        // header("Access-Control-Allow-Origin: *");
+        $data = (object)$request->data;
+
+        $namePDf = "Convenio-".date('Y-m-d-H-i-s').'.pdf';
+
+        $exist = Storage::disk('convenios')->exists($namePDf);
+
+        if($exist){
+            $response = [
+                'estado' => false,
+                'mensaje' => 'El archivo ya existe',
+                'file' => false
+            ];
+        }else{
+            $path = storage_path().'/app/convenios/'.$namePDf;
+            $pdf = PDF::loadView('convenio2', ['data' => $data])->save($path)->stream($namePDf);
+            // dd($pdf);
+
+            $response = [
+                'estado' => true,
+                'mensaje' => 'PDF generado con éxito',
+                'file' => $namePDf
+            ];
+        }
+
+        return response()->json($response);
+
     }
 
     private function repleceEnter($data){
@@ -91,7 +121,7 @@ class PdfController extends Controller{
         }
         return response()->json($data);
     }
-    
+
     public function eliminarArchivos()
     {
      $data=convenios::where('tipo_documento','G')->orWhere('tipo_documento','P')->get();
@@ -120,7 +150,7 @@ class PdfController extends Controller{
      foreach($files_eliminar as $f)
      {
         $eliminar = Storage::disk('convenios')->delete($f);
-        if($eliminar){ 
+        if($eliminar){
             $contar++;
         }
 
