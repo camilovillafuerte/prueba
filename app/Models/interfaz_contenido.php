@@ -24,4 +24,9 @@ class interfaz_contenido extends Model
   public function imagenes(){
     return $this->hasMany('App\Models\imagenes_interfaces','imagen_id');
 }
+
+public function imagenes_interfaz(){
+    return $this->belongsTo(imagenes_intefaces::class, 'imagen_id', 'id');
+}
+
 }

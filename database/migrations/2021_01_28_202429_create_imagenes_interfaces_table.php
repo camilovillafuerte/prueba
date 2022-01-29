@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateImagenesIntefacesTable extends Migration
+class CreateImagenesInterfacesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateImagenesIntefacesTable extends Migration
      */
     public function up()
     {
-        Schema::create('imagenes_intefaces', function (Blueprint $table) {
+        Schema::create('imagenes_interfaces', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
             $table->longText('url_imagen');
@@ -28,6 +28,6 @@ class CreateImagenesIntefacesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('imagenes_intefaces');
+        Schema::dropIfExists('imagenes_interfaces');
     }
 }
