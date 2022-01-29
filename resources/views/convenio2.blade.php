@@ -79,7 +79,7 @@
                 <div class="justify mb-3">
                     <div class="justify" style="display: inline-block;">
                         <span style="margin-right: 10px; font-weight: bold; margin-top:10px;" class="justify">{{ $i + 1 }}.{{ $j + 1}}</span>
-                        <div style="margin-left: 40px; margin-top: -30px"> <?= $data->clausulas[$i]['articulos'][$j]['des_art'] ?> </div>
+                        <div style="margin-left: 40px; margin-top: -35px"> <?= $data->clausulas[$i]['articulos'][$j]['des_art'] ?> </div>
 
                     </div>
                 </div>
