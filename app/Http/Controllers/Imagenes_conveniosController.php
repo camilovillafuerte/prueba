@@ -8,11 +8,11 @@ use Illuminate\Http\Request;
 class Imagenes_conveniosController extends Controller
 {
     //metodo con json para probar si funciona con postman
-    public function getFusuario(){
+    public function getImgcon(){
         return response()->json(imagenes_convenios::all(),200);
     }
 
-    public function getFUsuarioxid($id){
+    public function getImgconxid($id){
         $fusuario = imagenes_convenios::find($id);
         if(is_null($fusuario)){
             return response () -> json(['Mensaje'=>'Registro no encontrado'],404);
@@ -20,12 +20,12 @@ class Imagenes_conveniosController extends Controller
         return response ()->json($fusuario::find($id),200);
     }
 
-    public function insertFusuario(Request $request){
+    public function insertImgcon(Request $request){
         $fusuario = imagenes_convenios::create ($request->all());
         return response($fusuario,200);
     }
 
-    public function updateFusuario(Request $request,$id){
+    public function updateImgcon(Request $request,$id){
         $fusuario=imagenes_convenios::find($id);
         if (is_null($fusuario)){
             return response()->json(['Mensaje'=>'Registro no encontrado'],404);
@@ -34,7 +34,7 @@ class Imagenes_conveniosController extends Controller
         return response($fusuario,200);
     }
 
-    public function deleteFusuario($id){
+    public function deleteImgcon($id){
         $fusuario=imagenes_convenios::find($id);
         if (is_null($fusuario)){
             return response()->json(['Mensaje'=>'Registro no encontrado'],404);
