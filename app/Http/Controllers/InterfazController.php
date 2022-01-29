@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\imagenes_interfaces;
 use Illuminate\Http\Request;
 use App\Models\interfaz;
 use App\Models\interfaz_contenido;
@@ -67,28 +68,36 @@ class InterfazController extends Controller
     }
 
     public function getInterfazContenidos($params)
-    {
-
-        $interfaz = interfaz::where('pagina', $params)->get();
+    {$interfaz = interfaz::where('pagina', $params)->get();
         $response = false;
         $array = [];
 
         if ($interfaz->count() > 0) {
             foreach ($interfaz as $i) {
+
                 $contenidos = interfaz_contenido::where('id_interfazs', $i->id)
                     ->orderBy('nombre', 'asc')->get();
 
                 if ($contenidos->count() > 0)
-                    foreach ($contenidos as $c)     $array[] = $c;
+                    foreach ($contenidos as $c) {
+                        $imagen=imagenes_interfaces::find($c->imagen_id);
+                        $c->imagen=$imagen;
+                        $array[] = $c;
+                    }
             }
 
             if ($array)
-                foreach ($array as $c)  $c->interfaz;
+                foreach ($array as $c){
+                    $c->interfaz;
+                }
 
             $response = $array;
             return response()->json($response);
-        }
+
+            }
     }
+
+
     public function subirImagenServidor(Request $request){
 
         if($request->hasFile('img_carrusel')){
