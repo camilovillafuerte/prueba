@@ -11,7 +11,7 @@ class convenios extends Model
 
     public $table = "convenios";
     public $timestamps = false;
-    protected $fillable = ['id', 'usuario_id', 'femisor_id', 'freceptor_id', 'titulo_convenio', 'f_creaciondoc', 'estado', 'tipo_documento', 'PDF','fecha_firma','fecha_fin'];
+    protected $fillable = ['id', 'usuario_id', 'femisor_id', 'freceptor_id','imagen1_id','imagen1_id' ,'titulo_convenio', 'f_creaciondoc', 'estado', 'tipo_documento', 'PDF','fecha_firma','fecha_fin'];
 
 
     //Relacion de uno a muchos
@@ -36,6 +36,17 @@ class convenios extends Model
     public function Firma_receptor()
     {
         return $this->hasMany('App\Models\firmas');
+    }
+
+    public function Imagen1()
+    {
+        return $this->hasMany('App\Models\imagenes_convenios');
+    }
+
+    //Relacion de uno a muchos
+    public function Imagen2()
+    {
+        return $this->hasMany('App\Models\imagenes_convenios');
     }
 
     //Relación muchos a muchos
