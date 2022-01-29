@@ -48,6 +48,26 @@
         .mb-3 {
             margin-bottom: 1.5rem;
         }
+        .box {
+            margin: 10px;
+            padding: 5px;
+          
+        }
+        .box img {
+            height : 80px;
+            width: 80px;
+            opacity: 0.6;
+         
+        }
+        .box .right {
+            position:absolute;
+            top:0;
+            margin-right:0;
+            text-align: right;
+
+        }
+        .scale-down {object-fit: scale-down}
+
     </style>
 </head>
 
@@ -55,12 +75,16 @@
     <header>
         <div style="display: flex; justify-content: space-between;">
             <div style="width: 100% !important; ">
-                <img src='{{$data->urlimagen1}}' alt="" width="100px" style="margin-left: -650px;margin-top:20px;">
+            <div class="box">
+                    <img src='{{$data->urlimagen1}}' alt="" style="margin-left: -650px;margin-top:3px;">
+                </div>
             </div>
 
 
             <div style="width: 100% !important; ">
-                <img src='{{$data->urlimagen2}}' alt="" width="100px" style="margin-left: 650px;margin-top:20px;">
+            <div class="box">
+                    <img src='{{$data->urlimagen2}}' alt=""  style="margin-left: 650px;margin-top:3px;">
+                </div>
             </div>
         </div>
     </header>

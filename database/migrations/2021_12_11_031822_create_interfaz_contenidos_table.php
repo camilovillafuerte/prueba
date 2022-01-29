@@ -19,11 +19,11 @@ class CreateInterfazContenidosTable extends Migration
             $table->foreign('id_interfazs')->references('id')->on('interfazs')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('usuario_id');
             $table->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('imagen_id')->nullable();
+            $table->foreign('imagen_id')->references('id')->on('imagenes_interfaces')->onDelete('cascade')->onUpdate('cascade');
             $table->string('nombre');
             $table->longText('descripcion')->nullable();
             $table->longText('PDF')->nullable();
-            $table->unsignedBigInteger('imagen_id');
-            $table->foreign('imagen_id')->references('id')->on('imagenes_interfaces')->onDelete('cascade')->onUpdate('cascade');
             $table->enum('estado',['A','D']);
         });
     }
