@@ -92,7 +92,7 @@ class ConveniosController extends Controller
                    $artObjt = (object)$art;
 
                    $newArt = new articulos();
-                   $newArt->des_art = trim($$artObjt->des_art);
+                   $newArt->des_art = trim($artObjt->des_art);
                    $newArt->subtipo = strtoupper($artObjt->subtipo);
                    $newArt->save();
 
@@ -148,7 +148,7 @@ class ConveniosController extends Controller
 
            $newContenido = new contenido();
            $newContenido->des_cont = trim($clauObj->descripcion);
-           $newContenido->tipo = 'P';
+           $newContenido->tipo = 'G';
            $newContenido->save();
 
            $existeConvenioClau = convenios_clausulas::where('id_convenios',  $newConvenio->id)
@@ -170,7 +170,7 @@ class ConveniosController extends Controller
                   $artObjt = (object)$art;
 
                   $newArt = new articulos();
-                  $newArt->des_art = trim($$artObjt->des_art);
+                  $newArt->des_art = trim($artObjt->des_art);
                   $newArt->subtipo = strtoupper($artObjt->subtipo);
                   $newArt->save();
 
