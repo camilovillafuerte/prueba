@@ -9,6 +9,7 @@ use App\Models\contenido_articulos;
 use Illuminate\Http\Request;
 use App\Models\convenios;
 use App\Models\convenios_clausulas;
+use App\Models\imagenes_convenios;
 use App\Models\tipo_convenios;
 use Illuminate\Support\Facades\Storage;
 
@@ -222,6 +223,8 @@ class ConveniosController extends Controller
     public function show($id)
     {
         $data = convenios::find($id);
+        $imagen1=imagenes_convenios::find($data->imagen1_id);
+        $imagen2=imagenes_convenios::find($data->imagen2_id);
         $tipoConvenios = tipo_convenios::where('id_convenios', $id)->first();
         $clausulas = convenios_clausulas::where('id_convenios', $id)->get();
 
@@ -259,6 +262,10 @@ class ConveniosController extends Controller
             'id_usuario' => $data->usuario_id,
             'id_tipoconvenio' => $tipoConvenios->nombretc_id,
             'id_tipoespecifico' => $tipoConvenios->id_convenios_especificos,
+            'id_imagen1'=>$imagen1->id,
+            'id_imagen2'=>$imagen2->id,
+            'urlimagen1'=>$imagen1->url_imagen,
+            'urlimagen2'=>$imagen2->url_imagen,
             'nombre_convenio' => $data->titulo_convenio,
             'comparecientes' => $tipoConvenios->descripcion_tc,
             'clausulas' => $newClau,
