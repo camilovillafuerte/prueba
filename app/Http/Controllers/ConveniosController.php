@@ -92,7 +92,7 @@ class ConveniosController extends Controller
                    $artObjt = (object)$art;
 
                    $newArt = new articulos();
-                   $newArt->des_art = trim($$artObjt->des_art);
+                   $newArt->des_art = trim($artObjt->des_art);
                    $newArt->subtipo = strtoupper($artObjt->subtipo);
                    $newArt->save();
 
@@ -170,7 +170,7 @@ class ConveniosController extends Controller
                   $artObjt = (object)$art;
 
                   $newArt = new articulos();
-                  $newArt->des_art = trim($$artObjt->des_art);
+                  $newArt->des_art = trim($artObjt->des_art);
                   $newArt->subtipo = strtoupper($artObjt->subtipo);
                   $newArt->save();
 
