@@ -100,15 +100,15 @@ class InterfazController extends Controller
 
     public function subirImagenServidor(Request $request){
 
-        if($request->hasFile('img_carrusel')){
-            $imagen = $request->file('img_carrusel');
+        if($request->hasFile('img')){
+            $imagen = $request->file('img');
 
             $filenamewithextension = $imagen->getClientOriginalName();   //Archivo con su extension
             $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);            //Sin extension
-            $extension = $request->file('img_carrusel')->getClientOriginalExtension();    //Obtener extesion de archivo
+            $extension = $request->file('img')->getClientOriginalExtension();    //Obtener extesion de archivo
             $filenametostore = $filename.'_'.uniqid().'.'.$extension;
 
-            Storage::disk('ftp3')->put($filenametostore, fopen($request->file('img_carrusel'), 'r+'));
+            Storage::disk('ftp3')->put($filenametostore, fopen($request->file('img'), 'r+'));
 
            $url = $this->baseCtrl->getUrlServer('/Contenido/Imagenes/');
 

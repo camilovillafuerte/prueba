@@ -21,8 +21,17 @@ class Imagenes_conveniosController extends Controller
     }
 
     public function insertImgcon(Request $request){
-        $fusuario = imagenes_convenios::create ($request->all());
-        return response($fusuario,200);
+        $data = (object)$request->data;
+        $newImagen = new imagenes_convenios();
+        $newImagen->nombre=trim(ucfirst($data->nombre));
+        $newImagen->url_imagen=trim($data->url_imagen);
+        $newImagen->estado="A";
+        $newImagen->save();
+        $response = [
+            'estado'  => true,
+            'mensaje' => 'Imagen guardada'
+        ];
+        return response()->json($response);
     }
 
     public function updateImgcon(Request $request,$id){
