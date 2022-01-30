@@ -45,18 +45,19 @@ class ConveniosController extends Controller
         $newConvenio->usuario_id = intval($data->id_usuario);
         $newConvenio->femisor_id = intval($data->selectFirmaEmisor);
         $newConvenio->freceptor_id = intval($data->selectFirmaReceptor);
-        $newConvenio->titulo_convenio = ucfirst($data->nombre_convenio);
+        $newConvenio->titulo_convenio = trim($data->nombre_convenio);
         $newConvenio->f_creaciondoc = date('Y-m-d H:i:s');
         $newConvenio->estado  = 'A';
         $newConvenio->tipo_documento = 'P';
-        $newConvenio->PDF = ucfirst($data->PDF);
+        $newConvenio->PDF = trim($data->PDF);
+        $newConvenio->imagen1_id=intval($data->id_imagen1);
+        $newConvenio->imagen2_id=intval($data->id_imagen2);
         $newConvenio->save();
 
         //Crear tipo de convenio
         $newTipoConvenio = new tipo_convenios();
-        $_scpCompar = str_replace('\n', "</br>",$data->comparecientes);
-
-        $newTipoConvenio->descripcion_tc = ucfirst($_scpCompar);
+       
+        $newTipoConvenio->descripcion_tc = trim($data->comparecientes);
         $newTipoConvenio->nombretc_id = intval($data->id_tipoconvenio);
         $newTipoConvenio->id_convenios = $newConvenio->id;
         $newTipoConvenio->id_convenios_especificos = intval($data->id_tipoespecifico);
@@ -68,8 +69,7 @@ class ConveniosController extends Controller
             $clauObj = (object)$clau;
 
             $newContenido = new contenido();
-            $_scpContClau = str_replace('\n', "</br>", $clauObj->descripcion);
-            $newContenido->des_cont = ucfirst($_scpContClau);
+            $newContenido->des_cont = trim($clauObj->descripcion);
             $newContenido->tipo = 'P';
             $newContenido->save();
 
@@ -92,8 +92,7 @@ class ConveniosController extends Controller
                    $artObjt = (object)$art;
 
                    $newArt = new articulos();
-                   $_scpDetArt = str_replace('\n', "</br>", $artObjt->des_art);
-                   $newArt->des_art = ucfirst($_scpDetArt);
+                   $newArt->des_art = trim($$artObjt->des_art);
                    $newArt->subtipo = strtoupper($artObjt->subtipo);
                    $newArt->save();
 
@@ -124,63 +123,62 @@ class ConveniosController extends Controller
         $newConvenio->usuario_id = intval($data->id_usuario);
         $newConvenio->femisor_id = intval($data->selectFirmaEmisor);
         $newConvenio->freceptor_id = intval($data->selectFirmaReceptor);
-        $newConvenio->titulo_convenio = ucfirst($data->nombre_convenio);
+        $newConvenio->titulo_convenio = trim($data->nombre_convenio);
         $newConvenio->f_creaciondoc = date('Y-m-d H:i:s');
         $newConvenio->estado  = 'A';
         $newConvenio->tipo_documento = 'G';
-        $newConvenio->PDF = ucfirst($data->PDF);
+        $newConvenio->PDF = trim($data->PDF);
+        $newConvenio->imagen1_id=intval($data->id_imagen1);
+        $newConvenio->imagen2_id=intval($data->id_imagen2);
         $newConvenio->save();
 
-        //Crear tipo de convenio
-        $newTipoConvenio = new tipo_convenios();
-        $_scpCompar = str_replace('\n', "</br>",$data->comparecientes);
+       //Crear tipo de convenio
+       $newTipoConvenio = new tipo_convenios();
+       
+       $newTipoConvenio->descripcion_tc = trim($data->comparecientes);
+       $newTipoConvenio->nombretc_id = intval($data->id_tipoconvenio);
+       $newTipoConvenio->id_convenios = $newConvenio->id;
+       $newTipoConvenio->id_convenios_especificos = intval($data->id_tipoespecifico);
+       $newTipoConvenio->save();
 
-        $newTipoConvenio->descripcion_tc = ucfirst($_scpCompar);
-        $newTipoConvenio->nombretc_id = intval($data->id_tipoconvenio);
-        $newTipoConvenio->id_convenios = $newConvenio->id;
-        $newTipoConvenio->id_convenios_especificos = intval($data->id_tipoespecifico);
-        $newTipoConvenio->save();
+       //Recorrer las clausulas
+       foreach($data->clausulas as $clau){
+           // //Crear el contenido de la clausula
+           $clauObj = (object)$clau;
 
-        //Recorrer las clausulas
-        foreach($data->clausulas as $clau){
-            // //Crear el contenido de la clausula
-            $clauObj = (object)$clau;
+           $newContenido = new contenido();
+           $newContenido->des_cont = trim($clauObj->descripcion);
+           $newContenido->tipo = 'P';
+           $newContenido->save();
 
-            $newContenido = new contenido();
-            $_scpContClau = str_replace('\n', "</br>", $clauObj->descripcion);
-            $newContenido->des_cont = ucfirst($_scpContClau);
-            $newContenido->tipo = 'P';
-            $newContenido->save();
+           $existeConvenioClau = convenios_clausulas::where('id_convenios',  $newConvenio->id)
+           ->where('id_clausulas', intval($clauObj->id))->where('id_contenidos', $newContenido->id)->first();
 
-            $existeConvenioClau = convenios_clausulas::where('id_convenios',  $newConvenio->id)
-            ->where('id_clausulas', intval($clauObj->id))->where('id_contenidos', $newContenido->id)->first();
+           if($existeConvenioClau){
+               $newConvenioClau = $existeConvenioClau;
+           }else{
+               //Armar la relacion de convenios_clausulas
+               $newConvenioClau = new convenios_clausulas();
+               $newConvenioClau->id_convenios =  $newConvenio->id;
+               $newConvenioClau->id_clausulas = intval($clauObj->id);
+               $newConvenioClau->id_contenidos = $newContenido->id;
+               $newConvenioClau->save();
+           }
 
-            if($existeConvenioClau){
-                $newConvenioClau = $existeConvenioClau;
-            }else{
-                //Armar la relacion de convenios_clausulas
-                $newConvenioClau = new convenios_clausulas();
-                $newConvenioClau->id_convenios =  $newConvenio->id;
-                $newConvenioClau->id_clausulas = intval($clauObj->id);
-                $newConvenioClau->id_contenidos = $newContenido->id;
-                $newConvenioClau->save();
-            }
+           if(count($clauObj->articulos) > 0){
+               foreach($clauObj->articulos as $art){
+                  $artObjt = (object)$art;
 
-            if(count($clauObj->articulos) > 0){
-                foreach($clauObj->articulos as $art){
-                   $artObjt = (object)$art;
+                  $newArt = new articulos();
+                  $newArt->des_art = trim($$artObjt->des_art);
+                  $newArt->subtipo = strtoupper($artObjt->subtipo);
+                  $newArt->save();
 
-                   $newArt = new articulos();
-                   $_scpDetArt = str_replace('\n', "</br>", $artObjt->des_art);
-                   $newArt->des_art = ucfirst($_scpDetArt);
-                   $newArt->subtipo = strtoupper($artObjt->subtipo);
-                   $newArt->save();
-
-                   //Construir relacion contenidos-articulos
-                   $cont_art = new contenido_articulos();
-                   $cont_art->id_contenidos =  $newContenido->id;
-                   $cont_art->id_articulos = $newArt->id;
-                   $cont_art->save();
+                  //Construir relacion contenidos-articulos
+                  $cont_art = new contenido_articulos();
+                  $cont_art->id_contenidos =  $newContenido->id;
+                  $cont_art->id_articulos = $newArt->id;
+                  $cont_art->save();
                 }
             }
         }
