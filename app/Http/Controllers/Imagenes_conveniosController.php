@@ -23,7 +23,7 @@ class Imagenes_conveniosController extends Controller
     public function insertImgcon(Request $request){
         $data = (object)$request->data;
         $newImagen = new imagenes_convenios();
-        $newImagen->nombre=trim(ucfirst($data->nombre));
+        $newImagen->nombre=trim($data->nombre);
         $newImagen->url_imagen=trim($data->url_imagen);
         $newImagen->estado="A";
         $newImagen->save();
