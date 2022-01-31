@@ -149,7 +149,7 @@ class ConveniosController extends Controller
 
            $newContenido = new contenido();
            $newContenido->des_cont = trim($clauObj->descripcion);
-           $newContenido->tipo = 'G';
+           $newContenido->tipo = 'P';
            $newContenido->save();
 
            $existeConvenioClau = convenios_clausulas::where('id_convenios',  $newConvenio->id)
@@ -468,6 +468,8 @@ class ConveniosController extends Controller
 
                 $convenio->PDF = trim($data->PDF);
                 $convenio->tipo_documento = 'A';
+                $convenio->fecha_firma=$data->fecha_inicio;
+                $convenio->fecha_fin=$data->fecha_fin;
                 $convenio->save();
 
                 $response = [
