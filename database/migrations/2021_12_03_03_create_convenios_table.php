@@ -27,7 +27,7 @@ class CreateConveniosTable extends Migration
             $table->unsignedBigInteger('imagen2_id');
             $table->foreign('imagen2_id')->references('id')->on('imagenes_convenios')->onDelete('cascade')->onUpdate('cascade');
             $table->string('titulo_convenio');
-            $table->timestamp('f_creaciondoc')->default(convenios::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->timestamp('f_creaciondoc')->default(convenios::raw('CURRENT_TIMESTAMP'));
             $table->enum('estado',['A','D']);
             $table->enum('tipo_documento',['P','G','A']); //Guardado, Plantilla, Aprobado
             $table->longText('PDF')->nullable();
