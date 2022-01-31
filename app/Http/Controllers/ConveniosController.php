@@ -468,6 +468,8 @@ class ConveniosController extends Controller
 
                 $convenio->PDF = trim($data->PDF);
                 $convenio->tipo_documento = 'A';
+                $convenio->fecha_firma=$data->fecha_inicio;
+                $convenio->fecha_fin=$data->fecha_fin;
                 $convenio->save();
 
                 $response = [
