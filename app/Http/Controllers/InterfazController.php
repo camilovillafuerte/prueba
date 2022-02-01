@@ -132,6 +132,7 @@ class InterfazController extends Controller
     {
         $carrosel = (object)$request->data;
         $con=0;
+        $con2=0;
         foreach($carrosel->imagen as $img){
             $imgObj = (object)$img;
             if($imgObj->id==0)
@@ -141,7 +142,7 @@ class InterfazController extends Controller
                 $newInterfaz->usuario_id=intval($imgObj->usuario_id);
                 $newInterfaz->nombre= ucfirst(trim($imgObj->nombre));
                 $newInterfaz->descripcion= ucfirst(trim($imgObj->descripcion));
-                $newInterfaz->urlimagen=$imgObj->urlimagen;
+                $newInterfaz->imagen_id=$imgObj->id_imagen;
                 $newInterfaz->estado='A';
                 $newInterfaz->save();
                 $con++;
@@ -150,18 +151,28 @@ class InterfazController extends Controller
                 $update = interfaz_contenido::find(intval($imgObj->id));
                 $update->nombre=ucfirst(trim($imgObj->nombre));
                 $update->descripcion=ucfirst(trim($imgObj->descripcion));
-                $update->urlimagen=$imgObj->urlimagen;
+                $update->imagen_id=$imgObj->id_imagen;
                 $update->save();
                 $con++;
             }
 
         }
+        foreach($carrosel->eliminar as $eli)
+        {
+            $eliObj = (object)$eli;
+            $update_eli=interfaz_contenido::find(intval($eliObj->id));
+            $update_eli->estado="D";
+            $update_eli->save();
+            $con2++;
+        }
 
-        if($con==count($carrosel->imagen))
+
+        if($con==count($carrosel->imagen) && ($con2==count($carrosel->eliminar)))
         {
             $response=[
                 'estado'  => true,
-                'mensaje' => 'Imagen Insertada o Modificado'
+
+                'mensaje' => 'Imagen Insertada, Modificado o Eliminada'
             ];
         }
         else
@@ -169,6 +180,7 @@ class InterfazController extends Controller
             $response=[
                 'estado'  => false,
                 'numero de ingresados o modificados'=>$con,
+                'numero de eliminados'=>$con2,
                 'mensaje' => 'Imagen Insertada o Modificado'
             ];
 

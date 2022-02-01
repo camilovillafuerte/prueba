@@ -11,6 +11,7 @@ use App\Models\convenios;
 use App\Models\convenios_clausulas;
 use App\Models\imagenes_convenios;
 use App\Models\tipo_convenios;
+use DateTime;
 use Illuminate\Support\Facades\Storage;
 
 class ConveniosController extends Controller
@@ -491,4 +492,7 @@ class ConveniosController extends Controller
 
         return response()->json($response);
    }
+
+
+   
 }

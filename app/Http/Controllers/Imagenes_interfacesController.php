@@ -21,8 +21,17 @@ class Imagenes_interfacesController extends Controller
     }
 
     public function insertImginter(Request $request){
-        $fusuario = imagenes_interfaces::create ($request->all());
-        return response($fusuario,200);
+        $data = (object)$request->data;
+        $newImagen = new imagenes_interfaces();
+        $newImagen->nombre=trim($data->nombre);
+        $newImagen->url_imagen=trim($data->url_imagen);
+        $newImagen->estado="A";
+        $newImagen->save();
+        $response = [
+            'estado'  => true,
+            'mensaje' => 'Imagen guardada'
+        ];
+        return response()->json($response);
     }
 
     public function updateImginter(Request $request,$id){
