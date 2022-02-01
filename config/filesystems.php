@@ -95,6 +95,15 @@ return [
             'root' => '/Contenido/Imagenes/'// for example: /var/www/html/dev/images
         ],
 
+        'ftp4' => [
+            'driver' => 'ftp',
+            'host' => env('FTP_HOST'),
+            'port' => env('FTP_PORT', '21'),
+            'username' => env('FTP_USERNAME'),
+            'password' => env('FTP_PASSWORD'),
+            'root' => '/Contenido/Informacion/'// for example: /var/www/html/dev/images
+        ],
+
     ],
 
     /*
