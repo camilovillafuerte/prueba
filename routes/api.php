@@ -8,6 +8,7 @@ use App\Http\Controllers\Firma_receptorController;
 use App\Http\Controllers\FirmasController;
 use App\Http\Controllers\Imagenes_conveniosController;
 use App\Http\Controllers\Imagenes_interfacesController;
+use App\Http\Controllers\Interfaz_contenidoController;
 use App\Http\Controllers\InterfazController;
 use App\Http\Controllers\MailerController;
 use App\Http\Controllers\Nombre_tipoconvenioController;
@@ -306,3 +307,6 @@ Route::post('imagen-carrusel',[InterfazController::class, 'subirImagenServidor']
 //carrosel
 Route::post('update/carrosel',[InterfazController::class, 'updateCarrosel']);
 Route::put('delete/carrosel',[InterfazController::class, 'deleteCarrosel']);
+
+//Ruta para subir documento al servidor ftp
+Route::post('documento/mas-informacion', [Interfaz_contenidoController::class, 'subirDocumento']);
