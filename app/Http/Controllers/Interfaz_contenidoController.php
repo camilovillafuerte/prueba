@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Storage;
 
 class Interfaz_contenidoController extends Controller
 {
+    private $baseCtrl;
+
+    public function __construct(){
+        $this->baseCtrl = new BaseController();
+    }
     //método con json para probar si funciona con postman
 
     public function getInterfazconprueba(){
