@@ -13,6 +13,7 @@ use App\Http\Controllers\InterfazController;
 use App\Http\Controllers\MailerController;
 use App\Http\Controllers\Nombre_tipoconvenioController;
 use App\Http\Controllers\PdfController;
+use App\Http\Controllers\PersonalController;
 use App\Http\Controllers\UsuarioController;
 use App\Models\firmas;
 use App\Models\interfaz;
@@ -232,6 +233,14 @@ Route::get('/nombretc/{id}','App\Http\Controllers\Nombre_tipoconvenioController@
 Route::post('/addNombretc','App\Http\Controllers\Nombre_tipoconvenioController@insertNombre_tc');
 Route::put('/updateNombretc/{id}','App\Http\Controllers\Nombre_tipoconvenioController@updateNombre_tc');
 Route::delete('/deleteNombretc/{id}','App\Http\Controllers\Nombre_tipoconvenioController@deleteNombre_tc');
+
+//Ruta tabla personal de la UTM
+Route::get('/personal', [PersonalController::class, 'getPersonal']);
+Route::get('/personal/{id}', [PersonalController::class, 'getPersonalxid']);
+Route::post('/addPersonal', [PersonalController::class, 'insertPersonal']);
+Route::put('/updatePersonal', [PersonalController::class, 'updatePersonal']);
+Route::delete('/deletePersonal', [PersonalController::class, 'deletePersonal']);
+
 
 //Ruta de firmas
 Route::get('firma-new', [FirmasController::class, 'getFirmas_new']);
