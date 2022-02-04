@@ -287,6 +287,7 @@ Route::get('convenio/get/{id}',[ConveniosController::class,'findconvenio']);
 Route::put('convenio/eliminar', [ConveniosController::class, 'eliminarConvenio']);
 Route::put('convenio/update/aprobado', [ConveniosController::class, 'updateConveniosAprobados']);
 Route::put('convenio/update/pdf', [ConveniosController::class, 'updatePDFURl']);
+Route::put('convenio/all/update', [ConveniosController::class, 'updateAllConvenio']);
 
 //Rutas para clausalas
 Route::get('clausulas-new', [ClausulasController::class, 'getClausulas_v2']);
@@ -310,7 +311,6 @@ Route::get('eliminar-archivo',[PdfController::class,'eliminarArchivos']);
 
 //Subir imagen de carrusel
 Route::post('imagen-carrusel',[InterfazController::class, 'subirImagenServidor'] );
-
 
 //carrosel
 Route::post('update/carrosel',[InterfazController::class, 'updateCarrosel']);
