@@ -110,7 +110,7 @@ class InterfazController extends Controller
 
             Storage::disk('ftp3')->put($filenametostore, fopen($request->file('img'), 'r+'));
 
-           $url = $this->baseCtrl->getUrlServer('/Contenido/Imagenes/');
+           $url = $this->baseCtrl->getUrlServer('Contenido/Imagenes/');
 
             $response = [
                 'estado' => true,

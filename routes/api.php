@@ -318,3 +318,6 @@ Route::put('delete/carrosel',[InterfazController::class, 'deleteCarrosel']);
 
 //Ruta para subir documento al servidor ftp
 Route::post('documento/mas-informacion', [Interfaz_contenidoController::class, 'subirDocumento']);
+
+//modificar la pagina Nosotros
+Route::put('pagina-nosotros/update',[Interfaz_contenidoController::class,'updateNosotros']);

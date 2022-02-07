@@ -390,7 +390,7 @@ class ConveniosController extends Controller
 
             Storage::disk('ftp2')->put($filenametostore, fopen($request->file('document'), 'r+'));
 
-            $url = $this->baseCtrl->getUrlServer('/Contenido/ConveniosGuardados/');
+            $url = $this->baseCtrl->getUrlServer('Contenido/ConveniosGuardados/');
 
             $response = [
                 'estado' => true,
