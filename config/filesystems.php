@@ -74,6 +74,7 @@ return [
             'port' => env('FTP_PORT', '21'),
             'username' => env('FTP_USERNAME'),
             'password' => env('FTP_PASSWORD'),
+            'utf8' => true,
             'root' => '/Contenido/ImagenesPerfil'// for example: /var/www/html/dev/images
         ],
 
@@ -83,6 +84,7 @@ return [
             'port' => env('FTP_PORT', '21'),
             'username' => env('FTP_USERNAME'),
             'password' => env('FTP_PASSWORD'),
+            'utf8' => true,
             'root' => '/Contenido/ConveniosGuardados/'// for example: /var/www/html/dev/images
         ],
 
@@ -92,6 +94,7 @@ return [
             'port' => env('FTP_PORT', '21'),
             'username' => env('FTP_USERNAME'),
             'password' => env('FTP_PASSWORD'),
+            'utf8' => true,
             'root' => '/Contenido/Imagenes/'// for example: /var/www/html/dev/images
         ],
 
@@ -101,6 +104,7 @@ return [
             'port' => env('FTP_PORT', '21'),
             'username' => env('FTP_USERNAME'),
             'password' => env('FTP_PASSWORD'),
+            'utf8' => true,
             'root' => '/Contenido/Informacion/'// for example: /var/www/html/dev/images
         ],
 
