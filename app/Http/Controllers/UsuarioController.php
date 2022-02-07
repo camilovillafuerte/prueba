@@ -145,7 +145,7 @@ class UsuarioController extends Controller{
 
             Storage::disk('ftp')->put($filenametostore, fopen($request->file('img_user'), 'r+'));
 
-           $url = $this->baseCtrl->getUrlServer('/Contenido/ImagenesPerfil');
+           $url = $this->baseCtrl->getUrlServer('Contenido/ImagenesPerfil');
 
             $response = [
                 'estado' => true,

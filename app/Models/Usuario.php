@@ -9,7 +9,7 @@ class Usuario extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $filleable = ['cedula','nombres','apellidos','genero','telefono','correo','contrasena', 'token', 'foto','estado'];
+    protected $filleable = ['personal_id','cedula','nombres','apellidos','genero','telefono','correo','contrasena', 'token', 'foto','estado'];
     protected $hidden = ["contrasena"];
 
     //Relacion de uno a muchos
@@ -38,4 +38,10 @@ class Usuario extends Model
     public function cargo_usuario(){
         return $this -> belongsToMany(cargo_usuario::class,'usuario_id');
     }
+
+     //Relacion de uno a muchos
+     public function Personal()
+     {
+         return $this->hasMany('App\Models\personal');
+     }
 }

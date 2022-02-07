@@ -72,7 +72,7 @@ class Interfaz_contenidoController extends Controller
 
             Storage::disk('ftp4')->put($filenametostore, fopen($request->file('document'), 'r+'));
 
-           $url = $this->baseCtrl->getUrlServer('/Contenido/Informacion/');
+           $url = $this->baseCtrl->getUrlServer('Contenido/Informacion/');
 
             $response = [
                 'estado' => true,
@@ -89,4 +89,54 @@ class Interfaz_contenidoController extends Controller
 
         return response()->json($response);
     }
+    public function updateNosotros(Request $request)
+    {
+        $data=(Object)$request->data;
+        $objetivo=Interfaz_contenido::find(intval($data->id_objetivo));
+        $mision=Interfaz_contenido::find(intval($data->id_mision));
+        $vision=Interfaz_contenido::find(intval($data->id_vision));
+        $masInformacion=Interfaz_contenido::find(intval($data->id_masInformacion));
+        $objetivoInicio=Interfaz_contenido::find(intval($data->id_objetivo_inicio));
+        $misionInicio=Interfaz_contenido::find(intval($data->id_mision_inicio));
+        $visionInicio=Interfaz_contenido::find(intval($data->id_vision_inicio));
+        $response=[];
+
+        if($objetivo && $mision && $vision && $masInformacion && $objetivoInicio && $misionInicio && $visionInicio)
+        {
+            $objetivo->descripcion=trim($data->objetivo);
+            $mision->descripcion=trim($data->mision);
+            $vision->descripcion=trim($data->vision);
+            $masInformacion->descripcion=ucfirst(trim($data->masInformacion));
+            $masInformacion->PDF=trim($data->pdfmasinformacion);
+
+            $objetivoInicio->descripcion=trim($data->objetivo);
+            $misionInicio->descripcion=trim($data->mision);
+            $visionInicio->descripcion=trim($data->vision);
+
+            $objetivo->save();
+            $mision->save();
+            $vision->save();
+            $masInformacion->save();
+            $objetivoInicio->save();
+            $misionInicio->save();
+            $visionInicio->save();
+
+            $response=[
+                'estado'=>true,
+                'mensaje'=>'Se actualizo correctamente los datos'
+            ];
+        }
+        else
+        {
+            $response=[
+                'estado'=>false,
+                'mensaje'=>'No se puedo actualizar los datos'
+
+            ];
+        }
+
+        return response()->json($response);
+
+    }
+
 }

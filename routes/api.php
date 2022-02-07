@@ -13,6 +13,7 @@ use App\Http\Controllers\InterfazController;
 use App\Http\Controllers\MailerController;
 use App\Http\Controllers\Nombre_tipoconvenioController;
 use App\Http\Controllers\PdfController;
+use App\Http\Controllers\PersonalController;
 use App\Http\Controllers\UsuarioController;
 use App\Models\firmas;
 use App\Models\interfaz;
@@ -233,6 +234,14 @@ Route::post('/addNombretc','App\Http\Controllers\Nombre_tipoconvenioController@i
 Route::put('/updateNombretc/{id}','App\Http\Controllers\Nombre_tipoconvenioController@updateNombre_tc');
 Route::delete('/deleteNombretc/{id}','App\Http\Controllers\Nombre_tipoconvenioController@deleteNombre_tc');
 
+//Ruta tabla personal de la UTM
+Route::get('/personal', [PersonalController::class, 'getPersonal']);
+Route::get('/personal/{id}', [PersonalController::class, 'getPersonalxid']);
+Route::post('/addPersonal', [PersonalController::class, 'insertPersonal']);
+Route::put('/updatePersonal', [PersonalController::class, 'updatePersonal']);
+Route::delete('/deletePersonal', [PersonalController::class, 'deletePersonal']);
+
+
 //Ruta de firmas
 Route::get('firma-new', [FirmasController::class, 'getFirmas_new']);
 Route::post('firma-new', [FirmasController::class, 'insertarFirmas']);
@@ -279,6 +288,7 @@ Route::get('convenio/get/{id}',[ConveniosController::class,'findconvenio']);
 Route::put('convenio/eliminar', [ConveniosController::class, 'eliminarConvenio']);
 Route::put('convenio/update/aprobado', [ConveniosController::class, 'updateConveniosAprobados']);
 Route::put('convenio/update/pdf', [ConveniosController::class, 'updatePDFURl']);
+Route::put('convenio/all/update', [ConveniosController::class, 'updateAllConvenio']);
 
 //Rutas para clausalas
 Route::get('clausulas-new', [ClausulasController::class, 'getClausulas_v2']);
@@ -303,10 +313,12 @@ Route::get('eliminar-archivo',[PdfController::class,'eliminarArchivos']);
 //Subir imagen de carrusel
 Route::post('imagen-carrusel',[InterfazController::class, 'subirImagenServidor'] );
 
-
 //carrosel
 Route::post('update/carrosel',[InterfazController::class, 'updateCarrosel']);
 Route::put('delete/carrosel',[InterfazController::class, 'deleteCarrosel']);
 
 //Ruta para subir documento al servidor ftp
 Route::post('documento/mas-informacion', [Interfaz_contenidoController::class, 'subirDocumento']);
+
+//modificar la pagina Nosotros
+Route::put('pagina-nosotros/update',[Interfaz_contenidoController::class,'updateNosotros']);
