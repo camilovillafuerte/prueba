@@ -139,4 +139,41 @@ class Interfaz_contenidoController extends Controller
 
     }
 
+
+    public function updateConvenio(Request $request){
+        $data=(Object)$request->data;
+
+        $marco=interfaz_contenido::find(intval($data->id_marco));
+        $marcoI=interfaz_contenido::find(intval($data->id_marcoInt));
+        $especifico=interfaz_contenido::find(intval($data->id_especifico));
+        $reglamento=interfaz_contenido::find(intval($data->id_reglamento));
+
+        if($marco && $marcoI && $especifico && $reglamento)
+        {
+            $marco->descripcion=trim($data->marco);
+            $marcoI->descripcion=trim($data->marcoInt);
+            $especifico->descripcion=trim($data->especifico);
+            $reglamento->descripcion=trim($data->reglamento);
+            $marco->save();
+            $marcoI->save();
+            $especifico->save();
+            $reglamento->save();
+
+            $response=[
+              'estado'=>true,
+              'mensaje'=>'Se actualizo los datos correctamente....!!'
+
+            ];
+        }
+        else{
+            $response=[
+                'estado'=>false,
+                'mensaje'=>'No se puedo actualizar los datos'
+
+            ];
+        }
+
+        return response()->json($response);
+
+    }
 }
