@@ -323,3 +323,6 @@ Route::post('documento/mas-informacion', [Interfaz_contenidoController::class, '
 
 //modificar la pagina Nosotros
 Route::put('pagina-nosotros/update',[Interfaz_contenidoController::class,'updateNosotros']);
+
+//modificar la pagina Convenios
+Route::put('pagina-convenios/update',[Interfaz_contenidoController::class,'updateConvenio']);
