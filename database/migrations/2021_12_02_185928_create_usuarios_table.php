@@ -12,7 +12,7 @@ class CreateUsuariosTable extends Migration
     {    Schema::create('usuarios', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('personal_id');
-            $table->foreign('personal_id')->references('id')->on('personal')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('personal_id','constrainfk')->references('id')->on('esq_datos_personales.personal')->onDelete('cascade')->onUpdate('cascade');
             $table->string('cedula');
             $table->string('nombres');
             $table->string('apellidos');

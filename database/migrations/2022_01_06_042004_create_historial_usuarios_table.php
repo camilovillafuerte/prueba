@@ -21,7 +21,7 @@ class CreateHistorialUsuariosTable extends Migration
             $table->string('titulo');
             $table->string('detalle');
             $table->string('extra');
-            $table->timestamp('fecha_creacion')->default(historial_usuario::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->timestamp('fecha_creacion');//->default(historial_usuario::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 
