@@ -13,7 +13,8 @@ class CreatePersonalTable extends Migration
      */
     public function up()
     {
-        Schema::create('personal', function (Blueprint $table) {
+
+       /* Schema::connection('pgsql2')->create('personal', function(Blueprint $table){
             $table->bigIncrements('id');
             $table->string('cedula');
             $table->string('apellido1')->nullable();
@@ -145,7 +146,7 @@ class CreatePersonalTable extends Migration
             $table->string('familiar_apellido_1')->nullable();
             $table->string('familiar_apellido_2')->nullable();
             $table->string('familiar_nombres')->nullable();
-            $table->string('control_asistencia');
+            $table->enum('control_asistencia',['S','N']);
             $table->timestamp('fecha_registro');
             $table->integer('idtipo_nivel_instruccion');
             $table->json('json_problemas_salud')->nullable();
@@ -197,7 +198,7 @@ class CreatePersonalTable extends Migration
             $table->date('fecha_encuesta_vacuna')->nullable();
 
 
-        });
+        });*/
     }
 
     /**
@@ -207,6 +208,6 @@ class CreatePersonalTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('personal');
+        Schema::connection('pgsql2')->dropIfExists('personal');
     }
 }

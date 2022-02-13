@@ -7,6 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class personal extends Model
 {
+ /**
+     * The database connection used by the model.
+     *
+     * @var string
+     */
+    protected $connection = 'pgsql2';
+
+    /**
+    * The database table used by the model.
+    *
+    * @var string
+    */
+    protected $table = 'personal';
+
+
     use HasFactory;
     public $timestamps = false;
     protected $filleable = ['id','cedula','apellido1','apellido2','nombres','genero',
