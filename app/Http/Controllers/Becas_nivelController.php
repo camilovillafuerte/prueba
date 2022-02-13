@@ -31,11 +31,79 @@ class Becas_nivelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $data = (object)$request->data;
+        $nombre=trim(ucfirst($data->nombre));
+        $existe = becas_nivel::where('nombre', $nombre)->where('tipo',trim($data->tipo))->first();
+        if($existe){    //Existe el nombre de la firma del emisor
+            $response = [
+                'estado' => false,
+                'mensaje' => 'La categoria ya se encuentra registrada !'
+            ];
+        }else{
+            $new = new becas_nivel();
+            $new->usuario_id= intval($data->id_usuario);
+            $new->nombre=$nombre;
+            $new->tipo=trim($data->tipo);
+            $new->estado="A";
+            $new->save();
+
+            $response = [
+                'estado' => true,
+                'mensaje' => 'Se ha registrado la categoria beca!'
+            ]; 
+         }
+         return response()->json($response);
     }
 
+    public function updateEstado(Request $request){
+        $data = (object)$request->data;
+        $existe = becas_nivel::where('id',trim(intval($data->id)))->first();
+        if($existe)
+        {
+            $existe->estado=trim($data->estado);
+            $existe->save();
+            $response=[
+                'estado'=>true,
+                'mensaje'=>'Se cambio el estado con exito'
+            ];
+        }
+        else
+        {
+            $response=[
+                'estado'=>false,
+                'mensaje'=>'No encontro la categoria becas .....!!'
+            ];
+        }
+        return response()->json($response);
+    }
+    public function updatenombre(Request $request)
+    {
+        $data = (object)$request->data;
+        $nombre=trim(ucfirst($data->nombre));
+        $existe = becas_nivel::where('id', intval($data->id))->first();
+        if($existe)
+        {
+            $existe->nombre=trim($nombre);
+            $existe->save();
+            $response=[
+                'estado'=>true,
+                'mensaje'=>'Se actualizo la categoria con exito....!!'
+            ];
+
+
+        }
+        else
+        {
+            $response=[
+                'estado'=>false,
+                'mensaje'=>'No encontro la categoria becas .....!!'
+            ];
+        }
+
+        return response()->json($response);
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -118,7 +186,7 @@ class Becas_nivelController extends Controller
     public function getBecas_niveldes(){
         $becas2 = DB::table('becas_nivels')
         -> select('id', 'usuario_id','nombre', 'tipo', 'estado','fecha_creacion')
-        -> where('estado','A') 
+        //-> where('estado','A') 
         -> orderBy('id', 'DESC')
         -> get();
         //-> toJson();

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Becas_nivelController;
 use App\Http\Controllers\ClausulasController;
 use App\Http\Controllers\Convenios_especificosController;
 use App\Http\Controllers\ConveniosController;
@@ -324,3 +325,8 @@ Route::put('pagina-nosotros/update',[Interfaz_contenidoController::class,'update
 
 //modificar la pagina Convenios
 Route::put('pagina-convenios/update',[Interfaz_contenidoController::class,'updateConvenio']);
+
+//becas nivel
+Route::post('pagina-becas/add',[Becas_nivelController::class,'create']);
+Route::put('pagina-becas/update/estado',[Becas_nivelController::class,'updateEstado']);
+Route::put('pagina-becas/update',[Becas_nivelController::class,'updatenombre']);
