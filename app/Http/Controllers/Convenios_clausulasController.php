@@ -40,6 +40,7 @@ class Convenios_clausulasController extends Controller
         $con_clau->id_convenios= $request->id_convenios;
         $con_clau->id_clausulas= $request->id_clausulas;
         $con_clau->id_contenidos= $request->id_contenidos;
+        $con_clau->estado= $request->estado;
         $con_clau->save();
     }
 

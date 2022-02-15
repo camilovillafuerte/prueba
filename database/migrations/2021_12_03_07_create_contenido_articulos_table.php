@@ -14,7 +14,7 @@ class CreateContenidoArticulosTable extends Migration
     public function up()
     {
         Schema::create('contenido_articulos', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->unsignedBigInteger('id_contenidos');
             $table->unsignedBigInteger('id_articulos');
             $table->enum('estado',['A','D']);

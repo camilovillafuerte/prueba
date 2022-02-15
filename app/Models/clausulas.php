@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class clausulas extends Model
 {
     use HasFactory;
-
+    protected $connection = 'pgsql';
     public $timestamps = false;
     protected $fillable = ['id','nombre_clau'];
     public $table = "clausulas";

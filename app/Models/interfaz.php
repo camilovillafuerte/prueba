@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class interfaz extends Model
 {
     use HasFactory;
+    protected $connection = 'pgsql';
     public $timestamps = false;
     protected $fillable = ['id','nombre','pagina'];
 

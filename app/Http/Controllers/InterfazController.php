@@ -161,7 +161,7 @@ class InterfazController extends Controller
         {
             $eliObj = (object)$eli;
             $update_eli=interfaz_contenido::find(intval($eliObj->id));
-            $update_eli->estado="D";
+            $update_eli->estado='D';
             $update_eli->save();
             $con2++;
         }

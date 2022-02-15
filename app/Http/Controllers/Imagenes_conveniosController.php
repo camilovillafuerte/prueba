@@ -25,7 +25,7 @@ class Imagenes_conveniosController extends Controller
         $newImagen = new imagenes_convenios();
         $newImagen->nombre=trim($data->nombre);
         $newImagen->url_imagen=trim($data->url_imagen);
-        $newImagen->estado="A";
+        $newImagen->estado='A';
         $newImagen->save();
         $response = [
             'estado'  => true,

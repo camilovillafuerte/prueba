@@ -14,7 +14,7 @@ class CreateConveniosClausulasTable extends Migration
     public function up()
     {
         Schema::create('convenios_clausulas', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->unsignedBigInteger('id_convenios');
             $table->unsignedBigInteger('id_clausulas');
             $table->unsignedBigInteger('id_contenidos');

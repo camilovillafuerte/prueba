@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class bibliotecavirtual extends Model
 {
     use HasFactory;
+    protected $connection = 'pgsql';
     public $timestamps = false;
     protected $fillable = ['id','nombre_uni','url_biblioteca','url_pprincipal'];
 }

@@ -14,7 +14,7 @@ class CreateCargoUsuariosTable extends Migration
     public function up()
     {
         Schema::create('cargo_usuarios', function (Blueprint $table) {
-            $table->id('id');
+            $table->id();
             $table->unsignedBigInteger('usuario_id');
             $table->enum('estado',['A','D']);
             $table->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('cascade')->onUpdate('cascade');
