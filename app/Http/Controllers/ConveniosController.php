@@ -106,6 +106,7 @@ class ConveniosController extends Controller
                     $cont_art = new contenido_articulos();
                     $cont_art->id_contenidos =  $newContenido->id;
                     $cont_art->id_articulos = $newArt->id;
+                    $cont_art->estado='A';
                     $cont_art->save();
                 }
             }
@@ -186,6 +187,7 @@ class ConveniosController extends Controller
                     $cont_art = new contenido_articulos();
                     $cont_art->id_contenidos =  $newContenido->id;
                     $cont_art->id_articulos = $newArt->id;
+                    $cont_art->estado='A';
                     $cont_art->save();
                 }
             }
