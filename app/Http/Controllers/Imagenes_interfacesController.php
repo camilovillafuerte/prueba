@@ -25,7 +25,7 @@ class Imagenes_interfacesController extends Controller
         $newImagen = new imagenes_interfaces();
         $newImagen->nombre=trim($data->nombre);
         $newImagen->url_imagen=trim($data->url_imagen);
-        $newImagen->estado="A";
+        $newImagen->estado='A';
         $newImagen->save();
         $response = [
             'estado'  => true,

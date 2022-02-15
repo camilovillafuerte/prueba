@@ -46,7 +46,7 @@ class Becas_nivelController extends Controller
             $new->usuario_id= intval($data->id_usuario);
             $new->nombre=$nombre;
             $new->tipo=trim($data->tipo);
-            $new->estado="A";
+            $new->estado='A';
             $new->save();
 
             $response = [
