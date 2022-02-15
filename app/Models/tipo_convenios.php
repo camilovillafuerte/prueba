@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class tipo_convenios extends Model
 {
     use HasFactory;
+    protected $connection = 'pgsql';
     public $table = "tipo_convenios";
     public $timestamps = false;
     protected $fillable = ['id','nombretc_id','descripcion_tc','id_convenios','id_convenios_especificos'];

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class imagenes_interfaces extends Model
 {
     use HasFactory;
+    protected $connection = 'pgsql';
     public $timestamps = false;
     protected $fillable = ['id','nombre','url_imagen','estado'];
 

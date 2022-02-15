@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Usuario extends Model
 {
     use HasFactory;
+    protected $connection = 'pgsql';
     public $timestamps = false;
     protected $filleable = ['personal_id','cedula','nombres','apellidos','genero','telefono','correo','contrasena', 'token', 'foto','estado'];
     protected $hidden = ["contrasena"];

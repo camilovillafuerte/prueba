@@ -13,6 +13,7 @@ use App\Models\imagenes_convenios;
 use App\Models\tipo_convenios;
 use DateTime;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class ConveniosController extends Controller
 {
@@ -209,12 +210,19 @@ class ConveniosController extends Controller
     public function store(Request $request)
     {
         $convenios = new convenios();
-        $convenios->cedula_usuario = $request->cedula_usuario;
+        $convenios->usuario_id = $request->usuario_id;
+        $convenios->femisor_id = $request->femisor_id;
+        $convenios->freceptor_id = $request->freceptor_id;
+        $convenios->imagen1_id = $request->imagen1_id;
+        $convenios->imagen2_id = $request->imagen2_id;
         $convenios->titulo_convenio = $request->titulo_convenio;
         $convenios->f_creaciondoc = $request->f_creaciondoc;
         $convenios->estado = $request->estado;
         $convenios->tipo_documento = $request->tipo_documento;
         $convenios->PDF = $request->PDF;
+        $convenios->fecha_firma = $request-> fecha_firma;
+        $convenios->fecha_fin = $request-> fecha_fin;
+        
         $convenios->save();
     }
 
@@ -652,4 +660,15 @@ class ConveniosController extends Controller
 
         return response()->json($response);
     }
+
+    public function InsertConveniosSQL(){
+        $conve = DB::insert('insert into convenios (id, name) values (?, ?)', [1, 'Dayle']);
+
+        //-> toJson();
+        return response() -> json ($conve);
+     
+
+    }
+
+
 }

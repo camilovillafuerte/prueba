@@ -229,11 +229,11 @@ Route::put('/updateHusuario/{id}','App\Http\Controllers\HistorialController@upda
 Route::delete('/deleteHusuario/{id}','App\Http\Controllers\HistorialController@deleteHistorial');
 
 //Ruta para tabla nombre_tipoconvenios
-Route::get('/nombretc','App\Http\Controllers\Nombre_tipoconvenioController@getNombre_tc');
-Route::get('/nombretc/{id}','App\Http\Controllers\Nombre_tipoconvenioController@getNombre_tcxid');
-Route::post('/addNombretc','App\Http\Controllers\Nombre_tipoconvenioController@insertNombre_tc');
-Route::put('/updateNombretc/{id}','App\Http\Controllers\Nombre_tipoconvenioController@updateNombre_tc');
-Route::delete('/deleteNombretc/{id}','App\Http\Controllers\Nombre_tipoconvenioController@deleteNombre_tc');
+Route::get('/nombretc',[Nombre_tipoconvenioController::class, 'getNombre_tc']);
+Route::get('/nombretc/{id}',[Nombre_tipoconvenioController::class, 'getNombre_tcxid']);
+Route::post('/addNombretc',[Nombre_tipoconvenioController::class, 'insertNombre_tc']);
+Route::put('/updateNombretc/{id}',[Nombre_tipoconvenioController::class, 'updateNombre_tc']);
+Route::delete('/deleteNombretc/{id}',[Nombre_tipoconvenioController::class, 'deleteNombre_tc']);
 
 //Ruta tabla personal de la UTM
 Route::get('/personal', [PersonalController::class, 'getPersonal']);

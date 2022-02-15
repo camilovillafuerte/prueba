@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class becas_nivel extends Model
 {
     use HasFactory;
+    protected $connection = 'pgsql';
     public $timestamps = false;
     protected $fillable = ['id','usuario_id','nombre','tipo','estado','fecha_creacion'];
 

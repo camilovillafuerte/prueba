@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class cargo_usuario extends Model
 {
     use HasFactory;
+    protected $connection = 'pgsql';
     public $timestamps = false;
     protected $fillable = ['fusuarios_id','usuario_id','cargos_id'];
 

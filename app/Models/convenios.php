@@ -9,6 +9,7 @@ class convenios extends Model
 {
     use HasFactory;
 
+    protected $connection = 'pgsql';
     public $table = "convenios";
     public $timestamps = false;
     protected $fillable = ['id', 'usuario_id', 'femisor_id', 'freceptor_id','imagen1_id','imagen2_id' ,'titulo_convenio', 'f_creaciondoc', 'estado', 'tipo_documento', 'PDF','fecha_firma','fecha_fin'];

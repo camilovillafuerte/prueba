@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class historial_usuario extends Model
 {
     use HasFactory;
+    protected $connection = 'pgsql';
     public $timestamps = false;
     protected $fillable = ['id','usuario_id','titulo','detalle','extra','fecha_creacion'];
 
