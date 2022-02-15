@@ -330,3 +330,6 @@ Route::put('pagina-convenios/update',[Interfaz_contenidoController::class,'updat
 Route::post('pagina-becas/add',[Becas_nivelController::class,'create']);
 Route::put('pagina-becas/update/estado',[Becas_nivelController::class,'updateEstado']);
 Route::put('pagina-becas/update',[Becas_nivelController::class,'updatenombre']);
+
+//becas nivel body
+Route::get('pagina-becas-body/get/{id}',[Becas_nivel_bodyController::class,'getBecasnivelBody']);

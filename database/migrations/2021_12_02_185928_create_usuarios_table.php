@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateUsuariosTable extends Migration
 {
+    protected $connection = 'pgsql';
+   
+    
     /**
      * @return void
      */

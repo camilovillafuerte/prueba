@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\becas_nivel;
 use Illuminate\Http\Request;
 use App\Models\becas_nivel_body;
 use Illuminate\Support\Facades\DB;
@@ -19,6 +20,42 @@ class Becas_nivel_bodyController extends Controller
         $becas_body = DB::select($sql);
         //$becas_body = becas_nivel_body::all();
        return $becas_body;
+    }
+
+
+    public function getBecasnivelBody($id)
+    {
+
+       $becas=[];
+       $existe=becas_nivel::find(intval($id));
+ 
+       if($existe)
+       {
+           $becas_body=becas_nivel_body::where('id_becas_nivels',$existe->id)->where('estado','A')->get();
+
+           foreach($becas_body as $be)
+           {
+               $becasObj=(Object)$be;
+               $aux=$becasObj;
+               $becas[]=$aux;
+           }
+
+        $response=[
+            'estado'=>true,
+            'becas'=>$becas
+        ];
+       }
+       else
+       {
+        $response=[
+            'estado'=>false,
+            'becas'=>$becas
+        ];
+
+       }
+       return response()->json($response);
+
+
     }
 
     /**
