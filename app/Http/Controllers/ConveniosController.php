@@ -595,6 +595,7 @@ class ConveniosController extends Controller
                 //Crear contenido
                 $newcontenido = new contenido();
                 $newcontenido->des_cont = trim($clausula->descripcion);
+                $newcontenido->tipo="P";
                 $newcontenido->save();
 
                 //Crear articulo
@@ -609,6 +610,7 @@ class ConveniosController extends Controller
                         $newContArt = new contenido_articulos();
                         $newContArt->id_contenidos = $newcontenido->id;
                         $newContArt->id_articulos = $newArt->id;
+                        $newContArt->estado='A';
                         $newContArt->save();
                     }
                 }
@@ -638,6 +640,7 @@ class ConveniosController extends Controller
                     $newConClau = new convenios_clausulas();
                     $newConClau->id_clausulas = $clausula->id;
                     $newConClau->id_contenido = $clausula->id_contenido;
+                    $newConClau->estado = 'A';
                     $newConClau->save();
                 }
 

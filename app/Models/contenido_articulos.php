@@ -11,5 +11,5 @@ class contenido_articulos extends Model
     protected $connection = 'pgsql';
     protected $table = "contenido_articulos";
     public $timestamps = false;
-    protected $fillable = ['id','id_contenidos','id_articulos'];
+    protected $fillable = ['id','id_contenidos','id_articulos', 'estado'];
 }
