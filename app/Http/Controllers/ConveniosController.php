@@ -247,9 +247,11 @@ class ConveniosController extends Controller
         $newClau = [];
         foreach ($clausulas as $c) {
             $clau = clausulas::find($c->id_clausulas);
-            $retConCla = convenios_clausulas::where('id_convenios', $id)->where('id_clausulas', $c->id_clausulas)->first();
+            $retConCla = convenios_clausulas::where('id_convenios', $id)->where('id_clausulas', $c->id_clausulas)->where('estado','A')->first();
+            if($retConCla)
+            {
             $contenido = contenido::find($retConCla->id_contenidos);
-            $retContArt = contenido_articulos::where('id_contenidos', $retConCla->id_contenidos)->get();
+            $retContArt = contenido_articulos::where('id_contenidos', $retConCla->id_contenidos)->where('estado','A')->get();
 
             $newArt = [];
             foreach ($retContArt as $art) {
@@ -258,7 +260,8 @@ class ConveniosController extends Controller
                 $auxArt = [
                     'art_id' => $articulo->id,
                     'des_art' => $articulo->des_art,
-                    'subtipo' => $articulo->subtipo
+                    'subtipo' => $articulo->subtipo,
+                    'estado'=>$art->estado
                 ];
                 $newArt[] = $auxArt;
             }
@@ -269,10 +272,14 @@ class ConveniosController extends Controller
                 'id_contenido' => $contenido->id,
                 'descripcion' => $contenido->des_cont,
                 'tipo' => $contenido->tipo,
+                'estado'=> $retConCla->estado,
                 'articulos' => $newArt
             ];
 
             $newClau[] = $aux;
+
+            }
+
         }
         $newData = [
             'id_usuario' => $data->usuario_id,
@@ -286,9 +293,9 @@ class ConveniosController extends Controller
             'comparecientes' => $tipoConvenios->descripcion_tc,
             'clausulas' => $newClau,
             'selectFirmaEmisor' => $data->femisor_id,
-            'selectFirmaReceptor' => $data->freceptor_id
+            'selectFirmaReceptor' => $data->freceptor_id,
+            'PDF'=> $data->PDF
         ];
-
         return response()->json($newData);
     }
 
@@ -519,13 +526,14 @@ class ConveniosController extends Controller
         return response()->json($response);
     }
 
-    private function _updateConvenio($id, $usuario, $img1, $img2, $nombre)
+    private function _updateConvenio($id, $usuario, $img1, $img2, $nombre,$PDF)
     {
         $convenio = convenios::find($id);
         $convenio->usuario_id = $usuario;
         $convenio->imagen1_id = $img1;
         $convenio->imagen2_id = $img2;
         $convenio->titulo_convenio = trim($nombre);
+        $convenio->PDF=$PDF;
         $convenio->save();
 
         return $convenio;
@@ -546,7 +554,7 @@ class ConveniosController extends Controller
         $data = (object)$request->data;
 
         //Actuallizar el convenio
-        $convenio = $this->_updateConvenio($data->id_convenio, $data->id_usuario, $data->id_imagen1, $data->id_imagen2, $data->nombre_convenio);
+        $convenio = $this->_updateConvenio($data->id_convenio, $data->id_usuario, $data->id_imagen1, $data->id_imagen2, $data->nombre_convenio,$data->PDF);
         //Actualizar tipo de convenio
         $tipoConv = $this->_updateTipoConvenio($data->id_tipoconvenio, $convenio->id, $data->comparecientes, $data->id_tipoconvenio, $data->id_tipoespecifico);
 
@@ -581,7 +589,7 @@ class ConveniosController extends Controller
 
                 //Eliminar en convenio-clausula_
                 $_clau = convenios_clausulas::where('id_clausulas', $clausula->id_clausula)
-                    ->where('id_convenios', $data->id_convenio)->where('id_contendo', $clausula->id_contenido)->first();
+                    ->where('id_convenios', $data->id_convenio)->where('id_contenidos', $clausula->id_contenido)->first();
 
                 $_clau->estado = 'D';
                 $_clau->save();
