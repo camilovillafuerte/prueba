@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Becas_nivel_bodyController;
 use App\Http\Controllers\Becas_nivelController;
 use App\Http\Controllers\ClausulasController;
 use App\Http\Controllers\Convenios_especificosController;
