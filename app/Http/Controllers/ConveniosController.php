@@ -89,6 +89,7 @@ class ConveniosController extends Controller
                 $newConvenioClau->id_convenios =  $newConvenio->id;
                 $newConvenioClau->id_clausulas = intval($clauObj->id);
                 $newConvenioClau->id_contenidos = $newContenido->id;
+                $newConvenioClau->estado = 'A';
                 $newConvenioClau->save();
             }
 
@@ -168,6 +169,7 @@ class ConveniosController extends Controller
                 $newConvenioClau->id_convenios =  $newConvenio->id;
                 $newConvenioClau->id_clausulas = intval($clauObj->id);
                 $newConvenioClau->id_contenidos = $newContenido->id;
+                $newConvenioClau->estado = 'A';
                 $newConvenioClau->save();
             }
 
