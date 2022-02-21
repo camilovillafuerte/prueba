@@ -84,4 +84,17 @@ class personal extends Model
 }
 
 
+    //Relacion de uno a muchos
+    public function tbl_personal_rol(){
+        return $this->hasMany(tbl_personal_rol::class,'id');
+    }
+    
+    //Relacion de uno a muchos
+    public function Personal()
+    {
+        return $this->hasMany('App\Models\tbl_personal_rol');
+    }
+
+
+
 }

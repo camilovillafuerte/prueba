@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Becas_nivel_bodyController;
 use App\Http\Controllers\Becas_nivelController;
+use App\Http\Controllers\BecasMaestriaDoctoradoController;
 use App\Http\Controllers\ClausulasController;
 use App\Http\Controllers\Convenios_especificosController;
 use App\Http\Controllers\ConveniosController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\Imagenes_interfacesController;
 use App\Http\Controllers\Interfaz_contenidoController;
 use App\Http\Controllers\InterfazController;
 use App\Http\Controllers\MailerController;
+use App\Http\Controllers\MovilidadController;
 use App\Http\Controllers\Nombre_tipoconvenioController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\PersonalController;
@@ -334,3 +336,13 @@ Route::put('pagina-becas/update',[Becas_nivelController::class,'updatenombre']);
 
 //becas nivel body
 Route::get('pagina-becas-body/get/{id}',[Becas_nivel_bodyController::class,'getBecasnivelBody']);
+
+
+//Traer todo los datos que tengan rol estudiante
+Route::get('rol-estudiante',[MovilidadController::class,'rol_estudiantes']);
+
+//Traer todo los datos que no sean estudiantes
+Route::get('roles',[MovilidadController::class,'roles']);
+Route::get('rolesbecas',[BecasMaestriaDoctoradoController::class,'roles_becas_maestrias']);
+
+
