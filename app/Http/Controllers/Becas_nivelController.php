@@ -227,4 +227,29 @@ class Becas_nivelController extends Controller
          $becas->delete();
          return response()->json(['Mensaje'=>'Registro Eliminado'],200);
     }
+
+    public function becas_v2($tipo){
+
+        $tipo = strtoupper($tipo);
+        $becas = becas_nivel::where('tipo', $tipo)->where('estado','A')->orderBy('id','desc')->get();
+        if($becas->count() > 0)
+        {
+            foreach($becas as $b)   $b->becas_nivel_body;
+
+            $response = [
+                'estado' => true,
+                'mensaje' => 'Datos',
+                'data' => $becas
+            ];
+        }else{
+            $response = [
+                'estado' => false,
+                'mensaje' => 'Datos',
+                'data' => []
+            ];
+        }
+
+
+        return response()->json($response);
+    }
 }
