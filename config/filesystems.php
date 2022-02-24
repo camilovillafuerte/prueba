@@ -115,6 +115,54 @@ return [
             'root' => '/Contenido/Informacion/'// for example: /var/www/html/dev/images
         ],
 
+        //ftp becas
+        'ftp5' => [
+            'driver' => 'ftp',
+            'host' => env('FTP_HOST'),
+            'port' => env('FTP_PORT', '21'),
+            'username' => env('FTP_USERNAME'),
+            'password' => env('FTP_PASSWORD'),
+            'utf8' => true,
+            'root' => '/Becas/Capacitaciones/'// for example: /var/www/html/dev/images
+        ],
+        'ftp6' => [
+            'driver' => 'ftp',
+            'host' => env('FTP_HOST'),
+            'port' => env('FTP_PORT', '21'),
+            'username' => env('FTP_USERNAME'),
+            'password' => env('FTP_PASSWORD'),
+            'utf8' => true,
+            'root' => '/Becas/Pregrado/'// for example: /var/www/html/dev/images
+        ],
+
+        'ftp7' => [
+            'driver' => 'ftp',
+            'host' => env('FTP_HOST'),
+            'port' => env('FTP_PORT', '21'),
+            'username' => env('FTP_USERNAME'),
+            'password' => env('FTP_PASSWORD'),
+            'utf8' => true,
+            'root' => '/Becas/Doctorados/'// for example: /var/www/html/dev/images
+        ],
+        'ftp8' => [
+            'driver' => 'ftp',
+            'host' => env('FTP_HOST'),
+            'port' => env('FTP_PORT', '21'),
+            'username' => env('FTP_USERNAME'),
+            'password' => env('FTP_PASSWORD'),
+            'utf8' => true,
+            'root' => '/Becas/Investigacion/'// for example: /var/www/html/dev/images
+        ],
+        'ftp9' => [
+            'driver' => 'ftp',
+            'host' => env('FTP_HOST'),
+            'port' => env('FTP_PORT', '21'),
+            'username' => env('FTP_USERNAME'),
+            'password' => env('FTP_PASSWORD'),
+            'utf8' => true,
+            'root' => '/Becas/Maestrias/'// for example: /var/www/html/dev/images
+        ],
+
     ],
 
     /*

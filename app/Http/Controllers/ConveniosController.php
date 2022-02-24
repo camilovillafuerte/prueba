@@ -676,14 +676,5 @@ class ConveniosController extends Controller
         return response()->json($response);
     }
 
-    public function InsertConveniosSQL(){
-        $conve = DB::insert('insert into convenios (id, name) values (?, ?)', [1, 'Dayle']);
-
-        //-> toJson();
-        return response() -> json ($conve);
-     
-
-    }
-
 
 }

@@ -13,14 +13,14 @@ class becas_nivel extends Model
     protected $fillable = ['id','usuario_id','nombre','tipo','estado','fecha_creacion'];
 
 
-      //Relacion de uno a muchos
+//Relacion de uno a muchos
 public function becas_nivel_body(){
     return $this->hasMany('App\Models\becas_nivel_body','id_becas_nivels');
 }
 
 public function Usuario()
-    {
-        return $this->hasMany('App\Models\Usuario');
-    }
+{
+    return $this->hasMany('App\Models\Usuario');
+}
 
 }

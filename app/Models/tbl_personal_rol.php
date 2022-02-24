@@ -29,4 +29,8 @@ class tbl_personal_rol extends Model
         return $this->hasMany(tbl_rol::class,'id_rol');
     }
 
+     //Relacion de uno a muchos
+     public function personal(){
+        return $this->hasMany(personal::class,'id');
+    }
 }
