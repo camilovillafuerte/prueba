@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\becas_nivel;
+use App\Models\becas_nivel_body;
 use Database\Seeders\Becas_nivelSeeder;
 use Illuminate\Support\Facades\DB;
 
@@ -234,7 +235,11 @@ class Becas_nivelController extends Controller
         $becas = becas_nivel::where('tipo', $tipo)->where('estado','A')->orderBy('id','desc')->get();
         if($becas->count() > 0)
         {
-            foreach($becas as $b)   $b->becas_nivel_body;
+            foreach($becas as $b) 
+            {
+                $becas_nivel_body=becas_nivel_body::where('id_becas_nivels',$b->id)->where('estado','A')->orderBy('id','desc')->get();
+                $b->becas_nivel_body=$becas_nivel_body;
+            }
 
             $response = [
                 'estado' => true,

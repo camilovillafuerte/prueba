@@ -346,6 +346,7 @@ Route::post('documento/Doctorado', [Becas_nivel_bodyController::class, 'subirDoc
 //creacion 
 Route::post('pagina-becas-body/add', [Becas_nivel_bodyController::class, 'create']);
 Route::put('pagina-becas-body/update', [Becas_nivel_bodyController::class, 'edit']);
+Route::put('pagina-becas-body/update/estado', [Becas_nivel_bodyController::class, 'updateEstado']);
 
 //Nueva ruta para beca
 Route::get('beca-v2/{tipo}', [Becas_nivelController::class, 'becas_v2']);
