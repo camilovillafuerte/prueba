@@ -362,6 +362,33 @@ public function subirDocumentoBecasDoctorado(Request $request)
 
         //
     }
+
+    public function updateEstado(Request $request)
+    {
+        $data = (object)$request->data;
+        $existe=becas_nivel_body::find(intval($data->id));
+        if($existe)
+        {
+            $existe->estado="D";
+            $existe->save();
+            $response=[
+                'estado'=>true,
+                'mensaje'=>'Se elimino correctamente....!!'
+            ];
+
+        }
+        else{
+            $response=[
+                'estado'=>false,
+                'mensaje'=>'No se encontro la beca'
+
+            ];
+        }
+
+        return response()->json($response);
+    }
+
+
     /**
      * Update the specified resource in storage.
      *
