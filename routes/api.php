@@ -271,6 +271,7 @@ Route::get('interfaz/contenido/{params}', [InterfazController::class, 'getInterf
 
 //Rutas para usuario
 Route::post('usuario/login', [UsuarioController::class, 'login']);
+Route::get('usuario/login/{cedula}',[UsuarioController::class, 'loginsistema']);
 Route::get('usuario/search/{cedula}', [UsuarioController::class, 'searchUser']);
 Route::get('usuario/funcionalidad/{cedula}', [UsuarioController::class, 'getFuncionalidades']);
 Route::put('usuario/update', [UsuarioController::class, 'updateUsuario']);
@@ -353,7 +354,8 @@ Route::get('beca-v2/{tipo}', [Becas_nivelController::class, 'becas_v2']);
 
 
 //Traer todo los datos que tengan rol estudiante
-Route::get('rol-estudiante',[MovilidadController::class,'rol_estudiantes']);
+Route::get('rol-estudiante/{cedula}',[MovilidadController::class,'rol_estudiantes']);
+
 
 //Traer todo los datos que no sean estudiantes
 Route::get('roles',[MovilidadController::class,'roles']);

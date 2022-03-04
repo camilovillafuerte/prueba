@@ -21,6 +21,29 @@ class UsuarioController extends Controller{
         $this->baseCtrl = new BaseController();
     }
 
+    public function loginsistema($cedula)
+    {
+        $sesion = Usuario::where('cedula', $cedula)->first();
+        if($sesion)
+        {
+            $response = [
+                'estado' => true,
+                'mensaje' => 'Acceso al sistema',
+                'usuario'=>$sesion
+            ];
+
+        }
+        else{
+            $response = [
+                'estado' => false,
+                'mensaje' => 'No existe el usuario registrado',
+            ];
+
+        }
+        return response()->json($response);
+
+    }
+    
     public function login(Request $request){
         $usuarioData = (object)$request->usuario;
         $response = []; $encriptar = false;
