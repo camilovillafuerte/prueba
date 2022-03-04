@@ -20,7 +20,7 @@ class CreateHistorialUsuariosTable extends Migration
             $table->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('cascade')->onUpdate('cascade');
             $table->string('titulo');
             $table->string('detalle');
-            $table->string('extra');
+            $table->string('extra')->nullable();
             $table->timestamp('fecha_creacion');//->default(historial_usuario::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }

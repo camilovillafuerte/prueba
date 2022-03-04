@@ -385,13 +385,25 @@ class ConveniosController extends Controller
 
     public function getConveniosByTipoDocumento($tipo_documento)
     {
-
         $tipo_documento = strtoupper($tipo_documento);
         $response = [];
 
         $convenios = convenios::where('tipo_documento', $tipo_documento)->orderBy('titulo_convenio')->get();
-
         if ($convenios->count() > 0)
+            foreach($convenios as $con)
+            {
+                $objConvenio = (object)$con;
+                $date_actual=date_create();
+                $date_fin=date_create($objConvenio->fecha_fin);
+                $intervalo=date_diff($date_actual,$date_fin);
+                $tiempo=array();
+                foreach($intervalo as $valor){
+                    $tiempo[]=$valor;
+
+                }
+                $objConvenio->duracion=$tiempo[0].'y-'.($tiempo[1]).'m-'.$tiempo[2].'d';
+
+            }
             $response = $convenios;
 
         return response()->json($response);
