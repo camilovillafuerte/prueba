@@ -100,9 +100,9 @@ class UsuarioController extends Controller{
         return response()->json($jsonRespuesta);
     }
 
-    public function loginsistema($cedula)
+    public function loginsistema($personal_id)
     {
-        $sesion = Usuario::where('cedula', $cedula)->first();
+        $sesion = Usuario::where('personal_id', $personal_id)->first();
         if($sesion)
         {
             $response = [
@@ -115,7 +115,7 @@ class UsuarioController extends Controller{
         else{
             $response = [
                 'estado' => false,
-                'mensaje' => 'No existe el usuario registrado',
+                'mensaje' => 'No existe el usuario en el sistema.....!!!',
             ];
 
         }
@@ -123,42 +123,42 @@ class UsuarioController extends Controller{
 
     }
     
-    public function login(Request $request){
-        $usuarioData = (object)$request->usuario;
-        $response = []; $encriptar = false;
+    // public function login(Request $request){
+    //     $usuarioData = (object)$request->usuario;
+    //     $response = []; $encriptar = false;
 
-        if(isset($usuarioData) && isset($usuarioData->correo) && isset($usuarioData->contrasena) ){
-            $sesion = Usuario::where('correo', $usuarioData->correo)->first();
-            // $encriptar = Hash::make($usuarioData->contrasena);
+    //     if(isset($usuarioData) && isset($usuarioData->correo) && isset($usuarioData->contrasena) ){
+    //         $sesion = Usuario::where('correo', $usuarioData->correo)->first();
+    //         // $encriptar = Hash::make($usuarioData->contrasena);
 
-            if($sesion){
-                if(Hash::check($usuarioData->contrasena, $sesion->contrasena)){
-                    $response = [
-                        'estado' => true,
-                        'mensaje' => 'Acceso al sistema',
-                        'usuario' => $sesion
-                    ];
-                }else{
-                    $response = [
-                        'estado' => false,
-                        'mensaje' => 'Contraseña incorrecta'
-                    ];
-                }
-            }else{
-                $response = [
-                    'estado' => false,
-                    'mensaje' => 'El corre no existe'
-                ];
-            }
-        }else{
-            $response = [
-                'estado' => false,
-                'mensaje' => 'No ha enviado data'
-            ];
-        }
+    //         if($sesion){
+    //             if(Hash::check($usuarioData->contrasena, $sesion->contrasena)){
+    //                 $response = [
+    //                     'estado' => true,
+    //                     'mensaje' => 'Acceso al sistema',
+    //                     'usuario' => $sesion
+    //                 ];
+    //             }else{
+    //                 $response = [
+    //                     'estado' => false,
+    //                     'mensaje' => 'Contraseña incorrecta'
+    //                 ];
+    //             }
+    //         }else{
+    //             $response = [
+    //                 'estado' => false,
+    //                 'mensaje' => 'El corre no existe'
+    //             ];
+    //         }
+    //     }else{
+    //         $response = [
+    //             'estado' => false,
+    //             'mensaje' => 'No ha enviado data'
+    //         ];
+    //     }
 
-        return response()->json($response);
-    }
+    //     return response()->json($response);
+    // }
 
     public function searchUser($cedula){
         $response = [];
