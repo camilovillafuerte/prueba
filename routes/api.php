@@ -263,8 +263,7 @@ Route::delete('imagen-interfaces/eliminar/{id}',[Imagenes_interfacesController::
 Route::get('interfaz/contenido/{params}', [InterfazController::class, 'getInterfazContenidos']);
 
 //Rutas para usuario
-Route::post('usuario/login', [UsuarioController::class, 'login']);
-Route::get('usuario/login/{cedula}',[UsuarioController::class, 'loginsistema']);
+Route::get('usuario/login/{personal_id}',[UsuarioController::class, 'loginsistema']);
 Route::get('usuario/search/{cedula}', [UsuarioController::class, 'searchUser']);
 Route::get('usuario/funcionalidad/{cedula}', [UsuarioController::class, 'getFuncionalidades']);
 Route::put('usuario/update', [UsuarioController::class, 'updateUsuario']);
