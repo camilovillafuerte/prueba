@@ -11,10 +11,16 @@ class cargo extends Model
     protected $connection = 'pgsql';
     public $timestamps = false;
     protected $fillable = ['cargos_id','cargo','estado'];
+    public $table = "cargos";
 
 
-    //Relación muchos a muchos
+    /*//Relación muchos a muchos
     public function cargo_usuario(){
-        return $this -> belongsToMany('App\Models\cargo_usuario','cargos_id');
+        return $this -> belongsToMany('App\Models\Usuario','cargos_id');
+    }*/
+
+    public function Cargos()
+    {
+        return $this->hasMany('App\Models\Usuario','cargos_id');
     }
 }

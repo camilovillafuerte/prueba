@@ -10,8 +10,8 @@ class Usuario extends Model
     use HasFactory;
     protected $connection = 'pgsql';
     public $timestamps = false;
-    protected $filleable = ['personal_id','cedula','nombres','apellidos','genero','telefono','correo','contrasena', 'token', 'foto','estado'];
-    protected $hidden = ["contrasena"];
+    protected $filleable = ['id','personal_id','cargos_id','estado'];
+    //protected $hidden = ["contrasena"];
 
     //Relacion de uno a muchos
     public function convenios(){
@@ -35,14 +35,22 @@ class Usuario extends Model
         return $this ->belongsToMany(funcionalidad_usuario::class,'usuario_id');
     }
 
-    //Relación muchos a muchos
+   /* 
+   //Relación muchos a muchos
     public function cargo_usuario(){
         return $this -> belongsToMany(cargo_usuario::class,'usuario_id');
     }
+    */
 
      //Relacion de uno a muchos
      public function Personal()
      {
          return $this->hasMany('App\Models\personal');
      }
+
+      //Relacion de uno a muchos
+      public function Cargos()
+      {
+          return $this->hasMany('App\Models\cargo');
+      }
 }

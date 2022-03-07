@@ -74,10 +74,10 @@ return [
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
-            'schema' => 'esquema_dricb',
+            'schema' => 'esq_dricb',
             'sslmode' => 'prefer',
         ],
-        
+        /*
         'pgsql2' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
@@ -106,7 +106,7 @@ return [
             'prefix_indexes' => true,
             'schema' => 'esq_roles',
             'sslmode' => 'prefer',
-        ],
+        ],*/
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',
