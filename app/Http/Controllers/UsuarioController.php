@@ -123,7 +123,7 @@ class UsuarioController extends Controller{
 
     }
     
-    public function login(Request $request){
+    /*public function login(Request $request){
         $usuarioData = (object)$request->usuario;
         $response = []; $encriptar = false;
 
@@ -159,7 +159,7 @@ class UsuarioController extends Controller{
 
         return response()->json($response);
     }
-
+*/
     public function searchUser($cedula){
         $response = [];
 
