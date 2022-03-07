@@ -175,13 +175,6 @@ Route::post('/addInterfazcon','App\Http\Controllers\Interfaz_contenidoController
 Route::put('/updateInterfazcon/{id}','App\Http\Controllers\Interfaz_contenidoController@updateInterfazcon');
 Route::delete('/deleteInterfazcon/{id}','App\Http\Controllers\Interfaz_contenidoController@deleteInterfazcon');
 
-//Ruta para tabla usuarios
-Route::get('/usuarios','App\Http\Controllers\UsuariosController@getUsuarios');
-Route::get('/usuarios/{id}','App\Http\Controllers\UsuariosController@getUsuariosxid');
-Route::post('/addUsuarios','App\Http\Controllers\UsuariosController@insertUsuarios');
-Route::put('/updateUsuarios/{id}','App\Http\Controllers\UsuariosController@updateUsuarios');
-Route::delete('/deleteUsuarios/{id}','App\Http\Controllers\UsuariosController@deleteUsuarios');
-
 //Ruta para tabla funcionalidad
 Route::get('/funcion','App\Http\Controllers\FuncionalidadController@getFuncionalidad');
 Route::get('/funcion/{id}','App\Http\Controllers\FuncionalidadController@getFuncionalidadxid');
@@ -363,7 +356,8 @@ Route::get('rol-estudiante/{cedula}',[MovilidadController::class,'rol_estudiante
 Route::get('roles',[MovilidadController::class,'roles']);
 Route::get('rolesbecas',[BecasMaestriaDoctoradoController::class,'roles_becas_maestrias']);
 
-
+//Ruta para inicio de Sesión
+Route::post('login-UTM',[UsuarioController::class,'loginUTM']);
 
 
 

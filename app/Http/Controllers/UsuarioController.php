@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use IlluminateSupportFacadesStorage;
@@ -19,6 +20,84 @@ class UsuarioController extends Controller{
 
     public function __construct(){
         $this->baseCtrl = new BaseController();
+    }
+
+    public function loginUTM (Request $request) {
+        $validated = $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        $password = $request->get('password');
+        $email = $request->get('email');
+
+        $info = DB::select("SELECT esq_roles.fnc_login_2_desarrollo(
+            '" . $email . "',
+            '" . $password . "',
+            '',
+            '',
+            '',
+            '',
+            '',
+            0,
+            '') as data");
+
+        $data = str_replace('"','',$info[0]->data);
+        $data = str_replace('(','',$data);
+        $data = str_replace(')','',$data);
+
+        $info_split = explode(',', $data);
+
+        if ($info_split[0] != "Ok.") {
+            return response()->json([
+                'error' => true,
+                'error_text' => $info[0]->data
+            ]);
+        }
+        $r_error = false;
+        $r_idpersonal = $info_split[1];
+        $r_cedula = $info_split[2];
+        $r_nombres = $info_split[3];
+        $r_password_changed = $info_split[4];
+        $r_mail_alternativo = $info_split[5];
+        $r_fecha = $info_split[6];
+        $r_idfichero_hoja_vida_foto = $info_split[7];
+        $r_conexion = $info_split[8];
+
+        $r_roles = explode('*', $r_conexion);
+
+        $r_roles_proc = [];
+
+        foreach ($r_roles as $rol) {
+            $r_rol = explode('|', $rol);
+            $id_rol_raw = explode(':', $r_rol[count($r_rol) -2 ]);
+            $id_rol = end($id_rol_raw);
+
+            $escuelas_raw = explode(':', $rol);
+
+            $rolJson = [
+                'id' => $id_rol,
+                'nombre' => $r_rol[count($r_rol) -1 ],
+                'escuelas' => explode('|', $escuelas_raw[ 1 ]),
+                'modalidad' => $id_rol_raw[ 0 ],
+                'conexion' => $r_rol[ 0 ]
+            ];
+            array_push($r_roles_proc, $rolJson);
+        }
+
+        $jsonRespuesta = [
+            'error' => $r_error,
+            'id_personal' => $r_idpersonal,
+            'cedula' => $r_cedula,
+            'nombres' => $r_nombres,
+            'password_changed' => $r_password_changed,
+            'mail_alternativo' => $r_mail_alternativo,
+            'fecha' => $r_error,
+            'fichero_hoja_de_vida_foto' => $r_idfichero_hoja_vida_foto,
+            'conexion' => $r_conexion,
+            'roles' => $r_roles_proc
+        ];
+        return response()->json($jsonRespuesta);
     }
 
     public function loginsistema($cedula)
