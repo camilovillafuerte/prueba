@@ -100,9 +100,9 @@ class UsuarioController extends Controller{
         return response()->json($jsonRespuesta);
     }
 
-    public function loginsistema($cedula)
+    public function loginsistema($id)
     {
-        $sesion = Usuario::where('cedula', $cedula)->first();
+        $sesion = Usuario::where('id', $id)->first();
         if($sesion)
         {
             $response = [
@@ -160,32 +160,23 @@ class UsuarioController extends Controller{
         return response()->json($response);
     }
 */
-    public function searchUser($cedula){
+    public function searchUser($id){
         $response = [];
 
         if(isset($cedula)){
-            $exist = Usuario::where('cedula',$cedula)->first();
-            $cargosId = cargo_usuario::select('cargos_id')->where('usuario_id', $exist->id)->get();
-            $cargos = [];
-
-            if($cargosId->count() > 0){
-                foreach($cargosId as $c){
-                    $auxCargo = cargo::where('cargos_id',$c->cargos_id)->first();
-                    $cargos[] = $auxCargo;
-                }
-            }
-
+            $exist = Usuario::where('id',$id)->first();
             if($exist){
+                $cargosId = cargo::select('cargo')->where('cargos_id', $exist->cargos_id)->get();
                 $response = [
                     'estado' => true,
                     'mensaje' => 'Usuario existe',
                     'usuario' => $exist,
-                    'cargos' => $cargos
+                    'cargos' => $cargosId
                 ];
             }else{
                 $response = [
                     'estado' => false,
-                    'mensaje' => 'La cédula no se encuentra',
+                    'mensaje' => 'El usuario no se encuentra ',
                     'usuario' => false
                 ];
             }
@@ -200,9 +191,9 @@ class UsuarioController extends Controller{
         return response()->json($response);
     }
 
-    public function getFuncionalidades($cedula){
+    public function getFuncionalidades($id){
 
-        $usuario = Usuario::where('cedula', $cedula)->first();
+        $usuario = Usuario::where('id', $id)->first();
         $response = []; $funciones = [];
 
         if($usuario){
@@ -235,6 +226,7 @@ class UsuarioController extends Controller{
         return response()->json($response);
     }
 
+    /*
     public function uploadImageServer(Request $request){
 
         if($request->hasFile('img_user')){
@@ -264,8 +256,9 @@ class UsuarioController extends Controller{
 
         return response()->json($response);
     }
+    */
 
-    public function updateUsuario(Request $request){
+   /* public function updateUsuario(Request $request){
 
         $user = (object)$request->usuario;
 
@@ -321,8 +314,9 @@ class UsuarioController extends Controller{
 
         return response()->json($response);
     }
+    */
 
-    public function updatePassword(Request $request){
+    /*public function updatePassword(Request $request){
 
         $datos = (object)$request->usuario;
         $usuario = false;   $response = [];
@@ -399,4 +393,5 @@ class UsuarioController extends Controller{
 
         return response()->json($response);
     }
+    */
 }

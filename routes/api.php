@@ -263,13 +263,13 @@ Route::delete('imagen-interfaces/eliminar/{id}',[Imagenes_interfacesController::
 Route::get('interfaz/contenido/{params}', [InterfazController::class, 'getInterfazContenidos']);
 
 //Rutas para usuario
-Route::get('usuario/login/{cedula}',[UsuarioController::class, 'loginsistema']);
-Route::get('usuario/search/{cedula}', [UsuarioController::class, 'searchUser']);
-Route::get('usuario/funcionalidad/{cedula}', [UsuarioController::class, 'getFuncionalidades']);
-Route::put('usuario/update', [UsuarioController::class, 'updateUsuario']);
-Route::post('usuario/upload-image', [UsuarioController::class, 'uploadImageServer']);
-Route::post('usuario/update-password', [UsuarioController::class, 'updatePassword']);
-Route::put('usuario/reset-password', [UsuarioController::class, 'actualizarContrasena']);
+Route::get('usuario/login/{personal_id}',[UsuarioController::class, 'loginsistema']);
+Route::get('usuario/search/{id}', [UsuarioController::class, 'searchUser']);
+Route::get('usuario/funcionalidad/{id}', [UsuarioController::class, 'getFuncionalidades']);
+// Route::put('usuario/update', [UsuarioController::class, 'updateUsuario']);
+// Route::post('usuario/upload-image', [UsuarioController::class, 'uploadImageServer']);
+// Route::post('usuario/update-password', [UsuarioController::class, 'updatePassword']);
+// Route::put('usuario/reset-password', [UsuarioController::class, 'actualizarContrasena']);
 
 //Ruta para insertar convenios especificos y recuperar
 Route::get('convenio-especifico/get', [Convenios_especificosController::class, 'getConvenios']);
