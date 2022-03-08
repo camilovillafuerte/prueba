@@ -102,7 +102,7 @@ class UsuarioController extends Controller{
 
     public function loginsistema($id)
     {
-        $sesion = Usuario::where('id', $id)->first();
+        $sesion = Usuario::where('personal_id', $id)->first();
         if($sesion)
         {
             $response = [
