@@ -11,7 +11,7 @@ class convenios_clausulas extends Model
     protected $connection = 'pgsql';
     protected $table = "convenios_clausulas";
     public $timestamps = false;
-    protected $fillable = ['id','id_convenios','id_clausulas','id_contenidos'];
+    protected $fillable = ['id','id_convenios','id_clausulas','id_contenidos','estado'];
 
 
     //Relación muchos a muchos
