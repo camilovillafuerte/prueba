@@ -551,12 +551,11 @@ class ConveniosController extends Controller
         return $convenio;
     }
 
-    private function _updateTipoConvenio($id, $convenio, $decripcion, $tipoconvenio, $convenioEspecifico)
+    private function _updateTipoConvenio($convenio, $decripcion, $tipoconvenio, $convenioEspecifico)
     {
-        $tipoConv = tipo_convenios::find($id);
-        // $tipoConv->nombretc_id = $convenio;
+        $tipoConv = tipo_convenios::where('id_convenios',intval($convenio))->first();
+        $tipoConv->nombretc_id = $tipoconvenio;
         $tipoConv->descripcion_tc = trim($decripcion);
-        $tipoConv->id_convenios = $tipoconvenio;
         $tipoConv->id_convenios_especificos = $convenioEspecifico;
         $tipoConv->save();
     }
@@ -568,7 +567,7 @@ class ConveniosController extends Controller
         //Actuallizar el convenio
         $convenio = $this->_updateConvenio($data->id_convenio, $data->id_usuario, $data->id_imagen1, $data->id_imagen2, $data->nombre_convenio,$data->PDF);
         //Actualizar tipo de convenio
-        $tipoConv = $this->_updateTipoConvenio($data->id_tipoconvenio, $convenio->id, $data->comparecientes, $data->id_tipoconvenio, $data->id_tipoespecifico);
+        $tipoConv = $this->_updateTipoConvenio($data->id_convenio, $data->comparecientes, $data->id_tipoconvenio, $data->id_tipoespecifico);
 
         //Recorrer el array de eliminacion
         foreach ($data->eliminacion as $clausula) {
