@@ -160,32 +160,23 @@ class UsuarioController extends Controller{
     //     return response()->json($response);
     // }
 
-    public function searchUser($cedula){
+    public function searchUser($id){
         $response = [];
 
-        if(isset($cedula)){
-            $exist = Usuario::where('cedula',$cedula)->first();
-            $cargosId = cargo_usuario::select('cargos_id')->where('usuario_id', $exist->id)->get();
-            $cargos = [];
-
-            if($cargosId->count() > 0){
-                foreach($cargosId as $c){
-                    $auxCargo = cargo::where('cargos_id',$c->cargos_id)->first();
-                    $cargos[] = $auxCargo;
-                }
-            }
-
+        if(isset($id)){
+            $exist = Usuario::where('id',$id)->first();
             if($exist){
+                $cargosId = cargo::select('cargo')->where('cargos_id', $exist->cargos_id)->get();
                 $response = [
                     'estado' => true,
                     'mensaje' => 'Usuario existe',
                     'usuario' => $exist,
-                    'cargos' => $cargos
+                    'cargos' => $cargosId,
                 ];
             }else{
                 $response = [
                     'estado' => false,
-                    'mensaje' => 'La cédula no se encuentra',
+                    'mensaje' => 'el usuario no se encuentra',
                     'usuario' => false
                 ];
             }
@@ -200,9 +191,9 @@ class UsuarioController extends Controller{
         return response()->json($response);
     }
 
-    public function getFuncionalidades($cedula){
+    public function getFuncionalidades($id){
 
-        $usuario = Usuario::where('cedula', $cedula)->first();
+        $usuario = Usuario::where('id', $id)->first();
         $response = []; $funciones = [];
 
         if($usuario){
@@ -235,168 +226,168 @@ class UsuarioController extends Controller{
         return response()->json($response);
     }
 
-    public function uploadImageServer(Request $request){
+    // public function uploadImageServer(Request $request){
 
-        if($request->hasFile('img_user')){
-            $imagen = $request->file('img_user');
+    //     if($request->hasFile('img_user')){
+    //         $imagen = $request->file('img_user');
 
-            $filenamewithextension = $imagen->getClientOriginalName();   //Archivo con su extension
-            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);            //Sin extension
-            $extension = $request->file('img_user')->getClientOriginalExtension();    //Obtener extesion de archivo
-            $filenametostore = $filename.'_'.uniqid().'.'.$extension;
+    //         $filenamewithextension = $imagen->getClientOriginalName();   //Archivo con su extension
+    //         $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);            //Sin extension
+    //         $extension = $request->file('img_user')->getClientOriginalExtension();    //Obtener extesion de archivo
+    //         $filenametostore = $filename.'_'.uniqid().'.'.$extension;
 
-            Storage::disk('ftp')->put($filenametostore, fopen($request->file('img_user'), 'r+'));
+    //         Storage::disk('ftp')->put($filenametostore, fopen($request->file('img_user'), 'r+'));
 
-           $url = $this->baseCtrl->getUrlServer('Contenido/ImagenesPerfil/');
+    //        $url = $this->baseCtrl->getUrlServer('Contenido/ImagenesPerfil/');
 
-            $response = [
-                'estado' => true,
-                'imagen' => $url.$filenametostore,
-                'mensaje' => 'La imagen se ha subido al servidor'
-            ];
-        }else{
-            $response = [
-                'estado' => false,
-                'imagen' => '',
-                'mensaje' => 'No hay un archivo para procesar'
-            ];
-        }
+    //         $response = [
+    //             'estado' => true,
+    //             'imagen' => $url.$filenametostore,
+    //             'mensaje' => 'La imagen se ha subido al servidor'
+    //         ];
+    //     }else{
+    //         $response = [
+    //             'estado' => false,
+    //             'imagen' => '',
+    //             'mensaje' => 'No hay un archivo para procesar'
+    //         ];
+    //     }
 
-        return response()->json($response);
-    }
+    //     return response()->json($response);
+    // }
 
-    public function updateUsuario(Request $request){
+    // public function updateUsuario(Request $request){
 
-        $user = (object)$request->usuario;
+    //     $user = (object)$request->usuario;
 
-        if($user){
-            $exisEmail = Usuario::where('correo', trim($user->correo))->first();
+    //     if($user){
+    //         $exisEmail = Usuario::where('correo', trim($user->correo))->first();
 
-            $update = Usuario::find($user->id);
+    //         $update = Usuario::find($user->id);
 
-            $update->nombres = ucfirst(trim($user->nombres));
-            $update->apellidos = ucfirst(trim($user->apellidos));
-            $update->telefono = trim($user->telefono);
-            $update->correo = trim($user->correo);
-            $update->foto = $user->foto;
+    //         $update->nombres = ucfirst(trim($user->nombres));
+    //         $update->apellidos = ucfirst(trim($user->apellidos));
+    //         $update->telefono = trim($user->telefono);
+    //         $update->correo = trim($user->correo);
+    //         $update->foto = $user->foto;
 
-            if($exisEmail){ //Existe el correo
-                //Verificar si el correo pertenece al usuario y pasa
-                if($exisEmail->id === $user->id){
-                    $update->save();
+    //         if($exisEmail){ //Existe el correo
+    //             //Verificar si el correo pertenece al usuario y pasa
+    //             if($exisEmail->id === $user->id){
+    //                 $update->save();
 
-                    $response = [
-                        'estado' => true,
-                        'mensaje' => 'El correo se ha actualizado',
-                        'usuario' => $update,
-                        'email' => true
-                    ];
-                } else{
-                    $response = [
-                        'estado' => false,
-                        'mensaje' => 'El correo ya se encuentra registrado',
-                        'usuario' => false,
-                        'email' => false
-                    ];
-                }
-            }else{  //No existe el correo
+    //                 $response = [
+    //                     'estado' => true,
+    //                     'mensaje' => 'El correo se ha actualizado',
+    //                     'usuario' => $update,
+    //                     'email' => true
+    //                 ];
+    //             } else{
+    //                 $response = [
+    //                     'estado' => false,
+    //                     'mensaje' => 'El correo ya se encuentra registrado',
+    //                     'usuario' => false,
+    //                     'email' => false
+    //                 ];
+    //             }
+    //         }else{  //No existe el correo
 
-                $update->save();
+    //             $update->save();
 
-                $response = [
-                    'estado' => true,
-                    'mensaje' => 'Datos del usuario actualizado',
-                    'usuario' => $update,
-                    'email' => false
-                ];
-            }
-        }else{
-            $response = [
-                'estado' => false,
-                'mensaje' => 'No hay datos para procesar',
-                'usuario' => false,
-                'email' => false
-            ];
-        }
+    //             $response = [
+    //                 'estado' => true,
+    //                 'mensaje' => 'Datos del usuario actualizado',
+    //                 'usuario' => $update,
+    //                 'email' => false
+    //             ];
+    //         }
+    //     }else{
+    //         $response = [
+    //             'estado' => false,
+    //             'mensaje' => 'No hay datos para procesar',
+    //             'usuario' => false,
+    //             'email' => false
+    //         ];
+    //     }
 
-        return response()->json($response);
-    }
+    //     return response()->json($response);
+    // }
 
-    public function updatePassword(Request $request){
+    // public function updatePassword(Request $request){
 
-        $datos = (object)$request->usuario;
-        $usuario = false;   $response = [];
+    //     $datos = (object)$request->usuario;
+    //     $usuario = false;   $response = [];
 
-        $newPassword = $datos->nueva_clave;
-        $oldPassword = $datos->anterior_clave;
-        $id = $datos->id;
+    //     $newPassword = $datos->nueva_clave;
+    //     $oldPassword = $datos->anterior_clave;
+    //     $id = $datos->id;
 
-        $usuario = Usuario::find($id);
+    //     $usuario = Usuario::find($id);
 
-        if($usuario){
+    //     if($usuario){
 
-           //Verificar que la contraseña anterior es la correcta y actualizar
-           if(Hash::check($oldPassword, $usuario->contrasena)){
-            $usuario->contrasena = Hash::make($newPassword);
-            $usuario->save();
+    //        //Verificar que la contraseña anterior es la correcta y actualizar
+    //        if(Hash::check($oldPassword, $usuario->contrasena)){
+    //         $usuario->contrasena = Hash::make($newPassword);
+    //         $usuario->save();
 
-            $response = [
-                'estado' => true,
-                'mensaje' => 'Contraseña actualizada'
-            ];
-           }else{
-            $response = [
-                'estado' => false,
-                'mensaje' => 'La contraseña de verificación o anterior está incorrecta !!'
-            ];
-           }
-        }else{
-            $response = [
-                'estado' => false,
-                'mensaje' => 'El usuario no existe'
-            ];
-        }
+    //         $response = [
+    //             'estado' => true,
+    //             'mensaje' => 'Contraseña actualizada'
+    //         ];
+    //        }else{
+    //         $response = [
+    //             'estado' => false,
+    //             'mensaje' => 'La contraseña de verificación o anterior está incorrecta !!'
+    //         ];
+    //        }
+    //     }else{
+    //         $response = [
+    //             'estado' => false,
+    //             'mensaje' => 'El usuario no existe'
+    //         ];
+    //     }
 
-        return response()->json($response);
-    }
+    //     return response()->json($response);
+    // }
 
-    public function actualizarContrasena(Request $request){
+    // public function actualizarContrasena(Request $request){
 
-        $response = [];
-        $data = (object)$request->credenciales;
-        $data->token = trim($data->token);
+    //     $response = [];
+    //     $data = (object)$request->credenciales;
+    //     $data->token = trim($data->token);
 
-        //Buscar usuario
-        $usuario = Usuario::where('token', $data->token)->first();
+    //     //Buscar usuario
+    //     $usuario = Usuario::where('token', $data->token)->first();
 
-        if($usuario){
-            $encriptar = Hash::make($data->contrasena);
+    //     if($usuario){
+    //         $encriptar = Hash::make($data->contrasena);
 
-            if($usuario->token){
-                $usuario->contrasena = $encriptar;
-                $usuario->token = null;
-                $usuario->save();
+    //         if($usuario->token){
+    //             $usuario->contrasena = $encriptar;
+    //             $usuario->token = null;
+    //             $usuario->save();
 
-                $response = [
-                    'estado' => true,
-                    'mensaje' => 'La contraseña ha sido actualizada !!'
-                ];
-            }else{
-                $usuario->token = null;
-                $usuario->save();
+    //             $response = [
+    //                 'estado' => true,
+    //                 'mensaje' => 'La contraseña ha sido actualizada !!'
+    //             ];
+    //         }else{
+    //             $usuario->token = null;
+    //             $usuario->save();
 
-                $response = [
-                    'estado' => false,
-                    'mensaje' => 'No es posible actualizar la contraseña, vuelva a intentarlo !'
-                ];
-            }
-        }else{
-            $response = [
-                'estado' => false,
-                'mensaje' => 'El usuario no tiene permiso para actualizar la contraseña !!'
-            ];
-        }
+    //             $response = [
+    //                 'estado' => false,
+    //                 'mensaje' => 'No es posible actualizar la contraseña, vuelva a intentarlo !'
+    //             ];
+    //         }
+    //     }else{
+    //         $response = [
+    //             'estado' => false,
+    //             'mensaje' => 'El usuario no tiene permiso para actualizar la contraseña !!'
+    //         ];
+    //     }
 
-        return response()->json($response);
-    }
+    //     return response()->json($response);
+    // }
 }

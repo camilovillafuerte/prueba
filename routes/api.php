@@ -264,12 +264,14 @@ Route::get('interfaz/contenido/{params}', [InterfazController::class, 'getInterf
 
 //Rutas para usuario
 Route::get('usuario/login/{personal_id}',[UsuarioController::class, 'loginsistema']);
-Route::get('usuario/search/{cedula}', [UsuarioController::class, 'searchUser']);
-Route::get('usuario/funcionalidad/{cedula}', [UsuarioController::class, 'getFuncionalidades']);
-Route::put('usuario/update', [UsuarioController::class, 'updateUsuario']);
-Route::post('usuario/upload-image', [UsuarioController::class, 'uploadImageServer']);
-Route::post('usuario/update-password', [UsuarioController::class, 'updatePassword']);
-Route::put('usuario/reset-password', [UsuarioController::class, 'actualizarContrasena']);
+
+Route::get('usuario/search/{id}', [UsuarioController::class, 'searchUser']);
+Route::get('usuario/funcionalidad/{id}', [UsuarioController::class, 'getFuncionalidades']);
+
+// Route::put('usuario/update', [UsuarioController::class, 'updateUsuario']);
+// Route::post('usuario/upload-image', [UsuarioController::class, 'uploadImageServer']);
+// Route::post('usuario/update-password', [UsuarioController::class, 'updatePassword']);
+//Route::put('usuario/reset-password', [UsuarioController::class, 'actualizarContrasena']);
 
 //Ruta para insertar convenios especificos y recuperar
 Route::get('convenio-especifico/get', [Convenios_especificosController::class, 'getConvenios']);
@@ -292,7 +294,7 @@ Route::get('clausulas-new', [ClausulasController::class, 'getClausulas_v2']);
 Route::post('clausulas-new', [ClausulasController::class, 'newClausala']);
 
 //Enviar el correo
-Route::post('email/forget-password', [MailerController::class, 'forget_password']);
+//Route::post('email/forget-password', [MailerController::class, 'forget_password']);
 
 //Ruta para obtener nombre de tipo de convenios
 Route::get('nombre-tipo-convenio', [Nombre_tipoconvenioController::class, 'get_nombre']);
