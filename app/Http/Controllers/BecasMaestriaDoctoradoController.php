@@ -38,8 +38,6 @@ class BecasMaestriaDoctoradoController extends Controller
         ->select('tbl_rol.id_rol','tbl_rol.descripcion as Rol', 'tbl_personal_rol.fecha')
         ->where('personal.idpersonal','=',$consulta->idpersonal)
         ->where('tbl_rol.estado','=','S')
-        ->where('tbl_rol.descripcion','<>','EGRESADO')
-        ->where('tbl_rol.descripcion','<>','ESTUDIANTE')
         ->orderBy('tbl_personal_rol.fecha','DESC')
         
         ->get();
@@ -50,20 +48,43 @@ class BecasMaestriaDoctoradoController extends Controller
         foreach($consulta2 as $rol){
             $rolObj=(Object) $rol;
             if($rolObj->Rol=='ESTUDIANTE'){
-                $response=[
-                    'estado'=> false,
-                    'mensaje' => 'Usted no puede solicitar una Beca'
-                
-                ];
-                $verificar=1;
+                $consultaDocente=$this->verificarDocente($consulta->idpersonal);
+                if($consultaDocente)
+                {
+                    $verificar=0;
+                }
+                else
+                {
+                    $response=[
+                        'estado'=> false,
+                        'mensaje' => 'Usted no puede solicitar una Beca'
+
+                    ];
+                    $verificar=1;
+
+                }
             }
            
         }
-        if($verificar==0)
-        $response=[
-            'estado'=> true,
-            'usuario' => $consulta
-        ];
+        if($verificar==0){
+            $consultaDocente2=$this->verificarDocente($consulta->idpersonal);
+            if($consultaDocente2)
+            {
+                 $response=[
+                'estado'=> true,
+                'usuario' => $consulta
+                ];
+            }
+            else{
+                $response=[
+                    'estado'=> false,
+                    'mensaje' => 'Usted no puede solicitar una Beca'
+
+                ];
+            }
+
+
+        }
         
       
         } else{
@@ -79,7 +100,7 @@ class BecasMaestriaDoctoradoController extends Controller
         }
 
         public function verificarDocente($idpersonal){
-            $consulta= DB::select("select f.idfacultad, f.nombre facultad, d.iddepartamento, d.nombre departamento, dd.idpersonal, p.apellido1  ' '  p.apellido2  ' '  p.nombres nombres
+            $consulta= DB::select("select f.idfacultad, f.nombre facultad, d.iddepartamento, d.nombre departamento, dd.idpersonal, p.apellido1 || ' ' || p.apellido2 || ' ' || p.nombres nombres
              from esq_distributivos.departamento d
              join esq_inscripciones.facultad f 
                  on d.idfacultad = f.idfacultad
@@ -93,8 +114,8 @@ class BecasMaestriaDoctoradoController extends Controller
                  on dd.idpersonal = p.idpersonal
              where p.idpersonal = ".$idpersonal."
              order by d.idfacultad, d.iddepartamento, p.idpersonal");
-             return response()->json($consulta);
+             return $consulta;
          
          }
-         
+
         }

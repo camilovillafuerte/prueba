@@ -50,8 +50,6 @@ $consulta2 = DB::table('esq_roles.tbl_personal_rol')
 
 // consultar utlimo promedio, carrera que estudia y ultimo periodo
 
-//$consulta3 = DB::table('esq_') 
-
 $consulta->roles=$consulta2;
 $verificar=0;
 foreach($consulta2 as $rol){
@@ -115,7 +113,20 @@ public function verificarDocente($idpersonal){
  
  }
 
+public function consultarPeriodo($idpersonal){
+    $consulta3 = DB::select("select es.nombre as Escuela_Nombre,pa.nombre as PERIODO ,i.prom_s as Promedio
+    from esq_inscripciones.inscripcion i
+    join  esq_inscripciones.escuela es on  i.idescuela = es.idescuela 
+    join esq_periodos_academicos.periodo_academico pa on pa.idperiodo=i.idperiodo  
+    where i.idpersonal = ".$idpersonal." and pa.actual  = 'N'
+    order by pa.idperiodo DESC");
+    $consulta4=json_decode(json_encode($consulta3));
+    foreach($consulta4 as $per){
+    $periObj=(Object) $per;
 
+    }
+  
+}
 
 
 
