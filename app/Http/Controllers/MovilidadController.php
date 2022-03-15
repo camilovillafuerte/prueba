@@ -57,10 +57,22 @@ $verificar=0;
 foreach($consulta2 as $rol){
     $rolObj=(Object) $rol;
     if($rolObj->Rol=='ESTUDIANTE'){
-        $response=[
-            'estado'=> true,
-            'usuario' => $consulta
-        ];
+        $consultaDocente=$this->verificarDocente($consulta->idpersonal);
+        if($consultaDocente)
+        {
+         $response=[
+             'estado'=> false,
+             'mensaje' =>'Usted no es un Estudiante' 
+         ];
+ 
+        }
+        else{
+         $response=[
+             'estado'=> true,
+             'usuario' => $consulta
+         ];
+ 
+        }
         $verificar=1;
     }
    
@@ -99,7 +111,7 @@ public function verificarDocente($idpersonal){
          on dd.idpersonal = p.idpersonal
      where p.idpersonal = ".$idpersonal."
      order by d.idfacultad, d.iddepartamento, p.idpersonal");
-     return response()->json($consulta);
+     return $consulta;
  
  }
 
