@@ -59,7 +59,7 @@ foreach($consulta2 as $rol){
         ];
         $verificar=1;
     }
-   // $response=$rolObj;
+   
 }
 if($verificar==0)
 $response=[
