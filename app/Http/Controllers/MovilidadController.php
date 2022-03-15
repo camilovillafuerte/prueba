@@ -48,6 +48,10 @@ $consulta2 = DB::table('esq_roles.tbl_personal_rol')
 
 ->get();
 
+
+$consulta3 = 0; // consultar utlimo promedio, carrera que estudia y ultimo periodo
+
+
 $consulta->roles=$consulta2;
 $verificar=0;
 foreach($consulta2 as $rol){
