@@ -39,8 +39,9 @@ if($consulta){
 $consulta2 = DB::table('esq_roles.tbl_personal_rol')
 ->join('esq_roles.tbl_rol','esq_roles.tbl_personal_rol.id_rol','=','esq_roles.tbl_rol.id_rol')
 ->join('esq_datos_personales.personal','esq_datos_personales.personal.idpersonal','=','esq_roles.tbl_personal_rol.id_personal')
-->select('tbl_rol.id_rol','tbl_rol.descripcion as Rol')
+->select('tbl_rol.id_rol','tbl_rol.descripcion as Rol', 'tbl_personal_rol.fecha')
 ->where('personal.idpersonal','=',$consulta->idpersonal)
+->orderBy('tbl_personal_rol.fecha','DESC')
 
 ->get();
 
