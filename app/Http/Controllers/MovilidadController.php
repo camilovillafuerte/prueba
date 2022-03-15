@@ -35,7 +35,7 @@ $consulta = DB::table('esq_datos_personales.personal')
 -> where ('esq_datos_personales.personal.cedula', $cedula)
 
 -> first();
-
+if($consulta){
 $consulta2 = DB::table('esq_roles.tbl_personal_rol')
 ->join('esq_roles.tbl_rol','esq_roles.tbl_personal_rol.id_rol','=','esq_roles.tbl_rol.id_rol')
 ->join('esq_datos_personales.personal','esq_datos_personales.personal.idpersonal','=','esq_roles.tbl_personal_rol.id_personal')
@@ -45,8 +45,20 @@ $consulta2 = DB::table('esq_roles.tbl_personal_rol')
 ->get();
 
 $consulta->roles=$consulta2;
+$response=[
+    'estado'=> true,
+    'usuario' => $consulta
+];
 
-return response()->json($consulta);
+} else{
+    $response= [
+        'estado'=> false,
+        'mensaje' => 'Usted no pertenece a la UTM'
+    ];
+
+}
+
+return response()->json($response);
 
 }
 
