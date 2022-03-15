@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Expr\Cast\Object_;
 
 class MovilidadController extends Controller
 {
@@ -41,16 +42,31 @@ $consulta2 = DB::table('esq_roles.tbl_personal_rol')
 ->join('esq_datos_personales.personal','esq_datos_personales.personal.idpersonal','=','esq_roles.tbl_personal_rol.id_personal')
 ->select('tbl_rol.id_rol','tbl_rol.descripcion as Rol', 'tbl_personal_rol.fecha')
 ->where('personal.idpersonal','=',$consulta->idpersonal)
+->where('tbl_rol.estado','=','S')
+->where('tbl_rol.descripcion','<>','EGRESADO')
 ->orderBy('tbl_personal_rol.fecha','DESC')
 
 ->get();
 
 $consulta->roles=$consulta2;
+$verificar=0;
+foreach($consulta2 as $rol){
+    $rolObj=(Object) $rol;
+    if($rolObj->Rol=='ESTUDIANTE'){
+        $response=[
+            'estado'=> true,
+            'usuario' => $consulta
+        ];
+        $verificar=1;
+    }
+   // $response=$rolObj;
+}
+if($verificar==0)
 $response=[
-    'estado'=> true,
-    'usuario' => $consulta
-];
+    'estado'=> false,
+    'mensaje' => 'Usted no es un Estudiante'
 
+];
 } else{
     $response= [
         'estado'=> false,
