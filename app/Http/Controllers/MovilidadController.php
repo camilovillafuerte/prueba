@@ -85,7 +85,7 @@ return response()->json($response);
 
 
 public function verificarDocente($idpersonal){
-    $consulta= DB::select("select f.idfacultad, f.nombre facultad, d.iddepartamento, d.nombre departamento, dd.idpersonal, p.apellido1  ' '  p.apellido2  ' '  p.nombres nombres
+    $consulta= DB::select("select f.idfacultad, f.nombre facultad, d.iddepartamento, d.nombre departamento, dd.idpersonal, p.apellido1 || ' ' || p.apellido2 || ' ' || p.nombres nombres
      from esq_distributivos.departamento d
      join esq_inscripciones.facultad f 
          on d.idfacultad = f.idfacultad
