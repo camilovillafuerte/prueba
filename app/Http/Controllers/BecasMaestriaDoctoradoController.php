@@ -77,4 +77,24 @@ class BecasMaestriaDoctoradoController extends Controller
         return response()->json($response);
         
         }
-}
+
+        public function verificarDocente($idpersonal){
+            $consulta= DB::select("select f.idfacultad, f.nombre facultad, d.iddepartamento, d.nombre departamento, dd.idpersonal, p.apellido1  ' '  p.apellido2  ' '  p.nombres nombres
+             from esq_distributivos.departamento d
+             join esq_inscripciones.facultad f 
+                 on d.idfacultad = f.idfacultad
+                 and not f.nombre = 'POSGRADO'
+                 and not f.nombre = 'CENTRO DE PROMOCIÓN Y APOYO AL INGRESO'
+                 and not f.nombre = 'INSTITUTO DE INVESTIGACIÓN'
+                 and d.habilitado = 'S'
+             join esq_distributivos.departamento_docente dd
+                 on dd.iddepartamento = d.iddepartamento
+             join esq_datos_personales.personal p 
+                 on dd.idpersonal = p.idpersonal
+             where p.idpersonal = ".$idpersonal."
+             order by d.idfacultad, d.iddepartamento, p.idpersonal");
+             return response()->json($consulta);
+         
+         }
+         
+        }

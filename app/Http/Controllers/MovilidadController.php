@@ -48,9 +48,9 @@ $consulta2 = DB::table('esq_roles.tbl_personal_rol')
 
 ->get();
 
+// consultar utlimo promedio, carrera que estudia y ultimo periodo
 
-$consulta3 = 0; // consultar utlimo promedio, carrera que estudia y ultimo periodo
-
+//$consulta3 = DB::table('esq_') 
 
 $consulta->roles=$consulta2;
 $verificar=0;
@@ -84,59 +84,27 @@ return response()->json($response);
 }
 
 
-
-
-public function rol_estudiantes($cedula)
-{ 
-    $response = [];
-    //if(isset($cedula)){
-    $rolestudiante = DB::table('esq_datos_personales.personal')
-    ->join('esquema_dricb.usuarios','esquema_dricb.usuarios.personal_id','=','esq_datos_personales.personal.id')
-    ->join('esq_roles.tbl_personal_rol','esq_roles.tbl_personal_rol.id_personal','=','esq_datos_personales.personal.id')
-    ->join('esq_roles.tbl_rol','esq_roles.tbl_personal_rol.id_rol','=','esq_roles.tbl_rol.id_rol')
-    ->select('usuarios.*','personal.*','tbl_personal_rol.*','tbl_rol.*')
-    -> where ('descripcion','ESTUDIANTE')
-    -> where ('esq_datos_personales.personal.cedula', $cedula)
-    -> get();
-
-    if($rolestudiante){
-        $response = [
-            'estado' => true,
-            'mensaje' => 'Usted es un estudiante',
-            'datos' => $rolestudiante
-          
-        ];
-    }else{
-        $response = [
-            'estado' => false,
-            'mensaje' => 'La cédula no pertenece a un estudiante',
-            'datos' => $rolestudiante
-        ];
-    }
-/*}else{
-    $response = [
-        'estado' => false,
-        'mensaje' => 'No hay data',
-        'datos' => false
-    ];
-}*/
-
-    return response()->json($response);
+public function verificarDocente($idpersonal){
+    $consulta= DB::select("select f.idfacultad, f.nombre facultad, d.iddepartamento, d.nombre departamento, dd.idpersonal, p.apellido1  ' '  p.apellido2  ' '  p.nombres nombres
+     from esq_distributivos.departamento d
+     join esq_inscripciones.facultad f 
+         on d.idfacultad = f.idfacultad
+         and not f.nombre = 'POSGRADO'
+         and not f.nombre = 'CENTRO DE PROMOCIÓN Y APOYO AL INGRESO'
+         and not f.nombre = 'INSTITUTO DE INVESTIGACIÓN'
+         and d.habilitado = 'S'
+     join esq_distributivos.departamento_docente dd
+         on dd.iddepartamento = d.iddepartamento
+     join esq_datos_personales.personal p 
+         on dd.idpersonal = p.idpersonal
+     where p.idpersonal = ".$idpersonal."
+     order by d.idfacultad, d.iddepartamento, p.idpersonal");
+     return response()->json($consulta);
  
-}
+ }
 
-public function roles()
-{ 
-    $roles = DB::table('esquema_dricb.usuarios')
-    ->join('esq_datos_personales.personal','esquema_dricb.usuarios.personal_id','=','esq_datos_personales.personal.id')
-    ->join('esq_roles.tbl_personal_rol','esq_roles.tbl_personal_rol.id_personal','=','esq_datos_personales.personal.id')
-    ->join('esq_roles.tbl_rol','esq_roles.tbl_personal_rol.id_rol','=','esq_roles.tbl_rol.id_rol')
-    ->select('usuarios.*','personal.*','tbl_personal_rol.*','tbl_rol.*')
-    -> where('descripcion','<>','ESTUDIANTE') 
-    -> get();
-  
-    return response() -> json ($roles);
-}
+
+
 
 
 
