@@ -38,8 +38,6 @@ class BecasMaestriaDoctoradoController extends Controller
         ->select('tbl_rol.id_rol','tbl_rol.descripcion as Rol', 'tbl_personal_rol.fecha')
         ->where('personal.idpersonal','=',$consulta->idpersonal)
         ->where('tbl_rol.estado','=','S')
-        ->where('tbl_rol.descripcion','<>','EGRESADO')
-        ->where('tbl_rol.descripcion','<>','ESTUDIANTE')
         ->orderBy('tbl_personal_rol.fecha','DESC')
         
         ->get();
