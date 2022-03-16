@@ -12,7 +12,7 @@ class solicitud_modalidades extends Model
     public $timestamps = false;
     protected $fillable = ['id','personal_id','naturaleza_id','modalidad1_id','modalidad2_id','uni_destino',
     'facultad_destino','semestre_cursar','fecha_inicio','fecha_fin','duracion_semestre',
-    'beca_apoyo','monto_referencial','fcreacion_solicitud','estado_solicitud','estado'];
+    'beca_apoyo','monto_referencial','fcreacion_solicitud','PDF','estado_solicitud','estado'];
 
    
     public function naturaleza(){
