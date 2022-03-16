@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateImagesTable extends Migration
+class CreateMBeneficiosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateImagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('images', function (Blueprint $table) {
+        Schema::create('m_beneficios', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('descripcion');
+            $table->enum('tipo',['M','B']); // Beca, Movilidad
+            $table->enum('estado',['A','D']);
         });
     }
 
@@ -26,6 +28,6 @@ class CreateImagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('images');
+        Schema::dropIfExists('m_beneficios');
     }
 }
