@@ -43,13 +43,15 @@ $consulta2 = DB::table('esq_roles.tbl_personal_rol')
 ->select('tbl_rol.id_rol','tbl_rol.descripcion as Rol', 'tbl_personal_rol.fecha')
 ->where('personal.idpersonal','=',$consulta->idpersonal)
 ->where('tbl_rol.estado','=','S')
-->where('tbl_rol.descripcion','<>','EGRESADO')
 ->orderBy('tbl_personal_rol.fecha','DESC')
 
 ->get();
 
 $consulta->roles=$consulta2;
 $verificar=0;
+$egresado=0;
+$graduado=0;
+
 foreach($consulta2 as $rol){
     $rolObj=(Object) $rol;
     if($rolObj->Rol=='ESTUDIANTE'){
@@ -65,23 +67,38 @@ foreach($consulta2 as $rol){
         else{
         // consultar utlimo promedio, carrera que estudia y ultimo periodo
         $semestre=$this->consultarPeriodo($consulta->idpersonal);
-        $consulta->periodo=$semestre->periodo;
-        $consulta->carrera=$semestre->escuela_nombre;
-        $consulta->promedio=$semestre->promedio;
-         $response=[
-             'estado'=> true,
-             'usuario' => $consulta
-         ];
- 
+        if($semestre){
+            $consulta->periodo=$semestre->periodo;
+            $consulta->carrera=$semestre->escuela_nombre;
+            $consulta->promedio=$semestre->promedio;
+             $response=[
+                 'estado'=> true,
+                 'usuario' => $consulta
+             ];
+
         }
+        else{
+            $response=[
+                'estado'=> false,
+                'mensaje' => 'Usted no cuenta con promedio y carrera'
+
+            ];
+        }
+    }
         $verificar=1;
     }
-   
+    else if($rolObj->Rol=='EGRESADO'){
+        $egresado=1;
+
+    }
+    else if($rolObj->Rol=='GRADUADO'){
+       $graduado=1;
+    }
 }
-if($verificar==0)
+if($verificar==0 || $egresado==1 || $graduado==1)
 $response=[
     'estado'=> false,
-    'mensaje' => 'Usted no es un Estudiante'
+    'mensaje' => 'Usted no forma parte de los Estudiantes de UTM'
 
 ];
 } else{
