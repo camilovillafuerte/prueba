@@ -16,6 +16,7 @@ class CreateMBeneficiosTable extends Migration
         Schema::create('m_beneficios', function (Blueprint $table) {
             $table->id();
             $table->string('descripcion');
+            $table->enum('tipo',['M','B']); // Beca, Movilidad
             $table->enum('estado',['A','D']);
         });
     }

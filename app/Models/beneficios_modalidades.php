@@ -11,4 +11,12 @@ class beneficios_modalidades extends Model
     protected $connection = 'pgsql';
     public $timestamps = false;
     protected $fillable = ['id','solicitud_id','beneficios_id'];
+
+    public function solicitud(){
+        return $this->belongsTo(solicitud_modalidades::class, 'solicitud_id', 'id');
+    }
+
+    public function beneficios(){
+        return $this->belongsTo(m_beneficios::class, 'beneficios_id', 'id');
+    }
 }

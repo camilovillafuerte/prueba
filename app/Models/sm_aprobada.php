@@ -11,4 +11,14 @@ class sm_aprobada extends Model
     protected $connection = 'pgsql';
     public $timestamps = false;
     protected $fillable = ['id','solicitud_id','personal_id','PDF', 'estado'];
+
+    //Relacion de uno a muchos
+    public function solicitud(){  
+    return $this->hasMany('App\Models\solicitud_modalidades',);
+    }
+    //Relacion de uno a muchos
+    public function Personal() {
+    return $this->hasMany('App\Models\personal');
+    }
+
 }

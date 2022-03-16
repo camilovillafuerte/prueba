@@ -16,6 +16,7 @@ class CreateNatuIntercambiosTable extends Migration
         Schema::create('natu_intercambios', function (Blueprint $table) {
             $table->id();
             $table->string('descripcion');
+            $table->enum('tipo',['M','B']); //Movilidad, Beca
             $table->enum('estado',['A','D']);
         });
     }

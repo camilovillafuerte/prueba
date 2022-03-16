@@ -35,4 +35,12 @@ class solicitud_modalidades extends Model
      public function enfermedades(){
         return $this->hasMany(enfermedades::class,'solicitud_id');
     }
+
+    public function bene_modalidad(){
+        return $this->belongsToMany('App\Models\beneficios_modalidad');
+    }
+    //Relacion de uno a muchos
+    public function sm_aprobadas(){
+        return $this->hasMany(sm_aprobada::class,'solicitud_id');
+    }
 }
