@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class m_beneficios extends Model
 {
     use HasFactory;
+    protected $connection = 'pgsql';
+    public $timestamps = false;
+    protected $fillable = ['id','descripcion','estado'];
 }

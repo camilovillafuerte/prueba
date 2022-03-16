@@ -12,4 +12,8 @@ class articulos extends Model
     protected $table = "articulos";
     public $timestamps = false;
     protected $fillable = ['id','des_art','subtipo'];
+
+    public function conarticulos(){
+        return $this -> belongsToMany('App\Models\contenido_articulos');
+    }
 }

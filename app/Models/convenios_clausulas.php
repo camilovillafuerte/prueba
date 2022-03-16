@@ -24,4 +24,7 @@ class convenios_clausulas extends Model
     public function contenidos(){
         return $this->belongsTo(contenido::class, 'id_contenidos', 'id');
     }
+    public function conve(){
+        return $this->belongsTo(convenios::class, 'id_convenios', 'id');
+    }
 }

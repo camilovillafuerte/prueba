@@ -18,4 +18,8 @@ class contenido extends Model
     public function convenios_clasulas(){
         return $this -> belongsToMany('App\Models\convenios_clausulas');
     }
+
+    public function convenios_articulos(){
+        return $this -> belongsToMany('App\Models\contenido_articulos');
+    }
 }
