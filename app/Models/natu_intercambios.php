@@ -10,7 +10,7 @@ class natu_intercambios extends Model
     use HasFactory;
     protected $connection = 'pgsql';
     public $timestamps = false;
-    protected $fillable = ['id','descripcion','estado'];
+    protected $fillable = ['id','descripcion','tipo','estado'];
 
 
     public function solicitud(){

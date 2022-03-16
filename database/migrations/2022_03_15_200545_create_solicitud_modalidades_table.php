@@ -33,6 +33,7 @@ class CreateSolicitudModalidadesTable extends Migration
             $table->string('beca_apoyo');
             $table->string('monto_referencial');
             $table->timestamp('fcreacion_solicitud');
+            $table->longText('PDF')->nullable();
             $table->enum('estado_solicitud',['A','P','R']); //Aprobado, Pendiente, Rechazado
             $table->enum('estado',['A','D']);
 
