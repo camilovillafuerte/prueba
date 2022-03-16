@@ -10,7 +10,7 @@ class beneficios_modalidades extends Model
     use HasFactory;
     protected $connection = 'pgsql';
     public $timestamps = false;
-    protected $fillable = ['id','solicitud_id','beneficios_id'];
+    protected $fillable = ['id','solicitud_id','beneficios_id','estado'];
 
     public function solicitud(){
         return $this->belongsTo(solicitud_modalidades::class, 'solicitud_id', 'id');
