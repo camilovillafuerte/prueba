@@ -115,7 +115,7 @@ class UsuarioController extends Controller{
         else{
             $response = [
                 'estado' => false,
-                'mensaje' => 'No existe el usuario registrado',
+                'mensaje' => 'Usted no tiene acceso al sistema DRICB',
             ];
 
         }
