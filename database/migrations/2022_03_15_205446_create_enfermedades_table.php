@@ -17,8 +17,7 @@ class CreateEnfermedadesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('solicitud_id');
             $table->foreign('solicitud_id')->references('id')->on('solicitud_modalidades')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('nombre_enfermedad')->nullable();
-            $table->string('tratamiento')->nullable();
+            $table->string('enfermedad_cronica')->nullable();// Aqui se guardara el tratamiento 
             $table->string('alergias')->nullable();
             $table->enum('poliza_seguro',['S','N']);
         });
