@@ -16,6 +16,9 @@ class beneficios_modalidades extends Model
         return $this->belongsTo(solicitud_modalidades::class, 'solicitud_id', 'id');
     }
 
+    public function solicitudbecas(){
+        return $this->belongsTo(solicitud_becas::class, 'solicitud_id', 'id');
+    }
     public function beneficios(){
         return $this->belongsTo(m_beneficios::class, 'beneficios_id', 'id');
     }

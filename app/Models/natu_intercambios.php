@@ -16,4 +16,8 @@ class natu_intercambios extends Model
     public function solicitud(){
     return $this->hasMany('App\Models\solicitud_modalidades','naturaleza_id');
     }
+
+    public function solicitudbecas(){
+        return $this->hasMany('App\Models\solicitud_becas','naturaleza_id');
+        }
 }

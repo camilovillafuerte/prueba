@@ -18,4 +18,12 @@ class modalidades extends Model
     public function solicitud2(){
         return $this->hasMany('App\Models\solicitud_modalidades','modalidad2_id');
     }
+
+
+    public function solicitudbecas1(){
+        return $this->hasMany('App\Models\solicitud_becas','modalidad1_id');
+    }
+    public function solicitudbecas2(){
+        return $this->hasMany('App\Models\solicitud_becas','modalidad2_id');
+    }
 }
