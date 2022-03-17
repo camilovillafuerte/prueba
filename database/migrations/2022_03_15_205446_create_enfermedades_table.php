@@ -20,7 +20,7 @@ class CreateEnfermedadesTable extends Migration
             $table->string('nombre_enfermedad')->nullable();
             $table->string('tratamiento')->nullable();
             $table->string('alergias')->nullable();
-            $table->string('poliza_seguro')->nullable();
+            $table->enum('poliza_seguro',['S','N']);
         });
     }
 
