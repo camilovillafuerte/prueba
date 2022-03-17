@@ -25,11 +25,10 @@ class CreateSolicitudModalidadesTable extends Migration
             $table->unsignedBigInteger('modalidad2_id');
             $table->foreign('modalidad2_id')->references('id')->on('modalidades')->onDelete('cascade')->onUpdate('cascade');
             $table->string('uni_destino');
-            $table->string('facultad_destino');
+            $table->string('carrera_destino');
             $table->string('semestre_cursar');
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
-            $table->enum('duracion_semestre',['1','2']);
             $table->string('beca_apoyo');
             $table->string('monto_referencial');
             $table->timestamp('fcreacion_solicitud');
