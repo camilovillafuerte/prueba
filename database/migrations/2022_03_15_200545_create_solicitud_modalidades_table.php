@@ -24,7 +24,7 @@ class CreateSolicitudModalidadesTable extends Migration
             $table->foreign('modalidad1_id')->references('id')->on('modalidades')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('modalidad2_id');
             $table->foreign('modalidad2_id')->references('id')->on('modalidades')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('uni_destino');
+            $table->string('universidad_destino');
             $table->string('carrera_destino');
             $table->string('semestre_cursar');
             $table->date('fecha_inicio');
