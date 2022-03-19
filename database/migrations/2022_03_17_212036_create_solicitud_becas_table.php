@@ -25,6 +25,7 @@ class CreateSolicitudBecasTable extends Migration
             $table->foreign('modalidad2_id')->references('id')->on('modalidades')->onDelete('cascade')->onUpdate('cascade');
             $table->string('universidad_destino');
             $table->string('campus_destino');
+            $table->integer('numero_semestre');
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
             $table->string('beca_apoyo');

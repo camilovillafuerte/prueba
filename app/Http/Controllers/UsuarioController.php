@@ -394,4 +394,24 @@ class UsuarioController extends Controller{
         return response()->json($response);
     }
     */
+
+    public function usuarioDRICB(){
+    $consulta=DB::select("select p.cedula, (p.apellido1 || ' ' || p.apellido2)as Apellidos, p.nombres, c.cargo 
+    from esq_datos_personales.personal p
+    join esq_dricb.usuarios u  on u.personal_id = p.idpersonal
+    join esq_dricb.cargos c on c.cargos_id = u.cargos_id "); 
+    return $consulta;
+
+}
+
+    public function consultarID($cedula){
+        $consulta=DB::table ('esq_datos_personales.personal as personal')
+        ->select ( 'personal.idpersonal', 'personal.cedula','personal.apellido1','personal.apellido2','personal.nombres')
+        ->where ('personal.cedula',  $cedula)
+        ->get();
+
+        return response()->json($consulta);
+    }
+
+
 }
