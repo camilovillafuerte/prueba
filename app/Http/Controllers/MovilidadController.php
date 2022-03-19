@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\modalidades;
+use App\Models\natu_intercambios;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Expr\Cast\Object_;
@@ -170,6 +171,25 @@ public function consultarPeriodo($idpersonal){
             $response=[
                 'estado'=>false,
                 'mensaje' => 'No existe esa modalidad'
+            ];
+        }
+  
+        return response()->json($response);
+    }
+
+
+    public function naturaleza($tipo){
+        $exist=natu_intercambios::where("tipo", $tipo )->get();
+        if($exist){
+            $response=[
+                'estado'=>true,
+                'naturaleza' => $exist
+            ];
+
+        }else{
+            $response=[
+                'estado'=>false,
+                'mensaje' => 'No existe esa naturaleza de movilidad'
             ];
         }
   
