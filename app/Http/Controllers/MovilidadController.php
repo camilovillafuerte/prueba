@@ -68,9 +68,9 @@ foreach($consulta2 as $rol){
         // consultar utlimo promedio, carrera que estudia y ultimo periodo
         $semestre=$this->consultarPeriodo($consulta->idpersonal);
         if($semestre){
-            $consulta->periodo=$semestre->periodo;
-            $consulta->carrera=$semestre->escuela_nombre;
-            $consulta->promedio=$semestre->promedio;
+            $consulta->carrera=$semestre;
+            // $consulta->carrera=$semestre->escuela_nombre;
+            // $consulta->promedio=$semestre->promedio;
              $response=[
                  'estado'=> true,
                  'usuario' => $consulta
@@ -134,25 +134,25 @@ public function verificarDocente($idpersonal){
  }
 
 public function consultarPeriodo($idpersonal){
-    $consulta3 = DB::select("select es.nombre as Escuela_Nombre,pa.nombre as PERIODO ,i.prom_s as Promedio
+    $consulta3 = DB::select("select es.idescuela,es.nombre as Escuela_Nombre,pa.nombre as PERIODO ,i.prom_s as Promedio
     from esq_inscripciones.inscripcion i
     join  esq_inscripciones.escuela es on  i.idescuela = es.idescuela 
     join esq_periodos_academicos.periodo_academico pa on pa.idperiodo=i.idperiodo  
-    where i.idpersonal = ".$idpersonal." and pa.actual  = 'N'
+    where i.idpersonal = ".$idpersonal." and pa.actual  = 'S'
     order by pa.idperiodo DESC");
     $i=0;
     $consulta4=json_decode(json_encode($consulta3));
-    foreach($consulta4 as $per){
-    $periObj=(Object) $per;
-    if($i==0)
-    {
-        $response=$periObj;
-        return $response;
-    }
-    $i++;
-    }
+    // foreach($consulta4 as $per){
+    // $periObj=(Object) $per;
+    // if($i==0)
+    // {
+    //     $response=$periObj;
+    //     return $response;
+    // }
+    // $i++;
+    // }
 
-    return [];
+    return ($consulta4);
     }
   
 }
