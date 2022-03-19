@@ -407,11 +407,10 @@ class UsuarioController extends Controller{
     public function consultarID($cedula){
         $consulta=DB::table ('esq_datos_personales.personal as personal')
         ->select ( 'personal.idpersonal', 'personal.cedula','personal.apellido1','personal.apellido2','personal.nombres')
-        ->where ('personal.cedula',  $cedula)
+        ->where ('personal.cedula','=',$cedula)
         ->get();
+    return response()->json($consulta);
 
-        return response()->json($consulta);
     }
-
-
 }
+
