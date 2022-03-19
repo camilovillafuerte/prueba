@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\modalidades;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Expr\Cast\Object_;
@@ -154,6 +155,25 @@ public function consultarPeriodo($idpersonal){
     // }
 
     return ($consulta4);
+    }
+
+
+    public function modalidad($tipo){
+        $exist=modalidades::where("tipo", intval($tipo ))->get();
+        if($exist){
+            $response=[
+                'estado'=>true,
+                'modalidad' => $exist
+            ];
+
+        }else{
+            $response=[
+                'estado'=>false,
+                'mensaje' => 'No existe esa modalidad'
+            ];
+        }
+  
+        return response()->json($response);
     }
   
 }

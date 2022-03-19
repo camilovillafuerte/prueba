@@ -372,4 +372,7 @@ Route::get('acceso-usuario',[UsuarioController::class,'usuarioDRICB']);
 //Consultar Personal para obtener ID
 Route::get('consulta-usuario/{cedula}',[UsuarioController::class,'consultarID']);
 
+//Consultar tipo de modalidad
+Route::get('modalidad/{tipo}',[MovilidadController::class,'modalidad']);
+
 
