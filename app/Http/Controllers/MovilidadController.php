@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\becas_apoyos;
+use App\Models\m_montos;
 use App\Models\modalidades;
 use App\Models\natu_intercambios;
 use Illuminate\Http\Request;
@@ -195,7 +197,44 @@ public function consultarPeriodo($idpersonal){
   
         return response()->json($response);
     }
+
+
+    public function becas($tipo){
+        $exist=becas_apoyos::where("tipo", $tipo )->get();
+        if($exist){
+            $response=[
+                'estado'=>true,
+                'naturaleza' => $exist
+            ];
+
+        }else{
+            $response=[
+                'estado'=>false,
+                'mensaje' => 'No existe esa beca'
+            ];
+        }
   
+        return response()->json($response);
+    }
+  
+
+    public function monto($tipo){
+        $exist=m_montos::where("tipo", $tipo )->get();
+        if($exist){
+            $response=[
+                'estado'=>true,
+                'naturaleza' => $exist
+            ];
+
+        }else{
+            $response=[
+                'estado'=>false,
+                'mensaje' => 'No existe el monto'
+            ];
+        }
+  
+        return response()->json($response);
+    }
 }
 
 
