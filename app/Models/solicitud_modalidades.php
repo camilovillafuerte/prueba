@@ -48,4 +48,19 @@ class solicitud_modalidades extends Model
     public function sm_aprobadas(){
         return $this->hasMany(sm_aprobada::class,'solicitud_id');
     }
+
+    //Relacion de uno a muchos
+    public function Becas()
+    {
+        return $this->hasMany('App\Models\becas_apoyos');
+    }
+
+    public function Monto()
+    {
+        return $this->hasMany('App\Models\m_montos');
+    }
+
+    public function soli(){
+        return $this->hasMany('App\Models\especificar_alergias','solicitud_id');
+    }
 }
