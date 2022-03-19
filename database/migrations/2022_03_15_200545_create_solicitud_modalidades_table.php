@@ -19,20 +19,22 @@ class CreateSolicitudModalidadesTable extends Migration
             $table->unsignedBigInteger('personal_id');
             $table->foreign('personal_id','constrainfk')->references('idpersonal')->on('esq_datos_personales.personal')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('escuela_id');
-            $table->foreign('escuela_id','constrainfk')->references('idescuela')->on('esq_inscripciones.escuela')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('escuela_id')->references('idescuela')->on('esq_inscripciones.escuela')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('naturaleza_id');
             $table->foreign('naturaleza_id')->references('id')->on('natu_intercambios')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('modalidad1_id');
             $table->foreign('modalidad1_id')->references('id')->on('modalidades')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('modalidad2_id');
             $table->foreign('modalidad2_id')->references('id')->on('modalidades')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('becas_id');
+            $table->foreign('becas_id')->references('id')->on('becas_apoyos')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('montos_id');
+            $table->foreign('montos_id')->references('id')->on('m_montos')->onDelete('cascade')->onUpdate('cascade');
             $table->string('universidad_destino');
             $table->string('carrera_destino');
             $table->string('semestre_cursar');
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
-            $table->string('beca_apoyo');
-            $table->string('monto_referencial');
             $table->timestamp('fcreacion_solicitud');
             $table->longText('PDF')->nullable();
             $table->enum('estado_solicitud',['A','P','R']); //Aprobado, Pendiente, Rechazado
