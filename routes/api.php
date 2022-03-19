@@ -366,4 +366,10 @@ Route::get('consulta-movilidad/{cedula}',[MovilidadController::class,'consultar'
 //Consultar Datos Becas
 Route::get('consulta-becas/{cedula}',[BecasMaestriaDoctoradoController::class,'consultarbecas']);
 
+//Usuario con acceso al sistema DRICN
+Route::get('acceso-usuario',[UsuarioController::class,'usuarioDRICB']);
+
+//Consultar Personal para obtener ID
+Route::get('consulta-usuario/{cedula}',[UsuarioController::class,'consultarID']);
+
 

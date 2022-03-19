@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEnfermedadesTable extends Migration
+class CreateMMateriasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateEnfermedadesTable extends Migration
      */
     public function up()
     {
-        Schema::create('enfermedades', function (Blueprint $table) {
+        Schema::create('m_materias', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('solicitud_id');
             $table->foreign('solicitud_id')->references('id')->on('solicitud_modalidades')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('enfermedad_cronica')->nullable();// Aqui se guardara el tratamiento 
-            $table->string('alergias')->nullable();
-            $table->enum('poliza_seguro',['S','N']);
+            $table->string('materia_origen');
+            $table->string('codigo_origen')->nullable();
+            $table->string('materia_destino');
+            $table->string('codigo_destino')->nullable();
         });
     }
 
@@ -30,6 +31,6 @@ class CreateEnfermedadesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('enfermedades');
+        Schema::dropIfExists('m_materias');
     }
 }
