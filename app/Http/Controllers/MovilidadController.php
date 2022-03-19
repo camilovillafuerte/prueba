@@ -80,7 +80,7 @@ foreach($consulta2 as $rol){
         else{
             $response=[
                 'estado'=> false,
-                'mensaje' => 'Usted no cuenta con promedio y carrera'
+                'mensaje' => 'Usted no puede solicitar este tipo de becas'
 
             ];
         }
