@@ -80,7 +80,7 @@ foreach($consulta2 as $rol){
         else{
             $response=[
                 'estado'=> false,
-                'mensaje' => 'Usted no cuenta con promedio y carrera'
+                'mensaje' => 'Usted no puede solicitar este tipo de becas'
 
             ];
         }
@@ -134,10 +134,11 @@ public function verificarDocente($idpersonal){
  }
 
 public function consultarPeriodo($idpersonal){
-    $consulta3 = DB::select("select es.idescuela,es.nombre as Escuela_Nombre,pa.nombre as PERIODO ,i.prom_s as Promedio
+    $consulta3 = DB::select("select es.idescuela,es.nombre as Escuela_Nombre,pa.nombre as PERIODO ,i.prom_s as Promedio, m.nombre as Semestre
     from esq_inscripciones.inscripcion i
     join  esq_inscripciones.escuela es on  i.idescuela = es.idescuela 
-    join esq_periodos_academicos.periodo_academico pa on pa.idperiodo=i.idperiodo  
+    join esq_periodos_academicos.periodo_academico pa on pa.idperiodo=i.idperiodo 
+    join esq_mallas.nivel m on i.idnivel=m.idnivel 
     where i.idpersonal = ".$idpersonal." and pa.actual  = 'S'
     order by pa.idperiodo DESC");
     $i=0;
