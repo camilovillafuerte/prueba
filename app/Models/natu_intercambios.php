@@ -18,6 +18,10 @@ class natu_intercambios extends Model
     }
 
     public function solicitudbecas(){
-        return $this->hasMany('App\Models\solicitud_becas','naturaleza_id');
-        }
+    return $this->hasMany('App\Models\solicitud_becas','naturaleza_id');
+    }
+
+    public function bene_becas(){
+    return $this -> belongsToMany('App\Models\beneficios_becas');
+    }
 }

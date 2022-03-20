@@ -19,4 +19,7 @@ class imagenes_convenios extends Model
     public function convenios2(){
         return $this->hasMany('App\Models\convenios','imagen2_id');
     }
+    public function solicitud_modalidad(){
+        return $this->hasMany('App\Models\solicitud_modalidades','logo_id');
+    }
 }

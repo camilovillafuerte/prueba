@@ -10,13 +10,14 @@ class especificar_alergias extends Model
     use HasFactory;
     protected $connection = 'pgsql';
     public $timestamps = false;
-    protected $fillable = ['id','solicitud_id','alergias_id','tipo','estado'];
+    protected $fillable = ['id','solicitud_id','alergias_id','especificar_alergia','estado'];
 
 
     public function solicitud(){
-        return $this->hasMany('App\Models\solicitud_modalidades');
+        return $this->belongsTo(solicitud_modalidades::class, 'solicitud_id', 'id');
     }
     public function alergias(){
-        return $this->hasMany('App\Models\alergias');
+        return $this->belongsTo(alergias::class, 'alergias_id', 'id');
     }
+    
 }
