@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMBeneficiosTable extends Migration
+class CreateBecasApoyosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateMBeneficiosTable extends Migration
      */
     public function up()
     {
-        Schema::create('m_beneficios', function (Blueprint $table) {
+        Schema::create('becas_apoyos', function (Blueprint $table) {
             $table->id();
             $table->string('descripcion');
-            $table->enum('estado',['A','D']);
+            $table->enum('tipo',['M','B']);
+            $table->enum ('estado',['A','D']);
         });
     }
 
@@ -27,6 +28,6 @@ class CreateMBeneficiosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('m_beneficios');
+        Schema::dropIfExists('becas_apoyos');
     }
 }

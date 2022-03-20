@@ -19,6 +19,8 @@ class CreateSolicitudBecasTable extends Migration
             $table->foreign('personal_id','constrainfk')->references('idpersonal')->on('esq_datos_personales.personal')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('naturaleza_id');
             $table->foreign('naturaleza_id')->references('id')->on('natu_intercambios')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('logo_id');
+            $table->foreign('logo_id')->references('id')->on('imagenes_convenios')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('modalidad1_id');
             $table->foreign('modalidad1_id')->references('id')->on('modalidades')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('modalidad2_id');

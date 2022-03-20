@@ -10,9 +10,8 @@ class solicitud_modalidades extends Model
     use HasFactory;
     protected $connection = 'pgsql';
     public $timestamps = false;
-    protected $fillable = ['id','personal_id','naturaleza_id','modalidad1_id','modalidad2_id','uni_destino',
-    'carrera_destino','semestre_cursar','fecha_inicio','fecha_fin',
-    'beca_apoyo','monto_referencial','fcreacion_solicitud','PDF','estado_solicitud','estado'];
+    protected $fillable = ['id','personal_id','universidad_id','escuela_id','naturaleza_id','modalidad1_id','modalidad2_id',
+    'becas_id','montos_id','carrera_destino','semestre_cursar','fecha_inicio','fecha_fin','fcreacion_solicitud','PDF','estado_solicitud','estado'];
 
    
     public function naturaleza(){
@@ -47,5 +46,25 @@ class solicitud_modalidades extends Model
     //Relacion de uno a muchos
     public function sm_aprobadas(){
         return $this->hasMany(sm_aprobada::class,'solicitud_id');
+    }
+
+    //Relacion de uno a muchos
+    public function Becas()
+    {
+        return $this->hasMany('App\Models\becas_apoyos');
+    }
+
+    public function Monto()
+    {
+        return $this->hasMany('App\Models\m_montos');
+    }
+
+    public function PDF()
+    {
+        return $this->hasMany('App\Models\pdf_msolicitudes');
+    }
+
+    public function soli(){
+        return $this->hasMany('App\Models\especificar_alergias','solicitud_id');
     }
 }
