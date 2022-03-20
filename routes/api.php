@@ -381,3 +381,6 @@ Route::get('universidades',[MovilidadController::class,'universidad']);
 
 //Obtener Beneficios
 Route::get('beneficios/{id}',[MovilidadController::class,'beneficios_naturaleza']);
+
+//Subir Documentos de movilidad
+Route::post('documento/movilidad', [MovilidadController::class, 'subirDocumentoMovilidad']);
