@@ -12,8 +12,8 @@ class m_beneficios extends Model
     public $timestamps = false;
     protected $fillable = ['id','descripcion','tipo','estado'];
 
-    //Relación muchos a muchos
-    public function bene_modalidad(){
-        return $this->belongsToMany('App\Models\beneficios_modalidad');
+    public function bene_becas(){
+        return $this -> belongsToMany('App\Models\beneficios_becas');
     }
+    
 }

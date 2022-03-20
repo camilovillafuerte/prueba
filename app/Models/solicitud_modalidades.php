@@ -10,7 +10,7 @@ class solicitud_modalidades extends Model
     use HasFactory;
     protected $connection = 'pgsql';
     public $timestamps = false;
-    protected $fillable = ['id','personal_id','universidad_id','escuela_id','naturaleza_id','modalidad1_id','modalidad2_id',
+    protected $fillable = ['id','personal_id','logo_id','universidad_id','escuela_id','naturaleza_id','modalidad1_id','modalidad2_id',
     'becas_id','montos_id','carrera_destino','semestre_cursar','fecha_inicio','fecha_fin','fcreacion_solicitud','PDF','estado_solicitud','estado'];
 
    
@@ -66,5 +66,10 @@ class solicitud_modalidades extends Model
 
     public function soli(){
         return $this->hasMany('App\Models\especificar_alergias','solicitud_id');
+    }
+
+    public function Imagen()
+    {
+        return $this->hasMany('App\Models\imagenes_convenios');
     }
 }

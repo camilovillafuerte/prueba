@@ -238,7 +238,8 @@ public function consultarPeriodo($idpersonal){
 
     public function universidad (){
         $consulta= DB::select("select iduniversidad, nombre
-        from esq_datos_personales.p_universidad");
+        from esq_datos_personales.p_universidad
+        order by nombre ASC");
 
         return response()->json($consulta);
     }
