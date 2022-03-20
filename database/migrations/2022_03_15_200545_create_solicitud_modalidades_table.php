@@ -32,7 +32,6 @@ class CreateSolicitudModalidadesTable extends Migration
             $table->foreign('becas_id')->references('id')->on('becas_apoyos')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('montos_id');
             $table->foreign('montos_id')->references('id')->on('m_montos')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('universidad_destino');
             $table->string('carrera_destino');
             $table->string('semestre_cursar');
             $table->date('fecha_inicio');
