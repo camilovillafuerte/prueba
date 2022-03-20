@@ -18,6 +18,8 @@ class CreateSolicitudModalidadesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('personal_id');
             $table->foreign('personal_id','constrainfk')->references('idpersonal')->on('esq_datos_personales.personal')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('logo_id');
+            $table->foreign('logo_id')->references('id')->on('imagenes_convenios')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('universidad_id');
             $table->foreign('universidad_id')->references('iduniversidad')->on('esq_datos_personales.p_universidad')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('escuela_id');

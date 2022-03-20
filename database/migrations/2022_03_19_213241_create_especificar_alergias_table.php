@@ -19,7 +19,7 @@ class CreateEspecificarAlergiasTable extends Migration
             $table->unsignedBigInteger('solicitud_id');
             $table->foreign('alergias_id')->references('id')->on('alergias')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('alergias_id');
-            $table->enum('tipo',['A','M','O']);//Alimento, Medicina, Otros
+            $table->string('especificar_alergia');
             $table->enum('estado',['A','D']);
         });
     }
