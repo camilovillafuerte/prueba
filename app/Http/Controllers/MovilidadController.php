@@ -235,6 +235,13 @@ public function consultarPeriodo($idpersonal){
   
         return response()->json($response);
     }
+
+    public function universidad (){
+        $consulta= DB::select("select iduniversidad, nombre
+        from esq_datos_personales.p_universidad");
+
+        return response()->json($consulta);
+    }
 }
 
 

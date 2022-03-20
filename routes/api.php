@@ -374,3 +374,6 @@ Route::get('naturaleza/{tipo}',[MovilidadController::class,'naturaleza']);
 Route::get('apoyo/{tipo}',[MovilidadController::class,'becas']);
 Route::get('monto/{tipo}',[MovilidadController::class,'monto']);
 
+
+//Obtener Universidades
+Route::get('universidades',[MovilidadController::class,'universidad']);

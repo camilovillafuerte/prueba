@@ -24,7 +24,7 @@ class CreatePdfMsolicitudesTable extends Migration
             $table->string('pdfno_sancion');
             $table->string('pdffotos');
             $table->string('pdfseguro');
-            $table->string('pdfexamen_psicometrico');
+            $table->string('pdfexamen_psicometrico')->nullable();
             $table->string('pdfdominio_idioma')->nullable();
             $table->string('pdfdocumentos_udestino');
             $table->string('pdfcomprobante_solvencia');
