@@ -204,7 +204,7 @@ public function consultarPeriodo($idpersonal){
         if($exist){
             $response=[
                 'estado'=>true,
-                'naturaleza' => $exist
+                'apoyo' => $exist
             ];
 
         }else{
@@ -223,7 +223,7 @@ public function consultarPeriodo($idpersonal){
         if($exist){
             $response=[
                 'estado'=>true,
-                'naturaleza' => $exist
+                'monto' => $exist
             ];
 
         }else{
