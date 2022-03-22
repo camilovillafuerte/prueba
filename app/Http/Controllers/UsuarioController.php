@@ -400,16 +400,40 @@ class UsuarioController extends Controller{
     from esq_datos_personales.personal p
     join esq_dricb.usuarios u  on u.personal_id = p.idpersonal
     join esq_dricb.cargos c on c.cargos_id = u.cargos_id "); 
-    return $consulta;
+    if($consulta){
+        $response=[
+            'estado'=> true,
+            'datos'=> $consulta,
+        ];
+    }else{
+        $response=[
+            'estado'=> false,
+            'mensaje'=> 'Este usuario no esta registrado en el sistema'
+        ];
+
+    }
+    return response()->json($response);
 
 }
 
     public function consultarID($cedula){
-        $consulta=DB::table ('esq_datos_personales.personal as personal')
-        ->select ( 'personal.idpersonal', 'personal.cedula','personal.apellido1','personal.apellido2','personal.nombres')
-        ->where ('personal.cedula','=',$cedula)
-        ->get();
-    return response()->json($consulta);
+        $consulta=DB::select("select personal.idpersonal, personal.cedula,personal.apellido1,personal.apellido2,personal.nombres
+        from esq_datos_personales.personal personal
+        where personal.cedula='$cedula'");
+
+        if($consulta){
+            $response=[
+                'estado'=> true,
+                'datos'=> $consulta,
+            ];
+        }else{
+            $response=[
+                'estado'=> false,
+                'mensaje'=> 'Este usuario no existe!'
+            ];
+
+        }
+        return response()->json($response);
 
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\alergias;
 use App\Models\becas_apoyos;
 use App\Models\m_beneficios;
 use App\Models\m_montos;
@@ -298,6 +299,24 @@ public function consultarPeriodo($idpersonal){
             ];
         }
 
+        return response()->json($response);
+    }
+
+    public function tipoalergias(){
+        $exist=alergias::select("*")->get();
+        if($exist){
+            $response=[
+                'estado'=>true,
+                'alergias' => $exist
+            ];
+
+        }else{
+            $response=[
+                'estado'=>false,
+                'mensaje' => 'No existe ese tipo de alergias'
+            ];
+        }
+  
         return response()->json($response);
     }
 
