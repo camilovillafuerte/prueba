@@ -320,6 +320,8 @@ public function consultarPeriodo($idpersonal){
         return response()->json($response);
     }
 
+
+
 }
 
 
