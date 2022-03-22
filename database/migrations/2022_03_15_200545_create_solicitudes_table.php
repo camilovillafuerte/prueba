@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSolicitudModalidadesTable extends Migration
+class CreateSolicitudesTable extends Migration
 {
     protected $connection = 'pgsql';
     /**
@@ -14,7 +14,7 @@ class CreateSolicitudModalidadesTable extends Migration
      */
     public function up()
     {
-        Schema::create('solicitud_modalidades', function (Blueprint $table) {
+        Schema::create('solicitudes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('personal_id');
             $table->foreign('personal_id','constrainfk')->references('idpersonal')->on('esq_datos_personales.personal')->onDelete('cascade')->onUpdate('cascade');
@@ -34,14 +34,17 @@ class CreateSolicitudModalidadesTable extends Migration
             $table->foreign('becas_id')->references('id')->on('becas_apoyos')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('montos_id');
             $table->foreign('montos_id')->references('id')->on('m_montos')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('carrera_destino');
-            $table->string('semestre_cursar');
+            $table->string('carrera_destino')->nullable();
+            $table->string('semestre_cursar')->nullable();
+            $table->string('campus_destino')->nullable();
+            $table->integer('numero_semestre')->nullable();
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
             $table->timestamp('fcreacion_solicitud');
             $table->longText('PDF')->nullable();
             $table->enum('estado_solicitud',['A','P','R']); //Aprobado, Pendiente, Rechazado
-            $table->enum('estado',['A','D']);
+            $table->enum('tipo',['M','B']); //Movilidad, Becas
+            $table->enum('estado',['A','D']); //Activo, Desactivado
 
         });
     }
@@ -53,6 +56,6 @@ class CreateSolicitudModalidadesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('solicitud_modalidades');
+        Schema::dropIfExists('solicitudes');
     }
 }

@@ -16,7 +16,7 @@ class CreateEnfermedadesTable extends Migration
         Schema::create('enfermedades', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('solicitud_id');
-            $table->foreign('solicitud_id')->references('id')->on('solicitud_modalidades')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('solicitud_id')->references('id')->on('solicitudes')->onDelete('cascade')->onUpdate('cascade');
             $table->string('enfermedad_cronica')->nullable();// Aqui se guardara el tratamiento 
             $table->string('alergias')->nullable();
             $table->enum('poliza_seguro',['S','N']);

@@ -15,6 +15,6 @@ class m_montos extends Model
 
       //Relacion de uno a muchos
 public function soli(){
-    return $this->hasMany('App\Models\solicitud_modalidades','montos_id');
+    return $this->hasMany('App\Models\solicitudes','montos_id');
 }
 }

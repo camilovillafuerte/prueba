@@ -16,7 +16,7 @@ class CreateMMateriasTable extends Migration
         Schema::create('m_materias', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('solicitud_id');
-            $table->foreign('solicitud_id')->references('id')->on('solicitud_modalidades')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('solicitud_id')->references('id')->on('solicitudes')->onDelete('cascade')->onUpdate('cascade');
             $table->string('materia_origen');
             $table->string('codigo_origen')->nullable();
             $table->string('materia_destino');

@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class solicitud_modalidades extends Model
+class solicitudes extends Model
 {
     use HasFactory;
     protected $connection = 'pgsql';
     public $timestamps = false;
     protected $fillable = ['id','personal_id','logo_id','universidad_id','escuela_id','naturaleza_id','modalidad1_id','modalidad2_id',
-    'becas_id','montos_id','carrera_destino','semestre_cursar','fecha_inicio','fecha_fin','fcreacion_solicitud','PDF','estado_solicitud','estado'];
+    'becas_id','montos_id','carrera_destino','semestre_cursar','campus_destino','numero_semestre','fecha_inicio','fecha_fin','fcreacion_solicitud','PDF','estado_solicitud','tipo','estado'];
 
    
     public function naturaleza(){
@@ -45,7 +45,7 @@ class solicitud_modalidades extends Model
     }
     //Relacion de uno a muchos
     public function sm_aprobadas(){
-        return $this->hasMany(sm_aprobada::class,'solicitud_id');
+        return $this->hasMany(s_aprobadas::class,'solicitud_id');
     }
 
     //Relacion de uno a muchos
@@ -61,7 +61,7 @@ class solicitud_modalidades extends Model
 
     public function PDF()
     {
-        return $this->hasMany('App\Models\pdf_msolicitudes');
+        return $this->hasMany('App\Models\pdf_solicitudes');
     }
 
     public function soli(){

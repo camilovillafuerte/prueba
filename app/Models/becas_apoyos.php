@@ -14,7 +14,7 @@ class becas_apoyos extends Model
 
    //Relacion de uno a muchos
 public function soli(){
-    return $this->hasMany('App\Models\solicitud_modalidades','becas_id');
+    return $this->hasMany('App\Models\solicitudes','becas_id');
 }
 
 }
