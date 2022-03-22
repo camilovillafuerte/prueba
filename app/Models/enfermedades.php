@@ -15,6 +15,6 @@ class enfermedades extends Model
 
 
     public function solicitud(){
-        return $this->hasMany('App\Models\solicitud_modalidades');
+        return $this->hasMany('App\Models\solicitudes');
     }
 }

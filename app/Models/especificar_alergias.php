@@ -14,7 +14,7 @@ class especificar_alergias extends Model
 
 
     public function solicitud(){
-        return $this->belongsTo(solicitud_modalidades::class, 'solicitud_id', 'id');
+        return $this->belongsTo(solicitudes::class, 'solicitud_id', 'id');
     }
     public function alergias(){
         return $this->belongsTo(alergias::class, 'alergias_id', 'id');
