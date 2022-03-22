@@ -16,6 +16,12 @@ use PhpParser\Node\Expr\Cast\Object_;
 class MovilidadController extends Controller
 {
     //
+    private $baseCtrl;
+
+    public function __construct()
+    {
+        $this->baseCtrl = new BaseController();
+    }
   
 public function consultar($cedula){
 
