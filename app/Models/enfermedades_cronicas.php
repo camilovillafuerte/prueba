@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class enfermedades extends Model
+class enfermedades_cronicas extends Model
 {
     use HasFactory;
     protected $connection = 'pgsql';
     public $timestamps = false;
-    protected $fillable = ['id','solicitud_id','nombre_enfermedad','tratamiento',
-    'alergias','poliza_seguro'];
+    protected $fillable = ['id','solicitud_id','enfermedadesytratamiento','estado'];
 
 
     public function solicitud(){
