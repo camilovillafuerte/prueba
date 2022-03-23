@@ -11,7 +11,7 @@ class solicitudes extends Model
     protected $connection = 'pgsql';
     public $timestamps = false;
     protected $fillable = ['id','personal_id','logo_id','universidad_id','escuela_id','naturaleza_id','modalidad1_id','modalidad2_id',
-    'becas_id','montos_id','carrera_destino','semestre_cursar','campus_destino','numero_semestre','fecha_inicio','fecha_fin','fcreacion_solicitud','PDF','estado_solicitud','tipo','estado'];
+    'becas_id','montos_id','carrera_destino','semestre_cursar','campus_destino','numero_semestre','fecha_inicio','fecha_fin','fcreacion_solicitud','PDF','poliza_seguro','estado_solicitud','tipo','estado'];
 
    
     public function naturaleza(){
