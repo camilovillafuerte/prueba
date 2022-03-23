@@ -388,10 +388,11 @@ Route::post('documento/movilidad', [MovilidadController::class, 'subirDocumentoM
 
 //Subir Documentos de movilidad
 Route::post('documentos/movilidad', [MovilidadController::class, 'subirDocumentosMovilidad']);
+Route::post('documento/movilidad', [MovilidadController::class, 'subirDocumentoMovilidad']);
 
 //Solicitud Movilidad
 Route::post('movilidad-new', [MovilidadController::class, 'addsolicitud']);
-Route::post('documento/movilidad', [MovilidadController::class, 'subirDocumentoMovilidad']);
+
 
 //Consultar Solicitud
 Route::get('solicitud-movilidad/{cedula}',[MovilidadController::class,'consultarMovilidad']);
