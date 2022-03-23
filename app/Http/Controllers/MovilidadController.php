@@ -419,6 +419,9 @@ public function consultarPeriodo($idpersonal){
 
             $objetoarchivo->examen_psicometria=$url . $filenametostore;
          }
+         else{
+            $objetoarchivo->examen_psicometria="";
+         }
 
         if($request->hasFile('dominio_idioma'))
          {
@@ -433,6 +436,9 @@ public function consultarPeriodo($idpersonal){
             $url = $this->baseCtrl->getUrlServer('Contenido/DocumentosMovilidad/');
 
             $objetoarchivo->dominio_idioma=$url . $filenametostore;
+         }
+         else{
+            $objetoarchivo->dominio_idioma="";
          }
 
          if($request->hasFile('documento_udestino'))
