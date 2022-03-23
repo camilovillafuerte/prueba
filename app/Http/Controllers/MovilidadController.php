@@ -279,7 +279,9 @@ public function consultarPeriodo($idpersonal){
 
 
     public function tipoalergias(){
-        $exist=alergias::select("*")->get();
+        $exist=alergias::select("*")
+        -> orderBy('descripcion', 'ASC')
+        ->get();
         if($exist){
             $response=[
                 'estado'=>true,
