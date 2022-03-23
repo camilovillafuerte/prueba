@@ -278,36 +278,6 @@ public function consultarPeriodo($idpersonal){
     }
 
 
-    public function subirDocumentoMovilidad(Request $request)
-    {
-
-        if ($request->hasFile('document')) {
-            $documento = $request->file('document');
-            $filenamewithextension = $documento->getClientOriginalName();   //Archivo con su extension
-            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);            //Sin extension
-            $extension = $request->file('document')->getClientOriginalExtension();    //Obtener extesion de archivo
-            $filenametostore = $filename . '_' . uniqid() . '.' . $extension;
-
-            Storage::disk('ftp10')->put($filenametostore, fopen($request->file('document'), 'r+'));
-
-            $url = $this->baseCtrl->getUrlServer('Contenido/DocumentosMovilidad/');
-
-            $response = [
-                'estado' => true,
-                'documento' => $url . $filenametostore,
-                'mensaje' => 'El documento se ha subido al servidor'
-            ];
-        } else {
-            $response = [
-                'estado' => false,
-                'documento' => '',
-                'mensaje' => 'No hay un archivo para procesar'
-            ];
-        }
-
-        return response()->json($response);
-    }
-
     public function tipoalergias(){
         $exist=alergias::select("*")->get();
         if($exist){
@@ -324,6 +294,194 @@ public function consultarPeriodo($idpersonal){
         }
   
         return response()->json($response);
+    }
+
+
+    public function subirDocumentosMovilidad(Request $request)
+    {
+        $archivo=[];
+        $objetoarchivo=(Object)$archivo;
+        if ($request->hasFile('certificado_matricula'))
+         {
+            $documento = $request->file('certificado_matricula');
+            $filenamewithextension = $documento->getClientOriginalName();   //Archivo con su extension
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);            //Sin extension
+            $extension = $request->file('certificadomatricula')->getClientOriginalExtension();    //Obtener extesion de archivo
+            $filenametostore = $filename . '' . uniqid() . '.' . $extension;
+
+            Storage::disk('ftp10')->put($filenametostore, fopen($request->file('certificado_matricula'), 'r+'));
+
+            $url = $this->baseCtrl->getUrlServer('Contenido/DocumentosMovilidad/');
+
+            $objetoarchivo-> certificado_matricula=$url . $filenametostore;
+
+
+         }
+         if($request->hasFile('copia_record'))
+         {
+            $documento = $request->file('copia_record');
+            $filenamewithextension = $documento->getClientOriginalName();   //Archivo con su extension
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);            //Sin extension
+            $extension = $request->file('copiarecord')->getClientOriginalExtension();    //Obtener extesion de archivo
+            $filenametostore = $filename . '' . uniqid() . '.' . $extension;
+
+            Storage::disk('ftp10')->put($filenametostore, fopen($request->file('copia_record'), 'r+'));
+
+            $url = $this->baseCtrl->getUrlServer('Contenido/DocumentosMovilidad/');
+
+            $objetoarchivo->copia_record=$url . $filenametostore;
+         }
+
+        if($request->hasFile('solicitud_carta'))
+         {
+            $documento = $request->file('solicitud_carta');
+            $filenamewithextension = $documento->getClientOriginalName();   //Archivo con su extension
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);            //Sin extension
+            $extension = $request->file('solicitudcarta')->getClientOriginalExtension();    //Obtener extesion de archivo
+            $filenametostore = $filename . '' . uniqid() . '.' . $extension;
+
+            Storage::disk('ftp10')->put($filenametostore, fopen($request->file('solicitud_carta'), 'r+'));
+
+            $url = $this->baseCtrl->getUrlServer('Contenido/DocumentosMovilidad/');
+
+            $objetoarchivo->solicitud_carta=$url . $filenametostore;
+         }
+         if($request->hasFile('cartas_recomendacion'))
+         {
+            $documento = $request->file('cartas_recomendacion');
+            $filenamewithextension = $documento->getClientOriginalName();   //Archivo con su extension
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);            //Sin extension
+            $extension = $request->file('cartasrecomendacion')->getClientOriginalExtension();    //Obtener extesion de archivo
+            $filenametostore = $filename . '' . uniqid() . '.' . $extension;
+
+            Storage::disk('ftp10')->put($filenametostore, fopen($request->file('cartas_recomendacion'), 'r+'));
+
+            $url = $this->baseCtrl->getUrlServer('Contenido/DocumentosMovilidad/');
+
+            $objetoarchivo->cartas_recomendacion=$url . $filenametostore;
+         }
+
+        if($request->hasFile('no_sancion'))
+         {
+            $documento = $request->file('no_sancion');
+            $filenamewithextension = $documento->getClientOriginalName();   //Archivo con su extension
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);            //Sin extension
+            $extension = $request->file('nosancion')->getClientOriginalExtension();    //Obtener extesion de archivo
+            $filenametostore = $filename . '' . uniqid() . '.' . $extension;
+
+            Storage::disk('ftp10')->put($filenametostore, fopen($request->file('no_sancion'), 'r+'));
+
+            $url = $this->baseCtrl->getUrlServer('Contenido/DocumentosMovilidad/');
+
+            $objetoarchivo->no_sancion=$url . $filenametostore;
+         }
+
+         if($request->hasFile('fotos'))
+         {
+            $documento = $request->file('fotos');
+            $filenamewithextension = $documento->getClientOriginalName();   //Archivo con su extension
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);            //Sin extension
+            $extension = $request->file('fotos')->getClientOriginalExtension();    //Obtener extesion de archivo
+            $filenametostore = $filename . '' . uniqid() . '.' . $extension;
+
+            Storage::disk('ftp10')->put($filenametostore, fopen($request->file('fotos'), 'r+'));
+
+            $url = $this->baseCtrl->getUrlServer('Contenido/DocumentosMovilidad/');
+
+            $objetoarchivo->fotos=$url . $filenametostore;
+         }
+        if($request->hasFile('seguro'))
+         {
+            $documento = $request->file('seguro');
+            $filenamewithextension = $documento->getClientOriginalName();   //Archivo con su extension
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);            //Sin extension
+            $extension = $request->file('seguro')->getClientOriginalExtension();    //Obtener extesion de archivo
+            $filenametostore = $filename . '' . uniqid() . '.' . $extension;
+
+            Storage::disk('ftp10')->put($filenametostore, fopen($request->file('seguro'), 'r+'));
+
+            $url = $this->baseCtrl->getUrlServer('Contenido/DocumentosMovilidad/');
+
+            $objetoarchivo->seguro=$url . $filenametostore;
+         }
+
+         if($request->hasFile('examen_psicometria'))
+         {
+            $documento = $request->file('examen_psicometria');
+            $filenamewithextension = $documento->getClientOriginalName();   //Archivo con su extension
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);            //Sin extension
+            $extension = $request->file('examenpsicometria')->getClientOriginalExtension();    //Obtener extesion de archivo
+            $filenametostore = $filename . '' . uniqid() . '.' . $extension;
+
+            Storage::disk('ftp10')->put($filenametostore, fopen($request->file('examen_psicometria'), 'r+'));
+
+            $url = $this->baseCtrl->getUrlServer('Contenido/DocumentosMovilidad/');
+
+            $objetoarchivo->examen_psicometria=$url . $filenametostore;
+         }
+
+        if($request->hasFile('dominio_idioma'))
+         {
+            $documento = $request->file('dominio_idioma');
+            $filenamewithextension = $documento->getClientOriginalName();   //Archivo con su extension
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);            //Sin extension
+            $extension = $request->file('dominioidioma')->getClientOriginalExtension();    //Obtener extesion de archivo
+            $filenametostore = $filename . '' . uniqid() . '.' . $extension;
+
+            Storage::disk('ftp10')->put($filenametostore, fopen($request->file('dominio_idioma'), 'r+'));
+
+            $url = $this->baseCtrl->getUrlServer('Contenido/DocumentosMovilidad/');
+
+            $objetoarchivo->dominio_idioma=$url . $filenametostore;
+         }
+
+         if($request->hasFile('documento_udestino'))
+         {
+            $documento = $request->file('documento_udestino');
+            $filenamewithextension = $documento->getClientOriginalName();   //Archivo con su extension
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);            //Sin extension
+            $extension = $request->file('documentoudestino')->getClientOriginalExtension();    //Obtener extesion de archivo
+            $filenametostore = $filename . '' . uniqid() . '.' . $extension;
+
+            Storage::disk('ftp10')->put($filenametostore, fopen($request->file('documento_udestino'), 'r+'));
+
+            $url = $this->baseCtrl->getUrlServer('Contenido/DocumentosMovilidad/');
+
+            $objetoarchivo->documento_udestino=$url . $filenametostore;
+         }
+        if($request->hasFile('comprobante_solvencia'))
+         {
+            $documento = $request->file('comprobante_solvencia');
+            $filenamewithextension = $documento->getClientOriginalName();   //Archivo con su extension
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);            //Sin extension
+            $extension = $request->file('comprobantesolvencia')->getClientOriginalExtension();    //Obtener extesion de archivo
+            $filenametostore = $filename . '' . uniqid() . '.' . $extension;
+
+            Storage::disk('ftp10')->put($filenametostore, fopen($request->file('comprobante_solvencia'), 'r+'));
+
+            $url = $this->baseCtrl->getUrlServer('Contenido/DocumentosMovilidad/');
+
+            $objetoarchivo->comprobante_solvencia=$url . $filenametostore;
+         }
+
+
+         $arrayobjeto=(array)$objetoarchivo;
+         if( count($arrayobjeto)==0)
+         {
+            $response=[
+                'estado'=>false,
+                'mensaje' =>"No existe ningun archivo" 
+            ];
+
+         }
+         else{
+            $response=[
+                'estado'=>true,
+                'pdf' =>$objetoarchivo 
+            ];
+
+         }
+         return response()->json($response);
     }
 
 }
