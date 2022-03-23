@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\alergias;
 use App\Models\becas_apoyos;
+use App\Models\enfermedades_cronicas;
 use App\Models\especificar_alergias;
 use App\Models\m_beneficios;
+use App\Models\m_materias;
 use App\Models\m_montos;
 use App\Models\modalidades;
 use App\Models\natu_intercambios;
+use App\Models\pdf_solicitudes;
 use App\Models\solicitudes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -497,6 +500,7 @@ public function consultarPeriodo($idpersonal){
     public function addsolicitud(Request $request)
     {
         $data = (object)$request->data;
+        //solicitud
         $newsoli=new solicitudes();
         $newsoli->personal_id=$data->idpersonal;
         $newsoli->logo_id=1;
@@ -513,6 +517,7 @@ public function consultarPeriodo($idpersonal){
         $newsoli->fecha_fin=Date($data->fecha_fin);
         $newsoli->fcreacion_solicitud = date('Y-m-d H:i:s');
         $newsoli->estado_solicitud="P";
+        $newsoli->poliza_seguro=$data->poliza_seguro;
         $newsoli->tipo="M";
         $newsoli->estado="A";
         $newsoli->save();
@@ -525,13 +530,41 @@ public function consultarPeriodo($idpersonal){
         $newespe->estado="A";
         $newespe->save();
 
-        //enfermedades
-        // $newenfer=new enfermedades();
-        // $newenfer->solicitud_id=$newsoli->id;
-        // $newenfer->enfermedad_cronica=$data->enfermedades_tratamiento;
+        //enfermedades Cronicas
+        $newenfer=new enfermedades_cronicas();
+        $newenfer->solicitud_id=$newsoli->id;
+        $newenfer->enfermedades_tratamiento=$data->enfermedades_tratamiento;
+        $newenfer->estado="A";
+        $newenfer->save();
 
+        //Materias
+        foreach ($data->materias as $mat) { 
+            $mateObj = (object)$mat;
+            $newMateria=new m_materias();
+            $newMateria->solicitud_id=$newsoli->id;
+            $newMateria->materia_origen=$mateObj->materia_origen;
+            $newMateria->codigo_origen=$mateObj->clave_origen;
+            $newMateria->materia_destino=$mateObj->materia_destino;
+            $newMateria->codigo_destino=$mateObj->clave_destino;
+            $newMateria->save();
+        }
 
-
+        //pdf
+        $newPdf=new pdf_solicitudes();
+        $newPdf->solicitud_id=$newsoli->id;
+        $newPdf->pdfcertificado_matricula=$data->pdfcertificado_matricula;
+        $newPdf->pdfcopia_record=$data->pdfcopia_record;
+        $newPdf->pdfsolicitud_carta=$data->pdfsolicitud_carta;
+        $newPdf->pdfcartas_recomendacion=$data->pdfcartas_recomendacion;
+        $newPdf->pdfno_sancion=$data->pdfno_sancion;
+        $newPdf->pdffotos=$data->pdffotos;
+        $newPdf->pdfseguro=$data->pdfseguro;
+        $newPdf->pdfexamen_psicometrico=$data->pdfexamen_psicometrico;
+        $newPdf->pdfdominio_idioma=$data->pdfdominio_idioma;
+        $newPdf->pdfdocumentos_udestino=$data->pdfdocumento_udestino;
+        $newPdf->pdfcomprobante_solvencia=$data->pdfcomprobante_solvencia;
+        $newPdf->tipo="M";
+        $newPdf->save();
 
 
         $response=[
