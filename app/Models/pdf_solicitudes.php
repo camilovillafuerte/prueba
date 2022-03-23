@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class pdf_msolicitudes extends Model
+class pdf_solicitudes extends Model
 {
     use HasFactory;
     protected $connection = 'pgsql';
