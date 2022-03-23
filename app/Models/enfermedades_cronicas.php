@@ -10,7 +10,7 @@ class enfermedades_cronicas extends Model
     use HasFactory;
     protected $connection = 'pgsql';
     public $timestamps = false;
-    protected $fillable = ['id','solicitud_id','enfermedadesytratamiento','estado'];
+    protected $fillable = ['id','solicitud_id','enfermedades_tratamiento','estado'];
 
 
     public function solicitud(){
