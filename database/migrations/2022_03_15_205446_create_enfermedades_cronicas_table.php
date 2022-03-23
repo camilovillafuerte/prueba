@@ -17,7 +17,7 @@ class CreateEnfermedadesCronicasTable extends Migration
             $table->id();
             $table->unsignedBigInteger('solicitud_id');
             $table->foreign('solicitud_id')->references('id')->on('solicitudes')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('enfermedadesytratamiento')->nullable();// Aqui se guardara el tratamiento 
+            $table->string('enfermedades_tratamiento')->nullable();// Aqui se guardara el tratamiento 
             $table->enum('estado',['A','D']);
         });
     }
