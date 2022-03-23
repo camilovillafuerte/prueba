@@ -600,6 +600,36 @@ public function consultarPeriodo($idpersonal){
         return response()->json($response);
     }
 
+
+    public function subirDocumentoMovilidad(Request $request)
+    {
+
+        if ($request->hasFile('document')) {
+            $documento = $request->file('document');
+            $filenamewithextension = $documento->getClientOriginalName();   //Archivo con su extension
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);            //Sin extension
+            $extension = $request->file('document')->getClientOriginalExtension();    //Obtener extesion de archivo
+            $filenametostore = $filename . '_' . uniqid() . '.' . $extension;
+
+            Storage::disk('ftp10')->put($filenametostore, fopen($request->file('document'), 'r+'));
+
+            $url = $this->baseCtrl->getUrlServer('Contenido/DocumentosMovilidad/');
+
+            $response = [
+                'estado' => true,
+                'documento' => $url . $filenametostore,
+                'mensaje' => 'El documento se ha subido al servidor'
+            ];
+        } else {
+            $response = [
+                'estado' => false,
+                'documento' => '',
+                'mensaje' => 'No hay un archivo para procesar'
+            ];
+        }
+
+        return response()->json($response);
+    }
 }
 
 
