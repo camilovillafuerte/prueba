@@ -306,7 +306,7 @@ public function consultarPeriodo($idpersonal){
             $documento = $request->file('certificado_matricula');
             $filenamewithextension = $documento->getClientOriginalName();   //Archivo con su extension
             $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);            //Sin extension
-            $extension = $request->file('certificadomatricula')->getClientOriginalExtension();    //Obtener extesion de archivo
+            $extension = $request->file('certificado_matricula')->getClientOriginalExtension();    //Obtener extesion de archivo
             $filenametostore = $filename . '' . uniqid() . '.' . $extension;
 
             Storage::disk('ftp10')->put($filenametostore, fopen($request->file('certificado_matricula'), 'r+'));
@@ -322,7 +322,7 @@ public function consultarPeriodo($idpersonal){
             $documento = $request->file('copia_record');
             $filenamewithextension = $documento->getClientOriginalName();   //Archivo con su extension
             $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);            //Sin extension
-            $extension = $request->file('copiarecord')->getClientOriginalExtension();    //Obtener extesion de archivo
+            $extension = $request->file('copia_record')->getClientOriginalExtension();    //Obtener extesion de archivo
             $filenametostore = $filename . '' . uniqid() . '.' . $extension;
 
             Storage::disk('ftp10')->put($filenametostore, fopen($request->file('copia_record'), 'r+'));
@@ -337,7 +337,7 @@ public function consultarPeriodo($idpersonal){
             $documento = $request->file('solicitud_carta');
             $filenamewithextension = $documento->getClientOriginalName();   //Archivo con su extension
             $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);            //Sin extension
-            $extension = $request->file('solicitudcarta')->getClientOriginalExtension();    //Obtener extesion de archivo
+            $extension = $request->file('solicitud_carta')->getClientOriginalExtension();    //Obtener extesion de archivo
             $filenametostore = $filename . '' . uniqid() . '.' . $extension;
 
             Storage::disk('ftp10')->put($filenametostore, fopen($request->file('solicitud_carta'), 'r+'));
@@ -351,7 +351,7 @@ public function consultarPeriodo($idpersonal){
             $documento = $request->file('cartas_recomendacion');
             $filenamewithextension = $documento->getClientOriginalName();   //Archivo con su extension
             $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);            //Sin extension
-            $extension = $request->file('cartasrecomendacion')->getClientOriginalExtension();    //Obtener extesion de archivo
+            $extension = $request->file('cartas_recomendacion')->getClientOriginalExtension();    //Obtener extesion de archivo
             $filenametostore = $filename . '' . uniqid() . '.' . $extension;
 
             Storage::disk('ftp10')->put($filenametostore, fopen($request->file('cartas_recomendacion'), 'r+'));
@@ -366,7 +366,7 @@ public function consultarPeriodo($idpersonal){
             $documento = $request->file('no_sancion');
             $filenamewithextension = $documento->getClientOriginalName();   //Archivo con su extension
             $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);            //Sin extension
-            $extension = $request->file('nosancion')->getClientOriginalExtension();    //Obtener extesion de archivo
+            $extension = $request->file('no_sancion')->getClientOriginalExtension();    //Obtener extesion de archivo
             $filenametostore = $filename . '' . uniqid() . '.' . $extension;
 
             Storage::disk('ftp10')->put($filenametostore, fopen($request->file('no_sancion'), 'r+'));
@@ -410,7 +410,7 @@ public function consultarPeriodo($idpersonal){
             $documento = $request->file('examen_psicometria');
             $filenamewithextension = $documento->getClientOriginalName();   //Archivo con su extension
             $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);            //Sin extension
-            $extension = $request->file('examenpsicometria')->getClientOriginalExtension();    //Obtener extesion de archivo
+            $extension = $request->file('examen_psicometria')->getClientOriginalExtension();    //Obtener extesion de archivo
             $filenametostore = $filename . '' . uniqid() . '.' . $extension;
 
             Storage::disk('ftp10')->put($filenametostore, fopen($request->file('examen_psicometria'), 'r+'));
@@ -425,7 +425,7 @@ public function consultarPeriodo($idpersonal){
             $documento = $request->file('dominio_idioma');
             $filenamewithextension = $documento->getClientOriginalName();   //Archivo con su extension
             $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);            //Sin extension
-            $extension = $request->file('dominioidioma')->getClientOriginalExtension();    //Obtener extesion de archivo
+            $extension = $request->file('dominio_idioma')->getClientOriginalExtension();    //Obtener extesion de archivo
             $filenametostore = $filename . '' . uniqid() . '.' . $extension;
 
             Storage::disk('ftp10')->put($filenametostore, fopen($request->file('dominio_idioma'), 'r+'));
@@ -440,7 +440,7 @@ public function consultarPeriodo($idpersonal){
             $documento = $request->file('documento_udestino');
             $filenamewithextension = $documento->getClientOriginalName();   //Archivo con su extension
             $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);            //Sin extension
-            $extension = $request->file('documentoudestino')->getClientOriginalExtension();    //Obtener extesion de archivo
+            $extension = $request->file('documento_udestino')->getClientOriginalExtension();    //Obtener extesion de archivo
             $filenametostore = $filename . '' . uniqid() . '.' . $extension;
 
             Storage::disk('ftp10')->put($filenametostore, fopen($request->file('documento_udestino'), 'r+'));
@@ -454,7 +454,7 @@ public function consultarPeriodo($idpersonal){
             $documento = $request->file('comprobante_solvencia');
             $filenamewithextension = $documento->getClientOriginalName();   //Archivo con su extension
             $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);            //Sin extension
-            $extension = $request->file('comprobantesolvencia')->getClientOriginalExtension();    //Obtener extesion de archivo
+            $extension = $request->file('comprobante_solvencia')->getClientOriginalExtension();    //Obtener extesion de archivo
             $filenametostore = $filename . '' . uniqid() . '.' . $extension;
 
             Storage::disk('ftp10')->put($filenametostore, fopen($request->file('comprobante_solvencia'), 'r+'));
