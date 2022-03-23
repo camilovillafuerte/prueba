@@ -511,8 +511,8 @@ public function consultarPeriodo($idpersonal){
         $newsoli->modalidad2_id=$data->modalidad2;
         $newsoli->becas_id=$data->id_becas;
         $newsoli->montos_id=$data->id_monto;
-        $newsoli->carrera_destino=$data->carrera_destino;
-        $newsoli->semestre_cursar=$data->semestre_cursar;
+        $newsoli->carrera_destino=trim(ucfirst($data->carrera_destino));
+        $newsoli->semestre_cursar=trim(ucfirst($data->semestre_cursar));
         $newsoli->fecha_inicio=Date($data->fecha_inicio);
         $newsoli->fecha_fin=Date($data->fecha_fin);
         $newsoli->fcreacion_solicitud = date('Y-m-d H:i:s');
@@ -542,10 +542,10 @@ public function consultarPeriodo($idpersonal){
             $mateObj = (object)$mat;
             $newMateria=new m_materias();
             $newMateria->solicitud_id=$newsoli->id;
-            $newMateria->materia_origen=$mateObj->materia_origen;
-            $newMateria->codigo_origen=$mateObj->clave_origen;
-            $newMateria->materia_destino=$mateObj->materia_destino;
-            $newMateria->codigo_destino=$mateObj->clave_destino;
+            $newMateria->materia_origen=trim(ucfirst($mateObj->materia_origen));
+            $newMateria->codigo_origen=trim($mateObj->clave_origen);
+            $newMateria->materia_destino=trim(ucfirst($mateObj->materia_destino));
+            $newMateria->codigo_destino=trim($mateObj->clave_destino);
             $newMateria->save();
         }
 
