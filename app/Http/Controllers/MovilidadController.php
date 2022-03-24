@@ -593,7 +593,7 @@ public function consultarPeriodo($idpersonal){
         }else{
             $response=[
                 'estado'=> false,
-                'mensaje'=> 'Estud no tiene una solicitud'
+                'mensaje'=> 'Usted no tiene una solicitud'
             ];
 
         }
@@ -630,6 +630,62 @@ public function consultarPeriodo($idpersonal){
 
         return response()->json($response);
     }
+
+    public function solicitudMovilidad($id){
+        $buscar=DB::select("select p.cedula, p.apellido1, p.apellido2, p.nombres,p.fecha_nacimiento,
+        t.nombre as Nacionalidad,p.genero,p.residencia_calle_1, p.residencia_calle_2, p.residencia_calle_3,
+        p.correo_personal_institucional,p.correo_personal_alternativo, t1.nombre as Estado_civil,
+        u.nombre as Pais, u1.nombre as Provincia,u2.nombre as Canton,
+        p.telefono_personal_domicilio, p.telefono_personal_celular, t2.nombre as Tipo_Sangre, t3.nombre as Nombre_Discapacidad,
+        p.contacto_emergencia_apellidos,p.contacto_emergencia_nombres,
+        p.contacto_emergencia_telefono_1,p.contacto_emergencia_telefono_2,
+        es.nombre As Nombre_carrera,m1.tipo_modalidad as Modalidad, m2.tipo_modalidad as Tipo_Destino,
+        uni.nombre as Universidad_Destino, s.carrera_destino, s.semestre_cursar, s.fecha_inicio,s.fecha_fin,
+        ni.descripcion as Naturaleza, b.descripcion as Beca_Apoyo,
+        a.descripcion as Alergias, ea.especificar_alergia, en.enfermedades_tratamiento,
+        s.poliza_seguro, m.materia_origen, m.codigo_origen, m.materia_destino, m.codigo_destino,
+        pdf.pdfcertificado_matricula, pdf.pdfcopia_record, pdf.pdfsolicitud_carta, pdf.pdfcartas_recomendacion, pdf.pdfno_sancion,
+        pdf.pdffotos,pdf.pdfseguro, pdf.pdfexamen_psicometrico, pdf.pdfdominio_idioma, pdf.pdfdocumentos_udestino,
+        pdfcomprobante_solvencia
+
+
+    from esq_datos_personales.personal p
+    join esq_catalogos.tipo t on p.idtipo_nacionalidad = t.idtipo
+    join esq_catalogos.tipo t1 on p.idtipo_estado_civil = t1.idtipo
+    join esq_catalogos.tipo t2 on p.idtipo_sangre= t2.idtipo
+    join esq_catalogos.tipo t3 on p.idtipo_discapacidad = t3.idtipo
+    join esq_catalogos.ubicacion_geografica u on p.idtipo_pais_residencia = u.idubicacion_geografica
+    join esq_catalogos.ubicacion_geografica as u1 on p.idtipo_provincia_residencia = u1.idubicacion_geografica
+    join esq_catalogos.ubicacion_geografica as u2 on p.idtipo_canton_residencia = u2.idubicacion_geografica
+    join esq_dricb.solicitudes s on p.idpersonal = s.personal_id
+    join esq_inscripciones.escuela es on es.idescuela = s.escuela_id
+    join esq_datos_personales.p_universidad uni on uni.iduniversidad = s.universidad_id
+    join esq_dricb.modalidades m1 on s.modalidad1_id = m1.id 
+    join esq_dricb.modalidades m2 on s.modalidad2_id = m2.id 
+    join esq_dricb.natu_intercambios ni on ni.id = s.naturaleza_id
+    join esq_dricb.becas_apoyos b on b.id = s.becas_id 
+    join esq_dricb.especificar_alergias ea on ea.solicitud_id = s.id
+    join esq_dricb.alergias a on a.id = ea.alergias_id
+    join esq_dricb.enfermedades_cronicas en on en.solicitud_id = s.id
+    join esq_dricb.m_materias m on m.solicitud_id = s.id
+    join esq_dricb.pdf_solicitudes pdf on pdf.solicitud_id = s.id
+    where pdf.tipo='M' and s.tipo='M' and s.id = ".$id."");
+
+    if($buscar){
+        $response=[
+            'estado'=> true,
+            'datos'=> $buscar,
+        ];
+    }else{
+        $response=[
+            'estado'=> false,
+            'mensaje'=> 'No existe la solicitud'
+        ];
+
+    }
+    return response()->json($response);
+    }
+
 }
 
 

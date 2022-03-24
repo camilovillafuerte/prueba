@@ -118,4 +118,34 @@ class BecasMaestriaDoctoradoController extends Controller
          
          }
 
+
+         public function consultarBeca($cedula){
+            $buscar=DB::select("select (p.apellido1 || ' ' || p.apellido2)as Apellidos, p.nombres, u.nombre as Universidad_Destino, f.nombre As Nombre_Facultad, ni.descripcion as Naturaleza, s.fecha_inicio, s.fecha_fin, s.estado_solicitud
+            from esq_distributivos.departamento d
+            join esq_inscripciones.facultad f on d.idfacultad = f.idfacultad
+            join esq_distributivos.departamento_docente dd on dd.iddepartamento = d.iddepartamento
+            join esq_datos_personales.personal p on dd.idpersonal = p.idpersonal
+            join esq_dricb.solicitudes s on p.idpersonal = s.personal_id
+            join esq_datos_personales.p_universidad u on u.iduniversidad = s.universidad_id
+            join esq_dricb.natu_intercambios ni on ni.id = s.naturaleza_id 
+            
+
+            where p.cedula='$cedula' and s.tipo = 'B' 
+            order by s.id DESC");
+    
+            if($buscar){
+                $response=[
+                    'estado'=> true,
+                    'datos'=> $buscar,
+                ];
+            }else{
+                $response=[
+                    'estado'=> false,
+                    'mensaje'=> 'Estud no tiene una solicitud'
+                ];
+    
+            }
+            return response()->json($response);
+        }
+
         }

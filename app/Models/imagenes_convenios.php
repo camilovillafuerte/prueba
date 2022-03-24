@@ -20,6 +20,6 @@ class imagenes_convenios extends Model
         return $this->hasMany('App\Models\convenios','imagen2_id');
     }
     public function solicitud_modalidad(){
-        return $this->hasMany('App\Models\solicitud_modalidades','logo_id');
+        return $this->hasMany('App\Models\imagenes_solicitudes','imagenescon_id');
     }
 }
