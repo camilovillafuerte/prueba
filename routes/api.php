@@ -394,5 +394,13 @@ Route::post('documento/movilidad', [MovilidadController::class, 'subirDocumentoM
 Route::post('movilidad-new', [MovilidadController::class, 'addsolicitud']);
 
 
-//Consultar Solicitud
+//Consultar Solicitud Movilidad
 Route::get('solicitud-movilidad/{cedula}',[MovilidadController::class,'consultarMovilidad']);
+
+//Consultar Solicitud Beca
+Route::get('solicitud-beca/{cedula}',[BecasMaestriaDoctoradoController::class,'consultarBeca']);
+
+
+//Obtener todos losd datos de la solicitud de movilidad
+Route::get('obtener-solicitud/{id}',[MovilidadController::class,'solicitudMovilidad']);
+
