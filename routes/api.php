@@ -390,6 +390,9 @@ Route::post('documento/movilidad', [MovilidadController::class, 'subirDocumentoM
 Route::post('documentos/movilidad', [MovilidadController::class, 'subirDocumentosMovilidad']);
 Route::post('documento/movilidad', [MovilidadController::class, 'subirDocumentoMovilidad']);
 
+//Subir Documentos de becas
+Route::post('documento/becas', [BecasMaestriaDoctoradoController::class, 'subirDocumentoBecas']);
+
 //Solicitud Movilidad
 Route::post('movilidad-new', [MovilidadController::class, 'addsolicitud']);
 
