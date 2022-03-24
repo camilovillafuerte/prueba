@@ -4,9 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class BecasMaestriaDoctoradoController extends Controller
 {
+    //
+    private $baseCtrl;
+
+    public function __construct()
+    {
+    $this->baseCtrl = new BaseController();
+    }
+
+
     public function consultarbecas($cedula){
 
         $consulta = DB::table('esq_datos_personales.personal')
@@ -145,6 +155,37 @@ class BecasMaestriaDoctoradoController extends Controller
                 ];
     
             }
+            return response()->json($response);
+        }
+
+
+        public function subirDocumentoBecas(Request $request)
+        {
+    
+            if ($request->hasFile('document')) {
+                $documento = $request->file('document');
+                $filenamewithextension = $documento->getClientOriginalName();   //Archivo con su extension
+                $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);            //Sin extension
+                $extension = $request->file('document')->getClientOriginalExtension();    //Obtener extesion de archivo
+                $filenametostore = $filename . '' . uniqid() . '.' . $extension;
+    
+                Storage::disk('ftp11')->put($filenametostore, fopen($request->file('document'), 'r+'));
+    
+                $url = $this->baseCtrl->getUrlServer('Contenido/DocumentosBecas/');
+    
+                $response = [
+                    'estado' => true,
+                    'documento' => $url . $filenametostore,
+                    'mensaje' => 'El documento se ha subido al servidor'
+                ];
+            } else {
+                $response = [
+                    'estado' => false,
+                    'documento' => '',
+                    'mensaje' => 'No hay un archivo para procesar'
+                ];
+            }
+    
             return response()->json($response);
         }
 

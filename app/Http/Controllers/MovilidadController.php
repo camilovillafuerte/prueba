@@ -643,7 +643,7 @@ public function consultarPeriodo($idpersonal){
         uni.nombre as Universidad_Destino, s.carrera_destino, s.semestre_cursar, s.fecha_inicio,s.fecha_fin,
         ni.descripcion as Naturaleza, b.descripcion as Beca_Apoyo,
         a.descripcion as Alergias, ea.especificar_alergia, en.enfermedades_tratamiento,
-        s.poliza_seguro, m.materia_origen, m.codigo_origen, m.materia_destino, m.codigo_destino,
+        s.poliza_seguro, 
         pdf.pdfcertificado_matricula, pdf.pdfcopia_record, pdf.pdfsolicitud_carta, pdf.pdfcartas_recomendacion, pdf.pdfno_sancion,
         pdf.pdffotos,pdf.pdfseguro, pdf.pdfexamen_psicometrico, pdf.pdfdominio_idioma, pdf.pdfdocumentos_udestino,
         pdfcomprobante_solvencia
@@ -667,25 +667,55 @@ public function consultarPeriodo($idpersonal){
     join esq_dricb.especificar_alergias ea on ea.solicitud_id = s.id
     join esq_dricb.alergias a on a.id = ea.alergias_id
     join esq_dricb.enfermedades_cronicas en on en.solicitud_id = s.id
-    join esq_dricb.m_materias m on m.solicitud_id = s.id
+    
     join esq_dricb.pdf_solicitudes pdf on pdf.solicitud_id = s.id
     where pdf.tipo='M' and s.tipo='M' and s.id = ".$id."");
-
-    if($buscar){
-        $response=[
+    if ($buscar){
+        $materias=DB::select("select m.materia_origen, m.codigo_origen, m.materia_destino, m.codigo_destino
+        from esq_dricb.m_materias m
+        join esq_dricb.solicitudes s on m.solicitud_id = s.id
+        order by m.id ASC");
+        if($materias)
+        {
+            $response= [
             'estado'=> true,
-            'datos'=> $buscar,
+            'datos' => $buscar,
+            'materias' => $materias
         ];
-    }else{
-        $response=[
-            'estado'=> false,
-            'mensaje'=> 'No existe la solicitud'
-        ];
-
     }
+    }else{
+        $response= [
+            'estado'=> false,
+            'mensaje' => 'No existe la solicitud'
+        ];
+    
+    }
+    
     return response()->json($response);
     }
 
+
+
+    public function materias ($id){
+        $materias=DB::select("select m.materia_origen, m.codigo_origen, m.materia_destino, m.codigo_destino
+        from esq_dricb.m_materias m
+        join esq_dricb.solicitudes s on m.solicitud_id = s.id
+        where s.id=".$id."
+        order by m.id ASC");
+        if($materias){
+            $response=[
+                'estado'=> true,
+                'datos'=> $materias,
+            ];
+        }else{
+            $response=[
+                'estado'=> false,
+                'mensaje'=> 'No existen materias'
+            ];
+    
+        }
+        return response()->json($response);
+    }
 }
 
 
