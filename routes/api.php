@@ -401,6 +401,8 @@ Route::get('solicitud-movilidad/{cedula}',[MovilidadController::class,'consultar
 Route::get('solicitud-beca/{cedula}',[BecasMaestriaDoctoradoController::class,'consultarBeca']);
 
 
-//Obtener todos losd datos de la solicitud de movilidad
+//Obtener todos los datos de la solicitud de movilidad
 Route::get('obtener-solicitud/{id}',[MovilidadController::class,'solicitudMovilidad']);
 
+
+Route::get('obtenermateria/{id}',[MovilidadController::class,'materias']);
