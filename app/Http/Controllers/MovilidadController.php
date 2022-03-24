@@ -679,7 +679,7 @@ public function consultarPeriodo($idpersonal){
     }else{
         $response=[
             'estado'=> false,
-            'mensaje'=> 'Estud no tiene una solicitud'
+            'mensaje'=> 'No existe la solicitud'
         ];
 
     }
