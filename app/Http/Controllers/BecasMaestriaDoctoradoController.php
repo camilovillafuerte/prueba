@@ -284,9 +284,6 @@ class BecasMaestriaDoctoradoController extends Controller
             join esq_dricb.natu_intercambios ni on ni.id = s.naturaleza_id
             join esq_dricb.becas_apoyos b on b.id = s.becas_id 
             join esq_dricb.m_montos m on m.id = s.montos_id
-            
-            
-           
             join esq_dricb.especificar_alergias ea on ea.solicitud_id = s.id
             join esq_dricb.alergias a on a.id = ea.alergias_id
             join esq_dricb.enfermedades_cronicas en on en.solicitud_id = s.id
@@ -300,10 +297,7 @@ class BecasMaestriaDoctoradoController extends Controller
                 join esq_dricb.solicitudes s on s.naturaleza_id=ni.id
                 join esq_dricb.beneficios_becas bbe on bbe.naturaleza_id = ni.id
                 join esq_dricb.m_beneficios be on be.id = bbe.beneficios_id
-             
-               
-                
-                
+
                 order by be.id ASC");
                 if($beneficios){
                 $response= [
@@ -312,7 +306,7 @@ class BecasMaestriaDoctoradoController extends Controller
                 'beneficios' => $beneficios
             ];
          }
-            else{
+        }else{
             $response= [
                 'estado'=> false,
                 'mensaje' => 'No existe la solicitud'
@@ -325,4 +319,4 @@ class BecasMaestriaDoctoradoController extends Controller
         }
 
         }
-    }
+    
