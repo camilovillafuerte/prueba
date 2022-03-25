@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\enfermedades_cronicas;
+use App\Models\especificar_alergias;
+use App\Models\pdf_solicitudes;
+use App\Models\solicitudes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -189,4 +193,130 @@ class BecasMaestriaDoctoradoController extends Controller
             return response()->json($response);
         }
 
+        public function create_Solicitud_becas(Request $request)
+        {
+            $data=(Object)$request->data;
+            $newsoli=new solicitudes();
+            $newsoli->personal_id=$data->idpersonal;
+            $newsoli->logo_id=1;
+            $newsoli->universidad_id=$data->id_universidad;
+            $newsoli->escuela_id=1; //datos puesto por defecto para evitar inconvenientes
+            $newsoli->naturaleza_id=$data->id_naturaleza;
+            $newsoli->modalidad1_id=$data->modalidad1;
+            $newsoli->modalidad2_id=$data->modalidad2;
+            $newsoli->becas_id=$data->id_becas;
+            $newsoli->montos_id=1;// $data->id_monto
+           $newsoli->campus_destino=trim(ucfirst($data->campus_destino));
+            $newsoli->numero_semestre=trim(intval($data->numero_semestre));
+            $newsoli->fecha_inicio=Date($data->fecha_inicio);
+            $newsoli->fecha_fin=Date($data->fecha_fin);
+            $newsoli->fcreacion_solicitud = date('Y-m-d H:i:s');
+            $newsoli->estado_solicitud="P";
+            $newsoli->poliza_seguro=$data->poliza_seguro;
+            $newsoli->tipo="B";
+            $newsoli->estado="A";
+            $newsoli->save(); 
+//especificar_alergias
+            $newespe=new especificar_alergias();
+            $newespe->solicitud_id=$newsoli->id;
+            $newespe->alergias_id=$data->id_alergias;
+            $newespe->especificar_alergia=$data->especificar_alergias;
+            $newespe->estado="A";
+            $newespe->save();
+
+             //enfermedades Cronicas
+            $newenfer=new enfermedades_cronicas();
+            $newenfer->solicitud_id=$newsoli->id;
+            $newenfer->enfermedades_tratamiento=$data->enfermedades_tratamiento;
+            $newenfer->estado="A";
+            $newenfer->save();
+
+
+            //pdf
+            $newPdf=new pdf_solicitudes();
+            $newPdf->solicitud_id=$newsoli->id;
+            $newPdf->pdfcarta_aceptacion=$data->pdfcarta_aceptacion;
+            $newPdf->pdftitulo=$data->pdftitulo;
+            $newPdf->tipo="B";
+            $newPdf->save();
+
+            $response=[
+                'estado'=>true,
+                'mensaje' =>'Se creo correctamente la solicitud' 
+            ];
+
+            return response()->json($response);
+
         }
+
+        public function solicitudBecas($id){
+            $becas=DB::select("
+            select p.cedula, p.apellido1, p.apellido2, p.nombres,p.fecha_nacimiento,
+        t.nombre as Nacionalidad,p.genero,p.residencia_calle_1, p.residencia_calle_2, p.residencia_calle_3,
+        p.correo_personal_institucional,p.correo_personal_alternativo, t1.nombre as Estado_civil,
+        u.nombre as Pais, u1.nombre as Provincia,u2.nombre as Canton,
+        p.telefono_personal_domicilio, p.telefono_personal_celular, t2.nombre as Tipo_Sangre, t3.nombre as Nombre_Discapacidad,
+        p.contacto_emergencia_apellidos,p.contacto_emergencia_nombres,
+        p.contacto_emergencia_telefono_1,p.contacto_emergencia_telefono_2,
+        f.nombre As Nombre_Facultad, m1.tipo_modalidad as Modalidad, m2.tipo_modalidad as Tipo_Destino,uni.nombre as Universidad_Destino,
+        s.campus_destino, s.numero_semestre,s.fecha_inicio, s.fecha_fin,ni.descripcion as Naturaleza, b.descripcion as Beca_Apoyo,
+        m.descripcion as Monto_Referencial, 
+        a.descripcion as Alergias, ea.especificar_alergia, en.enfermedades_tratamiento,s.poliza_seguro,
+        pdf.pdfcarta_aceptacion, pdf.pdftitulo
+
+
+
+            from esq_distributivos.departamento d
+            join esq_inscripciones.facultad f on d.idfacultad = f.idfacultad
+            join esq_distributivos.departamento_docente dd on dd.iddepartamento = d.iddepartamento
+            join esq_datos_personales.personal p on dd.idpersonal = p.idpersonal
+            join esq_dricb.solicitudes s on p.idpersonal = s.personal_id
+            join esq_catalogos.tipo t on p.idtipo_nacionalidad = t.idtipo
+            join esq_catalogos.tipo t1 on p.idtipo_estado_civil = t1.idtipo
+            join esq_catalogos.tipo t2 on p.idtipo_sangre= t2.idtipo
+            join esq_catalogos.tipo t3 on p.idtipo_discapacidad = t3.idtipo
+            join esq_catalogos.ubicacion_geografica u on p.idtipo_pais_residencia = u.idubicacion_geografica
+            join esq_catalogos.ubicacion_geografica as u1 on p.idtipo_provincia_residencia = u1.idubicacion_geografica
+            join esq_catalogos.ubicacion_geografica as u2 on p.idtipo_canton_residencia = u2.idubicacion_geografica
+            join esq_datos_personales.p_universidad uni on uni.iduniversidad = s.universidad_id
+            join esq_dricb.modalidades m1 on s.modalidad1_id = m1.id 
+            join esq_dricb.modalidades m2 on s.modalidad2_id = m2.id 
+            join esq_dricb.natu_intercambios ni on ni.id = s.naturaleza_id
+            join esq_dricb.becas_apoyos b on b.id = s.becas_id 
+            join esq_dricb.m_montos m on m.id = s.montos_id
+            join esq_dricb.especificar_alergias ea on ea.solicitud_id = s.id
+            join esq_dricb.alergias a on a.id = ea.alergias_id
+            join esq_dricb.enfermedades_cronicas en on en.solicitud_id = s.id
+            join esq_dricb.pdf_solicitudes pdf on pdf.solicitud_id = s.id
+        
+            where pdf.tipo='B' and s.tipo='B' and s.id = ".$id."");
+            if($becas)
+            {
+                $beneficios=DB::select("select be.descripcion as Beneficios
+                from esq_dricb.natu_intercambios ni
+                join esq_dricb.solicitudes s on s.naturaleza_id=ni.id
+                join esq_dricb.beneficios_becas bbe on bbe.naturaleza_id = ni.id
+                join esq_dricb.m_beneficios be on be.id = bbe.beneficios_id
+
+                order by be.id ASC");
+                if($beneficios){
+                $response= [
+                'estado'=> true,
+                'datos' => $becas,
+                'beneficios' => $beneficios
+            ];
+         }
+        }else{
+            $response= [
+                'estado'=> false,
+                'mensaje' => 'No existe la solicitud'
+            ];
+        
+        }
+        
+        return response()->json($response);
+
+        }
+
+        }
+    
