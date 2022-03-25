@@ -705,26 +705,33 @@ public function consultarPeriodo($idpersonal){
 
 
 
-    public function materias ($id){
-        $materias=DB::select("select m.materia_origen, m.codigo_origen, m.materia_destino, m.codigo_destino
-        from esq_dricb.m_materias m
-        join esq_dricb.solicitudes s on m.solicitud_id = s.id
-        where s.id=".$id."
-        order by m.id ASC");
-        if($materias){
+
+    public function consultarSolicituMovilidad($tipo, $estado){
+        $buscar=DB::select("select (p.apellido1 || ' ' || p.apellido2)as Apellidos, p.nombres, u.nombre as Universidad_Destino, es.nombre As Nombre_carrera, ni.descripcion as Naturaleza, s.fecha_inicio, s.fecha_fin, s.estado_solicitud
+        from esq_datos_personales.personal p
+        join esq_dricb.solicitudes s on p.idpersonal = s.personal_id
+        join esq_inscripciones.escuela es on es.idescuela = s.escuela_id
+        join esq_datos_personales.p_universidad u on u.iduniversidad = s.universidad_id
+        join esq_dricb.natu_intercambios ni on ni.id = s.naturaleza_id 
+        where s.tipo = '$tipo' and s.estado_solicitud='$estado'
+        order by s.id DESC");
+
+        if($buscar){
             $response=[
                 'estado'=> true,
-                'datos'=> $materias,
+                'datos'=> $buscar,
             ];
         }else{
             $response=[
                 'estado'=> false,
-                'mensaje'=> 'No existen materias'
+                'mensaje'=> 'No existen datos'
             ];
-    
+
         }
         return response()->json($response);
     }
+
+
 }
 
 
