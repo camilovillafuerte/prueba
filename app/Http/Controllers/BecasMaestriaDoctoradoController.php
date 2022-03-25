@@ -260,8 +260,9 @@ class BecasMaestriaDoctoradoController extends Controller
         p.contacto_emergencia_telefono_1,p.contacto_emergencia_telefono_2,
         f.nombre As Nombre_Facultad, m1.tipo_modalidad as Modalidad, m2.tipo_modalidad as Tipo_Destino,uni.nombre as Universidad_Destino,
         s.campus_destino, s.numero_semestre,s.fecha_inicio, s.fecha_fin,ni.descripcion as Naturaleza, b.descripcion as Beca_Apoyo,
-        m.descripcion as Monto_Referencial, be.descripcion as Beneficios,
-        a.descripcion as Alergias, ea.especificar_alergia, en.enfermedades_tratamiento,s.poliza_seguro
+        m.descripcion as Monto_Referencial, 
+        a.descripcion as Alergias, ea.especificar_alergia, en.enfermedades_tratamiento,s.poliza_seguro,
+        pdf.pdfcarta_aceptacion, pdf.pdftitulo
 
 
 
@@ -283,9 +284,9 @@ class BecasMaestriaDoctoradoController extends Controller
             join esq_dricb.natu_intercambios ni on ni.id = s.naturaleza_id
             join esq_dricb.becas_apoyos b on b.id = s.becas_id 
             join esq_dricb.m_montos m on m.id = s.montos_id
-            join esq_dricb.beneficios_becas bbe on bbe.naturaleza_id= ni.id
-            join esq_dricb.beneficios_becas bb on bb.id = s.becas_id
-            join esq_dricb.m_beneficios be on be.id= bb.beneficios_id
+            
+            
+           
             join esq_dricb.especificar_alergias ea on ea.solicitud_id = s.id
             join esq_dricb.alergias a on a.id = ea.alergias_id
             join esq_dricb.enfermedades_cronicas en on en.solicitud_id = s.id
@@ -294,9 +295,21 @@ class BecasMaestriaDoctoradoController extends Controller
             where pdf.tipo='B' and s.tipo='B' and s.id = ".$id."");
             if($becas)
             {
+                $beneficios=DB::select("select be.descripcion as Beneficios
+                from esq_dricb.natu_intercambios ni
+                join esq_dricb.solicitudes s on s.naturaleza_id=ni.id
+                join esq_dricb.beneficios_becas bbe on bbe.naturaleza_id = ni.id
+                join esq_dricb.m_beneficios be on be.id = bbe.beneficios_id
+             
+               
+                
+                
+                order by be.id ASC");
+                if($beneficios){
                 $response= [
                 'estado'=> true,
                 'datos' => $becas,
+                'beneficios' => $beneficios
             ];
          }
             else{
@@ -312,3 +325,4 @@ class BecasMaestriaDoctoradoController extends Controller
         }
 
         }
+    }
