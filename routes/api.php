@@ -412,3 +412,6 @@ Route::get('obtenermateria/{id}',[MovilidadController::class,'materias']);
 
 //solicitud Becas
 Route::post('becas-new', [BecasMaestriaDoctoradoController::class, 'create_solicitud_becas']);
+
+//Obtener todos los datos de la solicitud de Becas
+Route::get('solicitud/becas/{id}',[BecasMaestriaDoctoradoController::class,'solicitudBecas']);

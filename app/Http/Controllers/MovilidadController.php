@@ -641,9 +641,8 @@ public function consultarPeriodo($idpersonal){
         p.contacto_emergencia_telefono_1,p.contacto_emergencia_telefono_2,
         es.nombre As Nombre_carrera,m1.tipo_modalidad as Modalidad, m2.tipo_modalidad as Tipo_Destino,
         uni.nombre as Universidad_Destino, s.carrera_destino, s.semestre_cursar, s.fecha_inicio,s.fecha_fin,
-        ni.descripcion as Naturaleza, b.descripcion as Beca_Apoyo,
-        a.descripcion as Alergias, ea.especificar_alergia, en.enfermedades_tratamiento,
-        s.poliza_seguro, 
+        ni.descripcion as Naturaleza, b.descripcion as Beca_Apoyo, m.descripcion as Monto_Referencial,
+        a.descripcion as Alergias, ea.especificar_alergia, en.enfermedades_tratamiento,s.poliza_seguro, 
         pdf.pdfcertificado_matricula, pdf.pdfcopia_record, pdf.pdfsolicitud_carta, pdf.pdfcartas_recomendacion, pdf.pdfno_sancion,
         pdf.pdffotos,pdf.pdfseguro, pdf.pdfexamen_psicometrico, pdf.pdfdominio_idioma, pdf.pdfdocumentos_udestino,
         pdfcomprobante_solvencia
@@ -664,6 +663,7 @@ public function consultarPeriodo($idpersonal){
     join esq_dricb.modalidades m2 on s.modalidad2_id = m2.id 
     join esq_dricb.natu_intercambios ni on ni.id = s.naturaleza_id
     join esq_dricb.becas_apoyos b on b.id = s.becas_id 
+    join esq_dricb.m_montos m on m.id = s.montos_id
     join esq_dricb.especificar_alergias ea on ea.solicitud_id = s.id
     join esq_dricb.alergias a on a.id = ea.alergias_id
     join esq_dricb.enfermedades_cronicas en on en.solicitud_id = s.id
