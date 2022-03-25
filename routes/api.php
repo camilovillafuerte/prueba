@@ -405,7 +405,7 @@ Route::get('solicitud-beca/{cedula}',[BecasMaestriaDoctoradoController::class,'c
 
 
 //Obtener todos los datos de la solicitud de Becas
-Route::get('solicitud/becas/{id}',[BecasMaestriaDoctoradoController::class,'solicitudBecas']);
+Route::get('solicitud/becas/{id}',[BecasMaestriaDoctoradoController::class,'beneficios']);
 //Obtener todos los datos de la solicitud de movilidad
 Route::get('solicitud/movilidad/{id}',[MovilidadController::class,'solicitudMovilidad']);
 
