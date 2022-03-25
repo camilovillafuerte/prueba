@@ -409,3 +409,6 @@ Route::get('obtener-solicitud/{id}',[MovilidadController::class,'solicitudMovili
 
 
 Route::get('obtenermateria/{id}',[MovilidadController::class,'materias']);
+
+//solicitud Becas
+Route::post('becas-new', [BecasMaestriaDoctoradoController::class, 'create_solicitud_becas']);

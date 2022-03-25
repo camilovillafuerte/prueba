@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\enfermedades_cronicas;
+use App\Models\especificar_alergias;
+use App\Models\pdf_solicitudes;
+use App\Models\solicitudes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -187,6 +191,62 @@ class BecasMaestriaDoctoradoController extends Controller
             }
     
             return response()->json($response);
+        }
+
+        public function create_Solicitud_becas(Request $request)
+        {
+            $data=(Object)$request->data;
+            $newsoli=new solicitudes();
+            $newsoli->personal_id=$data->idpersonal;
+            $newsoli->logo_id=1;
+            $newsoli->universidad_id=$data->id_universidad;
+            $newsoli->escuela_id=1; //datos puesto por defecto para evitar inconvenientes
+            $newsoli->naturaleza_id=$data->id_naturaleza;
+            $newsoli->modalidad1_id=$data->modalidad1;
+            $newsoli->modalidad2_id=$data->modalidad2;
+            $newsoli->becas_id=$data->id_becas;
+            $newsoli->montos_id=1;// $data->id_monto
+            $newsoli->campus_destino=trim(ucfirst($data->carrera_destino));
+            $newsoli->numero_semestre=trim(intval($data->semestre_cursar));
+            $newsoli->fecha_inicio=Date($data->fecha_inicio);
+            $newsoli->fecha_fin=Date($data->fecha_fin);
+            $newsoli->fcreacion_solicitud = date('Y-m-d H:i:s');
+            $newsoli->estado_solicitud="P";
+            $newsoli->poliza_seguro=$data->poliza_seguro;
+            $newsoli->tipo="B";
+            $newsoli->estado="A";
+            $newsoli->save();
+//especificar_alergias
+            $newespe=new especificar_alergias();
+            $newespe->solicitud_id=$newsoli->id;
+            $newespe->alergias_id=$data->id_alergias;
+            $newespe->especificar_alergia=$data->especificar_alergias;
+            $newespe->estado="A";
+            $newespe->save();
+
+             //enfermedades Cronicas
+            $newenfer=new enfermedades_cronicas();
+            $newenfer->solicitud_id=$newsoli->id;
+            $newenfer->enfermedades_tratamiento=$data->enfermedades_tratamiento;
+            $newenfer->estado="A";
+            $newenfer->save();
+
+
+            //pdf
+            $newPdf=new pdf_solicitudes();
+            $newPdf->solicitud_id=$newsoli->id;
+            $newPdf->pdfcarta_aceptacion=$data->pdfcarta_aceptacion;
+            $newPdf->pdftitulo=$data->pdftitulo;
+            $newPdf->tipo="M";
+            $newPdf->save();
+
+            $response=[
+                'estado'=>true,
+                'mensaje' =>'Se creo correctamente la solicitud' 
+            ];
+
+            return response()->json($response);
+
         }
 
         }
