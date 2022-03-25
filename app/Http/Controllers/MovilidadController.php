@@ -631,7 +631,8 @@ public function consultarPeriodo($idpersonal){
         return response()->json($response);
     }
 
-    public function solicitudMovilidad($id){
+    public function solicitud($id)
+    {
         $buscar=DB::select("select p.cedula, p.apellido1, p.apellido2, p.nombres,p.fecha_nacimiento,
         t.nombre as Nacionalidad,p.genero,p.residencia_calle_1, p.residencia_calle_2, p.residencia_calle_3,
         p.correo_personal_institucional,p.correo_personal_alternativo, t1.nombre as Estado_civil,
@@ -670,17 +671,25 @@ public function consultarPeriodo($idpersonal){
     
     join esq_dricb.pdf_solicitudes pdf on pdf.solicitud_id = s.id
     where pdf.tipo='M' and s.tipo='M' and s.id = ".$id."");
-    if ($buscar){
-        $materias=DB::select("select m.materia_origen, m.codigo_origen, m.materia_destino, m.codigo_destino
-        from esq_dricb.m_materias m
-        join esq_dricb.solicitudes s on m.solicitud_id = s.id
-        order by m.id ASC");
+    $buscar2= $buscar2=(object)$buscar[0];
+    return ($buscar2);
+
+    }
+
+    public function solicitudMovilidad($id){
+       
+    $buscar1=$this->solicitud($id);
+    $buscar2=json_decode(json_encode($buscar1));
+    
+    if ($buscar2){
+        $materias=m_materias::where('solicitud_id',intval($id))->get();
         if($materias)
         {
+           
+            $buscar2->materias=$materias;
             $response= [
             'estado'=> true,
-            'datos' => $buscar,
-            'materias' => $materias
+            'datos' => $buscar2,
         ];
     }
     }else{
