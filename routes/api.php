@@ -399,23 +399,19 @@ Route::post('documento/becas', [BecasMaestriaDoctoradoController::class, 'subirD
 
 //Solicitud Movilidad
 Route::post('movilidad-new', [MovilidadController::class, 'addsolicitud']);
-
+//solicitud Becas
+Route::post('becas-new', [BecasMaestriaDoctoradoController::class, 'create_solicitud_becas']);
 
 //Consultar Solicitud Movilidad
 Route::get('solicitud-movilidad/{cedula}',[MovilidadController::class,'consultarMovilidad']);
-
 //Consultar Solicitud Beca
 Route::get('solicitud-beca/{cedula}',[BecasMaestriaDoctoradoController::class,'consultarBeca']);
 
 
-//Obtener todos los datos de la solicitud de movilidad
-Route::get('obtener-solicitud/{id}',[MovilidadController::class,'solicitudMovilidad']);
-
-
-Route::get('obtenermateria/{id}',[MovilidadController::class,'materias']);
-
-//solicitud Becas
-Route::post('becas-new', [BecasMaestriaDoctoradoController::class, 'create_solicitud_becas']);
-
 //Obtener todos los datos de la solicitud de Becas
 Route::get('solicitud/becas/{id}',[BecasMaestriaDoctoradoController::class,'solicitudBecas']);
+//Obtener todos los datos de la solicitud de movilidad
+Route::get('solicitud/movilidad/{id}',[MovilidadController::class,'solicitudMovilidad']);
+
+//Obtener todos los datos de la solicitud de movilidad y becas por tipo y estado
+Route::get('consultar/solicitudes/{tipo}/{estado}',[MovilidadController::class,'consultarSolicituMovilidad']);
