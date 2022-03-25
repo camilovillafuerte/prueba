@@ -582,7 +582,7 @@ public function consultarPeriodo($idpersonal){
         join esq_inscripciones.escuela es on es.idescuela = s.escuela_id
         join esq_datos_personales.p_universidad u on u.iduniversidad = s.universidad_id
         join esq_dricb.natu_intercambios ni on ni.id = s.naturaleza_id 
-        where p.cedula='$cedula' and s.tipo = 'M' 
+        where p.cedula='$cedula' and s.tipo = 'M' and s.estado='A'
         order by s.id DESC");
 
         if($buscar){
@@ -593,7 +593,7 @@ public function consultarPeriodo($idpersonal){
         }else{
             $response=[
                 'estado'=> false,
-                'mensaje'=> 'Usted no tiene una solicitud'
+                'mensaje'=> 'Usted no dispone de solicitudes dentro de Movilidad'
             ];
 
         }
@@ -707,13 +707,13 @@ public function consultarPeriodo($idpersonal){
 
 
     public function consultarSolicituMovilidad($tipo, $estado){
-        $buscar=DB::select("select (p.apellido1 || ' ' || p.apellido2)as Apellidos, p.nombres, u.nombre as Universidad_Destino, es.nombre As Nombre_carrera, ni.descripcion as Naturaleza, s.fecha_inicio, s.fecha_fin, s.estado_solicitud
+        $buscar=DB::select("select p.cedula,(p.apellido1 || ' ' || p.apellido2)as Apellidos, p.nombres, u.nombre as Universidad_Destino, es.nombre As Nombre_carrera, ni.descripcion as Naturaleza, s.fecha_inicio, s.fecha_fin, s.estado_solicitud
         from esq_datos_personales.personal p
         join esq_dricb.solicitudes s on p.idpersonal = s.personal_id
         join esq_inscripciones.escuela es on es.idescuela = s.escuela_id
         join esq_datos_personales.p_universidad u on u.iduniversidad = s.universidad_id
         join esq_dricb.natu_intercambios ni on ni.id = s.naturaleza_id 
-        where s.tipo = '$tipo' and s.estado_solicitud='$estado'
+        where s.tipo = '$tipo' and s.estado_solicitud='$estado' and s.estado='A'
         order by s.id DESC");
 
         if($buscar){

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\beneficios_becas;
 use App\Models\enfermedades_cronicas;
 use App\Models\especificar_alergias;
+use App\Models\m_beneficios;
 use App\Models\pdf_solicitudes;
 use App\Models\solicitudes;
 use Illuminate\Http\Request;
@@ -144,7 +146,7 @@ class BecasMaestriaDoctoradoController extends Controller
             join esq_dricb.natu_intercambios ni on ni.id = s.naturaleza_id 
             
 
-            where p.cedula='$cedula' and s.tipo = 'B' 
+            where p.cedula='$cedula' and s.tipo = 'B' and s.estado='A'
             order by s.id DESC");
     
             if($buscar){
@@ -155,7 +157,7 @@ class BecasMaestriaDoctoradoController extends Controller
             }else{
                 $response=[
                     'estado'=> false,
-                    'mensaje'=> 'Estud no tiene una solicitud'
+                    'mensaje'=> 'Usted no dispone de solicitudes dentro de Becas'
                 ];
     
             }
@@ -290,7 +292,7 @@ class BecasMaestriaDoctoradoController extends Controller
             join esq_dricb.pdf_solicitudes pdf on pdf.solicitud_id = s.id
         
             where pdf.tipo='B' and s.tipo='B' and s.id = ".$id."");
-            if($becas)
+           /* if($becas)
             {
                 $beneficios=DB::select("select be.descripcion as Beneficios
                 from esq_dricb.natu_intercambios ni
@@ -314,9 +316,37 @@ class BecasMaestriaDoctoradoController extends Controller
         
         }
         
-        return response()->json($response);
-
+        return response()->json($response);*/
+        $becas2= $becas2=(object)$becas[0];
+        return ($becas2);
         }
 
+        public function beneficios($id){
+            $becas1=$this->solicitudBecas($id);
+            $becas2=json_decode(json_encode($becas1));
+            
+            if ($becas2){
+                $bene=beneficios_becas::where('beneficios_id',intval($id))->get();
+                if($bene)
+                {
+                   
+                    $becas2->descripcion=$bene;
+                    $response= [
+                    'estado'=> true,
+                    'datos' => $becas2,
+                ];
+            }
+            }else{
+                $response= [
+                    'estado'=> false,
+                    'mensaje' => 'No existe la solicitud'
+                ];
+            
+            }
+            
+            return response()->json($response);
         }
+        }
+
+
     
