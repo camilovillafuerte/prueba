@@ -410,4 +410,8 @@ Route::get('solicitud/becas/{id}',[BecasMaestriaDoctoradoController::class,'bene
 Route::get('solicitud/movilidad/{id}',[MovilidadController::class,'solicitudMovilidad']);
 
 //Obtener todos los datos de la solicitud de movilidad y becas por tipo y estado
-Route::get('consultar/solicitudes/{tipo}/{estado}',[MovilidadController::class,'consultarSolicituMovilidad']);
+Route::get('consultar/solicitudes/{tipo}/{estado}',[MovilidadController::class,'consultarSolicitudes']);
+
+
+//Consultar beneficios
+Route::get('beneficios/{id}',[BecasMaestriaDoctoradoController::class,'beneficios']);

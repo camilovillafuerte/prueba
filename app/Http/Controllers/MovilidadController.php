@@ -706,8 +706,8 @@ public function consultarPeriodo($idpersonal){
 
 
 
-    public function consultarSolicituMovilidad($tipo, $estado){
-        $buscar=DB::select("select p.cedula,(p.apellido1 || ' ' || p.apellido2)as Apellidos, p.nombres, u.nombre as Universidad_Destino, es.nombre As Nombre_carrera, ni.descripcion as Naturaleza, s.fecha_inicio, s.fecha_fin, s.estado_solicitud
+    public function consultarSolicitudes($tipo, $estado){
+        $buscar=DB::select("select s.id,p.cedula,(p.apellido1 || ' ' || p.apellido2)as Apellidos, p.nombres, u.nombre as Universidad_Destino, es.nombre As Nombre_carrera, ni.descripcion as Naturaleza, s.fecha_inicio, s.fecha_fin, s.estado_solicitud
         from esq_datos_personales.personal p
         join esq_dricb.solicitudes s on p.idpersonal = s.personal_id
         join esq_inscripciones.escuela es on es.idescuela = s.escuela_id
