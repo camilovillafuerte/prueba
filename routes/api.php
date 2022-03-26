@@ -415,3 +415,7 @@ Route::get('consultar/solicitudes/{tipo}/{estado}',[MovilidadController::class,'
 
 //Consultar beneficios
 Route::get('beneficios/{id}',[BecasMaestriaDoctoradoController::class,'beneficios']);
+
+
+
+Route::get('consultar/usuario/{cedula}',[UsuarioController::class,'consultarID']);
