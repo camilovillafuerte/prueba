@@ -9,6 +9,7 @@ class Usuario extends Model
 {
     use HasFactory;
     protected $connection = 'pgsql';
+    public $table = "usuarios";
     public $timestamps = false;
     protected $filleable = ['id','personal_id','cargos_id','estado'];
     //protected $hidden = ["contrasena"];
@@ -45,12 +46,12 @@ class Usuario extends Model
      //Relacion de uno a muchos
      public function Personal()
      {
-         return $this->hasMany('App\Models\personal');
+         return $this->belongsToMany('esq_datos_personales.personal');
      }
 
       //Relacion de uno a muchos
       public function Cargos()
       {
-          return $this->hasMany('App\Models\cargo');
+          return $this->belongsToMany('App\Models\cargo');
       }
 }

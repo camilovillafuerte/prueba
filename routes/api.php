@@ -3,6 +3,7 @@
 use App\Http\Controllers\Becas_nivel_bodyController;
 use App\Http\Controllers\Becas_nivelController;
 use App\Http\Controllers\BecasMaestriaDoctoradoController;
+use App\Http\Controllers\CargoController;
 use App\Http\Controllers\ClausulasController;
 use App\Http\Controllers\Convenios_especificosController;
 use App\Http\Controllers\ConveniosController;
@@ -419,3 +420,9 @@ Route::get('beneficios/{id}',[BecasMaestriaDoctoradoController::class,'beneficio
 
 
 Route::get('consultar/usuario/{cedula}',[UsuarioController::class,'consultarID']);
+
+
+Route::post('ingresar/usuario',[UsuarioController::class,'insertarUsuario']);
+
+
+Route::get('obtener/cargos',[CargoController::class,'obtenercargos']);

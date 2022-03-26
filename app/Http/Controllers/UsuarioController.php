@@ -415,24 +415,48 @@ class UsuarioController extends Controller{
     return response()->json($response);
 
 }
-
+    
+    //esto debe relacionarse a nuestro sistema
     public function consultarID($cedula){
-        $consulta=DB::select("select personal.idpersonal, personal.cedula,personal.apellido1,personal.apellido2,personal.nombres
-        from esq_datos_personales.personal personal
-        where personal.cedula='$cedula'");
-
+        $consulta=DB::table('esq_datos_personales.personal')
+        ->select ('personal.idpersonal', 'personal.cedula','personal.apellido1','personal.apellido2','personal.nombres')
+        ->where ('personal.cedula',$cedula)
+        -> first();
         if($consulta){
+            $usuarios=DB::table('esq_dricb.usuarios')
+            ->where('personal_id','=',$consulta->idpersonal)
+            ->get();
+            $consulta->usuario=$usuarios;
             $response=[
                 'estado'=> true,
-                'datos'=> $consulta,
+                'mensaje'=> 'Este usuario ya existe en el sistema!',
             ];
         }else{
             $response=[
                 'estado'=> false,
-                'mensaje'=> 'Este usuario no existe!'
+                'datos'=> $consulta
             ];
 
         }
+        return response()->json($response);
+
+    }
+
+
+    public function insertarUsuario(Request $request){
+        $data = (object)$request->data;
+        //usuario
+        $newusuario=new Usuario();
+        $newusuario->personal_id=intval($data->idpersonal);
+        $newusuario->cargos_id=intval($data->idcargos);
+        $newusuario->estado="A";
+        $newusuario->save();
+        
+        $response=[
+            'estado'=>true,
+            'mensaje' =>'Se ingreso el usuario al sistema' 
+        ];
+
         return response()->json($response);
 
     }
