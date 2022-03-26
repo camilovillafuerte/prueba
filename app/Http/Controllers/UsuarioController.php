@@ -444,11 +444,11 @@ class UsuarioController extends Controller{
 
 
     public function insertarUsuario(Request $request){
-        $data = (object)$request->data;
+        
         //usuario
-        $newusuario=new Usuario();
-        $newusuario->personal_id=intval($data->idpersonal);
-        $newusuario->cargos_id=intval($data->idcargos);
+        $newusuario =new Usuario;
+        $newusuario->personal_id=intval($request->idpersonal);
+        $newusuario->cargos_id=intval($request->idcargos);
         $newusuario->estado="A";
         $newusuario->save();
         
