@@ -3,6 +3,7 @@
 use App\Http\Controllers\Becas_nivel_bodyController;
 use App\Http\Controllers\Becas_nivelController;
 use App\Http\Controllers\BecasMaestriaDoctoradoController;
+use App\Http\Controllers\CargoController;
 use App\Http\Controllers\ClausulasController;
 use App\Http\Controllers\Convenios_especificosController;
 use App\Http\Controllers\ConveniosController;
@@ -414,4 +415,18 @@ Route::get('solicitud/becas/{id}',[BecasMaestriaDoctoradoController::class,'bene
 Route::get('solicitud/movilidad/{id}',[MovilidadController::class,'solicitudMovilidad']);
 
 //Obtener todos los datos de la solicitud de movilidad y becas por tipo y estado
-Route::get('consultar/solicitudes/{tipo}/{estado}',[MovilidadController::class,'consultarSolicituMovilidad']);
+Route::get('consultar/solicitudes/{tipo}/{estado}',[MovilidadController::class,'consultarSolicitudes']);
+
+
+//Consultar beneficios
+Route::get('beneficios/{id}',[BecasMaestriaDoctoradoController::class,'beneficios']);
+
+
+
+Route::get('consultar/usuario/{cedula}',[UsuarioController::class,'consultarID']);
+
+
+Route::post('ingresar/usuario',[UsuarioController::class,'insertarUsuario']);
+
+
+Route::get('obtener/cargos',[CargoController::class,'obtenercargos']);

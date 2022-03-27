@@ -136,7 +136,7 @@ class BecasMaestriaDoctoradoController extends Controller
 
 
          public function consultarBeca($cedula){
-            $buscar=DB::select("select (p.apellido1 || ' ' || p.apellido2)as Apellidos, p.nombres, u.nombre as Universidad_Destino, f.nombre As Nombre_Facultad, ni.descripcion as Naturaleza, s.fecha_inicio, s.fecha_fin, s.estado_solicitud
+            $buscar=DB::select("select p.cedula, (p.apellido1 || ' ' || p.apellido2)as Apellidos, p.nombres, u.nombre as Universidad_Destino, f.nombre As Nombre_Facultad, ni.descripcion as Naturaleza, s.fecha_inicio, s.fecha_fin, s.estado_solicitud
             from esq_distributivos.departamento d
             join esq_inscripciones.facultad f on d.idfacultad = f.idfacultad
             join esq_distributivos.departamento_docente dd on dd.iddepartamento = d.iddepartamento
@@ -292,61 +292,41 @@ class BecasMaestriaDoctoradoController extends Controller
             join esq_dricb.pdf_solicitudes pdf on pdf.solicitud_id = s.id
         
             where pdf.tipo='B' and s.tipo='B' and s.id = ".$id."");
-           /* if($becas)
-            {
-                $beneficios=DB::select("select be.descripcion as Beneficios
-                from esq_dricb.natu_intercambios ni
-                join esq_dricb.solicitudes s on s.naturaleza_id=ni.id
-                join esq_dricb.beneficios_becas bbe on bbe.naturaleza_id = ni.id
-                join esq_dricb.m_beneficios be on be.id = bbe.beneficios_id
-
-                order by be.id ASC");
-                if($beneficios){
-                $response= [
-                'estado'=> true,
-                'datos' => $becas,
-                'beneficios' => $beneficios
-            ];
-         }
-        }else{
-            $response= [
-                'estado'=> false,
-                'mensaje' => 'No existe la solicitud'
-            ];
-        
-        }
-        
-        return response()->json($response);*/
-        $becas2= $becas2=(object)$becas[0];
-        return ($becas2);
+            $becas2= $becas2=(object)$becas[0];
+            return ($becas2);
         }
 
         public function beneficios($id){
             $becas1=$this->solicitudBecas($id);
             $becas2=json_decode(json_encode($becas1));
-            
-            if ($becas2){
-                $bene=beneficios_becas::where('beneficios_id',intval($id))->get();
-                if($bene)
-                {
-                   
-                    $becas2->descripcion=$bene;
-                    $response= [
-                    'estado'=> true,
-                    'datos' => $becas2,
-                ];
+            if($becas2){
+            $beneficios=DB::select("select be.descripcion as Beneficios
+            from esq_dricb.natu_intercambios ni
+            join esq_dricb.solicitudes s on s.naturaleza_id=ni.id
+            join esq_dricb.beneficios_becas bbe on bbe.naturaleza_id = ni.id
+            join esq_dricb.m_beneficios be on be.id = bbe.beneficios_id
+            where s.id = ".$id."
+            order by be.id ASC");
+            if($beneficios)
+             {
+            $becas2->beneficios=$beneficios;
+            $response= [
+            'estado'=> true,
+            'datos' => $becas2,
+            ];
             }
             }else{
-                $response= [
-                    'estado'=> false,
-                    'mensaje' => 'No existe la solicitud'
-                ];
-            
-            }
-            
-            return response()->json($response);
-        }
+             $response= [
+            'estado'=> false,
+            'mensaje' => 'No existe la solicitud'
+             ];
+             }
+    
+            return response()->json($response);    
         }
 
+
+
+    }
 
     

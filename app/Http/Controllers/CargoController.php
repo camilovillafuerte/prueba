@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\cargo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CargoController extends Controller
 {
@@ -41,5 +42,25 @@ class CargoController extends Controller
          }
          $cargo->delete();
          return response()->json(['Mensaje'=>'Registro Eliminado'],200);
+    }
+
+    public function obtenercargos(){
+        $cargo=DB::table('esq_dricb.cargos')
+        ->select('cargos_id', 'cargo')
+        ->where ('estado','=','A')
+        ->get();
+        if($cargo){
+            $response=[
+                'estado'=> true,
+                'datos'=> $cargo
+            ];
+        }else{
+            $response=[
+                'estado'=> false,
+                'mensaje'=> 'No hay cargos'
+            ];
+        }
+
+        return response()->json($response);
     }
 }
