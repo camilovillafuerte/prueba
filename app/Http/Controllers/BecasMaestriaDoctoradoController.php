@@ -208,7 +208,7 @@ class BecasMaestriaDoctoradoController extends Controller
             $newsoli->modalidad2_id=$data->modalidad2;
             $newsoli->becas_id=$data->id_becas;
             $newsoli->montos_id=1;// $data->id_monto
-           $newsoli->campus_destino=trim(ucfirst($data->campus_destino));
+           $newsoli->campus_destino=trim(strtoupper($data->campus_destino));
             $newsoli->numero_semestre=trim(intval($data->numero_semestre));
             $newsoli->fecha_inicio=Date($data->fecha_inicio);
             $newsoli->fecha_fin=Date($data->fecha_fin);
