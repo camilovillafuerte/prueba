@@ -416,6 +416,7 @@ Route::get('solicitud/movilidad/{id}',[MovilidadController::class,'solicitudMovi
 
 //Obtener todos los datos de la solicitud de movilidad y becas por tipo y estado
 Route::get('consultar/solicitudes/{tipo}/{estado}',[MovilidadController::class,'consultarSolicitudes']);
+Route::get('becas/solicitudes/{tipo}/{estado}',[BecasMaestriaDoctoradoController::class,'consultarSolicitudesBecas']);
 
 
 Route::get('consultar/usuario/{cedula}',[UsuarioController::class,'consultarID']);
