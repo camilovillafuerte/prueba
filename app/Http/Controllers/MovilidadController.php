@@ -258,29 +258,7 @@ public function consultarPeriodo($idpersonal){
         return response()->json($consulta);
     }
 
-    public function beneficios_naturaleza($id){
-
-
-        $consulta=DB::select("select n.descripcion, b.descripcion 
-        from esq_dricb.natu_intercambios n
-        join esq_dricb.beneficios_becas bn on n.id = bn.naturaleza_id
-        join esq_dricb.m_beneficios b on  bn.beneficios_id = b.id
-        where  n.id=".$id."");
-        if($consulta){
-            $response=[
-                'estado'=> true,
-                'beneficios'=> $consulta,
-            ];
-        }else{
-            $response=[
-                'estado'=> false,
-                'mensaje'=> 'Esta naturaleza no tiene beneficios'
-            ];
-
-        }
-        return response()->json($response);
-
-    }
+    
 
 
     public function tipoalergias(){
