@@ -489,8 +489,8 @@ public function consultarPeriodo($idpersonal){
         $newsoli->modalidad2_id=$data->modalidad2;
         $newsoli->becas_id=$data->id_becas;
         $newsoli->montos_id=$data->id_monto;
-        $newsoli->carrera_destino=trim(ucfirst($data->carrera_destino));
-        $newsoli->semestre_cursar=trim(ucfirst($data->semestre_cursar));
+        $newsoli->carrera_destino=trim(strtoupper($data->carrera_destino));
+        $newsoli->semestre_cursar=trim(strtoupper($data->semestre_cursar));
         $newsoli->fecha_inicio=Date($data->fecha_inicio);
         $newsoli->fecha_fin=Date($data->fecha_fin);
         $newsoli->fcreacion_solicitud = date('Y-m-d H:i:s');
