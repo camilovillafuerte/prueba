@@ -463,7 +463,7 @@ class UsuarioController extends Controller{
     public function insertarUsuario(Request $request){
         
         //usuario
-        $newusuario =new Usuario;
+        $newusuario =new Usuario();
         $newusuario->personal_id=intval($request->idpersonal);
         $newusuario->cargos_id=intval($request->idcargos);
         $newusuario->estado="A";
