@@ -478,38 +478,6 @@ class UsuarioController extends Controller{
 
     }
 
-    public function buscarUsuarios($cedula){
-        $response = [];
 
-        if(isset($cedula)){
-            $exist = DB::table('esq_datos_personales.personal')
-            ->select ('personal.idpersonal', 'personal.cedula','personal.apellido1','personal.apellido2','personal.nombres')
-            ->where ('personal.cedula',$cedula)
-            -> first();
-            if($exist){
-                $usuarios = Usuario::where('personal_id',$exist->idpersonal)->get();
-                $response = [
-                    'estado' => true,
-                    'mensaje' => 'Usuario existe en el SGA',
-                    'usuario' => $exist,
-                    'dricb' => $usuarios 
-                ];
-            }else{
-                $response = [
-                    'estado' => false,
-                    'mensaje' => 'El usuario no se encuentra registrado en el SGA ',
-                  
-                ];
-            }
-        }else{
-            $response = [
-                'estado' => false,
-                'mensaje' => 'No hay data',
-              
-            ];
-        }
-
-        return response()->json($response);
-    }
 }
 
