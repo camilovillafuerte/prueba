@@ -428,3 +428,6 @@ Route::put('updatemovilidad/solicitud',[MovilidadController::class,'updateSolici
 Route::put('updatebecas/solicitud',[BecasMaestriaDoctoradoController::class,'updateSolicitudBecas']);
 
 
+//Modificar el estado del usuario dentro del sistema DRICB
+Route::put('update/usuario/dricb',[UsuarioController::class,'updateUsuario']);
+
