@@ -253,7 +253,7 @@ class BecasMaestriaDoctoradoController extends Controller
 
         public function solicitudBecas($id){
             $becas=DB::select("
-            select p.cedula, p.apellido1, p.apellido2, p.nombres,p.fecha_nacimiento,
+            select p.idpersonal, p.cedula, p.apellido1, p.apellido2, p.nombres,p.fecha_nacimiento,
         t.nombre as Nacionalidad,p.genero,p.residencia_calle_1, p.residencia_calle_2, p.residencia_calle_3,
         p.correo_personal_institucional,p.correo_personal_alternativo, t1.nombre as Estado_civil,
         u.nombre as Pais, u1.nombre as Provincia,u2.nombre as Canton,

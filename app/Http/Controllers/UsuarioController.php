@@ -427,16 +427,26 @@ class UsuarioController extends Controller{
             ->where('personal_id','=',$consulta->idpersonal)
             ->get();
             $consulta->usuario=$usuarios;
-            $response=[
-                'estado'=> true,
-                'mensaje'=> 'Este usuario ya existe en el sistema!',
-            ];
-        }else{
+            if($usuarios){
+                $response=[
+                    'estado'=> true,
+                    'mensaje'=> 'Este usuario ya se encuentra registrado',
+                   // 'datos'=> $usuarios 
+                   
+                ];
+            }
+            else{
+                $response=[
+                    'estado'=> false,
+                    'datos'=> $consulta
+                ];
+        }
+    }
+        else{
             $response=[
                 'estado'=> false,
-                'datos'=> $consulta
+                'mensaje'=> 'Este usuario no existe en el sistema del SGA',
             ];
-
         }
         return response()->json($response);
 
@@ -459,6 +469,40 @@ class UsuarioController extends Controller{
 
         return response()->json($response);
 
+    }
+
+    public function buscarUsuarios($cedula){
+        $response = [];
+
+        if(isset($cedula)){
+            $exist = DB::table('esq_datos_personales.personal')
+            ->select ('personal.idpersonal', 'personal.cedula','personal.apellido1','personal.apellido2','personal.nombres')
+            ->where ('personal.cedula',$cedula)
+            -> first();
+            if($exist){
+                $usuarios = Usuario::where('personal_id',$exist->idpersonal)->get();
+                $response = [
+                    'estado' => true,
+                    'mensaje' => 'Usuario existe en el SGA',
+                    'usuario' => $exist,
+                    'dricb' => $usuarios 
+                ];
+            }else{
+                $response = [
+                    'estado' => false,
+                    'mensaje' => 'El usuario no se encuentra registrado en el SGA ',
+                    //'usuario' => false
+                ];
+            }
+        }else{
+            $response = [
+                'estado' => false,
+                'mensaje' => 'No hay data',
+              //  'usuario' => false
+            ];
+        }
+
+        return response()->json($response);
     }
 }
 

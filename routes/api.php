@@ -420,7 +420,7 @@ Route::get('becas/solicitudes/{tipo}/{estado}',[BecasMaestriaDoctoradoController
 
 
 Route::get('consultar/usuario/{cedula}',[UsuarioController::class,'consultarID']);
-
+Route::get('buscar/usuario/{cedula}',[UsuarioController::class,'buscarUsuarios']);
 
 Route::post('ingresar/usuario',[UsuarioController::class,'insertarUsuario']);
 
