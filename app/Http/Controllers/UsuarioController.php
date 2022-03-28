@@ -497,5 +497,23 @@ class UsuarioController extends Controller{
 
     }
 
+    public function updateCargo(Request $request){
+        $data=(object) $request->data;
+        $usuario=Usuario::where('id',intval($data->id))->first();
+        if($usuario){
+            $usuario->cargos_id=intval($data->cargos_id);
+            $response=[
+                'estado'=>true,
+                'mensaje'=>'Se actualizo correctamente el cargo del usuario'
+            ];
+        }else{
+            $response=[
+                'estado'=>false,
+                'mensaje'=>'No se encontro el cargo'
+            ];
+        }
+        return response()->json($response);
+    }
+
 }
 
