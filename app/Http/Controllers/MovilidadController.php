@@ -714,6 +714,9 @@ public function consultarPeriodo($idpersonal){
     }
 
 
+    
+
+
 }
 
 
