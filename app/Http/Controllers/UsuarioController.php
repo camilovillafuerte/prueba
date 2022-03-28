@@ -478,5 +478,24 @@ class UsuarioController extends Controller{
 
     }
 
+    public function updateUsuario(Request $request){
+        $data= (object) $request->data;
+        $usuario=Usuario::where('id',intval($data->id))->first();
+        if($usuario){
+            $usuario->estado=trim($data->estado);
+            $response=[
+                'estado'=>true,
+                'mensaje'=>'Se actualizo correctamente el usuario'
+            ];
+        }else{
+            $response=[
+                'estado'=>false,
+                'mensaje'=>'No se encontro el usuario'
+            ];
+        }
+        return response()->json($response);
+
+    }
+
 }
 
