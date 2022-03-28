@@ -7,6 +7,7 @@ use App\Models\enfermedades_cronicas;
 use App\Models\especificar_alergias;
 use App\Models\m_beneficios;
 use App\Models\pdf_solicitudes;
+use App\Models\s_aprobadas;
 use App\Models\solicitudes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -377,6 +378,38 @@ class BecasMaestriaDoctoradoController extends Controller
             }
             return response()->json($response);
         }
+
+
+        public function updateSolicitudBecas(Request $request){
+            $data = (object)$request->data;
+             $soli_beca=solicitudes::where('id',(intval($data->id)))->first();
+             if($soli_beca){
+                 
+                    $soli_beca->tipo=trim($data->tipo);
+                     $soli_beca->estado_solicitud=trim($data->estado_solicitud);
+                     $soli_beca->save();
+
+                $aprobados= new s_aprobadas();
+                $aprobados->solicitud_id=$soli_beca->id;
+                $aprobados->tipo=trim($data->tipo);
+                $aprobados->estado='S';
+                $aprobados->save();
+
+                     $response=[
+                         'estado'=> true,
+                         'mensaje' => 'Se actualizo la solicitud a Aprobado'
+                     ];
+                 
+             }else{
+                 $response=[
+                     'estado'=>false,
+                     'mensaje' => 'No existe la solicitud'
+                 ];
+             }
+     
+             return response()->json($response);
+     
+         }
     }
 
     

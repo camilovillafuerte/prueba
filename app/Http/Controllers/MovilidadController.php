@@ -12,6 +12,7 @@ use App\Models\m_montos;
 use App\Models\modalidades;
 use App\Models\natu_intercambios;
 use App\Models\pdf_solicitudes;
+use App\Models\s_aprobadas;
 use App\Models\solicitudes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -711,6 +712,39 @@ public function consultarPeriodo($idpersonal){
 
         }
         return response()->json($response);
+    }
+
+
+    public function updateSolicitudMovilidad(Request $request){
+       $data = (object)$request->data;
+        $soli_movi=solicitudes::where('id',(intval($data->id)))->first();
+        if($soli_movi){
+            
+                $soli_movi->tipo=trim($data->tipo);
+                $soli_movi->estado_solicitud=trim($data->estado_solicitud);
+                $soli_movi->save();
+                
+                $aprobados= new s_aprobadas();
+                $aprobados->solicitud_id=$soli_movi->id;
+                $aprobados->tipo=trim($data->tipo);
+                $aprobados->estado='S';
+                $aprobados->save();
+                
+    
+                $response=[
+                    'estado'=> true,
+                    'mensaje' => 'Se actualizo la solicitud a Aprobado'
+                ];
+            
+        }else{
+            $response=[
+                'estado'=>false,
+                'mensaje' => 'No existe la solicitud'
+            ];
+        }
+
+        return response()->json($response);
+
     }
 
 

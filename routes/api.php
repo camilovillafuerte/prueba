@@ -420,9 +420,15 @@ Route::get('becas/solicitudes/{tipo}/{estado}',[BecasMaestriaDoctoradoController
 
 
 Route::get('consultar/usuario/{cedula}',[UsuarioController::class,'consultarID']);
-Route::get('buscar/usuario/{cedula}',[UsuarioController::class,'buscarUsuarios']);
+
 
 Route::post('ingresar/usuario',[UsuarioController::class,'insertarUsuario']);
 
 
 Route::get('obtener/cargos',[CargoController::class,'obtenercargos']);
+
+//Ruta para actualizar el estado de las solicitudes de movilidad y becas
+Route::put('updatemovilidad/solicitud',[MovilidadController::class,'updateSolicitudMovilidad']);
+Route::put('updatebecas/solicitud',[BecasMaestriaDoctoradoController::class,'updateSolicitudBecas']);
+
+
