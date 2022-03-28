@@ -683,7 +683,9 @@ public function consultarPeriodo($idpersonal){
     
     if ($buscar2){
         $semestre=$this->consultarPeriodo($buscar2->idpersonal);
-        $materias=m_materias::where('solicitud_id',intval($id))->get();
+        $materias=m_materias::where('solicitud_id',intval($id))
+        ->orderBy('id','ASC' )
+        ->get();
         if($materias)
         {
            
