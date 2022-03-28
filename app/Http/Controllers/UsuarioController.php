@@ -418,6 +418,7 @@ class UsuarioController extends Controller{
     
     //esto debe relacionarse a nuestro sistema
     public function consultarID($cedula){
+        if(isset($cedula)){
         $consulta=DB::table('esq_datos_personales.personal')
         ->select ('personal.idpersonal', 'personal.cedula','personal.apellido1','personal.apellido2','personal.nombres')
         ->where ('personal.cedula',$cedula)
@@ -427,30 +428,31 @@ class UsuarioController extends Controller{
             ->where('personal_id','=',$consulta->idpersonal)
             ->get();
             $consulta->usuario=$usuarios;
-            if($usuarios){
+        
                 $response=[
                     'estado'=> true,
-                    'mensaje'=> 'Este usuario ya se encuentra registrado',
-                   // 'datos'=> $usuarios 
+                    'mensaje'=> 'Este usuario existe en el SGA',
+                    'datos'=> $consulta
                    
                 ];
-            }
-            else{
+            
+            }else{
                 $response=[
                     'estado'=> false,
-                    'datos'=> $consulta
+                    'mensaje'=> 'Usuario no existe en el sistema del SGA'
                 ];
         }
     }
         else{
             $response=[
                 'estado'=> false,
-                'mensaje'=> 'Este usuario no existe en el sistema del SGA',
+                'mensaje'=> 'No hay datos',
             ];
         }
         return response()->json($response);
 
     }
+
 
 
     public function insertarUsuario(Request $request){
@@ -491,14 +493,14 @@ class UsuarioController extends Controller{
                 $response = [
                     'estado' => false,
                     'mensaje' => 'El usuario no se encuentra registrado en el SGA ',
-                    //'usuario' => false
+                  
                 ];
             }
         }else{
             $response = [
                 'estado' => false,
                 'mensaje' => 'No hay data',
-              //  'usuario' => false
+              
             ];
         }
 
