@@ -384,8 +384,9 @@ class BecasMaestriaDoctoradoController extends Controller
             $data = (object)$request->data;
              $soli_beca=solicitudes::where('id',(intval($data->id)))->first();
              if($soli_beca){
-                 
-                    $soli_beca->tipo=trim($data->tipo);
+                if(trim($data->tipo)=='A')
+                {
+                   
                      $soli_beca->estado_solicitud=trim($data->estado_solicitud);
                      $soli_beca->save();
 
@@ -401,6 +402,10 @@ class BecasMaestriaDoctoradoController extends Controller
                      ];
                  
              }else{
+
+                $soli_beca->estado_solicitud=trim($data->estado_solicitud);
+                $soli_beca->save();
+
                  $response=[
                      'estado'=>false,
                      'mensaje' => 'No existe la solicitud'
@@ -413,3 +418,4 @@ class BecasMaestriaDoctoradoController extends Controller
     }
 
     
+}

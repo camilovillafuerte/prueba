@@ -719,8 +719,8 @@ public function consultarPeriodo($idpersonal){
        $data = (object)$request->data;
         $soli_movi=solicitudes::where('id',(intval($data->id)))->first();
         if($soli_movi){
-            
-                $soli_movi->tipo=trim($data->tipo);
+            if(trim($data->tipo)=='A')
+            {
                 $soli_movi->estado_solicitud=trim($data->estado_solicitud);
                 $soli_movi->save();
                 
@@ -737,6 +737,9 @@ public function consultarPeriodo($idpersonal){
                 ];
             
         }else{
+            $soli_movi->estado_solicitud=trim($data->estado_solicitud);
+            $soli_movi->save();
+            
             $response=[
                 'estado'=>false,
                 'mensaje' => 'No existe la solicitud'
@@ -748,6 +751,7 @@ public function consultarPeriodo($idpersonal){
     }
 
 
+}
 }
 
 
