@@ -633,7 +633,7 @@ public function consultarPeriodo($idpersonal){
 
     public function solicitud($id)
     {
-        $buscar=DB::select("select p.cedula, p.apellido1, p.apellido2, p.nombres,p.fecha_nacimiento,
+        $buscar=DB::select("select p.idpersonal, p.cedula, p.apellido1, p.apellido2, p.nombres,p.fecha_nacimiento,
         t.nombre as Nacionalidad,p.genero,p.residencia_calle_1, p.residencia_calle_2, p.residencia_calle_3,
         p.correo_personal_institucional,p.correo_personal_alternativo, t1.nombre as Estado_civil,
         u.nombre as Pais, u1.nombre as Provincia,u2.nombre as Canton,
@@ -682,11 +682,13 @@ public function consultarPeriodo($idpersonal){
     $buscar2=json_decode(json_encode($buscar1));
     
     if ($buscar2){
+        $semestre=$this->consultarPeriodo($buscar2->idpersonal);
         $materias=m_materias::where('solicitud_id',intval($id))->get();
         if($materias)
         {
            
             $buscar2->materias=$materias;
+            $buscar2->carrera=$semestre;
             $response= [
             'estado'=> true,
             'datos' => $buscar2,
