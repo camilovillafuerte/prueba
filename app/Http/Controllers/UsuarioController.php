@@ -423,27 +423,32 @@ class UsuarioController extends Controller{
         ->select ('personal.idpersonal', 'personal.cedula','personal.apellido1','personal.apellido2','personal.nombres')
         ->where ('personal.cedula',$cedula)
         -> first();
+
         if($consulta){
-            $usuarios=DB::table('esq_dricb.usuarios')
-            ->where('personal_id','=',$consulta->idpersonal)
-            ->get();
-            $consulta->usuario=$usuarios;
-        
-                $response=[
-                    'estado'=> true,
-                    'mensaje'=> 'Este usuario existe en el SGA',
-                    'datos'=> $consulta
-                   
-                ];
-            
-            }else{
+            $usuario=Usuario::where('personal_id',$consulta->idpersonal)->first();
+            if($usuario)
+            {
                 $response=[
                     'estado'=> false,
-                    'mensaje'=> 'Usuario no existe en el sistema del SGA'
+                    'mensaje'=> 'Usuario se encuentra dentro del sistema DRICB'
+                ];
+            }
+            else
+            {
+                $response=[
+                    'estado'=> true,
+                    'datos'=> $consulta
+                ];
+
+            } 
+    }else{
+                $response=[
+                    'estado'=> false,
+                    'mensaje'=> 'Usuario no existe en el sistema'
                 ];
         }
     }
-        else{
+    else{
             $response=[
                 'estado'=> false,
                 'mensaje'=> 'No hay datos',
