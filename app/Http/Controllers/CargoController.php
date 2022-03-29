@@ -48,7 +48,7 @@ class CargoController extends Controller
         $cargo=DB::table('esq_dricb.cargos')
         ->select('cargos_id', 'cargo')
         ->where ('estado','=','A')
-        ->orderBy('cargo','DESC')
+        ->orderBy('cargo','ASC')
         ->get();
         if($cargo){
             $response=[
