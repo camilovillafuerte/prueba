@@ -483,6 +483,7 @@ class UsuarioController extends Controller{
         $usuario=Usuario::where('id',intval($data->id))->first();
         if($usuario){
             $usuario->estado=trim($data->estado);
+            $usuario->save();
             $response=[
                 'estado'=>true,
                 'mensaje'=>'Se actualizo correctamente el usuario'
@@ -495,6 +496,25 @@ class UsuarioController extends Controller{
         }
         return response()->json($response);
 
+    }
+
+    public function updateCargo(Request $request){
+        $data=(object) $request->data;
+        $usuario=Usuario::where('id',intval($data->id))->first();
+        if($usuario){
+            $usuario->cargos_id=intval($data->cargos_id);
+            $usuario->save();
+            $response=[
+                'estado'=>true,
+                'mensaje'=>'Se actualizo correctamente el cargo del usuario'
+            ];
+        }else{
+            $response=[
+                'estado'=>false,
+                'mensaje'=>'No se encontro el cargo'
+            ];
+        }
+        return response()->json($response);
     }
 
 }
