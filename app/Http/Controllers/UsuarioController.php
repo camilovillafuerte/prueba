@@ -483,6 +483,7 @@ class UsuarioController extends Controller{
         $usuario=Usuario::where('id',intval($data->id))->first();
         if($usuario){
             $usuario->estado=trim($data->estado);
+            $usuario->save();
             $response=[
                 'estado'=>true,
                 'mensaje'=>'Se actualizo correctamente el usuario'
@@ -502,6 +503,7 @@ class UsuarioController extends Controller{
         $usuario=Usuario::where('id',intval($data->id))->first();
         if($usuario){
             $usuario->cargos_id=intval($data->cargos_id);
+            $usuario->save();
             $response=[
                 'estado'=>true,
                 'mensaje'=>'Se actualizo correctamente el cargo del usuario'
