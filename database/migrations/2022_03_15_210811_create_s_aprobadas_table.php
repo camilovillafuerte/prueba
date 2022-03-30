@@ -19,6 +19,7 @@ class CreateSAprobadasTable extends Migration
             $table->unsignedBigInteger('solicitud_id');
             $table->foreign('solicitud_id')->references('id')->on('solicitudes')->onDelete('cascade')->onUpdate('cascade');
             $table->longText('PDF')->nullable();
+            $table->timestamp('fecha_creacion');
             $table->enum('tipo',['M','B']); // Movilidad, Becas
             $table->enum('estado',['F','S']); // F= Finalizado , S= Subir Documento
 

@@ -393,6 +393,7 @@ class BecasMaestriaDoctoradoController extends Controller
                 $aprobados= new s_aprobadas();
                 $aprobados->solicitud_id=$soli_beca->id;
                 $aprobados->tipo=trim($data->tipo);
+                $aprobados->fecha_creacion=date('Y-m-d H:i:s');
                 $aprobados->estado='S';
                 $aprobados->save();
 

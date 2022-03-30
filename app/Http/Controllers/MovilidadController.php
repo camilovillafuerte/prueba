@@ -727,6 +727,7 @@ public function consultarPeriodo($idpersonal){
                 $aprobados= new s_aprobadas();
                 $aprobados->solicitud_id=$soli_movi->id;
                 $aprobados->tipo=trim($data->tipo);
+                $aprobados->fecha_creacion=date('Y-m-d H:i:s');
                 $aprobados->estado='S';
                 $aprobados->save();
                 
@@ -746,7 +747,6 @@ public function consultarPeriodo($idpersonal){
             ];
         }
 
-        return response()->json($response);
 
     }else{
         $response = [
@@ -754,7 +754,7 @@ public function consultarPeriodo($idpersonal){
             'mensaje' => 'No existe la solicitud'
         ];
     }
-
+    return response()->json($response);
 
 }
 }
