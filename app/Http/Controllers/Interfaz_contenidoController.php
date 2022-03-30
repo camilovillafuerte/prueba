@@ -189,10 +189,10 @@ class Interfaz_contenidoController extends Controller
 
         if($objetivo && $programa && $beneficios && $reglamento)
         {
-            $objetivo->descripcion=trim($data->id_objetivo);
-            $programa->descripcion=trim($data->id_programa);
-            $beneficios->descripcion=trim($data->id_beneficios);
-            $reglamento->descripcion=ucfirst(trim($data->id_reglamento));
+            $objetivo->descripcion=trim($data->objetivo);
+            $programa->descripcion=trim($data->programa);
+            $beneficios->descripcion=trim($data->beneficios);
+            $reglamento->descripcion=ucfirst(trim($data->informacion));
             $reglamento->PDF=trim($data->pdfreglamento);
 
           
