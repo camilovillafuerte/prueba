@@ -19,6 +19,7 @@ use App\Http\Controllers\MovilidadController;
 use App\Http\Controllers\Nombre_tipoconvenioController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\PersonalController;
+use App\Http\Controllers\SolicitudesController;
 use App\Http\Controllers\UsuarioController;
 use App\Models\firmas;
 use App\Models\interfaz;
@@ -319,6 +320,7 @@ Route::put('delete/carrosel',[InterfazController::class, 'deleteCarrosel']);
 
 //Ruta para subir documento al servidor ftp
 Route::post('documento/mas-informacion', [Interfaz_contenidoController::class, 'subirDocumento']);
+Route::post('documento/reglamento', [Interfaz_contenidoController::class, 'subirDocumento']);
 
 
 //modificar la pagina Nosotros
@@ -326,6 +328,9 @@ Route::put('pagina-nosotros/update',[Interfaz_contenidoController::class,'update
 
 //modificar la pagina Convenios
 Route::put('pagina-convenios/update',[Interfaz_contenidoController::class,'updateConvenio']);
+
+//modificar la pagina Movilidad
+Route::put('pagina-movilidad/update',[Interfaz_contenidoController::class,'updateMovilidad']);
 
 //becas nivel
 Route::post('pagina-becas/add',[Becas_nivelController::class,'create']);
@@ -436,3 +441,11 @@ Route::put('updatebecas/solicitud',[BecasMaestriaDoctoradoController::class,'upd
 Route::put('update/usuario/dricb',[UsuarioController::class,'updateUsuario']);
 Route::put('update/cargo/usuario',[UsuarioController::class,'updateCargo']);
 
+
+//Consultar solicitudes aprobadas
+Route::get('movilidad/s-aprobada/{estado}',[MovilidadController::class,'solicitudesAprobadas']);
+Route::get('becas/s-aprobada/{estado}',[BecasMaestriaDoctoradoController::class,'solicitudesBecasAprobadas']);
+
+
+//Subir documentos de solicitudes aprobadas
+Route::post('subir/pdfsolicitudes',[SolicitudesController::class,'subirDocumentoMovilidadyBecas']);

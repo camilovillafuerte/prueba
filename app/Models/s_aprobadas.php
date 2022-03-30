@@ -10,7 +10,7 @@ class s_aprobadas extends Model
     use HasFactory;
     protected $connection = 'pgsql';
     public $timestamps = false;
-    protected $fillable = ['id','solicitud_id','PDF','tipo','estado'];
+    protected $fillable = ['id','solicitud_id','PDF','fecha_creacion','tipo','estado'];
 
     //Relacion de uno a muchos
     public function solicitud(){  

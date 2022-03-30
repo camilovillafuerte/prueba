@@ -384,7 +384,7 @@ class BecasMaestriaDoctoradoController extends Controller
             $data = (object)$request->data;
              $soli_beca=solicitudes::where('id',(intval($data->id)))->first();
              if($soli_beca){
-                if(trim($data->tipo)=='A')
+                if(trim($data->estado_solicitud)=='A')
                 {
                    
                      $soli_beca->estado_solicitud=trim($data->estado_solicitud);
@@ -393,6 +393,7 @@ class BecasMaestriaDoctoradoController extends Controller
                 $aprobados= new s_aprobadas();
                 $aprobados->solicitud_id=$soli_beca->id;
                 $aprobados->tipo=trim($data->tipo);
+                $aprobados->fecha_creacion=date('Y-m-d H:i:s');
                 $aprobados->estado='S';
                 $aprobados->save();
 
@@ -407,15 +408,50 @@ class BecasMaestriaDoctoradoController extends Controller
                 $soli_beca->save();
 
                  $response=[
-                     'estado'=>false,
-                     'mensaje' => 'No existe la solicitud'
+                     'estado'=>true,
+                     'mensaje' => 'Se actualizo la solicitud Rechazada'
                  ];
              }
      
-             return response()->json($response);
+           
      
          }
+         else{
+            $response = [
+                'estado' => false,
+                'mensaje' => 'No existe la solicitud'
+            ];
+        }
+        return response()->json($response);
     }
 
+    public function solicitudesBecasAprobadas( $estado){
+        $buscar=DB::select("select s.id as solicitud_id ,p.cedula,(p.apellido1 || ' ' || p.apellido2)as Apellidos, p.nombres, u.nombre as Universidad_Destino, f.nombre As Nombre_facultad, ni.descripcion as Naturaleza, s.fecha_inicio, s.fecha_fin, s.estado_solicitud, sa.id as s_aprobadas_id
+       
+        from esq_distributivos.departamento d
+        join esq_inscripciones.facultad f on d.idfacultad = f.idfacultad
+        join esq_distributivos.departamento_docente dd on dd.iddepartamento = d.iddepartamento
+        join esq_datos_personales.personal p on dd.idpersonal = p.idpersonal
+        join esq_dricb.solicitudes s on p.idpersonal = s.personal_id
+        join esq_dricb.s_aprobadas sa on sa.solicitud_id = s.id
+        join esq_datos_personales.p_universidad u on u.iduniversidad = s.universidad_id
+        join esq_dricb.natu_intercambios ni on ni.id = s.naturaleza_id 
+        where s.tipo = 'B' and s.estado_solicitud='$estado' and s.estado='A'
+        order by s.id DESC");
+
+        if($buscar){
+            $response=[
+                'estado'=> true,
+                'datos'=> $buscar,
+            ];
+        }else{
+            $response=[
+                'estado'=> false,
+                'mensaje'=> 'No existen datos'
+            ];
+
+        }
+        return response()->json($response);
+    }
     
 }

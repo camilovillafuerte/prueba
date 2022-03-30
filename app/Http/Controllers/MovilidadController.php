@@ -719,7 +719,7 @@ public function consultarPeriodo($idpersonal){
        $data = (object)$request->data;
         $soli_movi=solicitudes::where('id',(intval($data->id)))->first();
         if($soli_movi){
-            if(trim($data->tipo)=='A')
+            if(trim($data->estado_solicitud)=='A')
             {
                 $soli_movi->estado_solicitud=trim($data->estado_solicitud);
                 $soli_movi->save();
@@ -727,6 +727,7 @@ public function consultarPeriodo($idpersonal){
                 $aprobados= new s_aprobadas();
                 $aprobados->solicitud_id=$soli_movi->id;
                 $aprobados->tipo=trim($data->tipo);
+                $aprobados->fecha_creacion=date('Y-m-d H:i:s');
                 $aprobados->estado='S';
                 $aprobados->save();
                 
@@ -741,17 +742,49 @@ public function consultarPeriodo($idpersonal){
             $soli_movi->save();
             
             $response=[
-                'estado'=>false,
-                'mensaje' => 'No existe la solicitud'
+                'estado'=>true,
+                'mensaje' => 'Se actualizo la solicitud Rechazada'
             ];
         }
 
-        return response()->json($response);
 
+    }else{
+        $response = [
+            'estado' => false,
+            'mensaje' => 'No existe la solicitud'
+        ];
     }
-
+    return response()->json($response);
 
 }
+
+public function solicitudesAprobadas( $estado){
+    $buscar=DB::select("select s.id as Solicitud_id, p.cedula,(p.apellido1 || ' ' || p.apellido2)as Apellidos, p.nombres, u.nombre as Universidad_Destino, es.nombre As Nombre_carrera, ni.descripcion as Naturaleza, s.fecha_inicio, s.fecha_fin, s.estado_solicitud, sa.id as s_aprobadas_id
+    from esq_datos_personales.personal p
+    join esq_dricb.solicitudes s on p.idpersonal = s.personal_id
+    join esq_dricb.s_aprobadas sa on sa.solicitud_id = s.id
+    join esq_inscripciones.escuela es on es.idescuela = s.escuela_id
+    join esq_datos_personales.p_universidad u on u.iduniversidad = s.universidad_id
+    join esq_dricb.natu_intercambios ni on ni.id = s.naturaleza_id 
+    where s.tipo = 'M' and s.estado_solicitud='$estado' and s.estado='A'
+    order by s.id DESC");
+
+    if($buscar){
+        $response=[
+            'estado'=> true,
+            'datos'=> $buscar,
+        ];
+    }else{
+        $response=[
+            'estado'=> false,
+            'mensaje'=> 'No existen datos'
+        ];
+
+    }
+    return response()->json($response);
+}
+
+
 }
 
 
