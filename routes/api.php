@@ -432,3 +432,7 @@ Route::put('updatebecas/solicitud',[BecasMaestriaDoctoradoController::class,'upd
 Route::put('update/usuario/dricb',[UsuarioController::class,'updateUsuario']);
 Route::put('update/cargo/usuario',[UsuarioController::class,'updateCargo']);
 
+
+//Consultar solicitudes aprobadas
+Route::get('movilidad/s-aprobada/{estado}',[MovilidadController::class,'solicitudesAprobadas']);
+Route::get('becas/s-aprobada/{estado}',[BecasMaestriaDoctoradoController::class,'solicitudesBecasAprobadas']);
