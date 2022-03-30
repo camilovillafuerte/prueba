@@ -175,6 +175,16 @@ return [
             'root' => '/Contenido/DocumentosBecas/'// for example: /var/www/html/dev/images
         ],
 
+        'ftp12' => [
+            'driver' => 'ftp',
+            'host' => env('FTP_HOST'),
+            'port' => env('FTP_PORT', '21'),
+            'username' => env('FTP_USERNAME'),
+            'password' => env('FTP_PASSWORD'),
+            'utf8' => true,
+            'root' => '/Contenido/DocumentosSolicitudesAprobadas/'// for example: /var/www/html/dev/images
+        ],
+
     ],
 
     /*
