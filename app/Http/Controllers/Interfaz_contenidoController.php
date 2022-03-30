@@ -176,4 +176,48 @@ class Interfaz_contenidoController extends Controller
         return response()->json($response);
 
     }
+
+    public function updateMovilidad(Request $request)
+    {
+        $data=(Object)$request->data;
+        $objetivo=Interfaz_contenido::find(intval($data->id_objetivo));
+        $programa=Interfaz_contenido::find(intval($data->id_programa));
+        $beneficios=Interfaz_contenido::find(intval($data->id_beneficios));
+        $reglamento=Interfaz_contenido::find(intval($data->id_reglamento));
+        
+        $response=[];
+
+        if($objetivo && $programa && $beneficios && $reglamento)
+        {
+            $objetivo->descripcion=trim($data->objetivo);
+            $programa->descripcion=trim($data->mision);
+            $beneficios->descripcion=trim($data->vision);
+            $reglamento->descripcion=ucfirst(trim($data->reglamento));
+            $reglamento->PDF=trim($data->pdfreglamento);
+
+          
+
+            $objetivo->save();
+            $programa->save();
+            $beneficios->save();
+            $reglamento->save();
+        
+
+            $response=[
+                'estado'=>true,
+                'mensaje'=>'Se actualizo correctamente los datos'
+            ];
+        }
+        else
+        {
+            $response=[
+                'estado'=>false,
+                'mensaje'=>'No se puedo actualizar los datos'
+
+            ];
+        }
+
+        return response()->json($response);
+
+    }
 }
