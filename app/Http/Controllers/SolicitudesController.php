@@ -14,7 +14,7 @@ class SolicitudesController extends Controller
         $this->baseCtrl = new BaseController();
     }
 
-    public function subirDocumentoMovilidad(Request $request)
+    public function subirDocumentoMovilidadyBecas(Request $request)
     {
         if ($request->hasFile('document')) {
             $documento = $request->file('document');
