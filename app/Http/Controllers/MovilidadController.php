@@ -719,7 +719,7 @@ public function consultarPeriodo($idpersonal){
        $data = (object)$request->data;
         $soli_movi=solicitudes::where('id',(intval($data->id)))->first();
         if($soli_movi){
-            if(trim($data->tipo)=='A')
+            if(trim($data->estado_solicitud)=='A')
             {
                 $soli_movi->estado_solicitud=trim($data->estado_solicitud);
                 $soli_movi->save();
@@ -741,13 +741,18 @@ public function consultarPeriodo($idpersonal){
             $soli_movi->save();
             
             $response=[
-                'estado'=>false,
-                'mensaje' => 'No existe la solicitud'
+                'estado'=>true,
+                'mensaje' => 'Se actualizo la solicitud Rechazada'
             ];
         }
 
         return response()->json($response);
 
+    }else{
+        $response = [
+            'estado' => false,
+            'mensaje' => 'No existe la solicitud'
+        ];
     }
 
 
