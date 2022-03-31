@@ -183,17 +183,17 @@ class Interfaz_contenidoController extends Controller
         $objetivo=Interfaz_contenido::find(intval($data->id_objetivo));
         $programa=Interfaz_contenido::find(intval($data->id_programa));
         $beneficios=Interfaz_contenido::find(intval($data->id_beneficios));
-        $reglamento=Interfaz_contenido::find(intval($data->id_reglamento));
+        $informacion=Interfaz_contenido::find(intval($data->id_informacion));
         
         $response=[];
 
-        if($objetivo && $programa && $beneficios && $reglamento)
+        if($objetivo && $programa && $beneficios && $informacion)
         {
             $objetivo->descripcion=trim($data->objetivo);
             $programa->descripcion=trim($data->programa);
             $beneficios->descripcion=trim($data->beneficios);
-            $reglamento->descripcion=ucfirst(trim($data->informacion));
-            $reglamento->PDF=trim($data->pdfreglamento);
+            $informacion->descripcion=ucfirst(trim($data->informacion));
+            $informacion->PDF=trim($data->pdfreglamento);
 
           
 

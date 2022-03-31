@@ -766,7 +766,7 @@ public function solicitudesAprobadas( $estado){
     join esq_inscripciones.escuela es on es.idescuela = s.escuela_id
     join esq_datos_personales.p_universidad u on u.iduniversidad = s.universidad_id
     join esq_dricb.natu_intercambios ni on ni.id = s.naturaleza_id 
-    where s.tipo = 'M' and s.estado_solicitud='$estado' and s.estado='A'
+    where s.tipo = 'M' and s.estado_solicitud='$estado' and s.estado='A' and sa.estado='S'
     order by s.id DESC");
 
     if($buscar){

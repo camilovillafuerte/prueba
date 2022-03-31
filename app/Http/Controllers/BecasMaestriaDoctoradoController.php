@@ -436,7 +436,7 @@ class BecasMaestriaDoctoradoController extends Controller
         join esq_dricb.s_aprobadas sa on sa.solicitud_id = s.id
         join esq_datos_personales.p_universidad u on u.iduniversidad = s.universidad_id
         join esq_dricb.natu_intercambios ni on ni.id = s.naturaleza_id 
-        where s.tipo = 'B' and s.estado_solicitud='$estado' and s.estado='A'
+        where s.tipo = 'B' and s.estado_solicitud='$estado' and s.estado='A' and sa.estado='S'
         order by s.id DESC");
 
         if($buscar){
