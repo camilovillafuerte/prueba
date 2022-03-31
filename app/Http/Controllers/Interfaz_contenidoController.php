@@ -200,7 +200,7 @@ class Interfaz_contenidoController extends Controller
             $objetivo->save();
             $programa->save();
             $beneficios->save();
-            $reglamento->save();
+            $informacion->save();
         
 
             $response=[
