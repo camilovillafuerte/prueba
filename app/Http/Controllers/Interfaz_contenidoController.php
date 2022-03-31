@@ -183,7 +183,7 @@ class Interfaz_contenidoController extends Controller
         $objetivo=Interfaz_contenido::find(intval($data->id_objetivo));
         $programa=Interfaz_contenido::find(intval($data->id_programa));
         $beneficios=Interfaz_contenido::find(intval($data->id_beneficios));
-        $reglamento=Interfaz_contenido::find(intval($data->id_reglamento));
+        $reglamento=Interfaz_contenido::find(intval($data->id_informacion));
         
         $response=[];
 
