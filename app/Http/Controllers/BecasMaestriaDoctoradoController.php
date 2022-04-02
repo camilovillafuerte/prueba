@@ -264,7 +264,7 @@ class BecasMaestriaDoctoradoController extends Controller
         f.nombre As Nombre_Facultad, m1.tipo_modalidad as Modalidad, m2.tipo_modalidad as Tipo_Destino,uni.nombre as Universidad_Destino,
         s.campus_destino, s.numero_semestre,s.fecha_inicio, s.fecha_fin,ni.descripcion as Naturaleza, b.descripcion as Beca_Apoyo,
         m.descripcion as Monto_Referencial, 
-        a.descripcion as Alergias, ea.especificar_alergia, en.enfermedades_tratamiento,s.poliza_seguro,
+        a.descripcion as Alergias, ea.especificar_alergia, en.enfermedades_tratamiento,s.poliza_seguro,pdf.id as id_pdf, 
         pdf.pdfcarta_aceptacion, pdf.pdftitulo
 
 

@@ -622,7 +622,7 @@ public function consultarPeriodo($idpersonal){
         es.nombre As Nombre_carrera,m1.tipo_modalidad as Modalidad, m2.tipo_modalidad as Tipo_Destino,
         uni.nombre as Universidad_Destino, s.carrera_destino, s.semestre_cursar, s.fecha_inicio,s.fecha_fin,
         ni.descripcion as Naturaleza, b.descripcion as Beca_Apoyo, m.descripcion as Monto_Referencial,
-        a.descripcion as Alergias, ea.especificar_alergia, en.enfermedades_tratamiento,s.poliza_seguro, 
+        a.descripcion as Alergias, ea.especificar_alergia, en.enfermedades_tratamiento,s.poliza_seguro,pdf.id as id_pdf, 
         pdf.pdfcertificado_matricula, pdf.pdfcopia_record, pdf.pdfsolicitud_carta, pdf.pdfcartas_recomendacion, pdf.pdfno_sancion,
         pdf.pdffotos,pdf.pdfseguro, pdf.pdfexamen_psicometrico, pdf.pdfdominio_idioma, pdf.pdfdocumentos_udestino,
         pdfcomprobante_solvencia
