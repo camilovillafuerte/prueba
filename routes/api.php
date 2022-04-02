@@ -445,3 +445,7 @@ Route::get('becas/s-aprobada/{estado}',[BecasMaestriaDoctoradoController::class,
 
 //Subir documentos de solicitudes aprobadas
 Route::post('subir/pdfsolicitudes',[SolicitudesController::class,'subirDocumentoMovilidadyBecas']);
+
+
+//Actualizar estado del informe Final en S_Aprobadas
+Route::put('actualizar/informe/s_aprobadas',[SolicitudesController::class,'actualizarAprobados']);

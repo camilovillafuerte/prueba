@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\s_aprobadas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -41,5 +42,33 @@ class SolicitudesController extends Controller
         }
 
         return response()->json($response);
+    }
+
+    public function actualizarAprobados(Request $request){
+        $data = (object)$request->data;
+        $aprobados=s_aprobadas::where('id',(intval($data->id)))->first();
+        if($aprobados){
+            if(trim($data->estado)=='S'){
+                $aprobados->PDF=trim($data->PDF);
+                $aprobados->tipo = trim($data->tipo);
+                $aprobados->estado=trim($data->estado);
+        $aprobados->save();
+        $response=[
+            'estado'=> true,
+            'mensaje' => 'Se actualizo el estado del informe a Finalizado'
+        ];
+            }else {
+                $response = [
+                    'estado' => false,
+                    'mensaje' => 'Solo se pude actualizar las solicitudes sin Informes'
+                ];
+            }
+    } else{
+        $response = [
+            'estado' => false,
+            'mensaje' => 'No existe la solicitud'
+        ];
+    }
+    return response()->json($response);
     }
 }
