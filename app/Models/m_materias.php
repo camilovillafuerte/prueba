@@ -11,7 +11,7 @@ class m_materias extends Model
     protected $connection = 'pgsql';
     public $timestamps = false;
     protected $fillable = ['id','solicitud_id','materia_origen','codigo_origen',
-    'materia_destino','codigo_destino'];
+    'materia_destino','codigo_destino','estado'];
 
 
     public function solicitud(){

@@ -52,7 +52,7 @@ class SolicitudesController extends Controller
         $aprobados=s_aprobadas::where('id',(intval($data->id)))->first();
         if($aprobados){
             if(trim($aprobados->estado)=='S'){
-                $aprobados->PDF=trim($data->PDF);
+                $aprobados->pdf=trim($data->PDF);
                 $aprobados->tipo = trim($data->tipo);
                 $aprobados->estado="F";
         $aprobados->save();
