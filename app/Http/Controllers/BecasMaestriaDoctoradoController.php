@@ -261,10 +261,10 @@ class BecasMaestriaDoctoradoController extends Controller
         p.telefono_personal_domicilio, p.telefono_personal_celular, t2.nombre as Tipo_Sangre, t3.nombre as Nombre_Discapacidad,
         p.contacto_emergencia_apellidos,p.contacto_emergencia_nombres,
         p.contacto_emergencia_telefono_1,p.contacto_emergencia_telefono_2,
-        f.nombre As Nombre_Facultad, m1.tipo_modalidad as Modalidad, m2.tipo_modalidad as Tipo_Destino,uni.nombre as Universidad_Destino,
-        s.campus_destino, s.numero_semestre,s.fecha_inicio, s.fecha_fin,ni.descripcion as Naturaleza, b.descripcion as Beca_Apoyo,
-        m.descripcion as Monto_Referencial, 
-        a.descripcion as Alergias, ea.especificar_alergia, en.enfermedades_tratamiento,s.poliza_seguro,pdf.id as id_pdf, 
+        f.idfacultad, f.nombre As Nombre_Facultad,m1.id as id_modalidad1 ,m1.tipo_modalidad as Modalidad,m2.id as id_modalidad2 ,m2.tipo_modalidad as Tipo_Destino,uni.iduniversidad ,uni.nombre as Universidad_Destino,
+        s.campus_destino, s.numero_semestre,s.fecha_inicio, s.fecha_fin,ni.id as id_naturaleza,ni.descripcion as Naturaleza,b.id as id_becasapoyo ,b.descripcion as Beca_Apoyo,
+        m.id as id_monto,m.descripcion as Monto_Referencial, 
+        a.id as id_alergias,a.descripcion as Alergias, ea.id as id_esalergias,ea.especificar_alergia,en.id as id_enfermedades ,en.enfermedades_tratamiento,s.poliza_seguro,pdf.id as id_pdf, 
         pdf.pdfcarta_aceptacion, pdf.pdftitulo
 
 
