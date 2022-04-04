@@ -525,6 +525,7 @@ public function consultarPeriodo($idpersonal){
             $newMateria->codigo_origen=trim($mateObj->clave_origen);
             $newMateria->materia_destino=trim(ucfirst($mateObj->materia_destino));
             $newMateria->codigo_destino=trim($mateObj->clave_destino);
+            $newMateria->estado="A";
             $newMateria->save();
         }
 
