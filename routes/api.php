@@ -449,3 +449,7 @@ Route::post('subir/pdfsolicitudes',[SolicitudesController::class,'subirDocumento
 
 //Actualizar estado del informe Final en S_Aprobadas
 Route::put('actualizar/informe/s_aprobadas',[SolicitudesController::class,'actualizarAprobados']);
+
+
+//consultar solicitud para poder editar(becas, movilidad)
+Route::get('consultar/solicitud-editar/{tipo}/{id}/{tipo_solicitud}',[SolicitudesController::class,'consultarSolicitud']);
