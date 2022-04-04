@@ -21,6 +21,7 @@ class CreateMMateriasTable extends Migration
             $table->string('codigo_origen')->nullable();
             $table->string('materia_destino');
             $table->string('codigo_destino')->nullable();
+            $table->enum('estado',['A','D']);
         });
     }
 
