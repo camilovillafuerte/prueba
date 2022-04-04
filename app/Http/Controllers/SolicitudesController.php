@@ -87,7 +87,7 @@ class SolicitudesController extends Controller
         es.idescuela, es.nombre As Nombre_carrera,m1.id as id_modalidad1, m1.tipo_modalidad as Modalidad,m2.id as id_modalidad2, m2.tipo_modalidad as Tipo_Destino,
         uni.iduniversidad, uni.nombre as Universidad_Destino, s.carrera_destino, s.semestre_cursar, s.fecha_inicio,s.fecha_fin,
         ni.id as naturaleza_id, ni.descripcion as Naturaleza,b.id as id_becas, b.descripcion as Beca_Apoyo,m.id as id_monto, m.descripcion as Monto_Referencial,
-        a.id as id_alergias, a.descripcion as Alergias, ea.id as is_especificar_alergias, ea.especificar_alergia, en.id as id_enfermedades_cronicas, en.enfermedades_tratamiento,s.poliza_seguro,pdf.id as id_pdf, 
+        a.id as id_alergias, a.descripcion as Alergias, ea.id as id_especificar_alergias, ea.especificar_alergia, en.id as id_enfermedades_cronicas, en.enfermedades_tratamiento,s.poliza_seguro,pdf.id as id_pdf, 
         pdf.pdfcertificado_matricula, pdf.pdfcopia_record, pdf.pdfsolicitud_carta, pdf.pdfcartas_recomendacion, pdf.pdfno_sancion,
         pdf.pdffotos,pdf.pdfseguro, pdf.pdfexamen_psicometrico, pdf.pdfdominio_idioma, pdf.pdfdocumentos_udestino,
         pdfcomprobante_solvencia
