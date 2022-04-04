@@ -41,7 +41,7 @@ class CreateSolicitudesTable extends Migration
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
             $table->timestamp('fcreacion_solicitud');
-            $table->longText('PDF')->nullable();
+            $table->longText('pdf')->nullable();
             $table->enum('poliza_seguro',['S','N']); // Si, No
             $table->enum('estado_solicitud',['A','P','R']); //Aprobado, Pendiente, Rechazado
             $table->enum('tipo',['M','B']); //Movilidad, Becas
