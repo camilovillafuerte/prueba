@@ -453,3 +453,7 @@ Route::put('actualizar/informe/s_aprobadas',[SolicitudesController::class,'actua
 
 //consultar solicitud para poder editar(becas, movilidad)
 Route::get('consultar/solicitud-editar/{tipo}/{id}/{tipo_solicitud}',[SolicitudesController::class,'consultarSolicitud']);
+
+
+//actualizar solicitudes Movilidad
+Route::put('actualizar-solicitud-movilidad',[MovilidadController::class,'updateSolicitudMovilidad_v2']);
