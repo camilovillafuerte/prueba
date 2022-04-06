@@ -664,6 +664,7 @@ public function consultarPeriodo($idpersonal){
     if ($buscar2){
         $semestre=$this->consultarPeriodo($buscar2->idpersonal);
         $materias=m_materias::where('solicitud_id',intval($id))
+        ->where('estado','=','A')
         ->orderBy('id','ASC' )
         ->get();
         if($materias)
@@ -849,13 +850,13 @@ public function updateSolicitudMovilidad_v2(Request $request)
         $solicitud->save();
 
         //especificar_alergias
-        $newespe=especificar_alergias::where('id',intval($data->id_especificar_alergias));
+        $newespe=especificar_alergias::where('solicitud_id',intval($solicitud->id))->first();
         $newespe->alergias_id= intval($data->alergias);
         $newespe->especificar_alergia=trim($data->especificar_alergia);
         $newespe->save();
 
         //enfermedades Cronicas
-        $newenfer=enfermedades_cronicas::where('id',intval($data->id_enfermedades_cronicas));
+        $newenfer=enfermedades_cronicas::where('id',intval($data->id_enfermedades_cronicas))->first();
         $newenfer->enfermedades_tratamiento=$data->enfermedades_tratamiento;
         $newenfer->save();
 
@@ -875,7 +876,7 @@ public function updateSolicitudMovilidad_v2(Request $request)
             }
             else{
                 //materias update
-                $materia=m_materias::where('id',intval($mateObj->id));
+                $materia=m_materias::where('id',intval($mateObj->id))->first();
                 $materia->materia_origen=trim(ucfirst($mateObj->materia_origen));
                 $materia->codigo_origen=trim($mateObj->clave_origen);
                 $materia->materia_destino=trim(ucfirst($mateObj->materia_destino));
@@ -888,14 +889,14 @@ public function updateSolicitudMovilidad_v2(Request $request)
         foreach ($data->eliminar_materia as $matE) 
         {
             $mateObjE = (object)$matE;
-            $materiaE=m_materias::where('id',intval($mateObjE->id));
+            $materiaE=m_materias::where('id',intval($mateObjE->id))->first();
             $materiaE->estado='D';
             $materiaE->save();
          }
 
 
         //pdf
-        $Pdf=pdf_solicitudes::where('solicitud_id',intval($solicitud->id));
+        $Pdf=pdf_solicitudes::where('solicitud_id',intval($solicitud->id))->first();
         $Pdf->pdfcertificado_matricula=$data->pdfcertificado_matricula;
         $Pdf->pdfcopia_record=$data->pdfcopia_record;
         $Pdf->pdfsolicitud_carta=$data->pdfsolicitud_carta;
