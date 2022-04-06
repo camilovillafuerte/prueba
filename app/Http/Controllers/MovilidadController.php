@@ -816,7 +816,7 @@ public function updateSolicitudMovilidad_v2(Request $request)
       {
           if($data->pdf_final!=null)
           {
-              $aprobados=s_aprobadas::where('solicitud_id',$solicitud->id);
+              $aprobados=s_aprobadas::where('solicitud_id',$solicitud->id)->first();
               $aprobados->pdf=trim($data->pdf_final);
               $aprobados->save();
           }
