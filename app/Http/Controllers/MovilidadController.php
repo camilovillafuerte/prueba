@@ -664,6 +664,7 @@ public function consultarPeriodo($idpersonal){
     if ($buscar2){
         $semestre=$this->consultarPeriodo($buscar2->idpersonal);
         $materias=m_materias::where('solicitud_id',intval($id))
+        ->where('estado','=','A')
         ->orderBy('id','ASC' )
         ->get();
         if($materias)
@@ -804,7 +805,124 @@ public function solicitudesAprobadas( $estado){
     return response()->json($response);
 }
 
+public function updateSolicitudMovilidad_v2(Request $request)
+{
+    $data = (object)$request->data;
 
+    if($data->tipo_documento=='A')
+    { 
+      $solicitud=solicitudes::where('id',intval($data->id))->first();
+      if($solicitud)
+      {
+          if($data->pdf_final!=null)
+          {
+              $aprobados=s_aprobadas::where('solicitud_id',$solicitud->id);
+              $aprobados->pdf=trim($data->pdf_final);
+              $aprobados->save();
+          }
+          $solicitud->fecha_inicio=Date($data->fecha_inicio);
+          $solicitud->fecha_fin=Date($data->fecha_fin);
+          $solicitud->save();
+      }
+      $response=[
+          'estado'=>true,
+          'mensaje'=>'Solicitud Movilidad actualizado con exito....!!'
+      ];
+
+
+    }
+    else
+    {
+        $solicitud=solicitudes::where('id',intval($data->id))->first();
+    if($solicitud)
+    {
+        $solicitud->universidad_id=intval($data->universidad_destino);
+        $solicitud->naturaleza_id=intval($data->naturaleza);
+        $solicitud->modalidad1_id=intval($data->modalidad);
+        $solicitud->modalidad2_id=intval($data->tipo_destino);
+        $solicitud->becas_id=intval($data->beca_apoyo);
+        $solicitud->montos_id=intval($data->monto_referencial);
+        $solicitud->carrera_destino=trim(strtoupper($data->carrera_destino));
+        $solicitud->semestre_cursar=trim(strtoupper($data->semestre_cursar));
+        $solicitud->fecha_inicio=Date($data->fecha_inicio);
+        $solicitud->fecha_fin=Date($data->fecha_fin);
+        $solicitud->poliza_seguro=trim($data->poliza_seguro);
+        $solicitud->save();
+
+        //especificar_alergias
+        $newespe=especificar_alergias::where('solicitud_id',intval($solicitud->id))->first();
+        $newespe->alergias_id= intval($data->alergias);
+        $newespe->especificar_alergia=trim($data->especificar_alergia);
+        $newespe->save();
+
+        //enfermedades Cronicas
+        $newenfer=enfermedades_cronicas::where('id',intval($data->id_enfermedades_cronicas))->first();
+        $newenfer->enfermedades_tratamiento=$data->enfermedades_tratamiento;
+        $newenfer->save();
+
+        //Materias
+        foreach ($data->materias as $mat) { 
+            $mateObj = (object)$mat;
+            if($mateObj->id==0)
+            {
+                $newMateria=new m_materias();
+                $newMateria->solicitud_id=$solicitud->id;
+                $newMateria->materia_origen=trim(ucfirst($mateObj->materia_origen));
+                $newMateria->codigo_origen=trim($mateObj->clave_origen);
+                $newMateria->materia_destino=trim(ucfirst($mateObj->materia_destino));
+                $newMateria->codigo_destino=trim($mateObj->clave_destino);
+                $newMateria->estado="A";
+                $newMateria->save();
+            }
+            else{
+                //materias update
+                $materia=m_materias::where('id',intval($mateObj->id))->first();
+                $materia->materia_origen=trim(ucfirst($mateObj->materia_origen));
+                $materia->codigo_origen=trim($mateObj->clave_origen);
+                $materia->materia_destino=trim(ucfirst($mateObj->materia_destino));
+                $materia->codigo_destino=trim($mateObj->clave_destino);
+                $materia->save();
+            }
+            
+        }
+        //eliminar materia
+        foreach ($data->eliminar_materia as $matE) 
+        {
+            $mateObjE = (object)$matE;
+            $materiaE=m_materias::where('id',intval($mateObjE->id))->first();
+            $materiaE->estado='D';
+            $materiaE->save();
+         }
+
+
+        //pdf
+        $Pdf=pdf_solicitudes::where('solicitud_id',intval($solicitud->id))->first();
+        $Pdf->pdfcertificado_matricula=$data->pdfcertificado_matricula;
+        $Pdf->pdfcopia_record=$data->pdfcopia_record;
+        $Pdf->pdfsolicitud_carta=$data->pdfsolicitud_carta;
+        $Pdf->pdfcartas_recomendacion=$data->pdfcartas_recomendacion;
+        $Pdf->pdfno_sancion=$data->pdfno_sancion;
+        $Pdf->pdffotos=$data->pdffotos;
+        $Pdf->pdfseguro=$data->pdfseguro;
+        $Pdf->pdfexamen_psicometrico=$data->pdfexamen_psicometrico;
+        $Pdf->pdfdominio_idioma=$data->pdfdominio_idioma;
+        $Pdf->pdfdocumentos_udestino=$data->pdfdocumentos_udestino;
+        $Pdf->pdfcomprobante_solvencia=$data->pdfcomprobante_solvencia;
+        $Pdf->save();
+
+        $response=[
+            'estado'=>true,
+            'mensaje'=>'Solicitud Movilidad actualizado con exito....!!'
+        ];
+
+
+
+    }
+
+    }
+
+    return response()->json($response);
+}
 }
 
 
