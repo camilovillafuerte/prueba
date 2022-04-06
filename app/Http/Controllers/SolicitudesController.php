@@ -181,6 +181,7 @@ class SolicitudesController extends Controller
                     $buscar2->s_aprobado=$pdf_final;
                  }
                  $materias=m_materias::where('solicitud_id',intval($id))
+                 ->where ('estado','=','A')
                  ->orderBy('id','ASC' )
                  ->get();
                  if($materias){

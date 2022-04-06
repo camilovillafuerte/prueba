@@ -46,6 +46,7 @@ class CreateSolicitudesTable extends Migration
             $table->enum('estado_solicitud',['A','P','R']); //Aprobado, Pendiente, Rechazado
             $table->enum('tipo',['M','B']); //Movilidad, Becas
             $table->enum('estado',['A','D']); //Activo, Desactivado
+           // $table->longText('comentario')->nullable;
           
 
         });
