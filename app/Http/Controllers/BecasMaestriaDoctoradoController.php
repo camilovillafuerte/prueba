@@ -510,8 +510,8 @@ class BecasMaestriaDoctoradoController extends Controller
         $solicitud->modalidad2_id=intval($data->tipo_destino);
         $solicitud->becas_id=intval($data->beca_apoyo);
         $solicitud->montos_id=intval($data->monto_referencial);
-        $solicitud->carrera_destino=trim(strtoupper($data->campus_destino));
-        $solicitud->semestre_cursar=intval($data->numero_semestre);
+        $solicitud->campus_destino=trim(strtoupper($data->campus_destino));
+        $solicitud->numero_semestre=intval($data->numero_semestre);
         $solicitud->fecha_inicio=Date($data->fecha_inicio);
         $solicitud->fecha_fin=Date($data->fecha_fin);
         $solicitud->poliza_seguro=trim($data->poliza_seguro);
