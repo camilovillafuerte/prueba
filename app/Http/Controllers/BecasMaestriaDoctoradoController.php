@@ -473,4 +473,75 @@ class BecasMaestriaDoctoradoController extends Controller
         return response()->json($response);
     }
     
+    public function updateSolicitudBecas_v2(Request $request)
+{
+    $data = (object)$request->data;
+
+    if($data->tipo_documento=='A')
+    { 
+      $solicitud=solicitudes::where('id',intval($data->id))->first();
+      if($solicitud)
+      {
+          if($data->pdf_final!=null)
+          {
+              $aprobados=s_aprobadas::where('solicitud_id',$solicitud->id)->first();
+              $aprobados->pdf=trim($data->pdf_final);
+              $aprobados->save();
+          }
+          $solicitud->fecha_inicio=Date($data->fecha_inicio);
+          $solicitud->fecha_fin=Date($data->fecha_fin);
+          $solicitud->save();
+      }
+      $response=[
+          'estado'=>true,
+          'mensaje'=>'Solicitud Beca actualizado con exito....!!'
+      ];
+
+
+    }
+    else
+    {
+        $solicitud=solicitudes::where('id',intval($data->id))->first();
+    if($solicitud)
+    {
+        $solicitud->universidad_id=intval($data->universidad_destino);
+        $solicitud->naturaleza_id=intval($data->naturaleza);
+        $solicitud->modalidad1_id=intval($data->modalidad);
+        $solicitud->modalidad2_id=intval($data->tipo_destino);
+        $solicitud->becas_id=intval($data->beca_apoyo);
+        $solicitud->montos_id=intval($data->monto_referencial);
+        $solicitud->campus_destino=trim(strtoupper($data->campus_destino));
+        $solicitud->numero_semestre=intval($data->numero_semestre);
+        $solicitud->fecha_inicio=Date($data->fecha_inicio);
+        $solicitud->fecha_fin=Date($data->fecha_fin);
+        $solicitud->poliza_seguro=trim($data->poliza_seguro);
+        $solicitud->save();
+
+        //especificar_alergias
+        $newespe=especificar_alergias::where('solicitud_id',intval($solicitud->id))->first();
+        $newespe->alergias_id= intval($data->alergias);
+        $newespe->especificar_alergia=trim($data->especificar_alergia);
+        $newespe->save();
+
+        //enfermedades Cronicas
+        $newenfer=enfermedades_cronicas::where('solicitud_id',intval($solicitud->id))->first();
+        $newenfer->enfermedades_tratamiento=$data->enfermedades_tratamiento;
+        $newenfer->save();
+
+        //pdf
+        $Pdf=pdf_solicitudes::where('solicitud_id',intval($solicitud->id))->first();
+        $Pdf->pdfcarta_aceptacion=$data->pdfcarta_aceptacion;
+        $Pdf->pdftitulo=$data->pdftitulo;
+      
+
+        $response=[
+            'estado'=>true,
+            'mensaje'=>'Solicitud Beca actualizado con exito....!!'
+        ];
+    }
+
+    }
+
+    return response()->json($response);
+}
 }
