@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\articulos;
+use App\Models\historial_usuario;
 
 class ArticulosController extends Controller
 {
@@ -37,11 +38,18 @@ class ArticulosController extends Controller
      */
     public function store(Request $request)
     {
-        $articulos = new articulos();
-        $articulos->des_art = $request->des_art;
-        $articulos->subtipo = $request->subtipo;
-
+        $data = (object)$request->data;
+       $articulos = new articulos();
+        $historial = new historial_usuario();
+        $articulos->des_art = trim($data->des_art);
+        $articulos->subtipo = trim($data->subtipo);
+        $historial->usuario_id = intval($data->usuario_id);
+        $historial->titulo = "Articulos";
+        $historial->detalle = trim($data->des_art);
+        $historial->extra = "Insert";
+        $historial->fecha_creacion = date('Y-m-d H:i:s');
         $articulos->save();
+        $historial->save();
     }
 
     /**

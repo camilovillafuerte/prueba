@@ -6,6 +6,7 @@ use App\Models\alergias;
 use App\Models\becas_apoyos;
 use App\Models\enfermedades_cronicas;
 use App\Models\especificar_alergias;
+use App\Models\historial_usuario;
 use App\Models\m_beneficios;
 use App\Models\m_materias;
 use App\Models\m_montos;
@@ -480,6 +481,14 @@ public function consultarPeriodo($idpersonal){
     {
         $data = (object)$request->data;
         //solicitud
+        /*  //HISTORIAL
+          $historial = new historial_usuario();
+          $historial->usuario_id = 1;
+          $historial->titulo = "Solicitudes";
+          $historial->detalle = trim($data->data);
+          $historial->extra = "Insert";
+          $historial->fecha_creacion = date('Y-m-d H:i:s');
+          $historial->save();*/
         $newsoli=new solicitudes();
         $newsoli->personal_id=$data->idpersonal;
         $newsoli->logo_id=1;
