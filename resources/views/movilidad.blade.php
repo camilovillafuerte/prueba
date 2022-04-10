@@ -81,7 +81,7 @@
             </div>
     </header>
 
-    
+    <main>
     <div class="card mt-4">
               <div class="card-header" style="margin-top: 3%;">
                     <h2 class="card-title font-weight-bold">Solicitudes</h2>
@@ -99,12 +99,26 @@
                                <p>Fecha de Nacimiento</p>
                                <p>Nacionalidad</p>
                                <p>Genero</p>
+                               <p>Estado civil</p>
+                               <p>Discapacidad</p>
+                               <p>Tipo de sangre</p>
+                               <p>Correo institucional</p>
+                               <p>Correo personal</p>
+                               <h3 style="font-weight-bold">Contacto de Emergencia</h3>
+                               <p>Nombres</p>
+                               <p>Apellidos</p>
+                               <p>Teléfono</p>
+                               <p>Teléfono</p>
+                               <h3 style="font-weight-bold">Residencia</h3>
+                               <p>País</p>
+                               <p>Provincia</p>
+                               <p>Cantón</p>
                                <p>Residencia calle 1</p>
                                <p>Residencia calle 2</p>
                                <p>Residencia calle 3</p>
-                               <p>Correo institucional</p>
-                               <p>Correo personal</p>
-                               <p>Estado civil</p>
+                               <p>Teléfono domicilio</p>
+                               <p>Teléfono personal</p>
+                              
                                </div>
                               
                           
@@ -121,13 +135,27 @@
                                 <p>{{ $b2->nombres}}</p> 
                                 <p>{{ $b2->fecha_nacimiento}}</p> 
                                 <p>{{ $b2->nacionalidad}}</p> 
-                                <p>{{ $b2->genero}}</p> 
+                                <p>{{ $b2->genero}}</p>
+                                <p>{{ $b2->estado_civil}}</p>
+                                <p>{{ $b2->nombre_discapacidad}}</p>
+                                <p>{{ $b2->tipo_sangre}}</p>
+                                <p>{{ $b2->correo_personal_institucional}}</p> 
+                                <p>{{ $b2->correo_personal_alternativo}}</p>
+                                <p><br></p> 
+                                <p>{{ $b2->contacto_emergencia_nombres}}</p>
+                                <p>{{ $b2->contacto_emergencia_apellidos}}</p> 
+                                <p>{{ $b2->contacto_emergencia_telefono_1}}</p> 
+                                <p>{{ $b2->contacto_emergencia_telefono_2}}</p> 
+                                <p><br></p>
+                                <p>{{ $b2->pais}}</p>
+                                <p>{{ $b2->provincia}}</p>
+                                <p>{{ $b2->canton}}</p> 
                                 <p>{{ $b2->residencia_calle_1}}</p> 
                                 <p>{{ $b2->residencia_calle_2}}</p> 
                                 <p>{{ $b2->residencia_calle_3}}</p> 
-                                <p>{{ $b2->correo_personal_institucional}}</p> 
-                                <p>{{ $b2->correo_personal_alternativo}}</p> 
-                                <p>{{ $b2->estado_civil}}</p> 
+                                <p>{{ $b2->telefono_personal_domicilio}}</p> 
+                                <p>{{ $b2->telefono_personal_celular}}</p> 
+                               
                             </div>
                                   
                                 </div>
@@ -138,6 +166,7 @@
                             @endforelse
                         
                     </table>
+                    </main>
 
     <!-- <footer>
         <h1>www.styde.net</h1>
