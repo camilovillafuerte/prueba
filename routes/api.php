@@ -460,3 +460,7 @@ Route::put('actualizar-solicitud-movilidad',[MovilidadController::class,'updateS
 
 //actualizar solicitudes Becas
 Route::put('actualizar-solicitud-becas',[BecasMaestriaDoctoradoController::class,'updateSolicitudBecas_v2']);
+
+
+//Obtener pdf de Solicitud de Movilidad
+Route::get('pdf-solicitud/movilidad/{id}',[MovilidadController::class,'pdf_solicitudMovilidad']);

@@ -39,17 +39,21 @@ class ArticulosController extends Controller
     public function store(Request $request)
     {
         $data = (object)$request->data;
-       $articulos = new articulos();
+        $articulos = new articulos();
+        $articulos->des_art = $data->des_art;
+        $articulos->subtipo = $data->subtipo;
+        $articulos->save();
+       // $ultimoId = $articulos->id;
+        $articulos = articulos::latest('id')->first();
         $historial = new historial_usuario();
-        $articulos->des_art = trim($data->des_art);
-        $articulos->subtipo = trim($data->subtipo);
         $historial->usuario_id = intval($data->usuario_id);
         $historial->titulo = "Articulos";
         $historial->detalle = trim($data->des_art);
         $historial->extra = "Insert";
         $historial->fecha_creacion = date('Y-m-d H:i:s');
-        $articulos->save();
-        $historial->save();
+        $historial->save();  
+        // $data = articulos::latest('id')->first();
+       
     }
 
     /**

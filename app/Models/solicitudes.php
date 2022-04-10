@@ -73,4 +73,8 @@ class solicitudes extends Model
     {
         return $this->hasMany('App\Models\imagenes_convenios');
     }
+
+    public function personal(){
+        return $this->hasMany('esq_datos_personales.personal');
+    }
 }

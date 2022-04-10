@@ -176,5 +176,35 @@ class PdfController extends Controller{
      return response()->json($response);
 
     }
+
+    public function makePdfSolicitud_Movilidad(Request $request){
+        // header("Access-Control-Allow-Origin: *");
+        $data = (object)$request->data;
+
+        $namePDf = "Solicitud Movilidad-".date('Y-m-d-H-i-s').'.pdf';
+
+        $exist = Storage::disk('solicitudes becas')->exists($namePDf);
+
+        if($exist){
+            $response = [
+                'estado' => false,
+                'mensaje' => 'El archivo ya existe',
+                'file' => false
+            ];
+        }else{
+            $path = storage_path().'/app/solicitudes becas/'.$namePDf;
+            $pdf = PDF::loadView('movilidad', ['datos' => $data])->save($path)->stream($namePDf);
+            // dd($pdf);
+
+            $response = [
+                'estado' => true,
+                'mensaje' => 'PDF generado con éxito',
+                'file' => $namePDf
+            ];
+        }
+
+        return response()->json($response);
+
+    }
 }
 
