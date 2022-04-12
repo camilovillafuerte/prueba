@@ -68,6 +68,13 @@
         }
         .scale-down {object-fit: scale-down}
 
+       
+        .page-break {
+        page-break-after: always;
+        }
+        
+</style>
+
     </style>
 </head>
 
@@ -119,8 +126,8 @@
                                <p>Teléfono domicilio</p>
                                <p>Teléfono personal</p>
                               
-                               </div>
                               
+                               </div>
                           
                         </thead>
                         </div>
@@ -128,7 +135,7 @@
                        
                             @forelse ($datos as $b2)
                               <div class="row" class="col-sm">
-                                  <div style="margin-top: 3%; text-align: justify;">
+                                  <div style="margin-top: 3%; text-align: justify">
                                 <p>{{ $b2->cedula }}</p>
                                 <p>{{ $b2->apellido1 }}</p>
                                 <p>{{ $b2->apellido2 }}</p>
@@ -145,7 +152,7 @@
                                 <p>{{ $b2->contacto_emergencia_nombres}}</p>
                                 <p>{{ $b2->contacto_emergencia_apellidos}}</p> 
                                 <p>{{ $b2->contacto_emergencia_telefono_1}}</p> 
-                                <p>{{ $b2->contacto_emergencia_telefono_2}}</p> 
+                                <p>{{ $b2->contacto_emergencia_telefono_2}}</p>                    
                                 <p><br></p>
                                 <p>{{ $b2->pais}}</p>
                                 <p>{{ $b2->provincia}}</p>
