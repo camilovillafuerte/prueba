@@ -33,7 +33,7 @@ class MovilidadController extends Controller
         $this->baseCtrl = new BaseController();
     }
   
-public function consultar($id){
+public function consultar($cedula){
 
 $consulta = DB::table('esq_datos_personales.personal')
 //->join('esq_roles.tbl_personal_rol','esq_roles.tbl_personal_rol.id_personal','=','esq_datos_personales.personal.idpersonal')
@@ -56,8 +56,8 @@ $consulta = DB::table('esq_datos_personales.personal')
 'personal.contacto_emergencia_apellidos','personal.contacto_emergencia_nombres',
 'personal.contacto_emergencia_telefono_1','personal.contacto_emergencia_telefono_2'
 )
-//-> where ('esq_datos_personales.personal.cedula', $cedula)
--> where ('esq_datos_personales.personal.idpersonal', $id)
+
+-> where ('esq_datos_personales.personal.cedula', $cedula)
 
 -> first();
 if($consulta){
