@@ -46,6 +46,7 @@ class BecasMaestriaDoctoradoController extends Controller
         'personal.contacto_emergencia_telefono_1','personal.contacto_emergencia_telefono_2'
         )
         -> where ('esq_datos_personales.personal.cedula', $cedula)
+        //-> where ('esq_datos_personales.personal.idpersonal', $id_personal)
         
         -> first();
         if($consulta){
