@@ -117,16 +117,16 @@ class UsuarioController extends Controller{
             ];
          
     }else{
-        $consultaes=$this->consultarEstudiante($consulta->idpersonal);
-        if($consultaes){
-        $consulta->estudiante=$consultaes;
-        $response = [
-            'estado' => true,
-            'tipo' => 'M',
-            'mensaje' => 'Acceso al sistema',
-            'usuario'=>$consultaes
-        ];
-    }else{
+            $consultaes=$this->consultarEstudiante($consulta->idpersonal);
+            if($consultaes){
+            $consulta->estudiante=$consultaes;
+            $response = [
+                'estado' => true,
+                'tipo' => 'M',
+                'mensaje' => 'Acceso al sistema',
+                'usuario'=>$consultaes
+            ];
+        }else{
         $consulta2=$this->consultarDocente($consulta->idpersonal);
         if($consulta2){
             $consulta->docente=$consulta2;
@@ -136,19 +136,22 @@ class UsuarioController extends Controller{
                 'mensaje' => 'Acceso al sistema',
                 'usuario'=>$consulta2
             ];
-        } 
-    }
         }
         
-            
-        }else{
+    }
+}
+    
+
+}
+    else{
             $response=[
             'estado' => false,
             'mensaje' => 'Usted no tiene acceso al sistema',
 
         ];
-       }return response()->json($response);
-    }
+       }
+return response()->json($response);
+}
 
 
     
@@ -603,10 +606,11 @@ class UsuarioController extends Controller{
                         $consultaes->carrera=$semestre;
                         // $consulta->carrera=$semestre->escuela_nombre;
                         // $consulta->promedio=$semestre->promedio;
-                         $response=[
-                             'estado'=> true,
-                             'usuario' => $consultaes
-                         ];
+                        return  $consultaes;
+                        // $response=[
+                        //      'estado'=> true,
+                        //      'usuario' => $consultaes
+                        //  ];
             
                     }
                     else{
@@ -729,10 +733,11 @@ class UsuarioController extends Controller{
                 $consultaDocente2=$this->verificarDocente($consultadoc->idpersonal);
                 if($consultaDocente2)
                 {
-                     $response=[
-                    'estado'=> true,
-                    'usuario' => $consultadoc
-                    ];
+                    return  $consultadoc;
+                    //  $response=[
+                    // 'estado'=> true,
+                    // 'usuario' => $consultadoc
+                    // ];
                 }
                 else{
                     $response=[
