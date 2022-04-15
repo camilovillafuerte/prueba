@@ -102,11 +102,12 @@ class UsuarioController extends Controller{
     }
 
     public function loginsistema($id)
-    {    $consulta=DB::table('esq_datos_personales.personal')
+    {    if(isset($id)){ 
+        $consulta=DB::table('esq_datos_personales.personal')
         ->select ('personal.idpersonal', 'personal.cedula','personal.apellido1','personal.apellido2','personal.nombres')
         ->where ('personal.idpersonal',$id)
         -> first();
-        if(isset($id)){
+       if($consulta){
         $sesion = Usuario::where('personal_id', $id)->first();
         if($sesion){
             $response = [
@@ -116,17 +117,19 @@ class UsuarioController extends Controller{
                 'usuario'=>$sesion
             ];
          
-    }else{
-            $consultaes=$this->consultarEstudiante($consulta->idpersonal);
-            if($consultaes){
-            $consulta->estudiante=$consultaes;
-            $response = [
-                'estado' => true,
-                'tipo' => 'M',
-                'mensaje' => 'Acceso al sistema',
-                'usuario'=>$consultaes
-            ];
-        }else{
+    }
+    // else{
+    //         $consultaes=$this->consultarEstudiante($consulta->idpersonal);
+    //         if($consultaes){
+    //         $consulta->estudiante=$consultaes;
+    //         $response = [
+    //             'estado' => true,
+    //             'tipo' => 'M',
+    //             'mensaje' => 'Acceso al sistema',
+    //             'usuario'=>$consultaes
+    //         ];
+    //     }
+        else{
         $consulta2=$this->consultarDocente($consulta->idpersonal);
         if($consulta2){
             $consulta->docente=$consulta2;
@@ -138,8 +141,8 @@ class UsuarioController extends Controller{
             ];
         }
         
-    }
-}
+    }}
+
     
 
 }
@@ -150,6 +153,7 @@ class UsuarioController extends Controller{
 
         ];
        }
+    //}
 return response()->json($response);
 }
 
@@ -606,7 +610,7 @@ return response()->json($response);
                         $consultaes->carrera=$semestre;
                         // $consulta->carrera=$semestre->escuela_nombre;
                         // $consulta->promedio=$semestre->promedio;
-                        return  $consultaes;
+                       return  $consultaes;
                         // $response=[
                         //      'estado'=> true,
                         //      'usuario' => $consultaes
@@ -734,11 +738,11 @@ return response()->json($response);
                 if($consultaDocente2)
                 {
                     return  $consultadoc;
-                    //  $response=[
-                    // 'estado'=> true,
-                    // 'usuario' => $consultadoc
-                    // ];
-                }
+                //       $response=[
+                //      'estado'=> true,
+                //      'usuario' => $consultadoc
+                //     ];
+                 }
                 else{
                     $response=[
                         'estado'=> false,
