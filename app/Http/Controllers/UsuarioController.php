@@ -109,68 +109,38 @@ class UsuarioController extends Controller{
         {
 =======
     public function loginsistema($id)
-    {    
-
+    {
         $sesion = Usuario::where('personal_id', $id)->first();
+<<<<<<< HEAD
         if($sesion){
 >>>>>>> 8cc91f21ba4ac9bb391673171011503e4e0a331f
+=======
+        if ($sesion) {
+>>>>>>> 9ff39e67713aa2dcd74a829cea7c7816be5956bc
             $response = [
                 'estado' => true,
                 'tipo' => 'I',
                 'mensaje' => 'Acceso al sistema',
-                'usuario'=>$sesion
+                'usuario' => $sesion
             ];
-         
-    }
-    // else{
-    //         $consultaes=$this->consultarEstudiante($consulta->idpersonal);
-    //         if($consultaes){
-    //         $consulta->estudiante=$consultaes;
-    //         $response = [
-    //             'estado' => true,
-    //             'tipo' => 'M',
-    //             'mensaje' => 'Acceso al sistema',
-    //             'usuario'=>$consultaes
-    //         ];
-    //     }
-        else{
-        $consulta2=$this->consultarDocente($id);
-        if($consulta2){
-         //   $sesion->docente=$consulta2;
-            $response = [
-                'estado' => true,
-                'tipo' => 'B',
-                'mensaje' => 'Acceso al sistema',
-                'usuario'=>$consulta2
-            ];
-        }else{
-                  $consultaes=$this->consultarEstudiante($id);
-                     if($consultaes){
-                   //  $sesion->estudiante=$consultaes;
-                     $response = [
-                         'estado' => true,
-                         'tipo' => 'M',
-                         'mensaje' => 'Acceso al sistema',
-                         'usuario'=>$consultaes
-                     ];
-                 }
-                 else{
-                    $response=[
-                    'estado' => false,
-                    'mensaje' => 'Usted no tiene acceso al sistema',
-        
+        } else {
+            $consulta2 =$this->verificarDocente($id);
+            if ($consulta2) {
+                $response = [
+                    'estado' => true,
+                    'tipo' => 'B',
+                    'mensaje' => 'Acceso al sistema Becas',
                 ];
-               }
-        
-    }}
-
-    
-
-
-    
-
-return response()->json($response);
-}
+            } else {
+                    $response = [
+                        'estado' => true,
+                        'tipo' => 'M',
+                        'mensaje' => 'Acceso al sistema Movilidad',
+                    ];
+            }
+        }
+        return response()->json($response);
+    }
 
 
 
