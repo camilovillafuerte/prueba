@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use IlluminateSupportFacadesStorage;
+use PhpParser\Node\Stmt\ElseIf_;
 
 class UsuarioController extends Controller{
 
@@ -100,28 +101,79 @@ class UsuarioController extends Controller{
         return response()->json($jsonRespuesta);
     }
 
+<<<<<<< HEAD
     public function loginsistema($personal_id)
     {
         $sesion = Usuario::where('personal_id', $personal_id)->first();
         if($sesion)
         {
+=======
+    public function loginsistema($id)
+    {    
+
+        $sesion = Usuario::where('personal_id', $id)->first();
+        if($sesion){
+>>>>>>> 8cc91f21ba4ac9bb391673171011503e4e0a331f
             $response = [
                 'estado' => true,
+                'tipo' => 'I',
                 'mensaje' => 'Acceso al sistema',
                 'usuario'=>$sesion
             ];
-
-        }
-        else{
-            $response = [
-                'estado' => false,
-                'mensaje' => 'Usted no tiene acceso al sistema DRICB',
-            ];
-
-        }
-        return response()->json($response);
-
+         
     }
+    // else{
+    //         $consultaes=$this->consultarEstudiante($consulta->idpersonal);
+    //         if($consultaes){
+    //         $consulta->estudiante=$consultaes;
+    //         $response = [
+    //             'estado' => true,
+    //             'tipo' => 'M',
+    //             'mensaje' => 'Acceso al sistema',
+    //             'usuario'=>$consultaes
+    //         ];
+    //     }
+        else{
+        $consulta2=$this->consultarDocente($id);
+        if($consulta2){
+         //   $sesion->docente=$consulta2;
+            $response = [
+                'estado' => true,
+                'tipo' => 'B',
+                'mensaje' => 'Acceso al sistema',
+                'usuario'=>$consulta2
+            ];
+        }else{
+                  $consultaes=$this->consultarEstudiante($id);
+                     if($consultaes){
+                   //  $sesion->estudiante=$consultaes;
+                     $response = [
+                         'estado' => true,
+                         'tipo' => 'M',
+                         'mensaje' => 'Acceso al sistema',
+                         'usuario'=>$consultaes
+                     ];
+                 }
+                 else{
+                    $response=[
+                    'estado' => false,
+                    'mensaje' => 'Usted no tiene acceso al sistema',
+        
+                ];
+               }
+        
+    }}
+
+    
+
+
+    
+
+return response()->json($response);
+}
+
+
+
     
     // public function login(Request $request){
     //     $usuarioData = (object)$request->usuario;
@@ -517,6 +569,243 @@ class UsuarioController extends Controller{
         }
         return response()->json($response);
     }
+
+    public function consultarEstudiante($id){
+
+        $consultaes = DB::table('esq_datos_personales.personal')
+        ->join('esq_catalogos.tipo','esq_datos_personales.personal.idtipo_nacionalidad','=','esq_catalogos.tipo.idtipo')
+        ->join('esq_catalogos.tipo as t1','esq_datos_personales.personal.idtipo_estado_civil','=','t1.idtipo')
+        ->join('esq_catalogos.tipo as t2','esq_datos_personales.personal.idtipo_sangre','=','t2.idtipo')
+        ->join('esq_catalogos.tipo as t3','esq_datos_personales.personal.idtipo_discapacidad','=','t3.idtipo')
+        ->join('esq_catalogos.ubicacion_geografica','esq_datos_personales.personal.idtipo_pais_residencia','=','esq_catalogos.ubicacion_geografica.idubicacion_geografica')
+        ->join('esq_catalogos.ubicacion_geografica as u1','esq_datos_personales.personal.idtipo_provincia_residencia','=','u1.idubicacion_geografica')
+        ->join('esq_catalogos.ubicacion_geografica as u2','esq_datos_personales.personal.idtipo_canton_residencia','=','u2.idubicacion_geografica')
+        
+        ->select('personal.idpersonal','personal.cedula', 'personal.apellido1', 'personal.apellido2','personal.nombres','personal.fecha_nacimiento',
+        'tipo.nombre as Nacionalidad','personal.genero','personal.residencia_calle_1', 'personal.residencia_calle_2', 'personal.residencia_calle_3',
+        'personal.correo_personal_institucional','personal.correo_personal_alternativo', 't1.nombre as Estado_civil',
+        'ubicacion_geografica.nombre as Pais', 'u1.nombre as Provincia','u2.nombre as Canton',
+        'personal.telefono_personal_domicilio', 'personal.telefono_personal_celular', 't2.nombre as Tipo_Sangre', 't3.nombre as Nombre_Discapacidad',
+        'personal.contacto_emergencia_apellidos','personal.contacto_emergencia_nombres',
+        'personal.contacto_emergencia_telefono_1','personal.contacto_emergencia_telefono_2'
+        )
+        -> where ('esq_datos_personales.personal.idpersonal', $id)
+        
+        -> first();
+        if($consultaes){
+        $consulta2 = DB::table('esq_roles.tbl_personal_rol')
+        ->join('esq_roles.tbl_rol','esq_roles.tbl_personal_rol.id_rol','=','esq_roles.tbl_rol.id_rol')
+        ->join('esq_datos_personales.personal','esq_datos_personales.personal.idpersonal','=','esq_roles.tbl_personal_rol.id_personal')
+        ->select('tbl_rol.id_rol','tbl_rol.descripcion as Rol', 'tbl_personal_rol.fecha')
+        ->where('personal.idpersonal','=',$consultaes->idpersonal)
+        ->where('tbl_rol.estado','=','S')
+        ->orderBy('tbl_personal_rol.fecha','DESC')
+        
+        ->get();
+        
+        $consultaes->roles=$consulta2;
+        $verificar=0;
+        $egresado=0;
+        $graduado=0;
+        
+        foreach($consulta2 as $rol){
+            $rolObj=(Object) $rol;
+            if($rolObj->Rol=='ESTUDIANTE'){
+                $consultaDocente=$this->verificarDocente($consultaes->idpersonal);
+                if($consultaDocente)
+                {
+                 $response=[
+                     'estado'=> false,
+                     'mensaje' =>'Usted no es un Estudiante' 
+                 ];
+                }
+                 else{
+                    // consultar utlimo promedio, carrera que estudia y ultimo periodo
+                    $semestre=$this->consultarPeriodo($consultaes->idpersonal);
+                    if($semestre){
+                        $consultaes->carrera=$semestre;
+                        // $consulta->carrera=$semestre->escuela_nombre;
+                        // $consulta->promedio=$semestre->promedio;
+                       return  $consultaes;
+                        // $response=[
+                        //      'estado'=> true,
+                        //      'usuario' => $consultaes
+                        //  ];
+            
+                    }
+                    else{
+                        $response=[
+                            'estado'=> false,
+                            'mensaje' => 'Usted no puede solicitar este tipo de becas'
+            
+                        ];
+                    }
+                }
+         
+                
+                $verificar=1;
+            }
+            else if($rolObj->Rol=='EGRESADO'){
+                $egresado=1;
+        
+            }
+            else if($rolObj->Rol=='GRADUADO'){
+               $graduado=1;
+            }
+        }
+        if($verificar==0 || $egresado==1 || $graduado==1)
+        $response=[
+            'estado'=> false,
+            'mensaje' => 'Usted no forma parte de los Estudiantes de UTM'
+        
+        ];
+        } else{
+            $response= [
+                'estado'=> false,
+                'mensaje' => 'Usted no pertenece a la UTM'
+            ];
+        
+        }
+        
+        return response()->json($response);
+        
+        }
+        
+        
+        public function verificarDocente($id){
+            $consultaver= DB::select("select f.idfacultad, f.nombre facultad, d.iddepartamento, d.nombre departamento, dd.idpersonal, p.apellido1 || ' ' || p.apellido2 || ' ' || p.nombres nombres
+             from esq_distributivos.departamento d
+             join esq_inscripciones.facultad f 
+                 on d.idfacultad = f.idfacultad
+                 and not f.nombre = 'POSGRADO'
+                 and not f.nombre = 'CENTRO DE PROMOCIÓN Y APOYO AL INGRESO'
+                 and not f.nombre = 'INSTITUTO DE INVESTIGACIÓN'
+                 and d.habilitado = 'S'
+             join esq_distributivos.departamento_docente dd
+                 on dd.iddepartamento = d.iddepartamento
+             join esq_datos_personales.personal p 
+                 on dd.idpersonal = p.idpersonal
+             where p.idpersonal = ".$id."
+             order by d.idfacultad, d.iddepartamento, p.idpersonal");
+             return $consultaver;
+         
+         }
+        
+       
+
+         public function consultarDocente($id){
+
+            $consultadoc = DB::table('esq_datos_personales.personal')
+            ->join('esq_catalogos.tipo','esq_datos_personales.personal.idtipo_nacionalidad','=','esq_catalogos.tipo.idtipo')
+            ->join('esq_catalogos.tipo as t1','esq_datos_personales.personal.idtipo_estado_civil','=','t1.idtipo')
+            ->join('esq_catalogos.tipo as t2','esq_datos_personales.personal.idtipo_sangre','=','t2.idtipo')
+            ->join('esq_catalogos.ubicacion_geografica','esq_datos_personales.personal.idtipo_pais_residencia','=','esq_catalogos.ubicacion_geografica.idubicacion_geografica')
+            ->join('esq_catalogos.ubicacion_geografica as u1','esq_datos_personales.personal.idtipo_provincia_residencia','=','u1.idubicacion_geografica')
+            ->join('esq_catalogos.ubicacion_geografica as u2','esq_datos_personales.personal.idtipo_canton_residencia','=','u2.idubicacion_geografica')
+            
+            ->select('personal.idpersonal','personal.cedula', 'personal.apellido1', 'personal.apellido2','personal.nombres','personal.fecha_nacimiento',
+            'tipo.nombre as Nacionalidad','personal.genero','personal.residencia_calle_1', 'personal.residencia_calle_2', 'personal.residencia_calle_3',
+            'personal.correo_personal_institucional','personal.correo_personal_alternativo', 't1.nombre as Estado_civil',
+            'ubicacion_geografica.nombre as Pais', 'u1.nombre as Provincia','u2.nombre as Canton',
+            'personal.telefono_personal_domicilio', 'personal.telefono_personal_celular', 't2.nombre as Tipo_Sangre',
+            'personal.contacto_emergencia_apellidos','personal.contacto_emergencia_nombres',
+            'personal.contacto_emergencia_telefono_1','personal.contacto_emergencia_telefono_2'
+            )
+            -> where ('esq_datos_personales.personal.idpersonal', $id)
+            
+            -> first();
+            if($consultadoc){
+            $consulta2 = DB::table('esq_roles.tbl_personal_rol')
+            ->join('esq_roles.tbl_rol','esq_roles.tbl_personal_rol.id_rol','=','esq_roles.tbl_rol.id_rol')
+            ->join('esq_datos_personales.personal','esq_datos_personales.personal.idpersonal','=','esq_roles.tbl_personal_rol.id_personal')
+            ->select('tbl_rol.id_rol','tbl_rol.descripcion as Rol', 'tbl_personal_rol.fecha')
+            ->where('personal.idpersonal','=',$consultadoc->idpersonal)
+            ->where('tbl_rol.estado','=','S')
+            ->orderBy('tbl_personal_rol.fecha','DESC')
+            
+            ->get();
+        
+            
+            $consultadoc->roles=$consulta2;
+            $verificar=0;
+            foreach($consulta2 as $rol){
+                $rolObj=(Object) $rol;
+                if($rolObj->Rol=='ESTUDIANTE'){
+                    $consultaDocente=$this->verificarDocente($consultadoc->idpersonal);
+                    if($consultaDocente)
+                    {
+                        $verificar=0;
+                    }
+                    else
+                    {
+                        $response=[
+                            'estado'=> false,
+                            'mensaje' => 'Usted no puede solicitar una Beca'
+    
+                        ];
+                        $verificar=1;
+    
+                    }
+                }
+               
+            }
+            if($verificar==0){
+                $consultaDocente2=$this->verificarDocente($consultadoc->idpersonal);
+                if($consultaDocente2)
+                {
+                    return  $consultadoc;
+                //       $response=[
+                //      'estado'=> true,
+                //      'usuario' => $consultadoc
+                //     ];
+                 }
+                else{
+                    $response=[
+                        'estado'=> false,
+                        'mensaje' => 'Usted no puede solicitar una Beca'
+    
+                    ];
+                }
+    
+    
+            }
+            
+          
+            } else{
+                $response= [
+                    'estado'=> false,
+                    'mensaje' => 'Usted no pertenece a la UTM'
+                ];
+            
+            }
+            
+            return response()->json($response);
+            
+            } 
+
+            public function consultarPeriodo($idpersonal){
+                $consulta3 = DB::select("select es.idescuela,es.nombre as Escuela_Nombre,pa.nombre as PERIODO ,i.prom_s as Promedio, m.nombre as Semestre
+                from esq_inscripciones.inscripcion i
+                join  esq_inscripciones.escuela es on  i.idescuela = es.idescuela 
+                join esq_periodos_academicos.periodo_academico pa on pa.idperiodo=i.idperiodo 
+                join esq_mallas.nivel m on i.idnivel=m.idnivel 
+                where i.idpersonal = ".$idpersonal." and pa.actual  = 'S'
+                order by pa.idperiodo DESC");
+                $i=0;
+                $consulta4=json_decode(json_encode($consulta3));
+                // foreach($consulta4 as $per){
+                // $periObj=(Object) $per;
+                // if($i==0)
+                // {
+                //     $response=$periObj;
+                //     return $response;
+                // }
+                // $i++;
+                // }
+            
+                return ($consulta4);
+                }
+            
 
 }
 

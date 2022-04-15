@@ -24,7 +24,7 @@ class BecasMaestriaDoctoradoController extends Controller
     }
 
 
-    public function consultarbecas($cedula){
+    public function consultarbecas($id){
 
         $consulta = DB::table('esq_datos_personales.personal')
        
@@ -45,7 +45,8 @@ class BecasMaestriaDoctoradoController extends Controller
         'personal.contacto_emergencia_apellidos','personal.contacto_emergencia_nombres',
         'personal.contacto_emergencia_telefono_1','personal.contacto_emergencia_telefono_2'
         )
-        -> where ('esq_datos_personales.personal.cedula', $cedula)
+        //-> where ('esq_datos_personales.personal.cedula', $cedula)
+        -> where ('esq_datos_personales.personal.idpersonal', $id)
         
         -> first();
         if($consulta){

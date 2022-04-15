@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\historial_usuario;
 use App\Models\m_materias;
 use App\Models\s_aprobadas;
 use App\Models\solicitudes;
@@ -55,8 +56,8 @@ class SolicitudesController extends Controller
                 $aprobados->pdf=trim($data->PDF);
                 $aprobados->tipo = trim($data->tipo);
                 $aprobados->estado="F";
-        $aprobados->save();
-        $response=[
+                $aprobados->save();
+                $response=[
             'estado'=> true,
             'mensaje' => 'Se actualizo el estado del informe a Finalizado'
         ];

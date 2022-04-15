@@ -6,6 +6,9 @@ use App\Models\alergias;
 use App\Models\becas_apoyos;
 use App\Models\enfermedades_cronicas;
 use App\Models\especificar_alergias;
+use App\Models\historial_usuario;
+use App\Models\imagenes_convenios;
+use App\Models\imagenes_solicitudes;
 use App\Models\m_beneficios;
 use App\Models\m_materias;
 use App\Models\m_montos;
@@ -18,6 +21,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use PhpParser\Node\Expr\Cast\Object_;
+use PDF;
 
 class MovilidadController extends Controller
 {
@@ -29,7 +33,7 @@ class MovilidadController extends Controller
         $this->baseCtrl = new BaseController();
     }
   
-public function consultar($cedula){
+public function consultar($id){
 
 $consulta = DB::table('esq_datos_personales.personal')
 //->join('esq_roles.tbl_personal_rol','esq_roles.tbl_personal_rol.id_personal','=','esq_datos_personales.personal.idpersonal')
@@ -52,7 +56,9 @@ $consulta = DB::table('esq_datos_personales.personal')
 'personal.contacto_emergencia_apellidos','personal.contacto_emergencia_nombres',
 'personal.contacto_emergencia_telefono_1','personal.contacto_emergencia_telefono_2'
 )
--> where ('esq_datos_personales.personal.cedula', $cedula)
+
+//-> where ('esq_datos_personales.personal.cedula', $cedula)
+-> where ('esq_datos_personales.personal.idpersonal', $id)
 
 -> first();
 if($consulta){
@@ -480,6 +486,14 @@ public function consultarPeriodo($idpersonal){
     {
         $data = (object)$request->data;
         //solicitud
+        /*  //HISTORIAL
+          $historial = new historial_usuario();
+          $historial->usuario_id = 1;
+          $historial->titulo = "Solicitudes";
+          $historial->detalle = trim($data->data);
+          $historial->extra = "Insert";
+          $historial->fecha_creacion = date('Y-m-d H:i:s');
+          $historial->save();*/
         $newsoli=new solicitudes();
         $newsoli->personal_id=$data->idpersonal;
         $newsoli->logo_id=1;
@@ -684,8 +698,10 @@ public function consultarPeriodo($idpersonal){
         ];
     
     }
-    
-    return response()->json($response);
+    //   $datos = compact('buscar2');
+    //   $pdf = PDF::loadView('movilidad', ['datos' => $datos]);
+    //   return $pdf->stream();
+     return response()->json($response);
     }
 
 
@@ -923,6 +939,94 @@ public function updateSolicitudMovilidad_v2(Request $request)
 
     return response()->json($response);
 }
+
+    public function pdf_solicitud($id)
+    {
+        $buscar=DB::select("select p.idpersonal, p.cedula, p.apellido1, p.apellido2, p.nombres,p.fecha_nacimiento,
+        t.nombre as Nacionalidad,p.genero,p.residencia_calle_1, p.residencia_calle_2, p.residencia_calle_3,
+        p.correo_personal_institucional,p.correo_personal_alternativo, t1.nombre as Estado_civil,
+        u.nombre as Pais, u1.nombre as Provincia,u2.nombre as Canton,
+        p.telefono_personal_domicilio, p.telefono_personal_celular, t2.nombre as Tipo_Sangre, t3.nombre as Nombre_Discapacidad,
+        p.contacto_emergencia_apellidos,p.contacto_emergencia_nombres,
+        p.contacto_emergencia_telefono_1,p.contacto_emergencia_telefono_2,
+        es.idescuela, es.nombre As Nombre_carrera,m1.id as id_modalidad1, m1.tipo_modalidad as Modalidad,m2.id as id_modalidad2, m2.tipo_modalidad as Tipo_Destino,
+        uni.iduniversidad, uni.nombre as Universidad_Destino,s.carrera_destino, s.semestre_cursar, s.fecha_inicio,s.fecha_fin,
+        ni.id as naturaleza_id, ni.descripcion as Naturaleza,b.id as id_becas, b.descripcion as Beca_Apoyo,m.id as id_monto, m.descripcion as Monto_Referencial,
+        a.id as id_alergias, a.descripcion as Alergias, ea.id as id_esalergias, ea.especificar_alergia, en.id as id_enfermedades, en.enfermedades_tratamiento,s.poliza_seguro,pdf.id as id_pdf, 
+        pdf.pdfcertificado_matricula, pdf.pdfcopia_record, pdf.pdfsolicitud_carta, pdf.pdfcartas_recomendacion, pdf.pdfno_sancion,
+        pdf.pdffotos,pdf.pdfseguro, pdf.pdfexamen_psicometrico, pdf.pdfdominio_idioma, pdf.pdfdocumentos_udestino,
+        pdfcomprobante_solvencia
+
+
+    from esq_datos_personales.personal p
+    join esq_catalogos.tipo t on p.idtipo_nacionalidad = t.idtipo
+    join esq_catalogos.tipo t1 on p.idtipo_estado_civil = t1.idtipo
+    join esq_catalogos.tipo t2 on p.idtipo_sangre= t2.idtipo
+    join esq_catalogos.tipo t3 on p.idtipo_discapacidad = t3.idtipo
+    join esq_catalogos.ubicacion_geografica u on p.idtipo_pais_residencia = u.idubicacion_geografica
+    join esq_catalogos.ubicacion_geografica as u1 on p.idtipo_provincia_residencia = u1.idubicacion_geografica
+    join esq_catalogos.ubicacion_geografica as u2 on p.idtipo_canton_residencia = u2.idubicacion_geografica
+    join esq_dricb.solicitudes s on p.idpersonal = s.personal_id
+    join esq_inscripciones.escuela es on es.idescuela = s.escuela_id
+    join esq_datos_personales.p_universidad uni on uni.iduniversidad = s.universidad_id
+    join esq_dricb.modalidades m1 on s.modalidad1_id = m1.id 
+    join esq_dricb.modalidades m2 on s.modalidad2_id = m2.id 
+    join esq_dricb.natu_intercambios ni on ni.id = s.naturaleza_id
+    join esq_dricb.becas_apoyos b on b.id = s.becas_id 
+    join esq_dricb.m_montos m on m.id = s.montos_id
+    join esq_dricb.especificar_alergias ea on ea.solicitud_id = s.id
+    join esq_dricb.alergias a on a.id = ea.alergias_id
+    join esq_dricb.enfermedades_cronicas en on en.solicitud_id = s.id
+    
+    join esq_dricb.pdf_solicitudes pdf on pdf.solicitud_id = s.id
+    where pdf.tipo='M' and s.tipo='M' and s.id = ".$id."");
+    $buscar2= $buscar2=(object)$buscar[0];
+    return ($buscar2);
+
+    }
+
+    public function pdf_solicitudMovilidad($id){
+
+     /*   $data = solicitudes::find($id);
+        $imagen1 = imagenes_solicitudes::find($data->logo_id);
+        $imagen1 = imagenes_convenios::find($data->imagenescon_id);
+    */
+    $buscar1=$this->pdf_solicitud($id);
+    $buscar2=json_decode(json_encode($buscar1));
+    
+    if ($buscar2){
+        $semestre=$this->consultarPeriodo($buscar2->idpersonal);
+        $materias=m_materias::where('solicitud_id',intval($id))
+        ->where('estado','=','A')
+        ->orderBy('id','ASC' )
+        ->get();
+        if($materias)
+        {
+           
+            $buscar2->materias=$materias;
+            $buscar2->carrera=$semestre;
+            $response= [
+            'estado'=> true,
+            'datos' => $buscar2,
+        ];
+    }
+    }else{
+        $response= [
+            'estado'=> false,
+            'mensaje' => 'No existe la solicitud'
+        ];
+    
+    }
+   
+   /* $newData = [
+        'logo_id' => $imagen1->logo_id,
+        'urlimagen' => $imagen1->url_imagen,
+    ];*/
+    $datos = compact('buscar2');
+    $pdf = PDF::loadView('movilidad', ['datos' => $datos]);
+    return $pdf->stream();
+     return response()->json($response);
+    }
 }
 
 

@@ -367,7 +367,7 @@ Route::get('rolesbecas',[BecasMaestriaDoctoradoController::class,'roles_becas_ma
 Route::post('login-UTM',[UsuarioController::class,'loginUTM']);
 
 //Consultar Datos movilidad
-Route::get('consulta-movilidad/{cedula}',[MovilidadController::class,'consultar']);
+Route::get('consulta-movilidad/{id}',[MovilidadController::class,'consultar']);
 
 //Consultar Datos Becas
 Route::get('consulta-becas/{cedula}',[BecasMaestriaDoctoradoController::class,'consultarbecas']);
@@ -464,3 +464,7 @@ Route::put('actualizar-solicitud-movilidad',[MovilidadController::class,'updateS
 
 //actualizar solicitudes Becas
 Route::put('actualizar-solicitud-becas',[BecasMaestriaDoctoradoController::class,'updateSolicitudBecas_v2']);
+
+
+//Obtener pdf de Solicitud de Movilidad
+Route::get('pdf-solicitud/movilidad/{id}',[MovilidadController::class,'pdf_solicitudMovilidad']);

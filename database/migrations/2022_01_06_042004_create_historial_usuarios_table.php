@@ -18,8 +18,10 @@ class CreateHistorialUsuariosTable extends Migration
             $table->id();
             $table->unsignedBigInteger('usuario_id');
             $table->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('titulo');
-            $table->string('detalle');
+            $table->string('titulo')->nullable();;
+            $table->string('detalle')->nullable();;
+            $table->longText('dato_viejo')->nullable();;
+            $table->longText('dato_nuevo')->nullable();;
             $table->string('extra')->nullable();
             $table->timestamp('fecha_creacion');//->default(historial_usuario::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
