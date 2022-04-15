@@ -114,21 +114,10 @@ class UsuarioController extends Controller{
             ];
          
     }
-    // else{
-    //         $consultaes=$this->consultarEstudiante($consulta->idpersonal);
-    //         if($consultaes){
-    //         $consulta->estudiante=$consultaes;
-    //         $response = [
-    //             'estado' => true,
-    //             'tipo' => 'M',
-    //             'mensaje' => 'Acceso al sistema',
-    //             'usuario'=>$consultaes
-    //         ];
-    //     }
+
         else{
         $consulta2=$this->consultarDocente($id);
         if($consulta2){
-         //   $sesion->docente=$consulta2;
             $response = [
                 'estado' => true,
                 'tipo' => 'B',
@@ -138,7 +127,6 @@ class UsuarioController extends Controller{
         }else{
                   $consultaes=$this->consultarEstudiante($id);
                      if($consultaes){
-                   //  $sesion->estudiante=$consultaes;
                      $response = [
                          'estado' => true,
                          'tipo' => 'M',
