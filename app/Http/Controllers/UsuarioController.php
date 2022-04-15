@@ -102,55 +102,33 @@ class UsuarioController extends Controller{
     }
 
     public function loginsistema($id)
-    {    
-
+    {
         $sesion = Usuario::where('personal_id', $id)->first();
-        if($sesion){
+        if ($sesion) {
             $response = [
                 'estado' => true,
                 'tipo' => 'I',
                 'mensaje' => 'Acceso al sistema',
-                'usuario'=>$sesion
+                'usuario' => $sesion
             ];
-         
-    }
-
-        else{
-        $consulta2=$this->consultarDocente($id);
-        if($consulta2){
-            $response = [
-                'estado' => true,
-                'tipo' => 'B',
-                'mensaje' => 'Acceso al sistema',
-                'usuario'=>$consulta2
-            ];
-        }else{
-                  $consultaes=$this->consultarEstudiante($id);
-                     if($consultaes){
-                     $response = [
-                         'estado' => true,
-                         'tipo' => 'M',
-                         'mensaje' => 'Acceso al sistema',
-                         'usuario'=>$consultaes
-                     ];
-                 }
-                 else{
-                    $response=[
-                    'estado' => false,
-                    'mensaje' => 'Usted no tiene acceso al sistema',
-        
+        } else {
+            $consulta2 =$this->verificarDocente($id);
+            if ($consulta2) {
+                $response = [
+                    'estado' => true,
+                    'tipo' => 'B',
+                    'mensaje' => 'Acceso al sistema Becas',
                 ];
-               }
-        
-    }}
-
-    
-
-
-    
-
-return response()->json($response);
-}
+            } else {
+                    $response = [
+                        'estado' => true,
+                        'tipo' => 'M',
+                        'mensaje' => 'Acceso al sistema Movilidad',
+                    ];
+            }
+        }
+        return response()->json($response);
+    }
 
 
 
