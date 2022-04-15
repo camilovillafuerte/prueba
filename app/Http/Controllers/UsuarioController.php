@@ -102,12 +102,8 @@ class UsuarioController extends Controller{
     }
 
     public function loginsistema($id)
-    {    if(isset($id)){ 
-        $consulta=DB::table('esq_datos_personales.personal')
-        ->select ('personal.idpersonal', 'personal.cedula','personal.apellido1','personal.apellido2','personal.nombres')
-        ->where ('personal.idpersonal',$id)
-        -> first();
-       if($consulta){
+    {    
+
         $sesion = Usuario::where('personal_id', $id)->first();
         if($sesion){
             $response = [
@@ -130,32 +126,44 @@ class UsuarioController extends Controller{
     //         ];
     //     }
         else{
-        $consulta2=$this->consultarDocente($consulta->idpersonal);
+        $consulta2=$this->consultarDocente($id);
         if($consulta2){
-            $consulta->docente=$consulta2;
+         //   $sesion->docente=$consulta2;
             $response = [
                 'estado' => true,
                 'tipo' => 'B',
                 'mensaje' => 'Acceso al sistema',
                 'usuario'=>$consulta2
             ];
-        }
+        }else{
+                  $consultaes=$this->consultarEstudiante($id);
+                     if($consultaes){
+                   //  $sesion->estudiante=$consultaes;
+                     $response = [
+                         'estado' => true,
+                         'tipo' => 'M',
+                         'mensaje' => 'Acceso al sistema',
+                         'usuario'=>$consultaes
+                     ];
+                 }
+                 else{
+                    $response=[
+                    'estado' => false,
+                    'mensaje' => 'Usted no tiene acceso al sistema',
+        
+                ];
+               }
         
     }}
 
     
 
-}
-    else{
-            $response=[
-            'estado' => false,
-            'mensaje' => 'Usted no tiene acceso al sistema',
 
-        ];
-       }
-    //}
+    
+
 return response()->json($response);
 }
+
 
 
     
