@@ -22,6 +22,7 @@ use App\Http\Controllers\PersonalController;
 use App\Http\Controllers\SolicitudesController;
 use App\Http\Controllers\UsuarioController;
 use App\Models\firmas;
+use App\Models\imagenes_solicitudes;
 use App\Models\interfaz;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -366,7 +367,7 @@ Route::post('login-UTM',[UsuarioController::class,'loginUTM']);
 Route::get('consulta-movilidad/{id}',[MovilidadController::class,'consultar']);
 
 //Consultar Datos Becas
-Route::get('consulta-becas/{cedula}',[BecasMaestriaDoctoradoController::class,'consultarbecas']);
+Route::get('consulta-becas/{id}',[BecasMaestriaDoctoradoController::class,'consultarbecas']);
 
 //Usuario con acceso al sistema DRICN
 Route::get('acceso-usuario',[UsuarioController::class,'usuarioDRICB']);
@@ -405,9 +406,9 @@ Route::post('movilidad-new', [MovilidadController::class, 'addsolicitud']);
 Route::post('becas-new', [BecasMaestriaDoctoradoController::class, 'create_solicitud_becas']);
 
 //Consultar Solicitud Movilidad
-Route::get('solicitud-movilidad/{cedula}',[MovilidadController::class,'consultarMovilidad']);
+Route::get('solicitud-movilidad/{id}',[MovilidadController::class,'consultarMovilidad']);
 //Consultar Solicitud Beca
-Route::get('solicitud-beca/{cedula}',[BecasMaestriaDoctoradoController::class,'consultarBeca']);
+Route::get('solicitud-beca/{id}',[BecasMaestriaDoctoradoController::class,'consultarBeca']);
 
 
 //Obtener todos los datos de la solicitud de Becas
@@ -464,3 +465,7 @@ Route::put('actualizar-solicitud-becas',[BecasMaestriaDoctoradoController::class
 
 //Obtener pdf de Solicitud de Movilidad
 Route::get('pdf-solicitud/movilidad/{id}',[MovilidadController::class,'pdf_solicitudMovilidad']);
+
+
+//Ruta para obtener todas las imagenes de convenios
+Route::get('imagen-solicitudes',[imagenes_solicitudes::class, 'getImgSolicitudes']);
