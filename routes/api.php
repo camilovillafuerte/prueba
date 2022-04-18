@@ -468,5 +468,9 @@ Route::put('actualizar-solicitud-becas',[BecasMaestriaDoctoradoController::class
 Route::get('pdf-solicitud/movilidad/{id}',[MovilidadController::class,'pdf_solicitudMovilidad']);
 
 
-//Ruta para obtener todas las imagenes de convenios
+//Ruta para obtener todas los datos de la tabla imagenes_solicitudes
 Route::get('imagen-solicitudes',[Imagen_solicitudesController::class, 'getImgSolicitudes']);
+
+Route::post('update/imagen-solicitudes',[InterfazController::class, 'updateCarrosel']);
+
+Route::put('delete/imagen-solicitudes',[InterfazController::class, 'deleteCarrosel']);
