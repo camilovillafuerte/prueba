@@ -10,6 +10,7 @@ use App\Http\Controllers\ConveniosController;
 use App\Http\Controllers\Firma_emisorController;
 use App\Http\Controllers\Firma_receptorController;
 use App\Http\Controllers\FirmasController;
+use App\Http\Controllers\Imagen_solicitudesController;
 use App\Http\Controllers\Imagenes_conveniosController;
 use App\Http\Controllers\Imagenes_interfacesController;
 use App\Http\Controllers\Interfaz_contenidoController;
@@ -468,4 +469,4 @@ Route::get('pdf-solicitud/movilidad/{id}',[MovilidadController::class,'pdf_solic
 
 
 //Ruta para obtener todas las imagenes de convenios
-Route::get('imagen-solicitudes',[imagenes_solicitudes::class, 'getImgSolicitudes']);
+Route::get('imagen-solicitudes',[Imagen_solicitudesController::class, 'getImgSolicitudes']);

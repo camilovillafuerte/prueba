@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\imagenes_solicitudes;
 use Illuminate\Http\Request;
 
-class Imagen_solicitudes extends Controller
+class Imagen_solicitudesController extends Controller
 {
     //metodo con json para probar si funciona con postman
     public function getImgSolicitudes(){
