@@ -21,10 +21,13 @@ class Imagen_solicitudesController extends Controller
 
     public function update(Request $request){
         $data = (object)$request->data;
-        $data = imagenes_solicitudes::find(intval($data->id));
-        $data->imagenescon_id=$data->id_imagen;
+        $response = [];
+        $data = imagenes_solicitudes::where('id','=',1);
+        $data->imagenescon_id=$data->id;
         $data->save();
-        return $data;
+        $response=$data;
+        return response()->json($response);
+    
     } 
 
     public function updateImagenSolicitudes(Request $request)
@@ -34,15 +37,8 @@ class Imagen_solicitudesController extends Controller
         $con2=0;
         foreach($carrosel->imagen as $img){
             $imgObj = (object)$img;
-            if($imgObj->id==0)
-            {
-                $newInterfaz=new imagenes_solicitudes();
-                $newInterfaz->imagenescon_id=$imgObj->id_imagen;
-                $newInterfaz->estado='A';
-                $newInterfaz->save();
-                $con++;
-            }
-            else{
+            if($imgObj->id==1)
+           {
                 $update = imagenes_solicitudes::find(intval($imgObj->id));
                 $update->imagenescon_id=$imgObj->id_imagen;
                 $update->save();
@@ -50,30 +46,22 @@ class Imagen_solicitudesController extends Controller
             }
 
         }
-        foreach($carrosel->eliminar as $eli)
-        {
-            $eliObj = (object)$eli;
-            $update_eli=imagenes_solicitudes::find(intval($eliObj->id));
-            $update_eli->estado='D';
-            $update_eli->save();
-            $con2++;
-        }
+       
 
 
-        if($con==count($carrosel->imagen) && ($con2==count($carrosel->eliminar)))
+        if($con==count($carrosel->imagen))
         {
             $response=[
                 'estado'  => true,
 
-                'mensaje' => 'Imagen Insertada, Modificado o Eliminada'
+                'mensaje' => 'Imagen Modificado'
             ];
         }
         else
         {
             $response=[
                 'estado'  => false,
-                'numero de ingresados o modificados'=>$con,
-                'numero de eliminados'=>$con2,
+                'numero de modificados'=>$con,
                 'mensaje' => 'Imagen Insertada o Modificado'
             ];
 
