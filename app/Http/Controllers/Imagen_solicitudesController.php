@@ -47,7 +47,7 @@ class Imagen_solicitudesController extends Controller
             }else{
                 $response=[
                     'estado'  => false,
-                    'mensaje' => 'Imagen Insertada o Modificado'
+                    'mensaje' => 'No se pudo modificar la imagen'
                 ];
             }
             return response()->json($response);
