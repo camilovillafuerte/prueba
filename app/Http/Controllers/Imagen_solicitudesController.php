@@ -30,46 +30,29 @@ class Imagen_solicitudesController extends Controller
     
     } 
 
-    public function updateImagenSolicitudes(Request $request)
+    public function updateImagenSolicitudes(Request $request, $id)
     {
-        $carrosel = (object)$request->data;
-        $con=0;
-        $con2=0;
-        foreach($carrosel->imagen as $img){
-            $imgObj = (object)$img;
-            if($imgObj->id==1)
+        $data = (object)$request->data;
+        $imagen = imagenes_solicitudes::find(intval($data->imagenescon_id));
+       // $imagen = imagenes_solicitudes::find($id);
+            if($imagen)
            {
-                $update = imagenes_solicitudes::find(intval($imgObj->id));
-                $update->imagenescon_id=$imgObj->id_imagen;
-                $update->save();
-                $con++;
+                $imagen->imagenescon_id=$data->imagenescon_id;
+                $imagen->save();
+                
+                $response=[
+                    'estado'  => true,
+                    'mensaje' => 'Imagen Modificado'
+                ];
+            }else{
+                $response=[
+                    'estado'  => false,
+                    'mensaje' => 'Imagen Insertada o Modificado'
+                ];
             }
-
+            return response()->json($response);
         }
        
-
-
-        if($con==count($carrosel->imagen))
-        {
-            $response=[
-                'estado'  => true,
-
-                'mensaje' => 'Imagen Modificado'
-            ];
-        }
-        else
-        {
-            $response=[
-                'estado'  => false,
-                'numero de modificados'=>$con,
-                'mensaje' => 'Imagen Insertada o Modificado'
-            ];
-
-        }
-        return response()->json($response);
-
-    }
-
 
     public function deleteImagenSolicitudes(Request $request)
     {

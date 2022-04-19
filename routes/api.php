@@ -471,7 +471,7 @@ Route::get('pdf-solicitud/movilidad/{id}',[MovilidadController::class,'pdf_solic
 //Ruta para obtener todas los datos de la tabla imagenes_solicitudes
 Route::get('imagen-solicitudes',[Imagen_solicitudesController::class, 'getImgSolicitudes']);
 
-Route::post('update/imagen-solicitudes',[Imagen_solicitudesController::class, 'updateImagenSolicitudes']);
+Route::put('update/imagen-solicitudes',[Imagen_solicitudesController::class, 'updateImagenSolicitudes']);
 
 Route::put('delete/imagen-solicitudes',[Imagen_solicitudesController::class, 'deleteImagenSolicitudes']);
 
