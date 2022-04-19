@@ -9,10 +9,23 @@ use Illuminate\Http\Request;
 class Imagen_solicitudesController extends Controller
 {
     //metodo con json para probar si funciona con postman
+    private $baseCtrl;
+
+    public function __construct(){
+        $this->baseCtrl = new BaseController();
+    }
+
     public function getImgSolicitudes(){
         return response()->json(imagenes_solicitudes::all(),200);
     }
 
+    public function update(Request $request){
+        $data = (object)$request->data;
+        $data = imagenes_solicitudes::find(intval($data->id));
+        $data->imagenescon_id=$data->id_imagen;
+        $data->save();
+        return $data;
+    } 
 
     public function updateImagenSolicitudes(Request $request)
     {
@@ -24,14 +37,14 @@ class Imagen_solicitudesController extends Controller
             if($imgObj->id==0)
             {
                 $newInterfaz=new imagenes_solicitudes();
-                $newInterfaz->imagenescon_id=intval($imgObj->imagenescon_id);
+                $newInterfaz->imagenescon_id=$imgObj->id_imagen;
                 $newInterfaz->estado='A';
                 $newInterfaz->save();
                 $con++;
             }
             else{
                 $update = imagenes_solicitudes::find(intval($imgObj->id));
-                $update->imagenescon_id=intval($imgObj->imagenescon_id);
+                $update->imagenescon_id=$imgObj->id_imagen;
                 $update->save();
                 $con++;
             }

@@ -476,3 +476,5 @@ Route::post('update/imagen-solicitudes',[Imagen_solicitudesController::class, 'u
 Route::put('delete/imagen-solicitudes',[Imagen_solicitudesController::class, 'deleteImagenSolicitudes']);
 
 Route::post('imagen-solicitudes/subir',[Imagenes_interfacesController::class, 'insertImgsolicitudes']);
+
+Route::put('update/imagen/solicitudes',[Imagen_solicitudesController::class, 'update']);
