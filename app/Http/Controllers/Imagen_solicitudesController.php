@@ -16,7 +16,26 @@ class Imagen_solicitudesController extends Controller
     }
 
     public function getImgSolicitudes(){
-        return response()->json(imagenes_solicitudes::all(),200);
+        $imagen=imagenes_solicitudes::where('id',1)->first();
+        if($imagen)
+        {
+            $imagen_convenio=imagenes_convenios::where('id',$imagen->imagenescon_id)->first();
+            $response=[
+                'estado'=>true,
+                'mensaje'=>'Imagen encontrada',
+                'imagen'=>$imagen_convenio
+            ];
+        }
+        else
+        {
+            $response=[
+                'estado'=>false,
+                'mensaje'=>'Imagen no encontrada',
+            ];
+
+        }
+
+        return response()->json($response);
     }
 
     public function update(Request $request){
