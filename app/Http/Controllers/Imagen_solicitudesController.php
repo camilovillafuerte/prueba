@@ -49,16 +49,16 @@ class Imagen_solicitudesController extends Controller
     
     } 
 
-    public function updateImagenSolicitudes(Request $request, $id)
+    public function updateImagenSolicitudes(Request $request)
     {
         $data = (object)$request->data;
-        $imagen = imagenes_solicitudes::find(intval($data->imagenescon_id));
+        $imagen = imagenes_solicitudes::where('id',1)->first();
        // $imagen = imagenes_solicitudes::find($id);
             if($imagen)
            {
-                $imagen->imagenescon_id=$data->imagenescon_id;
+                $imagen->imagenescon_id=$data->iimagenescon_id;
                 $imagen->save();
-                
+
                 $response=[
                     'estado'  => true,
                     'mensaje' => 'Imagen Modificado'
@@ -71,7 +71,6 @@ class Imagen_solicitudesController extends Controller
             }
             return response()->json($response);
         }
-       
 
     public function deleteImagenSolicitudes(Request $request)
     {
