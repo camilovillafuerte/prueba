@@ -101,22 +101,14 @@ class UsuarioController extends Controller{
         return response()->json($jsonRespuesta);
     }
 
-<<<<<<< HEAD
-    public function loginsistema($personal_id)
-    {
-        $sesion = Usuario::where('personal_id', $personal_id)->first();
-        if($sesion)
-        {
-=======
+
+  
     public function loginsistema($id)
     {
         $sesion = Usuario::where('personal_id', $id)->first();
-<<<<<<< HEAD
-        if($sesion){
->>>>>>> 8cc91f21ba4ac9bb391673171011503e4e0a331f
-=======
+
         if ($sesion) {
->>>>>>> 9ff39e67713aa2dcd74a829cea7c7816be5956bc
+
             $response = [
                 'estado' => true,
                 'tipo' => 'I',
@@ -140,7 +132,7 @@ class UsuarioController extends Controller{
             }
         }
         return response()->json($response);
-    }
+}
 
 
 
