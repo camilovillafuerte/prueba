@@ -58,7 +58,7 @@ $consulta = DB::table('esq_datos_personales.personal')
 )
 
 //-> where ('esq_datos_personales.personal.cedula', $cedula)
--> where ('esq_datos_personales.personal.idpersonal', $id)
+-> where ('esq_datos_personales.personal.idpersonal',$id)
 
 -> first();
 if($consulta){
@@ -569,14 +569,14 @@ public function consultarPeriodo($idpersonal){
         return response()->json($response);
     }
 
-    public function consultarMovilidad($cedula){
+    public function consultarMovilidad($id){
         $buscar=DB::select("select (p.apellido1 || ' ' || p.apellido2)as Apellidos, p.nombres, u.nombre as Universidad_Destino, es.nombre As Nombre_carrera, ni.descripcion as Naturaleza, s.fecha_inicio, s.fecha_fin, s.estado_solicitud
         from esq_datos_personales.personal p
         join esq_dricb.solicitudes s on p.idpersonal = s.personal_id
         join esq_inscripciones.escuela es on es.idescuela = s.escuela_id
         join esq_datos_personales.p_universidad u on u.iduniversidad = s.universidad_id
         join esq_dricb.natu_intercambios ni on ni.id = s.naturaleza_id 
-        where p.cedula='$cedula' and s.tipo = 'M' and s.estado='A'
+        where p.idpersonal=".$id." and s.tipo = 'M' and s.estado='A'
         order by s.id DESC");
 
         if($buscar){

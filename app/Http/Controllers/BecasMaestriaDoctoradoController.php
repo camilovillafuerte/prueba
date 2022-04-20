@@ -46,7 +46,7 @@ class BecasMaestriaDoctoradoController extends Controller
         'personal.contacto_emergencia_telefono_1','personal.contacto_emergencia_telefono_2'
         )
         //-> where ('esq_datos_personales.personal.cedula', $cedula)
-        -> where ('esq_datos_personales.personal.idpersonal', $id)
+        -> where ('esq_datos_personales.personal.idpersonal',$id)
         
         -> first();
         if($consulta){
@@ -137,7 +137,7 @@ class BecasMaestriaDoctoradoController extends Controller
          }
 
 
-         public function consultarBeca($cedula){
+         public function consultarBeca($id){
             $buscar=DB::select("select p.cedula, (p.apellido1 || ' ' || p.apellido2)as Apellidos, p.nombres, u.nombre as Universidad_Destino, f.nombre As Nombre_Facultad, ni.descripcion as Naturaleza, s.fecha_inicio, s.fecha_fin, s.estado_solicitud
             from esq_distributivos.departamento d
             join esq_inscripciones.facultad f on d.idfacultad = f.idfacultad
@@ -148,7 +148,7 @@ class BecasMaestriaDoctoradoController extends Controller
             join esq_dricb.natu_intercambios ni on ni.id = s.naturaleza_id 
             
 
-            where p.cedula='$cedula' and s.tipo = 'B' and s.estado='A'
+            where p.idpersonal=".$id." and s.tipo = 'B' and s.estado='A'
             order by s.id DESC");
     
             if($buscar){
