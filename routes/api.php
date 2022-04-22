@@ -482,3 +482,6 @@ Route::put('update/imagen/solicitudes',[Imagen_solicitudesController::class, 'up
 
 
 Route::get('historial',[HistorialController::class,'traerdatoshistorial']);
+
+//Usuarios registrados en el sistema DRICB
+Route::get('usuarios/dricb',[UsuarioController::class,'UsuariosDRICB']);
