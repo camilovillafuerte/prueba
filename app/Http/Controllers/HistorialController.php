@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\historial_usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HistorialController extends Controller
 {
@@ -41,5 +42,34 @@ class HistorialController extends Controller
          }
          $husuario->delete();
          return response()->json(['Mensaje'=>'Registro Eliminado'],200);
+    }
+
+
+    public function traerdatoshistorial(){
+        $buscar=DB::select("select p.cedula, (p.apellido1 || ' ' || p.apellido2)as Apellidos, p.nombres,
+        h.detalle, h.dato_viejo,h.dato_nuevo,h.fecha_creacion
+        
+        
+        from esq_datos_personales.personal p
+        join esq_dricb.usuarios u on p.idpersonal = u.personal_id
+        join esq_dricb.historial_usuarios h on u.id = h.usuario_id
+        order by h.id DESC"
+    );
+    if($buscar){
+            
+        $response=[
+            'estado'=> true,
+            'datos'=> $buscar,
+        ];
+    }else{
+        $response=[
+            'estado'=> false,
+            'mensaje'=> 'No existen datos'
+        ];
+
+    }
+    return response()->json($response);
+
+
     }
 }

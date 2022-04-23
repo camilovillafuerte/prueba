@@ -769,5 +769,30 @@ class UsuarioController extends Controller{
                 }
             
 
+    public function UsuariosDRICB(){
+        $usuarios=DB::select("select p.cedula, (p.apellido1 || ' ' || p.apellido2)as Apellidos, p.nombres,
+        c.cargo 
+        from esq_datos_personales.personal p
+        join esq_dricb.usuarios u on p.idpersonal = u.personal_id
+        join esq_dricb.cargos c on c.cargos_id=u.cargos_id
+        ");
+        if($usuarios){
+            
+            $response=[
+                'estado'=> true,
+                'datos'=> $usuarios,
+            ];
+        }else{
+            $response=[
+                'estado'=> false,
+                'mensaje'=> 'No existen datos'
+            ];
+    
+        }
+        return response()->json($response);
+    
+    }
 }
+
+
 
