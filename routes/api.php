@@ -10,6 +10,8 @@ use App\Http\Controllers\ConveniosController;
 use App\Http\Controllers\Firma_emisorController;
 use App\Http\Controllers\Firma_receptorController;
 use App\Http\Controllers\FirmasController;
+use App\Http\Controllers\Funcionalidad_usuarioController;
+use App\Http\Controllers\FuncionalidadController;
 use App\Http\Controllers\HistorialController;
 use App\Http\Controllers\Imagen_solicitudesController;
 use App\Http\Controllers\Imagenes_conveniosController;
