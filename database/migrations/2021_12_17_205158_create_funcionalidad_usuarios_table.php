@@ -14,7 +14,7 @@ class CreateFuncionalidadUsuariosTable extends Migration
     public function up()
     {
         Schema::create('funcionalidad_usuarios', function (Blueprint $table) {
-            $table->id('fusuarios_id');
+            $table->id();
             $table->unsignedBigInteger('usuario_id');
             $table->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('funcion_id');

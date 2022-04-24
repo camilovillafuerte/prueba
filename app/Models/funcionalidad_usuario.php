@@ -10,7 +10,7 @@ class funcionalidad_usuario extends Model
     use HasFactory;
     protected $connection = 'pgsql';
     public $timestamps = false;
-    protected $fillable = ['cargou_id','cedula','funcion_id','posicion','estado'];
+    protected $fillable = ['id','usuario_id','funcion_id','posicion','estado'];
 
     //Relación muchos a muchos
     public function usuarios(){
