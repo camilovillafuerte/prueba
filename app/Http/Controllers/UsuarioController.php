@@ -766,7 +766,7 @@ class UsuarioController extends Controller{
             
 
     public function UsuariosDRICB(){
-        $usuarios=DB::select("select p.cedula, (p.apellido1 || ' ' || p.apellido2)as Apellidos, p.nombres,
+        $usuarios=DB::select("select u.id, p.cedula, (p.apellido1 || ' ' || p.apellido2)as Apellidos, p.nombres,
         c.cargo 
         from esq_datos_personales.personal p
         join esq_dricb.usuarios u on p.idpersonal = u.personal_id

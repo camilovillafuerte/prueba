@@ -485,3 +485,15 @@ Route::get('historial',[HistorialController::class,'traerdatoshistorial']);
 
 //Usuarios registrados en el sistema DRICB
 Route::get('usuarios/dricb',[UsuarioController::class,'UsuariosDRICB']);
+
+//permisos usuario
+Route::get('funcionalidad-usuario/{id}',[Funcionalidad_usuarioController::class,'getFuncionalidad']);
+
+//actualizar estado de funcionalidad usuario
+Route::post('update/funcionalidad-usuario',[Funcionalidad_usuarioController::class,'UpdateEstado']);
+
+//obtener funcionalidades por nombre
+Route::get('funcionalidad/nombre',[FuncionalidadController::class,'getFuncionalidad_v2']);
+
+//agregar funcionalidad
+Route::post('add/funcionalidad-usuario',[Funcionalidad_usuarioController::class,'agregarFuncionalidad']);

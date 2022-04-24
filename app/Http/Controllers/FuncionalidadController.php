@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\funcionalidad;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FuncionalidadController extends Controller
 {
@@ -42,5 +43,25 @@ class FuncionalidadController extends Controller
          }
          $funcionalidad->delete();
          return response()->json(['Mensaje'=>'Registro Eliminado'],200);
+    }
+    public function getFuncionalidad_v2(){
+
+        $funcionalidad=DB::table('esq_dricb.funcionalidads')
+        ->select('funcion_id', 'funcionalidad')
+        ->orderBy('funcionalidad','ASC')
+        ->get();
+        if($funcionalidad){
+            $response=[
+                'estado'=> true,
+                'datos'=> $funcionalidad
+            ];
+        }else{
+            $response=[
+                'estado'=> false,
+                'mensaje'=> 'No hay cargos'
+            ];
+        }
+
+        return response()->json($response);
     }
 }
