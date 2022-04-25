@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\funcionalidad;
 use App\Models\funcionalidad_usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Funcionalidad_usuarioController extends Controller
 {
@@ -47,13 +48,15 @@ class Funcionalidad_usuarioController extends Controller
 
     public function getFuncionalidad($id){
 
-        $funcionalidad=funcionalidad_usuario::where('usuario_id',intval($id))->orderBy('id','DESC' )->get();
+        $funcionalidad=funcionalidad_usuario::where('usuario_id',intval($id))/*->orderBy('id','DESC')*/->orderBy('funcion_id','ASC')->get();
         $funcion_final=[];
         if($funcionalidad)
         {
             foreach($funcionalidad as $fun){
                 $ObjFun = (object)$fun;
-                $funcion=funcionalidad::where('funcion_id',$ObjFun->funcion_id)->first();
+                $funcion=funcionalidad::where('funcion_id',$ObjFun->funcion_id)
+                ->orderBy('funcionalidad','DESC')
+                ->first();
                $funcion_usuario=[
                    'fusuarios_id'=>$ObjFun->fusuarios_id,
                    'funcion_id'=>$ObjFun->funcion_id,
@@ -104,7 +107,9 @@ class Funcionalidad_usuarioController extends Controller
     public function  agregarFuncionalidad(Request $request)
     {
         $data = (object)$request->data;
-        $funcionalidad=funcionalidad_usuario::where('usuario_id',intval($data->id))->where('funcion_id',intval($data->funcion_id))->first();
+        $funcionalidad=funcionalidad_usuario::where('usuario_id',intval($data->id))->where('funcion_id',intval($data->funcion_id))
+        ->orderBy('funcion_id','ASC')
+        ->first();
         if($funcionalidad)
         {
             $response=[
