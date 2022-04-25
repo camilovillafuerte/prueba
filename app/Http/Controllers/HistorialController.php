@@ -47,12 +47,42 @@ class HistorialController extends Controller
 
     public function traerdatoshistorial(){
         $buscar=DB::select("select p.cedula, (p.apellido1 || ' ' || p.apellido2)as Apellidos, p.nombres,
-        h.detalle, h.dato_viejo,h.dato_nuevo,h.fecha_creacion
+        h.titulo, h.detalle, h.dato_viejo,h.dato_nuevo,h.fecha_creacion
         
         
         from esq_datos_personales.personal p
         join esq_dricb.usuarios u on p.idpersonal = u.personal_id
         join esq_dricb.historial_usuarios h on u.id = h.usuario_id
+        order by h.id DESC"
+    );
+    if($buscar){
+            
+        $response=[
+            'estado'=> true,
+            'datos'=> $buscar,
+        ];
+    }else{
+        $response=[
+            'estado'=> false,
+            'mensaje'=> 'No existen datos'
+        ];
+
+    }
+    return response()->json($response);
+
+
+    }
+
+
+    public function traerdatoshistorialxid($id){
+        $buscar=DB::select("select p.cedula, (p.apellido1 || ' ' || p.apellido2)as Apellidos, p.nombres,
+        h.titulo, h.detalle, h.dato_viejo,h.dato_nuevo,h.fecha_creacion
+        
+        
+        from esq_datos_personales.personal p
+        join esq_dricb.usuarios u on p.idpersonal = u.personal_id
+        join esq_dricb.historial_usuarios h on u.id = h.usuario_id
+        where h.id = ".$id."
         order by h.id DESC"
     );
     if($buscar){

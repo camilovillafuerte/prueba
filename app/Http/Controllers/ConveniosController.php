@@ -9,6 +9,7 @@ use App\Models\contenido_articulos;
 use Illuminate\Http\Request;
 use App\Models\convenios;
 use App\Models\convenios_clausulas;
+use App\Models\historial_usuario;
 use App\Models\imagenes_convenios;
 use App\Models\tipo_convenios;
 use DateTime;
@@ -114,8 +115,15 @@ class ConveniosController extends Controller
 
         $response = [
             'estado'  => true,
-            'mensaje' => 'Convenio guardado'
+            'mensaje' => 'Plantilla guardado'
         ];
+        $historial = new historial_usuario();
+        $historial->usuario_id = intval($data->id_usuario);
+        $historial->titulo = "Inserción";
+        $historial->detalle = "Se ingreso una plantilla";
+        $historial->dato_nuevo=json_encode($data);
+        $historial->fecha_creacion = date('Y-m-d H:i:s');
+        $historial->save();  
 
         return response()->json($response);
     }
@@ -197,6 +205,13 @@ class ConveniosController extends Controller
             'estado'  => true,
             'mensaje' => 'Convenio guardado'
         ];
+        $historial = new historial_usuario();
+        $historial->usuario_id = intval($data->id_usuario);
+        $historial->titulo = "Inserción";
+        $historial->detalle = "Se ingreso un convenio";
+        $historial->dato_nuevo=json_encode($data);
+        $historial->fecha_creacion = date('Y-m-d H:i:s');
+        $historial->save();  
 
         return response()->json($response);
     }
@@ -534,6 +549,15 @@ class ConveniosController extends Controller
                 'mensaje' => 'El convenio no existe'
             ];
         }
+        $historial = new historial_usuario();
+        $historial->usuario_id = intval($data->id_usuario);
+        $historial->titulo = "Modificación";
+        $historial->detalle = "Se subio un PDF del convenio";
+        $historial->dato_viejo =intval($data->id_convenio);
+        //$historial->dato_viejo=$this->show($data);
+        $historial->dato_nuevo=json_encode($data);
+        $historial->fecha_creacion = date('Y-m-d H:i:s');
+        $historial->save();  
 
         return response()->json($response);
     }
@@ -683,6 +707,16 @@ class ConveniosController extends Controller
             'status' => true,
             'message' => 'Se ha actualizado el documento !!'
         ];
+        $historial = new historial_usuario();
+        $historial->usuario_id = intval($data->id_usuario);
+        $historial->titulo = "Modificación";
+        $historial->detalle = "Se modifico un convenio";
+        $historial->dato_viejo =intval($data->id_convenio);
+        //$historial->dato_viejo=$this->show($data);
+        $historial->dato_nuevo=json_encode($data);
+        $historial->fecha_creacion = date('Y-m-d H:i:s');
+        $historial->save();  
+
 
         return response()->json($response);
     }

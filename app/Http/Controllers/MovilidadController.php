@@ -791,6 +791,15 @@ public function consultarPeriodo($idpersonal){
             'mensaje' => 'No existe la solicitud'
         ];
     }
+        $historial = new historial_usuario();
+        $historial->usuario_id = intval($data->id_usuario);
+        $historial->titulo = "Modificación";
+        $historial->detalle = "Se modifico el estado de una solicitud de movilidad";
+        $historial->dato_viejo =intval($data->id);
+        //$historial->dato_viejo=$this->show($data);
+        $historial->dato_nuevo=json_encode($data);
+        $historial->fecha_creacion = date('Y-m-d H:i:s');
+        $historial->save();  
     return response()->json($response);
 
 }
@@ -936,6 +945,15 @@ public function updateSolicitudMovilidad_v2(Request $request)
     }
 
     }
+        $historial = new historial_usuario();
+        $historial->usuario_id = intval($data->id_usuario);
+        $historial->titulo = "Modificación";
+        $historial->detalle = "Se modifico una solicitud de movilidad";
+        $historial->dato_viejo =intval($data->id);
+        //$historial->dato_viejo=$this->show($data);
+        $historial->dato_nuevo=json_encode($data);
+        $historial->fecha_creacion = date('Y-m-d H:i:s');
+        $historial->save();  
 
     return response()->json($response);
 }

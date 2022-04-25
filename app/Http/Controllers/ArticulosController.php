@@ -46,12 +46,14 @@ class ArticulosController extends Controller
        // $ultimoId = $articulos->id;
         $articulos = articulos::latest('id')->first();
         $historial = new historial_usuario();
-        $historial->usuario_id = intval($data->usuario_id);
-        $historial->titulo = "Articulos";
-        $historial->detalle = trim($data->des_art);
-        $historial->extra = "Insert";
+        $historial->usuario_id = intval($data->id_usuario);
+        $historial->titulo = "Inserción";
+        $historial->detalle = "Se ingreso un articulo";
+        $historial->dato_nuevo=json_encode($data);
+        //$historial->extra = "Insert";
         $historial->fecha_creacion = date('Y-m-d H:i:s');
         $historial->save();  
+    
         // $data = articulos::latest('id')->first();
        
     }
