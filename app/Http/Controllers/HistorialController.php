@@ -76,14 +76,13 @@ class HistorialController extends Controller
 
     public function traerdatoshistorialxid($id){
         $buscar=DB::select("select p.cedula, (p.apellido1 || ' ' || p.apellido2)as Apellidos, p.nombres,
-        h.titulo, h.detalle, h.dato_viejo,h.dato_nuevo,h.fecha_creacion
+        h.id as historial_id, h.titulo, h.detalle, h.dato_viejo,h.dato_nuevo,h.fecha_creacion
         
         
         from esq_datos_personales.personal p
         join esq_dricb.usuarios u on p.idpersonal = u.personal_id
         join esq_dricb.historial_usuarios h on u.id = h.usuario_id
-        where h.id = ".$id."
-        order by h.id DESC"
+        where h.id = ".$id." "
     );
     if($buscar){
             
