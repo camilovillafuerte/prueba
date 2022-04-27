@@ -47,7 +47,7 @@ class HistorialController extends Controller
 
     public function traerdatoshistorial(){
         $buscar=DB::select("select p.cedula, (p.apellido1 || ' ' || p.apellido2)as Apellidos, p.nombres,
-        h.titulo, h.detalle, h.dato_viejo,h.dato_nuevo,h.fecha_creacion
+        h.id, h.titulo, h.detalle, h.dato_viejo,h.dato_nuevo,h.fecha_creacion
         
         
         from esq_datos_personales.personal p

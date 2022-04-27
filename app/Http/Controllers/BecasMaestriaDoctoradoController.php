@@ -444,11 +444,10 @@ class BecasMaestriaDoctoradoController extends Controller
             ];
         }
         $historial = new historial_usuario();
-        $historial->usuario_id = intval($data->id_usuario);
+        $historial->usuario_id = intval($data->id_personal);
         $historial->titulo = "Modificación";
         $historial->detalle = "Se modifico el estado de una solicitud de becas";
         $historial->dato_viejo =intval($data->id);
-        //$historial->dato_viejo=$this->show($data);
         $historial->dato_nuevo=json_encode($data);
         $historial->fecha_creacion = date('Y-m-d H:i:s');
         $historial->save();  
@@ -553,11 +552,10 @@ class BecasMaestriaDoctoradoController extends Controller
 
     }
         $historial = new historial_usuario();
-        $historial->usuario_id = intval($data->id_usuario);
+        $historial->usuario_id = intval($data->id_personal);
         $historial->titulo = "Modificación";
         $historial->detalle = "Se modifico una solicitud de becas";
         $historial->dato_viejo =intval($data->id);
-        //$historial->dato_viejo=$this->show($data);
         $historial->dato_nuevo=json_encode($data);
         $historial->fecha_creacion = date('Y-m-d H:i:s');
         $historial->save();  
