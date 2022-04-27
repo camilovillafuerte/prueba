@@ -173,7 +173,7 @@ class UsuarioController extends Controller{
     public function searchUser($id){
         $response = [];
 
-        if(isset($cedula)){
+        if(isset($id)){
             $exist = Usuario::where('id',$id)->first();
             if($exist){
                 $cargosId = cargo::select('cargo')->where('cargos_id', $exist->cargos_id)->get();
