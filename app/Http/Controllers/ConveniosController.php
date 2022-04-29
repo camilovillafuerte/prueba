@@ -9,8 +9,10 @@ use App\Models\contenido_articulos;
 use Illuminate\Http\Request;
 use App\Models\convenios;
 use App\Models\convenios_clausulas;
+use App\Models\historial_usuario;
 use App\Models\imagenes_convenios;
 use App\Models\tipo_convenios;
+use App\Models\Usuario;
 use DateTime;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
@@ -114,8 +116,15 @@ class ConveniosController extends Controller
 
         $response = [
             'estado'  => true,
-            'mensaje' => 'Convenio guardado'
+            'mensaje' => 'Plantilla guardado'
         ];
+        $historial = new historial_usuario();
+        $historial->usuario_id = intval($data->id_usuario);
+        $historial->titulo = "Inserción";
+        $historial->detalle = "Se ingreso una plantilla";
+        $historial->dato_nuevo=stripslashes(json_encode($data)); ///probar esto
+        $historial->fecha_creacion = date('Y-m-d H:i:s');
+        $historial->save();  
 
         return response()->json($response);
     }
@@ -197,6 +206,13 @@ class ConveniosController extends Controller
             'estado'  => true,
             'mensaje' => 'Convenio guardado'
         ];
+        $historial = new historial_usuario();
+        $historial->usuario_id = intval($data->id_usuario);
+        $historial->titulo = "Inserción";
+        $historial->detalle = "Se ingreso un convenio";
+        $historial->dato_nuevo=stripslashes(json_encode($data));
+        $historial->fecha_creacion = date('Y-m-d H:i:s');
+        $historial->save();  
 
         return response()->json($response);
     }
@@ -500,6 +516,15 @@ class ConveniosController extends Controller
                 'mensaje' => 'No existe el convenio !!'
             ];
         }
+        //$usuario= Usuario::where('personal_id',intval($data->id_personal))->first();
+        $historial = new historial_usuario();
+        $historial->usuario_id = intval($data->id_personal);
+        $historial->titulo = "Modificación";
+        $historial->detalle = "Se modifico un nombre de un convenio";
+        $historial->dato_viejo =intval($data->id_convenio);
+        $historial->dato_nuevo=stripslashes(json_encode($data));
+        $historial->fecha_creacion = date('Y-m-d H:i:s');
+        $historial->save();  
 
         return response()->json($response);
     }
@@ -534,6 +559,15 @@ class ConveniosController extends Controller
                 'mensaje' => 'El convenio no existe'
             ];
         }
+       // $usuario= Usuario::where('personal_id',intval($data->id_personal))->first();
+        $historial = new historial_usuario();
+        $historial->usuario_id = intval($data->id_personal);
+        $historial->titulo = "Modificación";
+        $historial->detalle = "Se subio un PDF del convenio";
+        $historial->dato_viejo =intval($data->id_convenio);
+        $historial->dato_nuevo=stripslashes(json_encode($data));
+        $historial->fecha_creacion = date('Y-m-d H:i:s');
+        $historial->save();  
 
         return response()->json($response);
     }
@@ -683,6 +717,16 @@ class ConveniosController extends Controller
             'status' => true,
             'message' => 'Se ha actualizado el documento !!'
         ];
+        $historial = new historial_usuario();
+        $historial->usuario_id = intval($data->id_usuario);
+        $historial->titulo = "Modificación";
+        $historial->detalle = "Se modifico un convenio";
+        $historial->dato_viejo =intval($data->id_convenio);
+        //$historial->dato_viejo=$this->show($data);
+        $historial->dato_nuevo=stripslashes(json_encode($data));
+        $historial->fecha_creacion = date('Y-m-d H:i:s');
+        $historial->save();  
+
 
         return response()->json($response);
     }

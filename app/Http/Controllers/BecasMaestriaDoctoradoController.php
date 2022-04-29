@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\beneficios_becas;
 use App\Models\enfermedades_cronicas;
 use App\Models\especificar_alergias;
+use App\Models\historial_usuario;
 use App\Models\m_beneficios;
 use App\Models\pdf_solicitudes;
 use App\Models\s_aprobadas;
@@ -442,6 +443,14 @@ class BecasMaestriaDoctoradoController extends Controller
                 'mensaje' => 'No existe la solicitud'
             ];
         }
+        $historial = new historial_usuario();
+        $historial->usuario_id = intval($data->id_personal);
+        $historial->titulo = "Modificación";
+        $historial->detalle = "Se modifico el estado de una solicitud de becas";
+        $historial->dato_viejo =intval($data->id);
+        $historial->dato_nuevo=json_encode($data);
+        $historial->fecha_creacion = date('Y-m-d H:i:s');
+        $historial->save();  
         return response()->json($response);
     }
 
@@ -542,6 +551,14 @@ class BecasMaestriaDoctoradoController extends Controller
     }
 
     }
+        $historial = new historial_usuario();
+        $historial->usuario_id = intval($data->id_personal);
+        $historial->titulo = "Modificación";
+        $historial->detalle = "Se modifico una solicitud de becas";
+        $historial->dato_viejo =intval($data->id);
+        $historial->dato_nuevo=json_encode($data);
+        $historial->fecha_creacion = date('Y-m-d H:i:s');
+        $historial->save();  
 
     return response()->json($response);
 }

@@ -211,7 +211,7 @@ class UsuarioController extends Controller{
         $response = []; $funciones = [];
 
         if($usuario){
-            $funcion_usuario = funcionalidad_usuario::where('usuario_id', $usuario->id)->get();
+            $funcion_usuario = funcionalidad_usuario::where('usuario_id', $usuario->id)->orderBy('funcion_id','ASC')->get();
 
             if($funcion_usuario->count() > 0){
 

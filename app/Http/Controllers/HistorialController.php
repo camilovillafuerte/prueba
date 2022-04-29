@@ -47,7 +47,7 @@ class HistorialController extends Controller
 
     public function traerdatoshistorial(){
         $buscar=DB::select("select p.cedula, (p.apellido1 || ' ' || p.apellido2)as Apellidos, p.nombres,
-        h.detalle, h.dato_viejo,h.dato_nuevo,h.fecha_creacion
+        h.id, h.titulo, h.detalle, h.dato_viejo,h.dato_nuevo,h.fecha_creacion
         
         
         from esq_datos_personales.personal p
@@ -72,4 +72,51 @@ class HistorialController extends Controller
 
 
     }
+
+
+    public function traerdatoshistorialxid($id){
+        $buscar=DB::select("select h.id, h.titulo, h.detalle, h.dato_viejo,h.dato_nuevo,h.fecha_creacion
+        
+        from esq_dricb.historial_usuarios h 
+        where h.id = ".$id." "
+    );
+    if($buscar){
+            
+        $response=[
+            'estado'=> true,
+            'datos'=> $buscar,
+        ];
+    }else{
+        $response=[
+            'estado'=> false,
+            'mensaje'=> 'No existen datos'
+        ];
+
+    }
+    return response()->json($response);
+
+
+    }
+
+    public function historialxid($id){
+        $consulta =historial_usuario::select('dato_viejo','dato_nuevo')->where('id',$id)->first();
+        if( $consulta){
+            $response=[
+                'estado'=> true,
+                'datos'=> $consulta
+            ];
+        }else{
+            $response=[
+                'estado'=> false,
+                'mensaje'=> 'No existen datos'
+            ];
+    
+        }
+     
+       return response()->json($response);
+  
+      //return ($response);
+
+    }
+
 }
