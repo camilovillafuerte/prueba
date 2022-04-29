@@ -315,6 +315,70 @@ class ConveniosController extends Controller
         return response()->json($newData);
     }
 
+
+    public function show_v2($id)
+    {
+        $data = convenios::find($id);
+        $imagen1 = imagenes_convenios::find($data->imagen1_id);
+        $imagen2 = imagenes_convenios::find($data->imagen2_id);
+        $tipoConvenios = tipo_convenios::where('id_convenios', $id)->first();
+        $clausulas = convenios_clausulas::where('id_convenios', $id)->get();
+
+        $newClau = [];
+        foreach ($clausulas as $c) {
+            $clau = clausulas::find($c->id_clausulas);
+            $retConCla = convenios_clausulas::where('id_convenios', $id)->where('id_clausulas', $c->id_clausulas)->where('estado','A')->first();
+            if($retConCla)
+            {
+            $contenido = contenido::find($retConCla->id_contenidos);
+            $retContArt = contenido_articulos::where('id_contenidos', $retConCla->id_contenidos)->where('estado','A')->get();
+
+            $newArt = [];
+            foreach ($retContArt as $art) {
+                $articulo = articulos::find($art->id_articulos);
+
+                $auxArt = [
+                    'art_id' => $articulo->id,
+                    'des_art' => $articulo->des_art,
+                    'subtipo' => $articulo->subtipo,
+                    'estado'=>$art->estado
+                ];
+                $newArt[] = $auxArt;
+            }
+
+            $aux = [
+                'id' => $c->id_clausulas,
+                'nombre' => $clau->nombre_clau,
+                'id_contenido' => $contenido->id,
+                'descripcion' => $contenido->des_cont,
+                'tipo' => $contenido->tipo,
+                'estado'=> $retConCla->estado,
+                'articulos' => $newArt
+            ];
+
+            $newClau[] = $aux;
+
+            }
+
+        }
+        $newData = [
+            'id_usuario' => $data->usuario_id,
+            'id_tipoconvenio' => $tipoConvenios->nombretc_id,
+            'id_tipoespecifico' => $tipoConvenios->id_convenios_especificos,
+            'id_imagen1' => $imagen1->id,
+            'id_imagen2' => $imagen2->id,
+            'urlimagen1' => $imagen1->url_imagen,
+            'urlimagen2' => $imagen2->url_imagen,
+            'nombre_convenio' => $data->titulo_convenio,
+            'comparecientes' => $tipoConvenios->descripcion_tc,
+            'clausulas' => $newClau,
+            'selectFirmaEmisor' => $data->femisor_id,
+            'selectFirmaReceptor' => $data->freceptor_id,
+            'PDF'=> $data->PDF
+        ];
+        return response()->json($newData);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -721,7 +785,8 @@ class ConveniosController extends Controller
         $historial->usuario_id = intval($data->id_usuario);
         $historial->titulo = "Modificación";
         $historial->detalle = "Se modifico un convenio";
-        $historial->dato_viejo =intval($data->id_convenio);
+        $convertir=json_encode($this->show_v2($data->id_convenio));
+        $historial->dato_viejo =$convertir;
         //$historial->dato_viejo=$this->show($data);
         $historial->dato_nuevo=stripslashes(json_encode($data));
         $historial->fecha_creacion = date('Y-m-d H:i:s');
