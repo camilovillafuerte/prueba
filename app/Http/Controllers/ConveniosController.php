@@ -122,7 +122,7 @@ class ConveniosController extends Controller
         $historial->usuario_id = intval($data->id_usuario);
         $historial->titulo = "Inserción";
         $historial->detalle = "Se ingreso una plantilla";
-        $historial->dato_nuevo=json_encode($data);
+        $historial->dato_nuevo=stripslashes(json_encode($data)); ///probar esto
         $historial->fecha_creacion = date('Y-m-d H:i:s');
         $historial->save();  
 
@@ -210,7 +210,7 @@ class ConveniosController extends Controller
         $historial->usuario_id = intval($data->id_usuario);
         $historial->titulo = "Inserción";
         $historial->detalle = "Se ingreso un convenio";
-        $historial->dato_nuevo=json_encode($data);
+        $historial->dato_nuevo=stripslashes(json_encode($data));
         $historial->fecha_creacion = date('Y-m-d H:i:s');
         $historial->save();  
 
@@ -522,7 +522,7 @@ class ConveniosController extends Controller
         $historial->titulo = "Modificación";
         $historial->detalle = "Se modifico un nombre de un convenio";
         $historial->dato_viejo =intval($data->id_convenio);
-        $historial->dato_nuevo=json_encode($data);
+        $historial->dato_nuevo=stripslashes(json_encode($data));
         $historial->fecha_creacion = date('Y-m-d H:i:s');
         $historial->save();  
 
@@ -565,7 +565,7 @@ class ConveniosController extends Controller
         $historial->titulo = "Modificación";
         $historial->detalle = "Se subio un PDF del convenio";
         $historial->dato_viejo =intval($data->id_convenio);
-        $historial->dato_nuevo=json_encode($data);
+        $historial->dato_nuevo=stripslashes(json_encode($data));
         $historial->fecha_creacion = date('Y-m-d H:i:s');
         $historial->save();  
 
@@ -723,7 +723,7 @@ class ConveniosController extends Controller
         $historial->detalle = "Se modifico un convenio";
         $historial->dato_viejo =intval($data->id_convenio);
         //$historial->dato_viejo=$this->show($data);
-        $historial->dato_nuevo=json_encode($data);
+        $historial->dato_nuevo=stripslashes(json_encode($data));
         $historial->fecha_creacion = date('Y-m-d H:i:s');
         $historial->save();  
 

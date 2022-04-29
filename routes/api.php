@@ -487,6 +487,8 @@ Route::get('historial',[HistorialController::class,'traerdatoshistorial']);
 
 Route::get('historial/{id}',[HistorialController::class,'traerdatoshistorialxid']);
 
+Route::get('prueba-historial/{id}',[HistorialController::class,'historialxid']);
+
 //Usuarios registrados en el sistema DRICB
 Route::get('usuarios/dricb',[UsuarioController::class,'UsuariosDRICB']);
 
