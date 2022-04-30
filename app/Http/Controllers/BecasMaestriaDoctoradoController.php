@@ -443,10 +443,20 @@ class BecasMaestriaDoctoradoController extends Controller
                 'mensaje' => 'No existe la solicitud'
             ];
         }
+
+        $universidad=DB::select("select (p.apellido1 || ' ' || p.apellido2)as Apellidos, p.nombres, uni.nombre as Universidad_Destino
+        from esq_datos_personales.p_universidad uni
+        join esq_dricb.solicitudes s on s.universidad_id=uni.iduniversidad
+        join esq_datos_personales.personal p on s.personal_id= p.idpersonal
+        where s.id=$data->id
+        ");
+
+       // return $universidad;
+
         $historial = new historial_usuario();
         $historial->usuario_id = intval($data->id_personal);
         $historial->titulo = "Modificación";
-        $historial->detalle = "Se modifico el estado de una solicitud de becas";
+        $historial->detalle = "Se modifico el estado de la solicitud de becas de ".json_encode($universidad).$soli_beca->estado_solicitud; // agregar el nombre de la persona y a la universidad
         $historial->dato_viejo =intval($data->id);
         $historial->dato_nuevo=json_encode($data);
         $historial->fecha_creacion = date('Y-m-d H:i:s');
@@ -551,10 +561,20 @@ class BecasMaestriaDoctoradoController extends Controller
     }
 
     }
+
+    $universidad=DB::select("select (p.apellido1 || ' ' || p.apellido2)as Apellidos, p.nombres, uni.nombre as Universidad_Destino
+        from esq_datos_personales.p_universidad uni
+        join esq_dricb.solicitudes s on s.universidad_id=uni.iduniversidad
+        join esq_datos_personales.personal p on s.personal_id= p.idpersonal
+        where s.id=$data->id
+        ");
+
+       // return $universidad;
+       
         $historial = new historial_usuario();
         $historial->usuario_id = intval($data->id_personal);
         $historial->titulo = "Modificación";
-        $historial->detalle = "Se modifico una solicitud de becas";
+        $historial->detalle = "Se modifico la solicitud de becas de ".json_encode($universidad);// se edito el usuario a la universidad tal
         $historial->dato_viejo =intval($data->id);
         $historial->dato_nuevo=json_encode($data);
         $historial->fecha_creacion = date('Y-m-d H:i:s');

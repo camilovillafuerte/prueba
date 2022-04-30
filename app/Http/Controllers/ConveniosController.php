@@ -121,8 +121,9 @@ class ConveniosController extends Controller
         $historial = new historial_usuario();
         $historial->usuario_id = intval($data->id_usuario);
         $historial->titulo = "Inserción";
-        $historial->detalle = "Se ingreso una plantilla";
+        $historial->detalle = "Se ingreso la plantilla ".$data->nombre_convenio; //poner el nombre del convenio
         $historial->dato_nuevo=stripslashes(json_encode($data)); ///probar esto
+        //$historial->extra=($data->nombre_convenio);
         $historial->fecha_creacion = date('Y-m-d H:i:s');
         $historial->save();  
 
@@ -209,8 +210,9 @@ class ConveniosController extends Controller
         $historial = new historial_usuario();
         $historial->usuario_id = intval($data->id_usuario);
         $historial->titulo = "Inserción";
-        $historial->detalle = "Se ingreso un convenio";
+        $historial->detalle = "Se ingreso el convenio ".$data->nombre_convenio;
         $historial->dato_nuevo=stripslashes(json_encode($data));
+       // $historial->extra=($data->nombre_convenio);
         $historial->fecha_creacion = date('Y-m-d H:i:s');
         $historial->save();  
 
@@ -584,9 +586,10 @@ class ConveniosController extends Controller
         $historial = new historial_usuario();
         $historial->usuario_id = intval($data->id_personal);
         $historial->titulo = "Modificación";
-        $historial->detalle = "Se modifico un nombre de un convenio";
+        $historial->detalle = "Se modifico el nombre del convenio ".$convenio->titulo_convenio;
         $historial->dato_viejo =intval($data->id_convenio);
         $historial->dato_nuevo=stripslashes(json_encode($data));
+       // $historial->extra=($data->nombre_convenio);
         $historial->fecha_creacion = date('Y-m-d H:i:s');
         $historial->save();  
 
@@ -623,11 +626,25 @@ class ConveniosController extends Controller
                 'mensaje' => 'El convenio no existe'
             ];
         }
-       // $usuario= Usuario::where('personal_id',intval($data->id_personal))->first();
+
+        //obtener los apellidos y nopmbres del usuario
+    //    $usuario= DB::select("Select (p.apellido1 || ' ' || p.apellido2)as Apellidos, p.nombres
+    //    from esq_datos_personales.personal p
+    //    join esq_dricb.usuarios u on u.personal_id = p.idpersonal
+    //    where p.idpersonal=$data->id_personal");
+        //    return $usuario;
+
+     //obtener el nommbre del convenio
+
+    //  return $convenio;
+
+       
+    
+      
         $historial = new historial_usuario();
         $historial->usuario_id = intval($data->id_personal);
         $historial->titulo = "Modificación";
-        $historial->detalle = "Se subio un PDF del convenio";
+        $historial->detalle = "Se subio un PDF del convenio ".$convenio->titulo_convenio;
         $historial->dato_viejo =intval($data->id_convenio);
         $historial->dato_nuevo=stripslashes(json_encode($data));
         $historial->fecha_creacion = date('Y-m-d H:i:s');
@@ -784,11 +801,11 @@ class ConveniosController extends Controller
         $historial = new historial_usuario();
         $historial->usuario_id = intval($data->id_usuario);
         $historial->titulo = "Modificación";
-        $historial->detalle = "Se modifico un convenio";
+        $historial->detalle = "Se modifico el convenio ". $convenio->titulo_convenio;
         $convertir=json_encode($this->show_v2($data->id_convenio));
         $historial->dato_viejo =$convertir;
-        //$historial->dato_viejo=$this->show($data);
         $historial->dato_nuevo=stripslashes(json_encode($data));
+        $historial->extra=($data->nombre_convenio);
         $historial->fecha_creacion = date('Y-m-d H:i:s');
         $historial->save();  
 

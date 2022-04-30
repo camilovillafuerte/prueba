@@ -791,10 +791,20 @@ public function consultarPeriodo($idpersonal){
             'mensaje' => 'No existe la solicitud'
         ];
     }
+
+    $universidad=DB::select("select (p.apellido1 || ' ' || p.apellido2)as Apellidos, p.nombres, uni.nombre as Universidad_Destino
+    from esq_datos_personales.p_universidad uni
+    join esq_dricb.solicitudes s on s.universidad_id=uni.iduniversidad
+    join esq_datos_personales.personal p on s.personal_id= p.idpersonal
+    where s.id=$data->id
+    ");
+
+   // return $universidad;
+
         $historial = new historial_usuario();
         $historial->usuario_id = intval($data->id_personal);
         $historial->titulo = "Modificación";
-        $historial->detalle = "Se modifico el estado de una solicitud de movilidad";
+        $historial->detalle = "Se modifico el estado de la solicitud movilidad de ".json_encode($universidad).$soli_movi->estado_solicitud;
         $historial->dato_viejo =intval($data->id);
         $historial->dato_nuevo=json_encode($data);
         $historial->fecha_creacion = date('Y-m-d H:i:s');
@@ -944,10 +954,20 @@ public function updateSolicitudMovilidad_v2(Request $request)
     }
 
     }
+
+    $universidad=DB::select("select (p.apellido1 || ' ' || p.apellido2)as Apellidos, p.nombres, uni.nombre as Universidad_Destino
+    from esq_datos_personales.p_universidad uni
+    join esq_dricb.solicitudes s on s.universidad_id=uni.iduniversidad
+    join esq_datos_personales.personal p on s.personal_id= p.idpersonal
+    where s.id=$data->id
+    ");
+
+   // return $universidad;
+
         $historial = new historial_usuario();
         $historial->usuario_id = intval($data->id_personal);
         $historial->titulo = "Modificación";
-        $historial->detalle = "Se modifico una solicitud de movilidad";
+        $historial->detalle = "Se modifico la solicitud movilidad de ".json_encode($universidad);
         $historial->dato_viejo =intval($data->id);
         $historial->dato_nuevo=json_encode($data);
         $historial->fecha_creacion = date('Y-m-d H:i:s');
