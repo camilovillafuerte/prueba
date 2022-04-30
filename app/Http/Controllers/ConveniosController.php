@@ -801,7 +801,7 @@ class ConveniosController extends Controller
         $historial = new historial_usuario();
         $historial->usuario_id = intval($data->id_usuario);
         $historial->titulo = "Modificación";
-        $historial->detalle = "Se modifico el convenio ". $convenio->titulo_convenio;
+        $historial->detalle = "Se modifico el convenio ".$convenio->titulo_convenio;
         $convertir=json_encode($this->show_v2($data->id_convenio));
         $historial->dato_viejo =$convertir;
         $historial->dato_nuevo=stripslashes(json_encode($data));
