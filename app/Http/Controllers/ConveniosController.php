@@ -119,7 +119,7 @@ class ConveniosController extends Controller
             'mensaje' => 'Plantilla guardado'
         ];
         $historial = new historial_usuario();
-        $historial->usuario_id = intval($data->id_personal);
+        $historial->usuario_id = intval($data->id_usuario);
         $historial->titulo = "Inserción";
         $historial->detalle = "Se ingreso la plantilla ".$data->nombre_convenio; //poner el nombre del convenio
         $historial->dato_nuevo=stripslashes(json_encode($data)); ///probar esto
