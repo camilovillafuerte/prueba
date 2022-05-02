@@ -1064,8 +1064,3 @@ public function updateSolicitudMovilidad_v2(Request $request)
      return response()->json($response);
     }
 }
-
-
-
-
-
