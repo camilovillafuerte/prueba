@@ -55,6 +55,12 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
+        'becas' => [
+            'driver' => 'local',
+            'root' => storage_path('app/becas'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
         
         'conveniosv' => [
             'driver' => 'local',

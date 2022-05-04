@@ -507,3 +507,8 @@ Route::get('funcionalidad/nombre',[FuncionalidadController::class,'getFuncionali
 
 //agregar funcionalidad
 Route::post('add/funcionalidad-usuario',[Funcionalidad_usuarioController::class,'agregarFuncionalidad']);
+//generar reporte
+Route::post('convenio/reporte/pdf', [PdfController::class, 'convenioReportePdf']);
+
+//generar reporte becas
+Route::post('becas/reporte/pdf', [PdfController::class, 'becasReportePdf']);
