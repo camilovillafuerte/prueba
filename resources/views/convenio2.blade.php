@@ -57,15 +57,15 @@
             height : 80px;
             width: 80px;
             opacity: 0.6;
-         
         }
+
         .box .right {
             position:absolute;
             top:0;
             margin-right:0;
             text-align: right;
-
         }
+
         .scale-down {object-fit: scale-down}
 
     </style>
@@ -76,14 +76,14 @@
         <div style="display: flex; justify-content: space-between;">
             <div style="width: 100% !important; ">
             <div class="box">
-                    <img src='{{$data->urlimagen1}}' alt="" style="margin-left: -650px;margin-top:3px;">
+                    <img src='{{ $data->urlimagen1 }}' alt="" style="margin-left: -650px;margin-top:3px;">
                 </div>
             </div>
 
 
             <div style="width: 100% !important; ">
             <div class="box">
-                    <img src='{{$data->urlimagen2}}' alt=""  style="margin-left: 650px;margin-top:3px;">
+                    <img src='{{ $data->urlimagen2 }}' alt=""  style="margin-left: 650px;margin-top:3px;">
                 </div>
             </div>
         </div>

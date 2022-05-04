@@ -271,12 +271,14 @@ Route::get('interfaz/contenido/{params}', [InterfazController::class, 'getInterf
 
 //Rutas para usuario
 Route::get('usuario/login/{personal_id}',[UsuarioController::class, 'loginsistema']);
+
 Route::get('usuario/search/{id}', [UsuarioController::class, 'searchUser']);
 Route::get('usuario/funcionalidad/{id}', [UsuarioController::class, 'getFuncionalidades']);
+
 // Route::put('usuario/update', [UsuarioController::class, 'updateUsuario']);
 // Route::post('usuario/upload-image', [UsuarioController::class, 'uploadImageServer']);
 // Route::post('usuario/update-password', [UsuarioController::class, 'updatePassword']);
-// Route::put('usuario/reset-password', [UsuarioController::class, 'actualizarContrasena']);
+//Route::put('usuario/reset-password', [UsuarioController::class, 'actualizarContrasena']);
 
 //Ruta para insertar convenios especificos y recuperar
 Route::get('convenio-especifico/get', [Convenios_especificosController::class, 'getConvenios']);
@@ -288,6 +290,7 @@ Route::get('convenio-new/{tipo_documento}', [ConveniosController::class, 'getCon
 Route::get('convenio-new/get/{id}', [ConveniosController::class, 'show']);
 Route::post('convenio-new-guardado', [ConveniosController::class, 'guardar']);
 Route::get('convenio/get/{id}',[ConveniosController::class,'findconvenio']);
+
 Route::put('convenio/eliminar', [ConveniosController::class, 'eliminarConvenio']);
 Route::put('convenio/update/aprobado', [ConveniosController::class, 'updateConveniosAprobados']);
 Route::put('convenio/update/pdf', [ConveniosController::class, 'updatePDFURl']);
@@ -298,7 +301,7 @@ Route::get('clausulas-new', [ClausulasController::class, 'getClausulas_v2']);
 Route::post('clausulas-new', [ClausulasController::class, 'newClausala']);
 
 //Enviar el correo
-Route::post('email/forget-password', [MailerController::class, 'forget_password']);
+//Route::post('email/forget-password', [MailerController::class, 'forget_password']);
 
 //Ruta para obtener nombre de tipo de convenios
 Route::get('nombre-tipo-convenio', [Nombre_tipoconvenioController::class, 'get_nombre']);
@@ -323,6 +326,7 @@ Route::put('delete/carrosel',[InterfazController::class, 'deleteCarrosel']);
 //Ruta para subir documento al servidor ftp
 Route::post('documento/mas-informacion', [Interfaz_contenidoController::class, 'subirDocumento']);
 Route::post('documento/reglamento', [Interfaz_contenidoController::class, 'subirDocumento']);
+
 
 //modificar la pagina Nosotros
 Route::put('pagina-nosotros/update',[Interfaz_contenidoController::class,'updateNosotros']);
@@ -503,3 +507,8 @@ Route::get('funcionalidad/nombre',[FuncionalidadController::class,'getFuncionali
 
 //agregar funcionalidad
 Route::post('add/funcionalidad-usuario',[Funcionalidad_usuarioController::class,'agregarFuncionalidad']);
+//generar reporte
+Route::post('convenio/reporte/pdf', [PdfController::class, 'convenioReportePdf']);
+
+//generar reporte becas
+Route::post('becas/reporte/pdf', [PdfController::class, 'becasReportePdf']);
