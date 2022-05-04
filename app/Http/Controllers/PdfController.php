@@ -243,9 +243,38 @@ class PdfController extends Controller{
             $datos = (object)[ 'request' => $data, 'becas' => $becas_];
     
             $path = storage_path().'/app/becas/'.$namePDf;
-            $pdf = PDF::loadView('reporteTipoBecas', ['data' => $datos])->save($path)->setPaper("A4","Landscape");
-            // $pdf->setPaper("A4","Landscape");
-            $pdf->stream($namePDf);
+            $pdf = PDF::loadView('reporteTipoBecas', ['data' => $datos])->setPaper("A4","Landscape")->save($path);
+            $response = [
+                'estado' => true,
+                'mensaje' => 'PDF generado con éxito',
+                'file' => $namePDf
+            ];
+
+        
+        return response()->json($response);  
+
+    }
+
+    public function movilidadReportepdf(Request $request)
+    {
+        $data = (object)$request->data;
+        $data->estado = strtoupper($data->estado);
+        $response = [];
+        $movilidad=$this->consultarSolicitudesMovilidad($data->tipo,$data->estado,$data->fecha_inicio,$data->fecha_fin);
+        $movilidad_=json_decode(json_encode($movilidad));
+        $item = 0;
+        switch($data->estado){
+            case "A":   $item = "aprobado";     break;
+            case "R":   $item = "rechazado";     break;
+            case "P":   $item = "pendiente";     break;
+        }
+        $namePDf = "Tipo-movilidad-".$item.".pdf";
+        $exist = Storage::disk('movilidad')->exists($namePDf);
+       
+            $datos = (object)[ 'request' => $data, 'movilidad' => $movilidad_];
+    
+            $path = storage_path().'/app/movilidad/'.$namePDf;
+            $pdf = PDF::loadView('reporteTipoMovilidad', ['data' => $datos])->setPaper("A4","Landscape")->save($path);
             $response = [
                 'estado' => true,
                 'mensaje' => 'PDF generado con éxito',
@@ -283,8 +312,8 @@ class PdfController extends Controller{
         join esq_dricb.solicitudes s on p.idpersonal = s.personal_id
         join esq_datos_personales.p_universidad u on u.iduniversidad = s.universidad_id
         join esq_dricb.natu_intercambios ni on ni.id = s.naturaleza_id 
-        where s.tipo = '$tipo' and s.estado_solicitud='$estado' and s.estado='A'
-        order by s.id DESC");
+        where s.tipo = '$tipo' and s.estado_solicitud='$estado'  and s.fcreacion_solicitud BETWEEN '$fecha_inicio' and '$fecha_fin'
+        order by s.fcreacion_solicitud ASC");
 
         }
         
@@ -297,6 +326,43 @@ class PdfController extends Controller{
         }
         return ($response);
     }
+
+    public function consultarSolicitudesMovilidad($tipo, $estado,$fecha_inicio,$fecha_fin){
+
+        if($estado=='A')
+        {
+            $buscar=DB::select("select s.id,p.cedula,(p.apellido1 || ' ' || p.apellido2)as Apellidos, p.nombres, u.nombre as Universidad_Destino, es.nombre As Nombre_carrera, ni.descripcion as Naturaleza, s.fecha_inicio, s.fecha_fin, s.estado_solicitud, sa.pdf as pdf_final
+            from esq_datos_personales.personal p
+            join esq_dricb.solicitudes s on p.idpersonal = s.personal_id
+            join esq_dricb.s_aprobadas sa on sa.solicitud_id = s.id
+            join esq_inscripciones.escuela es on es.idescuela = s.escuela_id
+            join esq_datos_personales.p_universidad u on u.iduniversidad = s.universidad_id
+            join esq_dricb.natu_intercambios ni on ni.id = s.naturaleza_id 
+            where s.tipo = '$tipo' and s.estado_solicitud='$estado' and s.estado='A' and s.fcreacion_solicitud BETWEEN '$fecha_inicio' and '$fecha_fin'
+            order by s.fcreacion_solicitud ASC");
+        }
+        else
+        {
+            $buscar=DB::select("select s.id,p.cedula,(p.apellido1 || ' ' || p.apellido2)as Apellidos, p.nombres, u.nombre as Universidad_Destino, es.nombre As Nombre_carrera, ni.descripcion as Naturaleza, s.fecha_inicio, s.fecha_fin, s.estado_solicitud
+            from esq_datos_personales.personal p
+            join esq_dricb.solicitudes s on p.idpersonal = s.personal_id
+            join esq_inscripciones.escuela es on es.idescuela = s.escuela_id
+            join esq_datos_personales.p_universidad u on u.iduniversidad = s.universidad_id
+            join esq_dricb.natu_intercambios ni on ni.id = s.naturaleza_id 
+            where s.tipo = '$tipo' and s.estado_solicitud='$estado'  and s.fcreacion_solicitud BETWEEN '$fecha_inicio' and '$fecha_fin'
+            order by s.fcreacion_solicitud ASC");
+
+        }
+       
+        if($buscar){
+            $response=$buscar;
+        }else{
+            $response=[];
+
+        }
+        return ($response);
+    }
+
 
     private function scapeHtml($data){
         #valores a escapar

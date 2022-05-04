@@ -61,6 +61,12 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
+        'movilidad' => [
+            'driver' => 'local',
+            'root' => storage_path('app/movilidad'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
         
         'conveniosv' => [
             'driver' => 'local',

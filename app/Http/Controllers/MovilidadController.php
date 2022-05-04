@@ -1021,46 +1021,5 @@ public function updateSolicitudMovilidad_v2(Request $request)
 
     }
 
-    public function pdf_solicitudMovilidad($id){
-
-     /*   $data = solicitudes::find($id);
-        $imagen1 = imagenes_solicitudes::find($data->logo_id);
-        $imagen1 = imagenes_convenios::find($data->imagenescon_id);
-    */
-    $buscar1=$this->pdf_solicitud($id);
-    $buscar2=json_decode(json_encode($buscar1));
     
-    if ($buscar2){
-        $semestre=$this->consultarPeriodo($buscar2->idpersonal);
-        $materias=m_materias::where('solicitud_id',intval($id))
-        ->where('estado','=','A')
-        ->orderBy('id','ASC' )
-        ->get();
-        if($materias)
-        {
-           
-            $buscar2->materias=$materias;
-            $buscar2->carrera=$semestre;
-            $response= [
-            'estado'=> true,
-            'datos' => $buscar2,
-        ];
-    }
-    }else{
-        $response= [
-            'estado'=> false,
-            'mensaje' => 'No existe la solicitud'
-        ];
-    
-    }
-   
-   /* $newData = [
-        'logo_id' => $imagen1->logo_id,
-        'urlimagen' => $imagen1->url_imagen,
-    ];*/
-    $datos = compact('buscar2');
-    $pdf = PDF::loadView('movilidad', ['datos' => $datos]);
-    return $pdf->stream();
-     return response()->json($response);
-    }
 }

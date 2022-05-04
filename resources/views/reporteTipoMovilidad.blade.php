@@ -149,11 +149,11 @@
         <div style="display:flex; margin-top: 40px;align-items: flex-start;">
             <h5 style="margin-top: 10px; margin-left: 700px; ">Desde {{ $data->request->fecha_inicio }} Hasta {{ $data->request->fecha_fin }}</h5>
             @if($data->request->estado == 'A')
-           <h4 style="margin-bottom: 10px; margin-top: 10px;">Reporte de Becas Aprobados</h4>
+           <h4 style="margin-bottom: 10px; margin-top: 10px;">Reporte de Movilidad Aprobados</h4>
            @elseif($data->request->estado == 'R')
-           <h4>Reporte de Becas Rechazadas</h4>
+           <h4>Reporte de Movilidad Rechazadas</h4>
            @else
-           <h4>Reporte de Becas Pendientes</h4>
+           <h4>Reporte de Movilidad Pendientes</h4>
            @endif
         </div>
 
@@ -165,24 +165,24 @@
                     <th scope="col" class="w-10">Cédula</th>
                     <th scope="col" class="w-50">Nombres</th>
                     <th scope="col" class="w-30">Universidad Destino</th>
-                    <th scope="col" class="w-20">Facultad</th>
+                    <th scope="col" class="w-20">Nombre Carrera</th>
                     <th scope="col" class="w-20">Naturaleza Movilidad</th>
                     <th scope="col" class="w-20">Fecha Inicio</th>
                     <th scope="col" class="w-20">Fecha Fin</th>
                   </tr>
             </thead>
             <tbody>
-                @if(count($data->becas)>0)
-                @for($i = 0; $i < count($data->becas); $i++)
+                @if(count($data->movilidad)>0)
+                @for($i = 0; $i < count($data->movilidad); $i++)
                 <tr>
                     <th scope="col" class="w-5">{{ $i + 1 }}</th>
-                    <td class="w-10">{{ $data->becas[$i]->cedula }}</td>
-                    <td class="w-50 text-center">{{ $data->becas[$i]->nombres }} {{ $data->becas[$i]->apellidos }}</td>
-                    <td class="w-30 text-center">{{ $data->becas[$i]->universidad_destino }}</td>
-                    <td class="w-20 text-center">{{ $data->becas[$i]->nombre_facultad }}</td>
-                    <td class="w-20 text-center">{{ $data->becas[$i]->naturaleza }}</td>
-                    <td class="w-20 text-center">{{ $data->becas[$i]->fecha_inicio }}</td>
-                    <td class="w-20 text-center">{{ $data->becas[$i]->fecha_fin }}</td>
+                    <td class="w-10">{{ $data->movilidad[$i]->cedula }}</td>
+                    <td class="w-50 text-center">{{ $data->movilidad[$i]->nombres }} {{ $data->movilidad[$i]->apellidos }}</td>
+                    <td class="w-30 text-center">{{ $data->movilidad[$i]->universidad_destino }}</td>
+                    <td class="w-20 text-center">{{ $data->movilidad[$i]->nombre_carrera }}</td>
+                    <td class="w-20 text-center">{{ $data->movilidad[$i]->naturaleza }}</td>
+                    <td class="w-20 text-center">{{ $data->movilidad[$i]->fecha_inicio }}</td>
+                    <td class="w-20 text-center">{{ $data->movilidad[$i]->fecha_fin }}</td>
                 </tr>
                 @endfor
                 @endif
@@ -198,7 +198,7 @@
                 </div>
                 <div style="width: 50%; position: absolute; bottom: 0px; right: 0px;">
                     <small>
-                        Total de resultados: {{ count($data->becas) }}
+                        Total de resultados: {{ count($data->movilidad) }}
                     </small>
                 </div>
             </div>

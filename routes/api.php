@@ -512,3 +512,6 @@ Route::post('convenio/reporte/pdf', [PdfController::class, 'convenioReportePdf']
 
 //generar reporte becas
 Route::post('becas/reporte/pdf', [PdfController::class, 'becasReportePdf']);
+
+//generar reporte movilidad
+Route::post('movilidad/reporte/pdf', [PdfController::class, 'movilidadReportePdf']);
