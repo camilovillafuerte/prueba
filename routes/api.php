@@ -472,7 +472,7 @@ Route::put('actualizar-solicitud-becas',[BecasMaestriaDoctoradoController::class
 
 
 //Obtener pdf de Solicitud de Movilidad
-Route::get('pdf-solicitud/movilidad/{id}',[MovilidadController::class,'pdf_solicitudMovilidad']);
+//Route::get('pdf-solicitud/movilidad/{id}',[MovilidadController::class,'pdf_solicitudMovilidad']);
 
 
 //Ruta para obtener todas los datos de la tabla imagenes_solicitudes
@@ -515,3 +515,6 @@ Route::post('becas/reporte/pdf', [PdfController::class, 'becasReportePdf']);
 
 //generar reporte movilidad
 Route::post('movilidad/reporte/pdf', [PdfController::class, 'movilidadReportePdf']);
+
+//Obtener pdf de Solicitud de Movilidad
+Route::post('pdf-solicitud/movilidad/{id}',[PdfController::class,'pdfSolicitudMovilidad']);
