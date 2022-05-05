@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
-// use PDF;
-use Barryvdh\DomPDF\Facade\PDF;
+use PDF;
+
 
 class PdfController extends Controller{
 
