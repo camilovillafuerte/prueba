@@ -126,6 +126,18 @@
             .m-1{
                 margin:0.5rem;
             }
+
+            table{
+    table-layout: fixed;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid blue;
+    width: 100px;
+    word-wrap: break-word;
+}
+
         </style>
     </head>
     <body>
@@ -158,31 +170,31 @@
         </div>
 
        <main style="margin-left: -10px; margin-top: 1.5rem;">
-        <table >
+        <table border="2">
             <thead>
                 <tr>
-                    <th scope="col" class="w-5">#</th>
-                    <th scope="col" class="w-10">Cédula</th>
-                    <th scope="col" class="w-50">Nombres</th>
-                    <th scope="col" class="w-30">Universidad Destino</th>
-                    <th scope="col" class="w-20">Facultad</th>
-                    <th scope="col" class="w-20">Naturaleza Movilidad</th>
-                    <th scope="col" class="w-20">Fecha Inicio</th>
-                    <th scope="col" class="w-20">Fecha Fin</th>
+                    <th style="width: 5%;" scope="col" >#</th>
+                    <th style="width: 12%;" scope="col" >Cédula</th>
+                    <th style="width: 23%;" scope="col" >Nombres</th>
+                    <th style="width: 20%;" scope="col" >Universidad Destino</th>
+                    <th style="width: 15%;" scope="col" >Facultad</th>
+                    <th style="width: 13%;" scope="col" >Naturaleza Movilidad</th>
+                    <th style="width: 12%;" scope="col" >Fecha Inicio</th>
+                    <th style="width: 12%;" scope="col" >Fecha Fin</th>
                   </tr>
             </thead>
             <tbody>
                 @if(count($data->becas)>0)
                 @for($i = 0; $i < count($data->becas); $i++)
                 <tr>
-                    <th scope="col" class="w-5">{{ $i + 1 }}</th>
-                    <td class="w-10">{{ $data->becas[$i]->cedula }}</td>
-                    <td class="w-50 text-center">{{ $data->becas[$i]->nombres }} {{ $data->becas[$i]->apellidos }}</td>
-                    <td class="w-30 text-center">{{ $data->becas[$i]->universidad_destino }}</td>
-                    <td class="w-20 text-center">{{ $data->becas[$i]->nombre_facultad }}</td>
-                    <td class="w-20 text-center">{{ $data->becas[$i]->naturaleza }}</td>
-                    <td class="w-20 text-center">{{ $data->becas[$i]->fecha_inicio }}</td>
-                    <td class="w-20 text-center">{{ $data->becas[$i]->fecha_fin }}</td>
+                    <th scope="col" style="width: 5%;">{{ $i + 1 }}</th>
+                    <td style="width: 12%;" class="text-center">{{ $data->becas[$i]->cedula }}</td>
+                    <td style="width: 23%;" class="text-center">{{ $data->becas[$i]->nombres }} {{ $data->becas[$i]->apellidos }}</td>
+                    <td style="width: 20%;" class="text-center">{{ $data->becas[$i]->universidad_destino }}</td>
+                    <td style="width: 15%;" class="text-center">{{ $data->becas[$i]->nombre_facultad }}</td>
+                    <td style="width: 13%;" class="text-center">{{ $data->becas[$i]->naturaleza }}</td>
+                    <td style="width: 12%;" class="text-center">{{ $data->becas[$i]->fecha_inicio }}</td>
+                    <td style="width: 12%;" class="text-center">{{ $data->becas[$i]->fecha_fin }}</td>
                 </tr>
                 @endfor
                 @endif

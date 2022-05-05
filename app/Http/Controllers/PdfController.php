@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
-use PDF;
+// use PDF;
+use Barryvdh\DomPDF\Facade\PDF;
 
 class PdfController extends Controller{
 
@@ -312,7 +313,7 @@ class PdfController extends Controller{
         join esq_dricb.solicitudes s on p.idpersonal = s.personal_id
         join esq_datos_personales.p_universidad u on u.iduniversidad = s.universidad_id
         join esq_dricb.natu_intercambios ni on ni.id = s.naturaleza_id 
-        where s.tipo = '$tipo' and s.estado_solicitud='$estado'  and s.fcreacion_solicitud BETWEEN '$fecha_inicio' and '$fecha_fin'
+        where s.tipo = '$tipo' and s.estado_solicitud='$estado' and s.estado='A' and s.fcreacion_solicitud BETWEEN '$fecha_inicio' and '$fecha_fin'
         order by s.fcreacion_solicitud ASC");
 
         }
@@ -349,7 +350,7 @@ class PdfController extends Controller{
             join esq_inscripciones.escuela es on es.idescuela = s.escuela_id
             join esq_datos_personales.p_universidad u on u.iduniversidad = s.universidad_id
             join esq_dricb.natu_intercambios ni on ni.id = s.naturaleza_id 
-            where s.tipo = '$tipo' and s.estado_solicitud='$estado'  and s.fcreacion_solicitud BETWEEN '$fecha_inicio' and '$fecha_fin'
+            where s.tipo = '$tipo' and s.estado_solicitud='$estado' and s.estado='A'  and s.fcreacion_solicitud BETWEEN '$fecha_inicio' and '$fecha_fin'
             order by s.fcreacion_solicitud ASC");
 
         }
