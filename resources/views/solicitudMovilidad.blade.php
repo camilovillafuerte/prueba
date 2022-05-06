@@ -72,7 +72,25 @@
         .page-break {
         page-break-after: always;
         }
+
+        .border{
+   
+    border-bottom: 2px solid rgb(187, 216, 190) !important; 
+    margin-bottom: 2%; 
+    background-color: rgb(187, 216, 190);
+    margin-top: 1.5%;
+    text-align: center;
+            }
+
+            .justify {
+            text-align: justify;
+        }
         
+        th, td {
+    border: 1px solid blue;
+    width: 100px;
+    word-wrap: break-word;
+}
 </style>
 
     </style>
@@ -91,88 +109,183 @@
     <main>
     <div class="card mt-4">
               <div class="card-header" style="margin-top: 3%;">
-                    <h2 class="card-title font-weight-bold">Solicitudes</h2>
+                    <h2 class="card-title font-weight-bold">Solicitudes de Movilidad</h2>
               </div>
-            <div class="row" class="justify" style="margin-left:10%; margin-top:5%">
-              <div class="card-body"   class="col-sm">
-                    <table class="table table-bordered">
-                        <thead>
-                           
-                               <div style="margin-right: 10px; font-weight: bold">
-                               <p>Cédula</p>
-                               <p>Apellido Paterno</p>
-                               <p>Apellido Materno</p>
-                               <p>Nombres</p>
-                               <p>Fecha de Nacimiento</p>
-                               <p>Nacionalidad</p>
-                               <p>Genero</p>
-                               <p>Estado civil</p>
-                               <p>Discapacidad</p>
-                               <p>Tipo de sangre</p>
-                               <p>Correo institucional</p>
-                               <p>Correo personal</p>
-                               <h3 style="font-weight-bold">Contacto de Emergencia</h3>
-                               <p>Nombres</p>
-                               <p>Apellidos</p>
-                               <p>Teléfono</p>
-                               <p>Teléfono</p>
-                               <h3 style="font-weight-bold">Residencia</h3>
-                               <p>País</p>
-                               <p>Provincia</p>
-                               <p>Cantón</p>
-                               <p>Residencia calle 1</p>
-                               <p>Residencia calle 2</p>
-                               <p>Residencia calle 3</p>
-                               <p>Teléfono domicilio</p>
-                               <p>Teléfono personal</p>
-                              
-                              
-                               </div>
-                          
-                        </thead>
-                        </div>
+              </div>
+              <div class="border ">
+                            <h4>DATOS PERSONALES</h4>
+                </div>
+                    <table >
+                    <thead >
+                        <tr>
+                        @forelse ($datos as $b2)
+                                    <th>Cedula</th>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->cedula }}</td>
 
-                       
-                            @forelse ($datos as $b2)
-                              <div class="row" class="col-sm">
-                                  <div style="margin-top: 3%; text-align: justify">
-                                <p>{{ $b2->cedula }}</p>
-                                <p>{{ $b2->apellido1 }}</p>
-                                <p>{{ $b2->apellido2 }}</p>
-                                <p>{{ $b2->nombres}}</p> 
-                                <p>{{ $b2->fecha_nacimiento}}</p> 
-                                <p>{{ $b2->nacionalidad}}</p> 
-                                <p>{{ $b2->genero}}</p>
-                                <p>{{ $b2->estado_civil}}</p>
-                                <p>{{ $b2->nombre_discapacidad}}</p>
-                                <p>{{ $b2->tipo_sangre}}</p>
-                                <p>{{ $b2->correo_personal_institucional}}</p> 
-                                <p>{{ $b2->correo_personal_alternativo}}</p>
-                                <p><br></p> 
-                                <p>{{ $b2->contacto_emergencia_nombres}}</p>
-                                <p>{{ $b2->contacto_emergencia_apellidos}}</p> 
-                                <p>{{ $b2->contacto_emergencia_telefono_1}}</p> 
-                                <p>{{ $b2->contacto_emergencia_telefono_2}}</p>                    
-                                <p><br></p>
-                                <p>{{ $b2->pais}}</p>
-                                <p>{{ $b2->provincia}}</p>
-                                <p>{{ $b2->canton}}</p> 
-                                <p>{{ $b2->residencia_calle_1}}</p> 
-                                <p>{{ $b2->residencia_calle_2}}</p> 
-                                <p>{{ $b2->residencia_calle_3}}</p> 
-                                <p>{{ $b2->telefono_personal_domicilio}}</p> 
-                                <p>{{ $b2->telefono_personal_celular}}</p> 
-                               
-                            </div>
-                                  
-                                </div>
-                               
+                                    <th>Nombres</th>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->nombres }}</td>
+                        </tr>
+                        <tr>
+                                    <th>Apellido Paterno</th>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->apellido1 }}</td>
 
-                            @empty
+                                    <th>Apellido Materno</th>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->apellido2 }}</td>
+                        </tr>
+                      
+                        <tr>
+                         <th>Tipo de Sangre</th>
+                        <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;"> {{ $b2->tipo_sangre }}</td>
+      
+                         <th>Fecha de nacimiento</th>
+                           <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;"> {{ $b2->fecha_nacimiento }}</td> 
+                           </tr>
+                           <tr>   
+                         <th>Nacionalidad</th>
+                        <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;"> {{ $b2->nacionalidad }}</td>   
+     
+                         <th>Genero</th>
+                        <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->genero}}</td>    
+                        </tr>
 
-                            @endforelse
+                        <tr>
+                        <th>Estado Civil</th>
+                        <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->estado_civil}}</td>    
                         
-                    </table>
+                        <th>Discapacidad</th>
+                        <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->nombre_discapacidad}}</td>    
+                        
+                        </tr>
+
+                        <tr>
+                        <th>Correo Insitucional</th>
+                        <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->correo_personal_institucional}}</td>    
+                        </tr>
+                        <tr>
+                        <th>Correo Alternativo</th>
+                        <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->correo_personal_alternativo}}</td>    
+                        </tr>
+                        
+
+                        @empty
+                        @endforelse
+       
+                
+                </thead>
+                </table>
+                <div class="border ">
+                            <h4>CONTACTO DE EMERGENCIA</h4>
+                         </div>
+
+                    <table >
+                    <thead >
+                        <tr>
+                        @forelse ($datos as $b2)
+                                    <th>Nombres</th>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->contacto_emergencia_nombres}}</td>
+
+                                    <th>Apellidos</th>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->contacto_emergencia_apellidos}}</td>
+                        </tr>
+                        <tr>
+                      
+                                    <th>Telefono 1</th>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->contacto_emergencia_telefono_1 }}</td>
+
+                                    <th>Telefono 2</th>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->contacto_emergencia_telefono_2}}</td>
+                        </tr>
+                        @empty
+                        @endforelse
+                </thead>
+                </table>
+                <div class="border ">
+                            <h4>RESIDENCIA</h4>
+                         </div>
+                         <table >
+                    <thead >
+                        <tr>
+                        @forelse ($datos as $b2)
+                                    <th>País</th>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->pais}}</td>
+
+                                    <th>Provincia</th>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->provincia}}</td>
+                                    </tr>
+                                    <tr>
+                                    <th>Canton </th>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->canton }}</td>
+                                    <th>Calle 1</th>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->residencia_calle_1}}</td>
+                                    </tr>
+                                    <tr>
+                                    <th>Calle 2</th>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->residencia_calle_2}}</td> 
+                                    <th>Calle 3</th>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->residencia_calle_3}}</td> 
+                                    </tr>
+                                    <tr>
+                                    <th>Telefono Personal Domicilio</th>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->telefono_personal_domicilio}}</td> 
+                                    </tr>
+                                    <tr>
+                                    <th>Telefono Personal Celular </th>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->telefono_personal_celular}}</td> 
+                                    </tr>
+                        @empty
+                        @endforelse
+                </thead>
+                </table>
+                <div class="border " >
+                            <h4>SOLICITUD</h4>
+                         </div>
+
+                         <table >
+                    <thead >
+                        <tr>
+                        @forelse ($datos as $b2)
+                                    <th>Carrera</th>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->nombre_carrera}}</td>
+
+                                    <th>Modalidad</th>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->modalidad}}</td>
+                                    </tr>
+                                    <tr>
+                                    <th>Tipo Destino </th>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->tipo_destino }}</td>
+                                    <th>Universidad Destino</th>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->universidad_destino}}</td>
+                                    </tr>
+                                    <tr>
+                                    <th>Carrera Destino</th>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->carrera_destino}}</td> 
+                                    <th>Semestre a cursar</th>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->semestre_cursar}}</td> 
+                                    </tr>
+                                    <tr>
+                                    <th>Fecha Inicio</th>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->fecha_inicio}}</td> 
+                                    </tr>
+                                    <tr>
+                                    <th>Fecha Fin</th>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->fecha_fin}}</td> 
+                                    </tr>
+                                    <tr>
+                                    <th>Naturaleza</th>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->naturaleza}}</td> 
+                                    <th>Becas o Apoyo</th>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->beca_apoyo}}</td> 
+                                    </tr>
+                                    <tr>
+                                        <th> Monto</th>
+                                        <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->monto_referencial}}</td> 
+                                   
+                                    </tr>
+                        @empty
+                        @endforelse
+                </thead>
+                </table>         
+                       
                     </main>
 
     <!-- <footer>

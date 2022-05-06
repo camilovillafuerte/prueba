@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\convenios;
+use App\Models\imagenes_convenios;
+use App\Models\imagenes_solicitudes;
 use App\Models\m_materias;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -388,8 +390,9 @@ class PdfController extends Controller{
         $namePDf = "Solicitud-movilidad-".$item.".pdf";
         $exist = Storage::disk('solicitudmovilidad')->exists($namePDf);
        
-            $datos = (object)[ 'request' => $data, 'solicitudmovilidad' => $soli_movi_];
-    
+            $datos = (object)[ 'request' => $data, 'movilidad' => $soli_movi_];
+            $datos = compact('datos');
+            //    $pdf = PDF::loadView('movilidad', ['datos' => $datos]);
             $path = storage_path().'/app/solicitudmovilidad/'.$namePDf;
             $pdf = PDF::loadView('solicitudMovilidad', ['data' => $datos])->save($path);
             $response = [
@@ -399,7 +402,7 @@ class PdfController extends Controller{
             ];
 
         
-        return response()->json($soli_movi_); 
+        return response()->json($response); 
 
     }
 
@@ -444,7 +447,7 @@ class PdfController extends Controller{
     
     join esq_dricb.pdf_solicitudes pdf on pdf.solicitud_id = s.id
     where pdf.tipo='M' and s.tipo='M' and s.id = ".$id."");
-    $buscar2= $buscar2=(object)$buscar[0];
+    $buscar2= $buscar2=(object)$buscar;
     return ($buscar2);
 
     }
@@ -468,7 +471,7 @@ class PdfController extends Controller{
     $buscar2=json_decode(json_encode($buscar1));
     
     if ($buscar2){
-        $semestre=$this->consultarPeriodo($buscar2->idpersonal);
+       // $semestre=$this->consultarPeriodo($buscar2->idpersonal);
         $materias=m_materias::where('solicitud_id',intval($id))
         ->where('estado','=','A')
         ->orderBy('id','ASC' )
@@ -477,21 +480,16 @@ class PdfController extends Controller{
         {
            
             $buscar2->materias=$materias;
-            $buscar2->carrera=$semestre;
-            $response= [
-            'estado'=> true,
-            'datos' => $buscar2,
-        ];
+           // $buscar2->carrera=$semestre;
+            $response= $buscar2;
+       
     }
     }else{
-        $response= [
-            'estado'=> false,
-            'mensaje' => 'No existe la solicitud'
-        ];
+        $response= [ ];
     
     }
 
-     return response()->json($response);
+     return ($response);
     }
 
 
@@ -505,7 +503,7 @@ class PdfController extends Controller{
         $namePDf = "Solicitud-becas-".$item.".pdf";
         $exist = Storage::disk('solicitudmovilidad')->exists($namePDf);
        
-            $datos = (object)[ 'request' => $data, 'solicitudmovilidad' => $solibecas_];
+            $datos = (object)[ 'request' => $data, 'becas' => $solibecas_];
     
             $path = storage_path().'/app/solicitudbecas/'.$namePDf;
             $pdf = PDF::loadView('solicitudBecas', ['data' => $datos])->save($path);
@@ -516,7 +514,7 @@ class PdfController extends Controller{
             ];
 
         
-        return response()->json($solibecas_); 
+        return response()->json($solibecas); 
 
     }
 
@@ -562,7 +560,7 @@ class PdfController extends Controller{
         join esq_dricb.pdf_solicitudes pdf on pdf.solicitud_id = s.id
     
         where pdf.tipo='B' and s.tipo='B' and s.id = ".$id."");
-        $becas2= $becas2=(object)$becas[0];
+        $becas2= $becas2=(object)$becas;
         return ($becas2);
     }
 
@@ -580,19 +578,31 @@ class PdfController extends Controller{
         if($beneficios)
          {
         $becas2->beneficios=$beneficios;
-        $response= [
-        'estado'=> true,
-        'datos' => $becas2,
-        ];
+        $response= $becas2;
+        
         }
         }else{
-         $response= [
-        'estado'=> false,
-        'mensaje' => 'No existe la solicitud'
-         ];
+         $response= [];
          }
 
-        return response()->json($response);    
+        return ($response);    
+    }
+
+    //Obtener la imagen 
+    public function getImgSolicitudes(){
+        $imagen=imagenes_solicitudes::where('id',1)->first();
+        if($imagen)
+        {
+            $imagen_convenio=imagenes_convenios::where('id',$imagen->imagenescon_id)->first();
+            $response=$imagen_convenio;
+        }
+        else
+        {
+            $response=[];
+
+        }
+
+        return ($response);
     }
 }
 
