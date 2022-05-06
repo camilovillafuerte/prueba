@@ -88,7 +88,7 @@
         
         th, td {
     border: 1px solid blue;
-    width: 100px;
+    width: 175px;
     word-wrap: break-word;
 }
 </style>
@@ -115,7 +115,7 @@
               <div class="border ">
                             <h4>DATOS PERSONALES</h4>
                 </div>
-                    <table >
+                    <table   style="margin: 0 auto;" >
                     <thead >
                         <tr>
                         @forelse ($datos as $b2)
@@ -172,12 +172,12 @@
        
                 
                 </thead>
-                </table>
+                </table >
                 <div class="border ">
                             <h4>CONTACTO DE EMERGENCIA</h4>
                          </div>
 
-                    <table >
+                    <table   style="margin: 0 auto;" >
                     <thead >
                         <tr>
                         @forelse ($datos as $b2)
@@ -202,7 +202,7 @@
                 <div class="border ">
                             <h4>RESIDENCIA</h4>
                          </div>
-                         <table >
+                         <table style="margin: 0 auto;">
                     <thead >
                         <tr>
                         @forelse ($datos as $b2)
@@ -240,7 +240,7 @@
                             <h4>SOLICITUD</h4>
                          </div>
 
-                         <table >
+                         <table   style="margin: 0 auto;">
                     <thead >
                         <tr>
                         @forelse ($datos as $b2)
