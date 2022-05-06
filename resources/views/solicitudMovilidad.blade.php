@@ -88,8 +88,9 @@
         
         th, td {
     border: 1px solid blue;
-    width: 175px;
+    width: 150px;
     word-wrap: break-word;
+    text-align: left;
 }
 </style>
 
@@ -119,7 +120,7 @@
                     <thead >
                         <tr>
                         @forelse ($datos as $b2)
-                                    <th>Cedula</th>
+                                    <th >Cedula</th>
                                     <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->cedula }}</td>
 
                                     <th>Nombres</th>
