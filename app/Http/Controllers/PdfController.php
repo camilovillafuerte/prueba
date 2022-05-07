@@ -497,24 +497,25 @@ class PdfController extends Controller{
         $data = (object)$request->data;
         $response = [];
         $solibecas=$this->beneficios($data->id);
-        $solibecas_=json_decode(json_encode($solibecas));
-        $item = 0;
+
+       // $solibecas1=$solibecas[0];
+        // $item = 0;
        
-        $namePDf = "Solicitud-becas-".$item.".pdf";
-        $exist = Storage::disk('solicitudmovilidad')->exists($namePDf);
+        // $namePDf = "Solicitud-becas.pdf";
+        // $exist = Storage::disk('solicitudbecas')->exists($namePDf);
        
-            $datos = (object)[ 'request' => $data, 'becas' => $solibecas_];
+        //     $datos = (object)[ 'request' => $data, 'becas' => $solibecas_];
     
-            $path = storage_path().'/app/solicitudbecas/'.$namePDf;
-            $pdf = PDF::loadView('solicitudBecas', ['data' => $datos])->save($path);
-            $response = [
-                'estado' => true,
-                'mensaje' => 'PDF generado con éxito',
-                'file' => $namePDf
-            ];
+        //     $path = storage_path().'/app/solicitudbecas/'.$namePDf;
+        //     $pdf = PDF::loadView('solicitudBecas', ['data' => $datos])->save($path);
+        //     $response = [
+        //         'estado' => true,
+        //         'mensaje' => 'PDF generado con éxito',
+        //         'file' => $namePDf
+        //     ];
 
         
-        return response()->json($solibecas); 
+        return response()->json($solibecas->0); 
 
     }
 
@@ -585,7 +586,7 @@ class PdfController extends Controller{
          $response= [];
          }
 
-        return ($response);    
+        return ($becas2);    
     }
 
     //Obtener la imagen 

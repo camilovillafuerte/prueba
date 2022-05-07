@@ -237,6 +237,7 @@
                         @endforelse
                 </thead>
                 </table>
+                <!-- <div class="page-break"></div> -->
                 <div class="border " >
                             <h4>SOLICITUD</h4>
                          </div>

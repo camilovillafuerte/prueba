@@ -173,10 +173,10 @@ th, td {
 
                 <tr>
 
-                    <td style="width: 12%;" class="text-center">{{ $data->becas[$i]->cedula }}</td>
-                    <td style="width: 23%;" class="text-center">{{ $data->becas[$i]->nombres }} </td>
-                    <td style="width: 20%;" class="text-center">{{ $data->becas[$i]->apellido1 }}</td>
-                    <td style="width: 15%;" class="text-center">{{ $data->becas[$i]->apellido2 }}</td>
+                    <td style="width: 12%;" class="text-center">{{ $data->becas->cedula }}</td>
+                    <td style="width: 23%;" class="text-center">{{ $data->becas->nombres }} </td>
+                    <td style="width: 20%;" class="text-center">{{ $data->becas->apellido1 }}</td>
+                    <td style="width: 15%;" class="text-center">{{ $data->becas->apellido2 }}</td>
  
                 </tr>
 
