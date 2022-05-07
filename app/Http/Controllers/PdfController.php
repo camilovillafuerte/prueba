@@ -501,21 +501,21 @@ class PdfController extends Controller{
        // $solibecas1=$solibecas[0];
         // $item = 0;
        
-        // $namePDf = "Solicitud-becas.pdf";
-        // $exist = Storage::disk('solicitudbecas')->exists($namePDf);
+        $namePDf = "Solicitud-becas.pdf";
+        $exist = Storage::disk('solicitudbecas')->exists($namePDf);
        
-        //     $datos = (object)[ 'request' => $data, 'becas' => $solibecas_];
+            $datos = (object)[ 'request' => $data, 'becas' => $solibecas];
     
-        //     $path = storage_path().'/app/solicitudbecas/'.$namePDf;
-        //     $pdf = PDF::loadView('solicitudBecas', ['data' => $datos])->save($path);
-        //     $response = [
-        //         'estado' => true,
-        //         'mensaje' => 'PDF generado con éxito',
-        //         'file' => $namePDf
-        //     ];
+            $path = storage_path().'/app/solicitudbecas/'.$namePDf;
+            $pdf = PDF::loadView('solicitudBecas', ['data' => $datos])->save($path);
+            $response = [
+                'estado' => true,
+                'mensaje' => 'PDF generado con éxito',
+                'file' => $namePDf
+            ];
 
         
-        return response()->json($solibecas->0); 
+        return response()->json($solibecas); 
 
     }
 
@@ -561,7 +561,7 @@ class PdfController extends Controller{
         join esq_dricb.pdf_solicitudes pdf on pdf.solicitud_id = s.id
     
         where pdf.tipo='B' and s.tipo='B' and s.id = ".$id."");
-        $becas2= $becas2=(object)$becas;
+        $becas2= $becas2=(object)$becas[0];
         return ($becas2);
     }
 

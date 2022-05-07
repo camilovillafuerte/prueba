@@ -131,6 +131,15 @@
     table-layout: fixed;
     width: 100%;
 }
+#contenedor {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#contenedor > div {
+  width: 50%;
+}
 
 th, td {
     border: 1px solid blue;
@@ -157,8 +166,29 @@ th, td {
         </header>
 
 
-       <main style="margin-left: -10px; margin-top: 1.5rem;">
-        <table border="2">
+       <main style="margin-top: 1.5rem;">
+
+        <div style="width: 100% !important; padding: 10px; text-align: center; background-color: rgb(63, 151, 67)">
+           <span>DATOS PERSONALES</span>
+        </div>
+        
+
+         {{-- <div style="width: 30%;padding: 10px;border: 1px solid black;">
+             <span>Cedula:</span>
+             <span>{{$data->becas->cedula}}</span>
+         </div>
+         <div style="width: 30%;padding: 10px;border: 1px solid black;">
+            <span>Cedula:</span>
+            <span>{{$data->becas->cedula}}</span>
+        </div>
+        <div style="width: 30%;padding: 10px;border: 1px solid black;">
+            <span>Cedula:</span>
+            <span>{{$data->becas->cedula}}</span>
+        </div> --}}
+
+
+
+        {{-- <table border="2">
             <thead>
                 <tr>
 
@@ -181,7 +211,7 @@ th, td {
                 </tr>
 
             </tbody>
-        </table>
+        </table> --}}
     </main>
         <!-- <footer >
             
