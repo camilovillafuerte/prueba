@@ -148,17 +148,22 @@ th, td {
 }
 
 .item{
-    /* margin:1em;
-    padding:1em; */
+    width: 30%;
     float:left;
+    
 }
 
 .item2{
+    width: 30%;
     float:left;
+    clear: both
 }
 .container{
-    width: 100%;
-    overflow:hidden;
+    width: 655px;
+    height: 500px;
+    overflow:visible;
+    /* border: black 5px dashed;  */
+    /* background-color:red; */
 }
 .page-break {
     page-break-after: always;
@@ -188,7 +193,7 @@ th, td {
            <span>DATOS PERSONALES</span>
         </div>
         
-<!-- <div class="container">>-->
+<!-- <div class="container">> -->
          
          <div class="item"; style="width: 30%;padding: 10px;border: 1px solid black;">
              <span>Cedula:</span>
