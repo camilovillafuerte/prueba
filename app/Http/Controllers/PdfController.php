@@ -384,13 +384,13 @@ class PdfController extends Controller{
         $data = (object)$request->data;
         $response = [];
         $soli_movi=$this->solicitudMovilidad($data->id);
-        $soli_movi_=json_decode(json_encode($soli_movi));
-        $item = 0;
+      //  $soli_movi_=json_decode(json_encode($soli_movi));
+       // $item = 0;
        
-        $namePDf = "Solicitud-movilidad-".$item.".pdf";
+        $namePDf = "Solicitud-movilidad.pdf";
         $exist = Storage::disk('solicitudmovilidad')->exists($namePDf);
        
-            $datos = (object)[ 'request' => $data, 'movilidad' => $soli_movi_];
+            $datos = (object)[ 'request' => $data, 'movilidad' => $soli_movi];
             $datos = compact('datos');
             //    $pdf = PDF::loadView('movilidad', ['datos' => $datos]);
             $path = storage_path().'/app/solicitudmovilidad/'.$namePDf;
@@ -515,7 +515,7 @@ class PdfController extends Controller{
         //     ];
 
         
-        return response()->json($solibecas->0); 
+        return response()->json($solibecas); 
 
     }
 
