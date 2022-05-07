@@ -198,7 +198,7 @@ th, td {
             <span>Nombres:</span>
             <span>{{$data->becas->nombres}}</span>
         </div>
-        <div class="item"; style="width: 30%;padding: 10px;border: 1px solid black;">
+        <div class="item"; style="width: 29.8%;padding: 10px;border: 1px solid black;">
             <span>Apellido Paterno:</span>
             <span>{{$data->becas->apellido1}}</span>
         </div>
