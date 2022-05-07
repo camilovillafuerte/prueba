@@ -173,18 +173,18 @@ th, td {
         </div>
         
 
-         {{-- <div style="width: 30%;padding: 10px;border: 1px solid black;">
+         <div style="width: 30%;padding: 10px;border: 1px solid black;">
              <span>Cedula:</span>
              <span>{{$data->becas->cedula}}</span>
          </div>
          <div style="width: 30%;padding: 10px;border: 1px solid black;">
-            <span>Cedula:</span>
-            <span>{{$data->becas->cedula}}</span>
+            <span>Nombres:</span>
+            <span>{{$data->becas->nombres}}</span>
         </div>
         <div style="width: 30%;padding: 10px;border: 1px solid black;">
-            <span>Cedula:</span>
-            <span>{{$data->becas->cedula}}</span>
-        </div> --}}
+            <span>Apellido Paterno:</span>
+            <span>{{$data->becas->apellido1}}</span>
+        </div>
 
 
 

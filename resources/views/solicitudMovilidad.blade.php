@@ -119,57 +119,56 @@
                     <table   style="margin: 0 auto;" >
                     <thead >
                         <tr>
-                        @forelse ($datos as $b2)
+                       
                                     <th >Cedula</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->cedula }}</td>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->cedula }}</td>
 
                                     <th>Nombres</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->nombres }}</td>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->nombres }}</td>
                         </tr>
                         <tr>
                                     <th>Apellido Paterno</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->apellido1 }}</td>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->apellido1 }}</td>
 
                                     <th>Apellido Materno</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->apellido2 }}</td>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->apellido2 }}</td>
                         </tr>
                       
                         <tr>
                          <th>Tipo de Sangre</th>
-                        <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;"> {{ $b2->tipo_sangre }}</td>
+                        <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;"> {{ $data->movilidad->tipo_sangre }}</td>
       
                          <th>Fecha de nacimiento</th>
-                           <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;"> {{ $b2->fecha_nacimiento }}</td> 
+                           <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;"> {{ $data->movilidad->fecha_nacimiento }}</td> 
                            </tr>
                            <tr>   
                          <th>Nacionalidad</th>
-                        <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;"> {{ $b2->nacionalidad }}</td>   
+                        <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;"> {{ $data->movilidad->nacionalidad }}</td>   
      
                          <th>Genero</th>
-                        <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->genero}}</td>    
+                        <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->genero}}</td>    
                         </tr>
 
                         <tr>
                         <th>Estado Civil</th>
-                        <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->estado_civil}}</td>    
+                        <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->estado_civil}}</td>    
                         
                         <th>Discapacidad</th>
-                        <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->nombre_discapacidad}}</td>    
+                        <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->nombre_discapacidad}}</td>    
                         
                         </tr>
 
                         <tr>
                         <th>Correo Insitucional</th>
-                        <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->correo_personal_institucional}}</td>    
+                        <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->correo_personal_institucional}}</td>    
                         </tr>
                         <tr>
                         <th>Correo Alternativo</th>
-                        <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->correo_personal_alternativo}}</td>    
+                        <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->correo_personal_alternativo}}</td>    
                         </tr>
                         
 
-                        @empty
-                        @endforelse
+                       
        
                 
                 </thead>
@@ -181,23 +180,22 @@
                     <table   style="margin: 0 auto;" >
                     <thead >
                         <tr>
-                        @forelse ($datos as $b2)
+                
                                     <th>Nombres</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->contacto_emergencia_nombres}}</td>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->contacto_emergencia_nombres}}</td>
 
                                     <th>Apellidos</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->contacto_emergencia_apellidos}}</td>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->contacto_emergencia_apellidos}}</td>
                         </tr>
                         <tr>
                       
                                     <th>Telefono 1</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->contacto_emergencia_telefono_1 }}</td>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->contacto_emergencia_telefono_1 }}</td>
 
                                     <th>Telefono 2</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->contacto_emergencia_telefono_2}}</td>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->contacto_emergencia_telefono_2}}</td>
                         </tr>
-                        @empty
-                        @endforelse
+        
                 </thead>
                 </table>
                 <div class="border ">
@@ -206,35 +204,34 @@
                          <table style="margin: 0 auto;">
                     <thead >
                         <tr>
-                        @forelse ($datos as $b2)
+                        
                                     <th>País</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->pais}}</td>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->pais}}</td>
 
                                     <th>Provincia</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->provincia}}</td>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->provincia}}</td>
                                     </tr>
                                     <tr>
                                     <th>Canton </th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->canton }}</td>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->canton }}</td>
                                     <th>Calle 1</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->residencia_calle_1}}</td>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->residencia_calle_1}}</td>
                                     </tr>
                                     <tr>
                                     <th>Calle 2</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->residencia_calle_2}}</td> 
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->residencia_calle_2}}</td> 
                                     <th>Calle 3</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->residencia_calle_3}}</td> 
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->residencia_calle_3}}</td> 
                                     </tr>
                                     <tr>
                                     <th>Telefono Personal Domicilio</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->telefono_personal_domicilio}}</td> 
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->telefono_personal_domicilio}}</td> 
                                     </tr>
                                     <tr>
                                     <th>Telefono Personal Celular </th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->telefono_personal_celular}}</td> 
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->telefono_personal_celular}}</td> 
                                     </tr>
-                        @empty
-                        @endforelse
+                       
                 </thead>
                 </table>
                 <!-- <div class="page-break"></div> -->
@@ -245,46 +242,45 @@
                          <table   style="margin: 0 auto;">
                     <thead >
                         <tr>
-                        @forelse ($datos as $b2)
+                     
                                     <th>Carrera</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->nombre_carrera}}</td>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->nombre_carrera}}</td>
 
                                     <th>Modalidad</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->modalidad}}</td>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->modalidad}}</td>
                                     </tr>
                                     <tr>
                                     <th>Tipo Destino </th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->tipo_destino }}</td>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->tipo_destino }}</td>
                                     <th>Universidad Destino</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->universidad_destino}}</td>
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->universidad_destino}}</td>
                                     </tr>
                                     <tr>
                                     <th>Carrera Destino</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->carrera_destino}}</td> 
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->carrera_destino}}</td> 
                                     <th>Semestre a cursar</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->semestre_cursar}}</td> 
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->semestre_cursar}}</td> 
                                     </tr>
                                     <tr>
                                     <th>Fecha Inicio</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->fecha_inicio}}</td> 
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->fecha_inicio}}</td> 
                                     </tr>
                                     <tr>
                                     <th>Fecha Fin</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->fecha_fin}}</td> 
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->fecha_fin}}</td> 
                                     </tr>
                                     <tr>
                                     <th>Naturaleza</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->naturaleza}}</td> 
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->naturaleza}}</td> 
                                     <th>Becas o Apoyo</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->beca_apoyo}}</td> 
+                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->beca_apoyo}}</td> 
                                     </tr>
                                     <tr>
                                         <th> Monto</th>
-                                        <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $b2->monto_referencial}}</td> 
+                                        <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->monto_referencial}}</td> 
                                    
                                     </tr>
-                        @empty
-                        @endforelse
+                      
                 </thead>
                 </table>         
                        

@@ -391,8 +391,7 @@ class PdfController extends Controller{
         $exist = Storage::disk('solicitudmovilidad')->exists($namePDf);
        
             $datos = (object)[ 'request' => $data, 'movilidad' => $soli_movi];
-            $datos = compact('datos');
-            //    $pdf = PDF::loadView('movilidad', ['datos' => $datos]);
+     
             $path = storage_path().'/app/solicitudmovilidad/'.$namePDf;
             $pdf = PDF::loadView('solicitudMovilidad', ['data' => $datos])->save($path);
             $response = [
@@ -402,7 +401,7 @@ class PdfController extends Controller{
             ];
 
         
-        return response()->json($response); 
+        return response()->json($soli_movi); 
 
     }
 
@@ -447,7 +446,7 @@ class PdfController extends Controller{
     
     join esq_dricb.pdf_solicitudes pdf on pdf.solicitud_id = s.id
     where pdf.tipo='M' and s.tipo='M' and s.id = ".$id."");
-    $buscar2= $buscar2=(object)$buscar;
+    $buscar2= $buscar2=(object)$buscar[0];
     return ($buscar2);
 
     }
@@ -489,7 +488,7 @@ class PdfController extends Controller{
     
     }
 
-     return ($response);
+     return ($buscar2);
     }
 
 
