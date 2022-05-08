@@ -24,9 +24,9 @@
                 margin-bottom: 10px;
             }
     
-            main{
+            /* main{
                 width: 100% !important;
-            }
+            } */
     
             footer {
                 position: fixed;
@@ -156,14 +156,19 @@ th, td {
 .item2{
     width: 30%;
     float:left;
-    clear: both
+    clear: left;
+}
+.item3{
+    width: 30%;
+    float:left;
+    /* clear: left; */
 }
 .container{
-    width: 655px;
-    height: 500px;
-    overflow:visible;
-    /* border: black 5px dashed;  */
-    /* background-color:red; */
+    /* width: 793px; */
+    height: 50px; 
+    overflow:hidden;
+     /* border: black 2px dashed;   */
+     /* background-color:red;  */
 }
 .page-break {
     page-break-after: always;
@@ -193,33 +198,38 @@ th, td {
            <span>DATOS PERSONALES</span>
         </div>
         
-<!-- <div class="container">> -->
+        <div class="container" style="width: 100%!important;">
          
-         <div class="item"; style="width: 30%;padding: 10px;border: 1px solid black;">
+         <div class="item"; style=" padding: 10px;border: 1px solid black;">
              <span>Cedula:</span>
              <span>{{$data->becas->cedula}}</span>
          </div>
-         <div class="item"; style="width: 33%;padding: 10px;border: 1px solid black;">
+         <div class="item"; style="padding: 10px;border: 1px solid black;">
             <span>Nombres:</span>
             <span>{{$data->becas->nombres}}</span>
         </div>
-        <div class="item"; style="width: 29.8%;padding: 10px;border: 1px solid black;">
+        <div class="item"; style="padding: 10px;border: 1px solid black;">
             <span>Apellido Paterno:</span>
             <span>{{$data->becas->apellido1}}</span>
         </div>
-        <div class="row";  style="width: 30%;padding: 10px;border: 1px solid black;">
+        </div>
+
+        <div class="container" style="width: 100%!important; margin-top: 5px">
+        <div  class="item";  style="padding: 10px;border: 1px solid black;">
             <span>Apellido Materno:</span>
             <span>{{$data->becas->apellido2}}</span>
         </div>
-        <div class="item"; style="width: 30%;padding: 10px;border: 1px solid black;">
+        <div class="item"; style="padding: 10px;border: 1px solid black;">
             <span>Tipo de Sangre:</span>
             <span>{{$data->becas->tipo_sangre}}</span>
         </div>
-        <div class="item"; style="width: 30%;padding: 10px;border: 1px solid black;">
+        <div class="item"; style="padding: 10px;border: 1px solid black;">
             <span>Fecha de Nacimiento:</span>
             <span>{{$data->becas->fecha_nacimiento}}</span>
         </div>
-        <div class="row"; style="width: 30%;padding: 10px;border: 1px solid black;">
+        </div>
+        <div class="container" style="width: 100%!important;  margin-top: 5px">
+        <div class="item"; style="width: 30%;padding: 10px;border: 1px solid black;">
             <span>Nacionalidad:</span>
             <span>{{$data->becas->nacionalidad}}</span>
         </div>
@@ -235,16 +245,18 @@ th, td {
             <span>Discapacidad:</span>
             <span>{{$data->becas->nombre_discapacidad}}</span>
         </div>
-        <div class="row"; style="width: 30%;padding: 10px;border: 1px solid black;">
+        </div>
+        <div class="container" style="width: 100%!important; margin-top: 5px">
+        <div class="item"; style="width: 30%;padding: 10px;border: 1px solid black;">
             <span>Correo institucional:</span>
             <span>{{$data->becas->correo_personal_institucional}}</span>
         </div>
-        <div class="row"; style="width: 30%;padding: 10px;border: 1px solid black;">
+        <div class="item"; style="width: 30%;padding: 10px;border: 1px solid black;">
             <span>Correo alternativo:</span>
             <span>{{$data->becas->correo_personal_alternativo}}</span>
         </div>
-      
-        <!-- </div> -->
+        </div>
+        
 
         <div style="width: 100% !important; padding: 10px; text-align: center; background-color: rgb(63, 151, 67)">
            <span>CONTACTO DE EMERGENCIA</span>
