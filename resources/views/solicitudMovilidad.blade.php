@@ -320,8 +320,31 @@ span.e {
 
     </div>
 
-        
-
+    <div style="width: 100% !important; padding: 10px; text-align: center; background-color: rgb(63, 151, 67)">
+           <span>HOMOLOGACION DE ESTUDIOS</span>
+    </div>
+    <table >
+            <thead>
+                <tr>
+                    <th scope="col" style="width:30%">Materia Origen</th>
+                    <th scope="col" style="width:30%">Clave</th>
+                    <th scope="col" style="width:30%">Materia Destino</th>
+                    <th scope="col" style="width:30%">Clave</th>
+                  </tr>
+            </thead>
+            <tbody>
+                @if($data->movilidad->count() > 0)
+                @for($i = 0; $i < $data->movilidad->count(); $i++)
+                <tr>
+                    <td style="width:30%">{{ $data->movilidad[$i]->materia_origen }}</td>
+                    <td style="width:30%">{{ $data->movilidad[$i]->codigo_origen }}</td>
+                    <td style="width:30%">{{ $data->movilidad[$i]->materia_destino }}</td>
+                    <td style="width:30%">{{ $data->movilidad[$i]->codigo_destino }}</td>
+                </tr>
+                @endfor
+                @endif
+            </tbody>
+        </table>
     </main>
 
     <!-- <footer>
