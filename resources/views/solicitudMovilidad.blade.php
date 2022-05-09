@@ -137,7 +137,7 @@ span.a {
   border: 1px solid blue;  
   /* background-color: yellow;  */
   text-align: center; 
-  font-size: 18px;
+  font-size: 16px;
 }
 
 span.b {
@@ -149,7 +149,7 @@ span.b {
   /* margin-bottom: 8px; */
   border: 1px solid blue;    
   text-align: center; 
-  font-size: 18px;
+  font-size: 16px;
 }
 span.c {
   display: inline-block;
@@ -274,7 +274,7 @@ span.e {
     </div>
     <div class="container4" style="margin-top: 5px">
     
-            <span class="a">Facultad: {{$data->movilidad->nombre_facultad}}</span>
+            <span class="a">Carrera: {{$data->movilidad->nombre_carrera}}</span>
     
             <span class="a">Modalidad: {{$data->movilidad->modalidad}}</span>
         
@@ -282,9 +282,9 @@ span.e {
    
             <span class="c">Universidad Destino:{{$data->movilidad->universidad_destino}}</span>
            
-             <span class="b">Campus Destino: {{$data->movilidad->campus_destino}}</span>
+             <span class="b">Carrera Destino: {{$data->movilidad->carrera_destino}}</span>
         
-             <span class="b">Numero Semestre: {{$data->movilidad->numero_semestre}}</span>
+             <span class="b">Semestre a Cursar: {{$data->movilidad->semestre_cursar}}</span>
        
              <span class="b">Fecha Incio: {{$data->movilidad->fecha_inicio}}</span>
              </div> 
@@ -300,9 +300,7 @@ span.e {
              <span class="c">Monto: {{$data->movilidad->monto_referencial}}</span>
             
           
-             @for($s = 0; $s < count($data->movilidad[$i]['materias']); $s++)
-            <span class="justify">{{ $data->movilidad[$i]['materias'][$s]}}</span>
-            @endfor
+           
              
     
              </div>
