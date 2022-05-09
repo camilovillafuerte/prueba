@@ -357,6 +357,15 @@ span.e {
              <span class="a">Becas o Apoyo: {{$data->becas->beca_apoyo}}</span>
         
              <span class="c">Monto: {{$data->becas->monto_referencial}}</span>
+            
+          
+                @for($i = 0; $i < $data->becas->count(); $i++)
+             
+            
+                    <span class="c">{{ $data->becas[$i]->beneficios }}</span>
+            
+                @endfor
+             
     
              </div>
              
