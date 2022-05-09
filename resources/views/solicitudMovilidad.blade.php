@@ -92,199 +92,239 @@
     word-wrap: break-word;
     text-align: left;
 }
+.container{
+    width: 660px; 
+    overflow: hidden;
+    height: 230px; 
+    /* border: black 2px dashed;   */
+     /* background-color:red;  */
+}
+.container2{
+    width: 660px; 
+    overflow: hidden;
+    height: 118px; 
+    /* border: black 2px dashed;   */
+}
+.container3{
+    width: 660px; 
+    overflow: hidden;
+    height: 170px; 
+    /* border: black 2px dashed;   */
+}
+.container4{
+    width: 660px; 
+    overflow: hidden;
+    height: 150px; 
+    /* border: black 2px dashed;    */
+}
+.container5{
+    width: 660px; 
+    overflow: hidden;
+    /* height: 300px;  */
+     /* border: black 2px dashed;  */
+    /* margin-top: 30px;    */
+}
+.page-break {
+    page-break-after: always;
+ }
+
+span.a {
+  display: inline-block; /* the default for span */
+  width: 205px;
+  height: 40px; 
+  margin-top: 6px; 
+  padding: 5px;
+  border: 1px solid blue;  
+  /* background-color: yellow;  */
+  text-align: center; 
+  font-size: 18px;
+}
+
+span.b {
+  display: inline-block;
+  width: 205px;
+  height: 30px;
+  padding: 5px;
+  margin-top: 8px;
+  /* margin-bottom: 8px; */
+  border: 1px solid blue;    
+  text-align: center; 
+  font-size: 18px;
+}
+span.c {
+  display: inline-block;
+  width: 648px;
+  height: 30px;
+  padding: 5px;
+  border: 1px solid blue;    
+  text-align: justify; 
+  font-size: 18px;
+  margin-bottom: 1px;
+}
+span.d {
+  display: inline-block; /* the default for span */
+  width: 315px;
+  height: 40px; 
+  margin-top: 6px; 
+  padding: 5px;
+  border: 1px solid blue;  
+  /* background-color: yellow;  */
+  text-align: center; 
+  font-size: 18px;
+}
+span.e {
+  display: inline-block;
+  width: 648px;
+  height: 50px;
+  padding: 5px;
+  border: 1px solid blue;    
+  text-align: justify; 
+  font-size: 18px;
+  margin-bottom: 1px;
+}
 </style>
-
-    </style>
-</head>
-
-<body>
-    <header>
-        <div style="display: flex; justify-content: space-between;">
-            <div style="width: 100% !important; ">
-            <div class="box">
-                    <img src='http://3.15.185.2/Contenido/Imagenes/escudo.png' alt="" style="margin-left: -650px;margin-top:3px;">
+    </head>
+    <body>
+        <header>
+            <div style="display: flex; justify-content: space-between;">
+                <div style="width: 100% !important; ">
+                <div class="box">
+                        <img src='{{ $data->request->imagen1 }}' alt="" style="margin-left: -650px;margin-top:3px;">
+                    </div>
+                </div>
+    
+                <div style="width: 100% !important; padding-top:5%; ">
+                    <h1 class="mt-3">Solicitud de Movilidad</h1>
+                  
                 </div>
             </div>
-    </header>
+        </header>
 
-    <main>
-    <div class="card mt-4">
-              <div class="card-header" style="margin-top: 3%;">
-                    <h2 class="card-title font-weight-bold">Solicitudes de Movilidad</h2>
-              </div>
-              </div>
-              <div class="border ">
-                            <h4>DATOS PERSONALES</h4>
-                </div>
-                    <table   style="margin: 0 auto;" >
-                    <thead >
-                        <tr>
-                       
-                                    <th >Cedula</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->cedula }}</td>
 
-                                    <th>Nombres</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->nombres }}</td>
-                        </tr>
-                        <tr>
-                                    <th>Apellido Paterno</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->apellido1 }}</td>
+       <main style="margin-top: 1.5rem;">
 
-                                    <th>Apellido Materno</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->apellido2 }}</td>
-                        </tr>
-                      
-                        <tr>
-                         <th>Tipo de Sangre</th>
-                        <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;"> {{ $data->movilidad->tipo_sangre }}</td>
-      
-                         <th>Fecha de nacimiento</th>
-                           <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;"> {{ $data->movilidad->fecha_nacimiento }}</td> 
-                           </tr>
-                           <tr>   
-                         <th>Nacionalidad</th>
-                        <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;"> {{ $data->movilidad->nacionalidad }}</td>   
+        <div style="width: 100% !important; padding: 10px; text-align: center; background-color: rgb(63, 151, 67)">
+           <span style="font-weight:bold">DATOS PERSONALES</span>
+        </div>
+
+        <div class="container" style="margin-top: 5px">
      
-                         <th>Genero</th>
-                        <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->genero}}</td>    
-                        </tr>
-
-                        <tr>
-                        <th>Estado Civil</th>
-                        <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->estado_civil}}</td>    
-                        
-                        <th>Discapacidad</th>
-                        <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->nombre_discapacidad}}</td>    
-                        
-                        </tr>
-
-                        <tr>
-                        <th>Correo Insitucional</th>
-                        <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->correo_personal_institucional}}</td>    
-                        </tr>
-                        <tr>
-                        <th>Correo Alternativo</th>
-                        <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->correo_personal_alternativo}}</td>    
-                        </tr>
-                        
-
-                       
+             <span class="a">Cedula: {{$data->movilidad->cedula}}</span>
        
-                
-                </thead>
-                </table >
-                <div class="border ">
-                            <h4>CONTACTO DE EMERGENCIA</h4>
-                         </div>
+             <span class="a">Nombres: {{$data->movilidad->nombres}}</span>
+   
+            <span class="a">Apellido Paterno: {{$data->movilidad->apellido1}}</span>
 
-                    <table   style="margin: 0 auto;" >
-                    <thead >
-                        <tr>
-                
-                                    <th>Nombres</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->contacto_emergencia_nombres}}</td>
+            <span class="a">Apellido Materno: {{$data->movilidad->apellido2}}</span>
+          
+            <span class="a">Tipo de Sangre: {{$data->movilidad->tipo_sangre}}</span>
 
-                                    <th>Apellidos</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->contacto_emergencia_apellidos}}</td>
-                        </tr>
-                        <tr>
-                      
-                                    <th>Telefono 1</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->contacto_emergencia_telefono_1 }}</td>
+            <span class="a">Fecha de Nacimiento: {{$data->movilidad->fecha_nacimiento}}</span>
 
-                                    <th>Telefono 2</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->contacto_emergencia_telefono_2}}</td>
-                        </tr>
+            <span class="a">Nacionalidad: {{$data->movilidad->nacionalidad}}</span>
+
+            <span class="a">Genero: {{$data->movilidad->genero}} </span>
+
+            <span class="a">Estado civil: {{$data->movilidad->estado_civil}}</span>
+            
+            <span class="a">Discapacidad: {{$data->movilidad->nombre_discapacidad}}</span>
+            
+            <span class="a">Correo institucional: {{$data->movilidad->correo_personal_institucional}}</span>
+
+            <span class="a">Correo alternativo: {{$data->movilidad->correo_personal_alternativo}}</span>
+
+        </div>
+
+        <div style="width: 100% !important; padding: 10px; text-align: center; background-color: rgb(63, 151, 67)">
+           <span style="font-weight:bold">CONTACTO DE EMERGENCIA</span>
+        </div>
+
+        <div div class="container2" style="margin-top: 5px">
+            <span class="a">Nombres: {{$data->movilidad->contacto_emergencia_nombres}}</span>
+    
+            <span class="a">Apellidos: {{$data->movilidad->contacto_emergencia_apellidos}}</span>
+      
+            <span class="a">Teléfono: {{$data->movilidad->contacto_emergencia_telefono_1}}</span>
+          
+            <span class="a">Teléfono: {{$data->movilidad->contacto_emergencia_telefono_2}}</span>
+            
+        </div>
+    <div style="width: 100% !important; padding: 10px; text-align: center; background-color: rgb(63, 151, 67)">
+           <span style="font-weight:bold">RESIDENCIA</span>
+    </div>
+        <div div class="container3" style="margin-top: 5px">
+            <span class="a">País: {{$data->movilidad->pais}}</span>
+    
+            <span class="a">Provincia: {{$data->movilidad->provincia}}</span>
+      
+            <span class="a">Cantón: {{$data->movilidad->canton}}</span>
+            
+            <span class="a">Calle 1: {{$data->movilidad->residencia_calle_1}}</span>
+            
+            <span class="a">Calle 2: {{$data->movilidad->residencia_calle_2}}</span>
+            
+            <span class="a">Calle 3: {{$data->movilidad->residencia_calle_3}}</span>
+
+            <span class="a">Teléfono domicilio: {{$data->movilidad->telefono_personal_domicilio}}</span>
+
+            <span class="a">Teléfono personal: {{$data->movilidad->telefono_personal_celular}}</span>
+        </div>
+    <div style="width: 100% !important; padding: 10px; text-align: center; background-color: rgb(63, 151, 67)">
+           <span style="font-weight:bold">DATOS SOLICITUD BECAS</span>
+    </div>
+    <div class="container4" style="margin-top: 5px">
+    
+            <span class="a">Facultad: {{$data->movilidad->nombre_facultad}}</span>
+    
+            <span class="a">Modalidad: {{$data->movilidad->modalidad}}</span>
         
-                </thead>
-                </table>
-                <div class="border ">
-                            <h4>RESIDENCIA</h4>
-                         </div>
-                         <table style="margin: 0 auto;">
-                    <thead >
-                        <tr>
-                        
-                                    <th>País</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->pais}}</td>
+            <span class="a">Destino: {{$data->movilidad->tipo_destino}}</span>
+   
+            <span class="c">Universidad Destino:{{$data->movilidad->universidad_destino}}</span>
+           
+             <span class="b">Campus Destino: {{$data->movilidad->campus_destino}}</span>
+        
+             <span class="b">Numero Semestre: {{$data->movilidad->numero_semestre}}</span>
+       
+             <span class="b">Fecha Incio: {{$data->movilidad->fecha_inicio}}</span>
+             </div> 
+            <div class="page-break"></div>
+            <div class="container5" style="margin-top: 30px">
+             
+            <span class="a">Fecha Fin: {{$data->movilidad->fecha_fin}}</span>
+        
+             <span class="a">Naturaleza: {{$data->movilidad->naturaleza}}</span>
+        
+             <span class="a">Becas o Apoyo: {{$data->movilidad->beca_apoyo}}</span>
+        
+             <span class="c">Monto: {{$data->movilidad->monto_referencial}}</span>
+            
+          
+             @for($s = 0; $s < count($data->movilidad[$i]['materias']); $s++)
+            <span class="justify">{{ $data->movilidad[$i]['materias'][$s]}}</span>
+            @endfor
+             
+    
+             </div>
+             
+        <div style="width: 100% !important; padding: 10px; text-align: center; background-color: rgb(63, 151, 67)">
+           <span>ESPECIFICACIONES ESPECIALES</span>
+        </div>
 
-                                    <th>Provincia</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->provincia}}</td>
-                                    </tr>
-                                    <tr>
-                                    <th>Canton </th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->canton }}</td>
-                                    <th>Calle 1</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->residencia_calle_1}}</td>
-                                    </tr>
-                                    <tr>
-                                    <th>Calle 2</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->residencia_calle_2}}</td> 
-                                    <th>Calle 3</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->residencia_calle_3}}</td> 
-                                    </tr>
-                                    <tr>
-                                    <th>Telefono Personal Domicilio</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->telefono_personal_domicilio}}</td> 
-                                    </tr>
-                                    <tr>
-                                    <th>Telefono Personal Celular </th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->telefono_personal_celular}}</td> 
-                                    </tr>
-                       
-                </thead>
-                </table>
-                <!-- <div class="page-break"></div> -->
-                <div class="border " >
-                            <h4>SOLICITUD</h4>
-                         </div>
+      <div class="container5" style="margin-top: 5px">
+             <span class="d">Tipo Alergias: {{$data->movilidad->alergias}}</span>
 
-                         <table   style="margin: 0 auto;">
-                    <thead >
-                        <tr>
-                     
-                                    <th>Carrera</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->nombre_carrera}}</td>
+             <span class="d">Poliza de Seguro: {{$data->movilidad->poliza_seguro}}</span>
 
-                                    <th>Modalidad</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->modalidad}}</td>
-                                    </tr>
-                                    <tr>
-                                    <th>Tipo Destino </th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->tipo_destino }}</td>
-                                    <th>Universidad Destino</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->universidad_destino}}</td>
-                                    </tr>
-                                    <tr>
-                                    <th>Carrera Destino</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->carrera_destino}}</td> 
-                                    <th>Semestre a cursar</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->semestre_cursar}}</td> 
-                                    </tr>
-                                    <tr>
-                                    <th>Fecha Inicio</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->fecha_inicio}}</td> 
-                                    </tr>
-                                    <tr>
-                                    <th>Fecha Fin</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->fecha_fin}}</td> 
-                                    </tr>
-                                    <tr>
-                                    <th>Naturaleza</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->naturaleza}}</td> 
-                                    <th>Becas o Apoyo</th>
-                                    <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->beca_apoyo}}</td> 
-                                    </tr>
-                                    <tr>
-                                        <th> Monto</th>
-                                        <td style="margin-top:10px; margin-bottom:1px; font-weight: lighter;">{{ $data->movilidad->monto_referencial}}</td> 
-                                   
-                                    </tr>
-                      
-                </thead>
-                </table>         
-                       
-                    </main>
+             <span class="e">Especificar Alergias: {{$data->movilidad->especificar_alergia}}</span>
+
+             <span class="e">Enfermedades Cronicas y Tratamiento: {{$data->movilidad->enfermedades_tratamiento}}</span>
+
+    </div>
+
+        
+
+    </main>
 
     <!-- <footer>
         <h1>www.styde.net</h1>

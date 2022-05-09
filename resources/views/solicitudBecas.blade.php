@@ -253,7 +253,7 @@ span.e {
                 </div>
     
                 <div style="width: 100% !important; padding-top:5%; ">
-                    <h1 class="mt-3">Solicitudes de Becas</h1>
+                    <h1 class="mt-3">Solicitud de Becas</h1>
                   
                 </div>
             </div>
@@ -359,12 +359,9 @@ span.e {
              <span class="c">Monto: {{$data->becas->monto_referencial}}</span>
             
           
-                @for($i = 0; $i < $data->becas->count(); $i++)
-             
-            
-                    <span class="c">{{ $data->becas[$i]->beneficios }}</span>
-            
-                @endfor
+             @for($s = 0; $s < count($data->becas[$i]['beneficios']); $s++)
+            <span class="justify">{{ $data->becas[$i]['beneficios'][$s]}}</span>
+            @endfor
              
     
              </div>
