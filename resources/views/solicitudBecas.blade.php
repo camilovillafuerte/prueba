@@ -131,6 +131,11 @@
     table-layout: fixed;
     width: 100%;
 }
+th, td {
+    border: 1px solid blue;
+    width: 100px;
+    word-wrap: break-word;
+}
 #contenedor {
   display: flex;
   flex-direction: row;

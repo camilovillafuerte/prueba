@@ -85,12 +85,14 @@
             .justify {
             text-align: justify;
         }
-        
-        th, td {
+table{
+    table-layout: fixed;
+    width: 103%;
+}
+th, td {
     border: 1px solid blue;
-    width: 150px;
+    width: 30%;
     word-wrap: break-word;
-    text-align: left;
 }
 .container{
     width: 660px; 
@@ -279,22 +281,23 @@ span.e {
     </div>
     <div class="container4" style="margin-top: 5px">
     
-            <span class="a">Carrera: {{$data->movilidad->nombre_carrera}}</span>
+            <span class="c">Carrera: {{$data->movilidad->nombre_carrera}}</span>
     
-            <span class="a">Modalidad: {{$data->movilidad->modalidad}}</span>
+            <span class="d">Modalidad: {{$data->movilidad->modalidad}}</span>
         
-            <span class="a">Destino: {{$data->movilidad->tipo_destino}}</span>
+            <span class="d">Destino: {{$data->movilidad->tipo_destino}}</span>
    
             <span class="c">Universidad Destino:{{$data->movilidad->universidad_destino}}</span>
            
-             <span class="b">Carrera Destino: {{$data->movilidad->carrera_destino}}</span>
-        
-             <span class="b">Semestre a Cursar: {{$data->movilidad->semestre_cursar}}</span>
-       
-             <span class="b">Fecha Incio: {{$data->movilidad->fecha_inicio}}</span>
+            
              </div> 
             <div class="page-break"></div>
             <div class="container5" style="margin-top: 30px">
+            <span class="c">Carrera Destino: {{$data->movilidad->carrera_destino}}</span>
+        
+             <span class="a">Semestre a Cursar: {{$data->movilidad->semestre_cursar}}</span>
+  
+             <span class="a">Fecha Incio: {{$data->movilidad->fecha_inicio}}</span>
              
             <span class="a">Fecha Fin: {{$data->movilidad->fecha_fin}}</span>
         
@@ -337,10 +340,10 @@ span.e {
     <table >
             <thead>
                 <tr>
-                    <th scope="col" style="width:30%">Materia Origen</th>
-                    <th scope="col" style="width:30%">Clave</th>
-                    <th scope="col" style="width:30%">Materia Destino</th>
-                    <th scope="col" style="width:30%">Clave</th>
+                    <th scope="col" style="width:30%;  border: 1px solid blue; ">Materia Origen</th>
+                    <th scope="col" style="width:30%;  border: 1px solid blue; ">Clave</th>
+                    <th scope="col" style="width:30%;  border: 1px solid blue; ">Materia Destino</th>
+                    <th scope="col" style="width:30%;  border: 1px solid blue; ">Clave</th>
                   </tr>
             </thead>
             <tbody>
