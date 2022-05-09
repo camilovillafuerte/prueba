@@ -480,7 +480,7 @@ class PdfController extends Controller{
            
             $buscar2->materias=$materias;
            // $buscar2->carrera=$semestre;
-            $response= $buscar2;
+            $response=json_decode(json_encode($buscar2));
        
     }
     }else{
@@ -578,14 +578,14 @@ class PdfController extends Controller{
         if($beneficios)
          {
         $becas2->beneficios=$beneficios;
-        $response= ($becas2);
+        $response= json_decode(json_encode($becas2));
         
         }
         }else{
          $response= [];
          }
 
-        return json_decode(json_encode($becas2));    
+        return  ($becas2);
     }
 
     //Obtener la imagen 

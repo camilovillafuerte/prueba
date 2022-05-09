@@ -223,7 +223,12 @@ span.e {
 
             <span class="a">Nacionalidad: {{$data->movilidad->nacionalidad}}</span>
 
-            <span class="a">Genero: {{$data->movilidad->genero}} </span>
+            <!-- <span class="a">Genero: {{$data->movilidad->genero}} </span> -->
+            @if (($data->movilidad->genero)==='M')
+            <span class="a">Genero: MASCULINO </span>
+            @else
+            <span class="a">Genero: FEMENINO </span>
+            @endif
 
             <span class="a">Estado civil: {{$data->movilidad->estado_civil}}</span>
             
@@ -312,7 +317,13 @@ span.e {
       <div class="container5" style="margin-top: 5px">
              <span class="d">Tipo Alergias: {{$data->movilidad->alergias}}</span>
 
-             <span class="d">Poliza de Seguro: {{$data->movilidad->poliza_seguro}}</span>
+             <!-- <span class="d">Poliza de Seguro: {{$data->movilidad->poliza_seguro}}</span> -->
+            
+            @if (($data->movilidad->poliza_seguro)==='N')
+            <span class="d">Poliza de Seguro: NO </span>
+            @else
+            <span class="d">Poliza de Seguro: SI </span>
+            @endif
 
              <span class="e">Especificar Alergias: {{$data->movilidad->especificar_alergia}}</span>
 
@@ -333,8 +344,8 @@ span.e {
                   </tr>
             </thead>
             <tbody>
-                @if($data->movilidad->count() > 0)
-                @for($i = 0; $i < $data->movilidad->count(); $i++)
+              
+                @for($i = 0; $i < count($data->movilidad[$i]); $i++)
                 <tr>
                     <td style="width:30%">{{ $data->movilidad[$i]->materia_origen }}</td>
                     <td style="width:30%">{{ $data->movilidad[$i]->codigo_origen }}</td>
@@ -342,7 +353,7 @@ span.e {
                     <td style="width:30%">{{ $data->movilidad[$i]->codigo_destino }}</td>
                 </tr>
                 @endfor
-                @endif
+                
             </tbody>
         </table>
     </main>

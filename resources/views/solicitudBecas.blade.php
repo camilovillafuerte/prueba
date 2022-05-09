@@ -201,9 +201,9 @@ span.a {
 span.b {
   display: inline-block;
   width: 205px;
-  height: 30px;
+  height: 34px;
   padding: 5px;
-  margin-top: 8px;
+  margin-top: 5px;
   /* margin-bottom: 8px; */
   border: 1px solid blue;    
   text-align: center; 
@@ -281,9 +281,13 @@ span.e {
             <span class="a">Fecha de Nacimiento: {{$data->becas->fecha_nacimiento}}</span>
 
             <span class="a">Nacionalidad: {{$data->becas->nacionalidad}}</span>
-
-            <span class="a">Genero: {{$data->becas->genero}} </span>
-
+           
+            @if (($data->becas->genero)==='M')
+            <span class="a">Genero: MASCULINO </span>
+            @else
+            <span class="a">Genero: FEMENINO </span>
+            @endif
+          
             <span class="a">Estado civil: {{$data->becas->estado_civil}}</span>
             
             <span class="a">Discapacidad: {{$data->becas->nombre_discapacidad}}</span>
@@ -341,14 +345,15 @@ span.e {
    
             <span class="c">Universidad Destino:{{$data->becas->universidad_destino}}</span>
            
-             <span class="b">Campus Destino: {{$data->becas->campus_destino}}</span>
+             <span class="c">Campus Destino: {{$data->becas->campus_destino}}</span>
         
-             <span class="b">Numero Semestre: {{$data->becas->numero_semestre}}</span>
-       
-             <span class="b">Fecha Incio: {{$data->becas->fecha_inicio}}</span>
              </div> 
             <div class="page-break"></div>
             <div class="container5" style="margin-top: 30px">
+           
+            <span class="a">Numero Semestre: {{$data->becas->numero_semestre}}</span>
+       
+            <span class="a">Fecha Incio: {{$data->becas->fecha_inicio}}</span>
              
             <span class="a">Fecha Fin: {{$data->becas->fecha_fin}}</span>
         
@@ -359,9 +364,7 @@ span.e {
              <span class="c">Monto: {{$data->becas->monto_referencial}}</span>
             
           
-             @for($s = 0; $s < count($data->becas[$i]['beneficios']); $s++)
-            <span class="justify">{{ $data->becas[$i]['beneficios'][$s]}}</span>
-            @endfor
+          
              
     
              </div>
@@ -373,7 +376,13 @@ span.e {
       <div class="container5" style="margin-top: 5px">
              <span class="d">Tipo Alergias: {{$data->becas->alergias}}</span>
 
-             <span class="d">Poliza de Seguro: {{$data->becas->poliza_seguro}}</span>
+             <!-- <span class="d">Poliza de Seguro: {{$data->becas->poliza_seguro}}</span> -->
+             @if (($data->becas->poliza_seguro)==='N')
+            <span class="d">Poliza de Seguro: NO </span>
+            @else
+            <span class="d">Poliza de Seguro: SI </span>
+            @endif
+          
 
              <span class="e">Especificar Alergias: {{$data->becas->especificar_alergia}}</span>
 
