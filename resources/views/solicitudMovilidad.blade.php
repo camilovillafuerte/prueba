@@ -345,7 +345,7 @@ span.e {
             </thead>
             <tbody>
               
-                @for($i = 0; $i < count($data->movilidad[$i]); $i++)
+                @for($i = 0; $i < $data->movilidad[$i]; $i++)
                 <tr>
                     <td style="width:30%">{{ $data->movilidad[$i]->materia_origen }}</td>
                     <td style="width:30%">{{ $data->movilidad[$i]->codigo_origen }}</td>

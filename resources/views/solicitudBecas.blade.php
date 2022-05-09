@@ -363,7 +363,12 @@ span.e {
         
              <span class="c">Monto: {{$data->becas->monto_referencial}}</span>
             
-          
+             @for($s = 0; $s < $data->becas['beneficios']; $s++)
+            <span class="c">{{ $data->becas['beneficios'][$s]}}</span>
+            @endfor
+        @for ($i = 0; $i < 10; $i++)
+        The current value is {{ $i }}
+        @endfor
           
              
     

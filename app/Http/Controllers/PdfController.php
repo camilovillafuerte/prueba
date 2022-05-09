@@ -566,6 +566,7 @@ class PdfController extends Controller{
 
         public function beneficios($id){
         $becas1=$this->solicitudBecas($id);
+        // $becas3=$this->getImgSolicitudes();
         $becas2=json_decode(json_encode($becas1));
         if($becas2){
         $beneficios=DB::select("select be.descripcion as Beneficios
