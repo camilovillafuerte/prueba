@@ -337,20 +337,22 @@ span.e {
     </div>
     <div class="container4" style="margin-top: 5px">
     
-            <span class="a">Facultad: {{$data->becas->nombre_facultad}}</span>
+            <span class="c">Facultad: {{$data->becas->nombre_facultad}}</span>
     
-            <span class="a">Modalidad: {{$data->becas->modalidad}}</span>
+            <span class="d">Modalidad: {{$data->becas->modalidad}}</span>
         
-            <span class="a">Destino: {{$data->becas->tipo_destino}}</span>
+            <span class="d">Destino: {{$data->becas->tipo_destino}}</span>
    
             <span class="c">Universidad Destino:{{$data->becas->universidad_destino}}</span>
            
-             <span class="c">Campus Destino: {{$data->becas->campus_destino}}</span>
+          
         
              </div> 
             <div class="page-break"></div>
             <div class="container5" style="margin-top: 30px">
            
+            <span class="c">Campus Destino: {{$data->becas->campus_destino}}</span>
+
             <span class="a">Numero Semestre: {{$data->becas->numero_semestre}}</span>
        
             <span class="a">Fecha Incio: {{$data->becas->fecha_inicio}}</span>
@@ -362,7 +364,7 @@ span.e {
              <span class="a">Becas o Apoyo: {{$data->becas->beca_apoyo}}</span>
         
              <span class="c">Monto: {{$data->becas->monto_referencial}}</span>
-            
+           
              @for($s = 0; $s < $data->becas['beneficios']; $s++)
             <span class="c">{{ $data->becas['beneficios'][$s]}}</span>
             @endfor
