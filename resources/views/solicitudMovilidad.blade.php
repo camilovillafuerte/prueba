@@ -90,38 +90,44 @@ table{
     width: 103%;
 }
 th, td {
-    border: 1px solid blue;
+    border: 1px solid black;
     width: 30%;
+    height: 5%;
     word-wrap: break-word;
 }
 .container{
     width: 660px; 
     overflow: hidden;
-    height: 230px; 
+    /* height: 230px;  */
+    padding-top: 10px; 
     /* border: black 2px dashed;   */
      /* background-color:red;  */
 }
 .container2{
     width: 660px; 
     overflow: hidden;
-    height: 118px; 
+    /* height: 118px;  */
+    padding-top: 10px; 
     /* border: black 2px dashed;   */
 }
 .container3{
     width: 660px; 
     overflow: hidden;
-    height: 170px; 
+    /* height: 170px;  */
+    padding-top: 10px; 
     /* border: black 2px dashed;   */
 }
 .container4{
     width: 660px; 
     overflow: hidden;
-    height: 150px; 
+    /* height: 150px;  */
+    padding-top: 10px; 
     /* border: black 2px dashed;    */
 }
 .container5{
     width: 660px; 
     overflow: hidden;
+    padding-top: 10px; 
     /* height: 300px;  */
      /* border: black 2px dashed;  */
     /* margin-top: 30px;    */
@@ -135,8 +141,9 @@ span.a {
   width: 205px;
   height: 40px; 
   margin-top: 6px; 
-  padding: 5px;
-  border: 1px solid blue;  
+  /* padding: 5px; */
+  padding: 8px 5px 8px 5px; 
+  border: 1px solid black;  
   /* background-color: yellow;  */
   text-align: center; 
   font-size: 16px;
@@ -146,10 +153,11 @@ span.b {
   display: inline-block;
   width: 205px;
   height: 30px;
-  padding: 5px;
+  /* padding: 5px; */
+  padding: 8px 5px 8px 5px; 
   margin-top: 8px;
   /* margin-bottom: 8px; */
-  border: 1px solid blue;    
+  border: 1px solid black;    
   text-align: center; 
   font-size: 16px;
 }
@@ -157,8 +165,9 @@ span.c {
   display: inline-block;
   width: 648px;
   height: 30px;
-  padding: 5px;
-  border: 1px solid blue;    
+  /* padding: 5px; */
+  padding: 8px 5px 8px 5px; 
+  border: 1px solid black;    
   text-align: justify; 
   font-size: 18px;
   margin-bottom: 1px;
@@ -168,8 +177,9 @@ span.d {
   width: 315px;
   height: 40px; 
   margin-top: 6px; 
-  padding: 5px;
-  border: 1px solid blue;  
+  /* padding: 5px; */
+  padding: 8px 5px 8px 5px; 
+  border: 1px solid black;  
   /* background-color: yellow;  */
   text-align: center; 
   font-size: 18px;
@@ -177,9 +187,10 @@ span.d {
 span.e {
   display: inline-block;
   width: 648px;
-  height: 50px;
-  padding: 5px;
-  border: 1px solid blue;    
+  height: 60px;
+  /* padding: 5px; */
+  padding: 8px 5px 8px 5px; 
+  border: 1px solid black;    
   text-align: justify; 
   font-size: 18px;
   margin-bottom: 1px;
@@ -209,7 +220,7 @@ span.e {
            <span style="font-weight:bold">DATOS PERSONALES</span>
         </div>
 
-        <div class="container" style="margin-top: 5px">
+        <div class="container" style=" margin-bottom:6px">
      
              <span class="a">Cedula: {{$data->movilidad->cedula}}</span>
        
@@ -246,7 +257,7 @@ span.e {
            <span style="font-weight:bold">CONTACTO DE EMERGENCIA</span>
         </div>
 
-        <div div class="container2" style="margin-top: 5px">
+        <div div class="container2" style=" margin-bottom:6px">
             <span class="a">Nombres: {{$data->movilidad->contacto_emergencia_nombres}}</span>
     
             <span class="a">Apellidos: {{$data->movilidad->contacto_emergencia_apellidos}}</span>
@@ -259,7 +270,7 @@ span.e {
     <div style="width: 100% !important; padding: 10px; text-align: center; background-color: rgb(63, 151, 67)">
            <span style="font-weight:bold">RESIDENCIA</span>
     </div>
-        <div div class="container3" style="margin-top: 5px">
+        <div div class="container3" style=" margin-bottom:6px">
             <span class="a">País: {{$data->movilidad->pais}}</span>
     
             <span class="a">Provincia: {{$data->movilidad->provincia}}</span>
@@ -276,10 +287,12 @@ span.e {
 
             <span class="a">Teléfono personal: {{$data->movilidad->telefono_personal_celular}}</span>
         </div>
+
+        <div class="page-break"></div>
     <div style="width: 100% !important; padding: 10px; text-align: center; background-color: rgb(63, 151, 67)">
            <span style="font-weight:bold">DATOS SOLICITUD BECAS</span>
     </div>
-    <div class="container4" style="margin-top: 5px">
+    <div class="container4" style=" margin-bottom:6px">
     
             <span class="c">Carrera: {{$data->movilidad->nombre_carrera}}</span>
     
@@ -290,9 +303,9 @@ span.e {
             <span class="c">Universidad Destino:{{$data->movilidad->universidad_destino}}</span>
            
             
-             </div> 
-            <div class="page-break"></div>
-            <div class="container5" style="margin-top: 30px">
+             <!-- </div>  -->
+            <!-- <div class="page-break"></div> -->
+            <!-- <div class="container5" style=" margin-bottom:6px"> -->
             <span class="c">Carrera Destino: {{$data->movilidad->carrera_destino}}</span>
         
              <span class="a">Semestre a Cursar: {{$data->movilidad->semestre_cursar}}</span>
@@ -317,7 +330,7 @@ span.e {
            <span>ESPECIFICACIONES ESPECIALES</span>
         </div>
 
-      <div class="container5" style="margin-top: 5px">
+      <div class="container5" style=" margin-bottom:6px">
              <span class="d">Tipo Alergias: {{$data->movilidad->alergias}}</span>
 
              <!-- <span class="d">Poliza de Seguro: {{$data->movilidad->poliza_seguro}}</span> -->
@@ -328,9 +341,17 @@ span.e {
             <span class="d">Poliza de Seguro: SI </span>
             @endif
 
-             <span class="e">Especificar Alergias: <?=$data->movilidad->especificar_alergia ?> </span>
+             <!-- <span class="e"> -->
+             <div >  
+             Especificar Alergias: <?=$data->movilidad->especificar_alergia ?> 
+             </div>  
+            <!-- </span> -->
 
-             <span class="e">Enfermedades Cronicas y Tratamiento: <?=$data->movilidad->enfermedades_tratamiento ?></span>
+             <!-- <span class="e"> -->
+             <div> 
+             Enfermedades Cronicas y Tratamiento: <?=$data->movilidad->enfermedades_tratamiento ?>
+             </div>  
+            <!-- </span> -->
 
     </div>
 

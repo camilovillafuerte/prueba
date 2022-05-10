@@ -132,7 +132,7 @@
     width: 100%;
 }
 th, td {
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     width: 100px;
     word-wrap: break-word;
 }
@@ -158,31 +158,36 @@ th, td {
 .container{
     width: 660px; 
     overflow: hidden;
-    height: 230px; 
+    /* height: 260px; */
+    padding-top: 10px; 
     /* border: black 2px dashed;   */
      /* background-color:red;  */
 }
 .container2{
     width: 660px; 
     overflow: hidden;
-    height: 118px; 
+    /* height: 1px;  */
+    padding-top: 10px; 
     /* border: black 2px dashed;   */
 }
 .container3{
     width: 660px; 
     overflow: hidden;
-    height: 170px; 
+    /* height: 170px;  */
+    padding-top: 10px; 
     /* border: black 2px dashed;   */
 }
 .container4{
     width: 660px; 
     overflow: hidden;
-    height: 150px; 
+    /* height: 150px;  */
+    padding-top: 10px; 
     /* border: black 2px dashed;    */
 }
 .container5{
     width: 660px; 
     overflow: hidden;
+    padding-top: 10px; 
     /* height: 300px;  */
      /* border: black 2px dashed;  */
     /* margin-top: 30px;    */
@@ -196,8 +201,9 @@ span.a {
   width: 205px;
   height: 40px; 
   margin-top: 6px; 
-  padding: 5px;
-  border: 1px solid blue;  
+  /* padding: 5px; */
+  padding: 8px 5px 8px 5px; 
+  border: 1px solid black;  
   /* background-color: yellow;  */
   text-align: center; 
   font-size: 18px;
@@ -207,10 +213,11 @@ span.b {
   display: inline-block;
   width: 205px;
   height: 34px;
-  padding: 5px;
+  /* padding: 5px;*/
+  padding: 8px 5px 8px 5px; 
   margin-top: 5px;
   /* margin-bottom: 8px; */
-  border: 1px solid blue;    
+  border: 1px solid black;    
   text-align: center; 
   font-size: 18px;
 }
@@ -218,8 +225,9 @@ span.c {
   display: inline-block;
   width: 648px;
   height: 30px;
-  padding: 5px;
-  border: 1px solid blue;    
+  /* padding: 5px; */
+  padding: 8px 5px 8px 5px; 
+  border: 1px solid black;    
   text-align: justify; 
   font-size: 16px;
   margin-bottom: 1px;
@@ -227,10 +235,11 @@ span.c {
 span.d {
   display: inline-block; /* the default for span */
   width: 315px;
-  height: 40px; 
+  height: 35px; 
   margin-top: 6px; 
-  padding: 5px;
-  border: 1px solid blue;  
+  /* padding: 5px; */
+  padding: 8px 5px 8px 5px; 
+  border: 1px solid black;  
   /* background-color: yellow;  */
   text-align: center; 
   font-size: 18px;
@@ -239,8 +248,9 @@ span.e {
   display: inline-block;
   width: 648px;
   height: 50px;
-  padding: 5px;
-  border: 1px solid blue;    
+  /* padding: 5px; */
+  padding: 8px 5px 8px 5px; 
+  border: 1px solid black;    
   text-align: justify; 
   font-size: 18px;
   margin-bottom: 1px;
@@ -271,7 +281,7 @@ span.e {
            <span style="font-weight:bold">DATOS PERSONALES</span>
         </div>
 
-        <div class="container" style="margin-top: 5px">
+        <div class="container" style=" margin-bottom:6px">
      
              <span class="a">Cedula: {{$data->becas->cedula}}</span>
        
@@ -307,7 +317,7 @@ span.e {
            <span style="font-weight:bold">CONTACTO DE EMERGENCIA</span>
         </div>
 
-        <div div class="container2" style="margin-top: 5px">
+        <div div class="container2" style=" margin-bottom:6px">
             <span class="a">Nombres: {{$data->becas->contacto_emergencia_nombres}}</span>
     
             <span class="a">Apellidos: {{$data->becas->contacto_emergencia_apellidos}}</span>
@@ -320,7 +330,7 @@ span.e {
     <div style="width: 100% !important; padding: 10px; text-align: center; background-color: rgb(63, 151, 67)">
            <span style="font-weight:bold">RESIDENCIA</span>
     </div>
-        <div div class="container3" style="margin-top: 5px">
+        <div div class="container3" style=" margin-bottom:6px">
             <span class="a">País: {{$data->becas->pais}}</span>
     
             <span class="a">Provincia: {{$data->becas->provincia}}</span>
@@ -337,41 +347,44 @@ span.e {
 
             <span class="a">Teléfono personal: {{$data->becas->telefono_personal_celular}}</span>
         </div>
+        
+        <div class="page-break"></div>
+
     <div style="width: 100% !important; padding: 10px; text-align: center; background-color: rgb(63, 151, 67)">
            <span style="font-weight:bold">DATOS SOLICITUD BECAS</span>
     </div>
-    <div class="container4" style="margin-top: 5px">
+    <div class="container4" style=" margin-bottom:6px">
     
-            <span class="c">Facultad: {{$data->becas->nombre_facultad}}</span>
+            <span class="c" style=" margin-bottom:4px">Facultad: {{$data->becas->nombre_facultad}}</span>
     
-            <span class="d">Modalidad: {{$data->becas->modalidad}}</span>
+            <span class="d" style=" margin-bottom:4px">Modalidad: {{$data->becas->modalidad}}</span>
         
-            <span class="d">Destino: {{$data->becas->tipo_destino}}</span>
+            <span class="d" style=" margin-bottom:4px">Destino: {{$data->becas->tipo_destino}}</span>
    
-            <span class="c">Universidad Destino:{{$data->becas->universidad_destino}}</span>
+            <span class="c" style=" margin-bottom:4px">Universidad Destino:{{$data->becas->universidad_destino}}</span>
            
           
         
-             </div> 
+             <!-- </div> 
             <div class="page-break"></div>
             <div class="container5" style="margin-top: 30px">
-           
-            <span class="c">Campus Destino: {{$data->becas->campus_destino}}</span>
+            -->
+            <span class="c" style=" margin-bottom:4px">Campus Destino: {{$data->becas->campus_destino}}</span>
 
-            <span class="a">Numero Semestre: {{$data->becas->numero_semestre}}</span>
+            <span class="a" style=" margin-bottom:4px">Numero Semestre: {{$data->becas->numero_semestre}}</span>
        
-            <span class="a">Fecha Incio: {{$data->becas->fecha_inicio}}</span>
+            <span class="a" style=" margin-bottom:4px">Fecha Incio: {{$data->becas->fecha_inicio}}</span>
              
-            <span class="a">Fecha Fin: {{$data->becas->fecha_fin}}</span>
+            <span class="a" style=" margin-bottom:4px">Fecha Fin: {{$data->becas->fecha_fin}}</span>
         
-             <span class="a">Naturaleza: {{$data->becas->naturaleza}}</span>
+             <span class="a" style=" margin-bottom:4px">Naturaleza: {{$data->becas->naturaleza}}</span>
         
-             <span class="a">Becas o Apoyo: {{$data->becas->beca_apoyo}}</span>
+             <span class="a" style=" margin-bottom:4px">Becas o Apoyo: {{$data->becas->beca_apoyo}}</span>
         
-             <span class="c">Monto: {{$data->becas->monto_referencial}}</span>
-           
+             <span class="c" style=" margin-bottom:4px">Monto: {{$data->becas->monto_referencial}}</span>
+           <h2 style="text-align:center">Beneficios</h2>
              @for($s = 0; $s < count($data->becas->beneficios); $s++)
-            <span class="c">{{ $data->becas->beneficios[$s]->beneficios }}</span>
+            <span class="c" style=" margin-bottom:4px">-{{ $data->becas->beneficios[$s]->beneficios }}</span>
             @endfor
  
              
@@ -379,10 +392,10 @@ span.e {
              </div>
              
         <div style="width: 100% !important; padding: 10px; text-align: center; background-color: rgb(63, 151, 67)">
-           <span>ESPECIFICACIONES ESPECIALES</span>
+           <span style="font-weight:bold">ESPECIFICACIONES ESPECIALES</span>
         </div>
 
-      <div class="container5" style="margin-top: 5px">
+      <div class="container5" >
              <span class="d">Tipo Alergias: {{$data->becas->alergias}}</span>
 
              <!-- <span class="d">Poliza de Seguro: {{$data->becas->poliza_seguro}}</span> -->
@@ -391,11 +404,13 @@ span.e {
             @else
             <span class="d">Poliza de Seguro: SI </span>
             @endif
-          
 
-             <span class="e">Especificar Alergias:  <?= $data->becas->especificar_alergia ?> </span>
-
-             <span class="e">Enfermedades Cronicas y Tratamiento: <?= $data->becas->enfermedades_tratamiento ?></span>
+             <!-- <span class="e"> -->
+             <div>Especificar Alergias:<?= $data->becas->especificar_alergia ?> </div>   
+            <!-- </span> -->
+             <!-- <span class="e"> -->
+            <div> Enfermedades Cronicas y Tratamiento:<?= $data->becas->enfermedades_tratamiento?></div>
+            <!-- </span> -->
 
     </div>
 
