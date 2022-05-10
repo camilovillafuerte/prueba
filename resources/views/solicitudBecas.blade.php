@@ -221,7 +221,7 @@ span.c {
   padding: 5px;
   border: 1px solid blue;    
   text-align: justify; 
-  font-size: 18px;
+  font-size: 16px;
   margin-bottom: 1px;
 }
 span.d {
@@ -370,13 +370,10 @@ span.e {
         
              <span class="c">Monto: {{$data->becas->monto_referencial}}</span>
            
-             @for($s = 0; $s < $data->becas['beneficios']; $s++)
-            <span class="c">{{ $data->becas['beneficios'][$s]}}</span>
+             @for($s = 0; $s < count($data->becas->beneficios); $s++)
+            <span class="c">{{ $data->becas->beneficios[$s]->beneficios }}</span>
             @endfor
-        @for ($i = 0; $i < 10; $i++)
-        The current value is {{ $i }}
-        @endfor
-          
+ 
              
     
              </div>
@@ -396,9 +393,9 @@ span.e {
             @endif
           
 
-             <span class="e">Especificar Alergias: {{$data->becas->especificar_alergia}}</span>
+             <span class="e">Especificar Alergias:  <?= $data->becas->especificar_alergia ?> </span>
 
-             <span class="e">Enfermedades Cronicas y Tratamiento: {{$data->becas->enfermedades_tratamiento}}</span>
+             <span class="e">Enfermedades Cronicas y Tratamiento: <?= $data->becas->enfermedades_tratamiento ?></span>
 
     </div>
 

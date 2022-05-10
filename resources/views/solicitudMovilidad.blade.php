@@ -328,9 +328,9 @@ span.e {
             <span class="d">Poliza de Seguro: SI </span>
             @endif
 
-             <span class="e">Especificar Alergias: {{$data->movilidad->especificar_alergia}}</span>
+             <span class="e">Especificar Alergias: <?=$data->movilidad->especificar_alergia ?> </span>
 
-             <span class="e">Enfermedades Cronicas y Tratamiento: {{$data->movilidad->enfermedades_tratamiento}}</span>
+             <span class="e">Enfermedades Cronicas y Tratamiento: <?=$data->movilidad->enfermedades_tratamiento ?></span>
 
     </div>
 
@@ -348,12 +348,12 @@ span.e {
             </thead>
             <tbody>
               
-                @for($i = 0; $i < $data->movilidad[$i]; $i++)
+                @for($i = 0; $i < count($data->movilidad->materias); $i++)
                 <tr>
-                    <td style="width:30%">{{ $data->movilidad[$i]->materia_origen }}</td>
-                    <td style="width:30%">{{ $data->movilidad[$i]->codigo_origen }}</td>
-                    <td style="width:30%">{{ $data->movilidad[$i]->materia_destino }}</td>
-                    <td style="width:30%">{{ $data->movilidad[$i]->codigo_destino }}</td>
+                    <td style="width:30%">{{ $data->movilidad->materias[$i]->materia_origen }}</td>
+                    <td style="width:30%">{{ $data->movilidad->materias[$i]->codigo_origen }}</td>
+                    <td style="width:30%">{{ $data->movilidad->materias[$i]->materia_destino }}</td>
+                    <td style="width:30%">{{ $data->movilidad->materias[$i]->codigo_destino }}</td>
                 </tr>
                 @endfor
                 
