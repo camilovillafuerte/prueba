@@ -401,7 +401,7 @@ class PdfController extends Controller{
             ];
 
         
-        return response()->json($soli_movi); 
+        return response()->json($response); 
 
     }
 
@@ -514,7 +514,7 @@ class PdfController extends Controller{
             ];
 
         
-        return response()->json($solibecas); 
+        return response()->json($response); 
 
     }
 
