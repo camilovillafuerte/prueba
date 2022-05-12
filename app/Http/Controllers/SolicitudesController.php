@@ -238,4 +238,15 @@ class SolicitudesController extends Controller
       
         return response()->json($response);
     }
+
+    public function findsolicitudes($id)
+    {
+        $data = solicitudes::find($id);
+        $response = [
+            'estado' => true,
+            'solicitud' => $data
+        ];
+
+        return response()->json($response);
+    }
 }

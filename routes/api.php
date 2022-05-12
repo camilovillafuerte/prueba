@@ -521,3 +521,5 @@ Route::post('pdf-solicitud/movilidad',[PdfController::class,'pdfSolicitudMovilid
 
 //Obtener pdf de Solicitud de Becas
 Route::post('pdf-solicitud/becas',[PdfController::class,'pdfSolicitudBecas']);
+
+Route::get('solicitudes/get/{id}',[SolicitudesController::class,'findsolicitudes']);
