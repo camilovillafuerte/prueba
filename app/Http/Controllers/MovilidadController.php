@@ -802,7 +802,7 @@ public function consultarPeriodo($idpersonal){
         $historial = new historial_usuario();
         $historial->usuario_id = intval($data->id_personal);
         $historial->titulo = "Modificación";
-        $historial->detalle = "Se modifico el estado de la solicitud movilidad de ".json_encode($universidad).$soli_movi->estado_solicitud;
+        $historial->detalle = "Se modifico el estado de la solicitud movilidad de ".json_encode($universidad);//.$soli_movi->estado_solicitud;
         $historial->dato_viejo =intval($data->id);
         $historial->dato_nuevo=json_encode($data);
         $historial->fecha_creacion = date('Y-m-d H:i:s');
