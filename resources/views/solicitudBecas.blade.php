@@ -269,7 +269,7 @@ span.e {
                 <div style="width: 100% !important; ">
                     <h1 class="mt-3">Universidad Técnica de Manabí</h1>
                     <h3>Departamento de Relaciones Internacionales, Convenios y Becas</h3>
-                    <h3>Solicitud de Becas</h3>
+                    <h2 class="mt-3">Solicitud de Becas</h2>
                 </div>
 
             </div>
@@ -350,9 +350,10 @@ span.e {
         </div>
         
         <div class="page-break"></div>
-
+        <div style="padding-top: 50px;">
     <div style="width: 100% !important; padding: 10px; text-align: center; background-color: rgb(63, 151, 67)">
            <span style="font-weight:bold">DATOS SOLICITUD BECAS</span>
+    </div>
     </div>
     <div class="container4" style=" margin-bottom:6px">
     
@@ -391,10 +392,12 @@ span.e {
              
     
              </div>
-             
+             <div class="page-break"></div>
+             <div style="padding-top: 50px;">
         <div style="width: 100% !important; padding: 10px; text-align: center; background-color: rgb(63, 151, 67)">
            <span style="font-weight:bold">ESPECIFICACIONES ESPECIALES</span>
         </div>
+             </div>
 
       <div class="container5" >
              <span class="d">Tipo Alergias: {{$data->becas->alergias}}</span>
