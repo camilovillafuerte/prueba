@@ -421,9 +421,14 @@ span.e {
         
 
     </main>
-        <!-- <footer >
-            
-        </footer> -->
-
+    <footer >
+            <div style="display: block" style="margin-bottom: 10px !important;">
+                <div style="width: 50%; position: absolute; bottom: 0px; left: 0px;">
+                    <small>
+                        Hora y fecha de la solicitud {{ date('d-m-Y h:m:s')}}
+                    </small>
+                </div>
+            </div>
+        </footer>
     </body>
 </html>
