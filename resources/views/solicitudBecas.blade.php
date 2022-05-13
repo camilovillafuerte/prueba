@@ -269,14 +269,14 @@ span.e {
                 <div style="width: 100% !important; ">
                     <h1 class="mt-3">Universidad Técnica de Manabí</h1>
                     <h3>Departamento de Relaciones Internacionales, Convenios y Becas</h3>
-                    <h3 class="mt-3">Solicitud de Becas</h3>
+                    <h3>Solicitud de Becas</h3>
                 </div>
 
             </div>
         </header>
 
 
-       <main style="margin-top: 1.5rem;">
+       <main style="margin-top: 3rem;">
 
         <div style="width: 100% !important; padding: 10px; text-align: center; background-color: rgb(63, 151, 67)">
            <span style="font-weight:bold">DATOS PERSONALES</span>
