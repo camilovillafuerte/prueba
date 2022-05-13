@@ -206,9 +206,10 @@ span.e {
                     </div>
                 </div>
     
-                <div style="width: 100% !important; padding-top:5%; ">
-                    <h1 class="mt-3">Solicitud de Movilidad</h1>
-                  
+                <div style="width: 100% !important; ">
+                    <h1 class="mt-3">Universidad Técnica de Manabí</h1>
+                    <h3>Departamento de Relaciones Internacionales, Convenios y Becas</h3>
+                    <h3 class="mt-3">Solicitud de Movilidad</h3>
                 </div>
             </div>
         </header>
