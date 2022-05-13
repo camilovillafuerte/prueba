@@ -276,7 +276,7 @@ span.e {
         </header>
 
 
-       <main style="margin-top: 3rem;">
+       <main style="margin-top: 2.5rem;">
 
         <div style="width: 100% !important; padding: 10px; text-align: center; background-color: rgb(63, 151, 67)">
            <span style="font-weight:bold">DATOS PERSONALES</span>

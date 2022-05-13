@@ -2,72 +2,90 @@
 
 <head>
     <style>
-        @page {
-            margin: 0cm 0cm;
-            font-family: Arial;
-        }
-
-        body {
-            margin: 3cm 2cm 2cm;
-        }
-
-        header {
-            position: fixed;
-            top: 0cm;
-            left: 0cm;
-            right: 0cm;
-            height: 2cm;
-            /* background-color: #eee; */
-            background-color: #fff;
-            color: black;
-            text-align: center;
-            line-height: 30px;
-        }
-
-        footer {
-            position: fixed;
-            bottom: 0cm;
-            left: 0cm;
-            right: 0cm;
-            height: 2cm;
-            background-color: #f4f4f4;
-            color: black;
-            text-align: center;
-            line-height: 35px;
-        }
-
-        .justify {
-            text-align: justify;
-        }
-
-        .d-flex {
-            display: flex !important;
-            flex: 1 1;
-        }
-
-        .mb-3 {
-            margin-bottom: 1.5rem;
-        }
-        .box {
-            margin: 10px;
-            padding: 5px;
-          
-        }
-        .box img {
-            height : 80px;
-            width: 80px;
-            opacity: 0.6;
-         
-        }
-        .box .right {
-            position:absolute;
-            top:0;
-            margin-right:0;
-            text-align: right;
-
-        }
-        .scale-down {object-fit: scale-down}
-
+       @page {
+                margin: 0cm 0cm;
+                font-family: Arial;
+            }
+    
+            body {
+                margin: 3cm 2cm 2cm;
+            }
+    
+            header {
+                position: fixed;
+                top: 0cm;
+                left: 0cm;
+                right: 0cm;
+                height: 2cm;
+                /* background-color: #eee; */
+                background-color: #fff;
+                color: black;
+                text-align: center;
+                line-height: 30px;
+                margin-bottom: 10px;
+            }
+    
+            /* main{
+                width: 100% !important;
+            } */
+    
+            footer {
+                position: fixed;
+                bottom: 0cm;
+                left: 0cm;
+                right: 0cm;
+                height: 2cm;
+                /* background-color: #f4f4f4; */
+                color: #a19f9f;
+                text-align: center;
+                line-height: 35px;
+                width: 100% !important;
+            }
+    
+            .justify {
+                text-align: justify;
+            }
+    
+            .d-flex {
+                display: flex !important;
+                flex: 1 1;
+            }
+    
+            .mb-3 {
+                margin-bottom: 1.5rem;
+            }
+    
+            .mt-3{
+                margin-top: 1.5rem;
+            }
+    
+            .mt-4{
+                margin-top: 2rem;
+            }
+    
+            .mt-5{
+                margin-top: 2.5rem;
+            }
+    
+            .box {
+                margin: 10px;
+                padding: 5px;
+              
+            }
+            .box img {
+                height : 80px;
+                width: 80px;
+                opacity: 0.6;
+            }
+    
+            .box .right {
+                position:absolute;
+                top:0;
+                margin-right:0;
+                text-align: right;
+            }
+    
+            .scale-down {object-fit: scale-down}
        
         .page-break {
         page-break-after: always;
@@ -95,6 +113,11 @@ th, td {
     height: 5%;
     word-wrap: break-word;
 }
+h1,h2,h3,h4,h5{
+                padding: 0px;
+                margin: 0px;
+            }
+    
 .container{
     width: 660px; 
     overflow: hidden;
@@ -215,7 +238,7 @@ span.e {
         </header>
 
 
-       <main style="margin-top: 3rem;">
+       <main style="margin-top: 2.5rem;">
 
         <div style="width: 100% !important; padding: 10px; text-align: center; background-color: rgb(63, 151, 67)">
            <span style="font-weight:bold">DATOS PERSONALES</span>
